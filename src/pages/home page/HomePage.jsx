@@ -1,12 +1,13 @@
 import Banner from "./Banner";
+import HowItWorks from "../../components/HowItWorks";
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Hello Dev Dynamos</h1>
       <Banner></Banner>{" "}
+      <HowItWorks></HowItWorks>
     </div>
-  );
+    );
 };
 
 export default HomePage;
