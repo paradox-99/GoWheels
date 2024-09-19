@@ -17,7 +17,7 @@ const SignIn = () => {
 
 
     return (
-        <div style={{ backgroundImage: `url(${background})` }} className='h-[100vh] bg-cover py-16'>
+        <div style={{ backgroundImage: `url(${background})` }} className='h-[100vh] bg-cover pt-5'>
             <div className='w-[40vw] bg-[#fdfefe] mx-auto py-5 px-10 rounded-lg'>
                 <div className='text-center mx-auto'>
                     <h1 className='text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
