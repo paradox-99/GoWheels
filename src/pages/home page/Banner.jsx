@@ -2,11 +2,17 @@
 const Banner = () => {
     return (
         <main className="dark:bg-gray-800 bg-white relative overflow-hidden  container mx-auto lg:px-20 lg:py-8">
+<<<<<<< HEAD
           <div className="bg-white dark:bg-gray-800 flex flex-col sm:flex-row relative z-0 items-center overflow-hidden">
             <div className="container mx-auto px-6 flex flex-col sm:flex-row relative py-16">
               <div className="w-full sm:w-2/3 lg:w-2/5 flex flex-col relative z-0">
+=======
+          <div className="bg-white dark:bg-gray-800 flex flex-col sm:flex-row relative  items-center overflow-hidden">
+            <div className="container mx-auto px-6 flex flex-col sm:flex-row relative py-16">
+              <div className="w-full sm:w-2/3 lg:w-2/5 flex flex-col relative">
+>>>>>>> 94f03b229aeb1e9587029e50102598e95707948c
                 <span className="w-20 h-2 bg-gray-800 dark:bg-white mb-12"></span>
-                <h1 className="font-bebas-neue uppercase text-6xl sm:text-8xl font-black flex flex-col leading-none dark:text-white text-gray-800">
+                <h1 className="font-bebas-neue uppercase text-6xl sm:text-7xl font-black flex flex-col leading-none dark:text-white text-gray-800">
                 Book Your Ride 
                   <span className="text-5xl sm:text-7xl">Today</span>
                 </h1>
