@@ -32,7 +32,8 @@ const SignIn = () => {
                                 type="email"
                                 name="email"
                                 id="email"
-                                className='border-[1px] border-secondary outline-none w-full rounded-xl py-2 px-6 text-secondary' placeholder='Enter your email address' />
+                                className='border-[1px] border-secondary outline-none w-full rounded-xl py-2 px-6 text-secondary' placeholder='Enter your email address'
+                                required />
                         </div>
 
                         <div className='mt-3 relative'>
@@ -40,7 +41,8 @@ const SignIn = () => {
                                 type={showPassword ? "text" : "password"}
                                 name="passowrd"
                                 id="password"
-                                className='border-[1px] border-secondary outline-none w-full rounded-xl py-2 px-6 text-secondary' placeholder='Enter your password' />
+                                className='border-[1px] border-secondary outline-none w-full rounded-xl py-2 px-6 text-secondary' placeholder='Enter your password' 
+                                required/>
                             <span
                                 className='absolute top-3 right-3 text-xl'
                                 onClick={() => setShowPassword(!showPassword)}>
