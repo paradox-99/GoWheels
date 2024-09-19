@@ -35,7 +35,7 @@ const WhyChooseUs = () => {
                     {/* No hidden fees */}
                     <div
                         data-aos="fade-left"
-                        data-aos-delay="200"
+                        data-aos-delay="100"
                         data-aos-duration="800"
                         className="flex gap-8 items-center">
                         <div className="p-4 -mt-6 rounded-sm bg-primary text-white">
@@ -72,7 +72,7 @@ const WhyChooseUs = () => {
                     {/* Price Match Guarantee */}
                     <div
                         data-aos="fade-right"
-                        data-aos-delay="200"
+                        data-aos-delay="100"
                         data-aos-duration="800"
                         className="flex flex-row-reverse gap-8 items-center">
                         <div className="p-4  -mt-6  rounded-sm bg-primary text-white">
