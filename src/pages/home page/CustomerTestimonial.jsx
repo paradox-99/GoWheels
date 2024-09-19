@@ -1,19 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+// import { useQuery } from "@tanstack/react-query";
+// import axios from "axios";
 import { CiStar } from "react-icons/ci";
 
 const CustomerTestimonial = () => {
 
-    const {data: testimonials =[], isLoading, error} = useQuery({
-        queryKey: ["testimonial"],
-        queryFn: async ()=>{
-            const response = await axios.get("/testimonial");
-            console.log(response.data);
-            return response.data;
-        }
-    });
-    if (isLoading) return <div>Loading surveys...</div>;
-    if (error) return <div>Error loading surveys</div>;
+    // const {data: testimonials =[], isLoading, error} = useQuery({
+    //     queryKey: ["testimonial"],
+    //     queryFn: async ()=>{
+    //         const response = await axios.get("/testimonial");
+    //         console.log(response.data);
+    //         return response.data;
+    //     }
+    // });
+    // if (isLoading) return <div>Loading surveys...</div>;
+    // if (error) return <div>Error loading surveys</div>;
 
 
   return (
@@ -31,6 +31,7 @@ const CustomerTestimonial = () => {
                     alt="Profile"
                   />
                   <h1 className="font-bold">Name</h1>
+                  <h1 className="font-bold">Name</h1>
                 </div>
               </div>
               <a href="#">
@@ -41,6 +42,7 @@ const CustomerTestimonial = () => {
                 industry. Lorem Ipsum has been the industrys standard dummy text
                 ever since the 1500s
               </p>
+              
            
             </div>
           </div>
