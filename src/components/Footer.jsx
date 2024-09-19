@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <div>
-            <p className="font-nunito">This  is  Footer </p>
+            <p>footer</p>
         </div>
     );
 };
