@@ -1,7 +1,7 @@
 const HomePage = () => {
     return (
         <div>
-            <p className="py-[1000px]">dhf jkskl</p>
+            <h1>Hello Dev Dynamos</h1>
         </div>
     );
 };
