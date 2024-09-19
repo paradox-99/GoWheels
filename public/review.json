@@ -1,0 +1,92 @@
+[
+    {
+        "_id": "1",
+        "name": "John Doe",
+        "image": "https://i.ibb.co.com/rfbrcQG/360-F-247194577-p-Dj0-Hc-K8-I9-EXm2g-E2-S0-Bc-H8-KAy-Am-Sbf7.jpg",
+        "review": "Great service and smooth process. Would definitely rent again!",
+        "rating": 5,
+        "car_rent_date_from": "2024-08-01",
+        "car_rent_date_to": "2024-08-07"
+    },
+    {
+        "_id": "2",
+        "name": "Jane Smith",
+        "image": "https://i.ibb.co.com/ggTJ5jq/depositphotos-3574018-stock-photo-thinking-black-woman.webp",
+        "review": "The car was in excellent condition, but the pricing could be better.",
+        "rating": 4,
+        "car_rent_date_from": "2024-07-15",
+        "car_rent_date_to": "2024-07-18"
+    },
+    {
+        "_id": "3",
+        "name": "Mark Thompson",
+        "image": "https://i.ibb.co.com/jHw5nt6/360-F-247194815-5i-Kaw-Yu-Rv-Ehu4-G70-SWx-DG7ytb-Qkkp-Url.jpg",
+        "review": "Good experience overall. Customer support was responsive.",
+        "rating": 4,
+        "car_rent_date_from": "2024-09-02",
+        "car_rent_date_to": "2024-09-05"
+    },
+    {
+        "_id": "4",
+        "name": "Emily Johnson",
+        "image": "https://i.ibb.co.com/XXwk4X3/HD-wallpaper-smart-girl-thumbnail.jpg",
+        "review": "The rental process was seamless, but the car had some minor issues.",
+        "rating": 3,
+        "car_rent_date_from": "2024-08-20",
+        "car_rent_date_to": "2024-08-25"
+    },
+    {
+        "_id": "5",
+        "name": "Chris Lee",
+        "image": "https://i.ibb.co.com/ynHgHpg/71e1ee228d6825fa0c06e5b4b021802b.jpg",
+        "review": "Fantastic experience! The vehicle was well-maintained and clean.",
+        "rating": 5,
+        "car_rent_date_from": "2024-09-10",
+        "car_rent_date_to": "2024-09-15"
+    },
+    {
+        "_id": "6",
+        "name": "Sophia Davis",
+        "image": "https://i.ibb.co.com/fv1pqgm/image1.png",
+        "review": "It was okay, but the return process was a bit confusing.",
+        "rating": 3,
+        "car_rent_date_from": "2024-07-25",
+        "car_rent_date_to": "2024-07-29"
+    },
+    {
+        "_id": "7",
+        "name": "James Wilson",
+        "image": "https://i.ibb.co.com/zHpKRHd/image2.png",
+        "review": "Affordable pricing, but the car wasn’t as clean as expected.",
+        "rating": 3,
+        "car_rent_date_from": "2024-08-10",
+        "car_rent_date_to": "2024-08-14"
+    },
+    {
+        "_id": "8",
+        "name": "Olivia Brown",
+        "image": "https://i.ibb.co.com/6HsKMdG/image3.png",
+        "review": "Excellent customer service and a wide range of cars to choose from!",
+        "rating": 5,
+        "car_rent_date_from": "2024-09-01",
+        "car_rent_date_to": "2024-09-05"
+    },
+    {
+        "_id": "9",
+        "name": "Michael Harris",
+        "image": "https://i.ibb.co.com/qFKnRKc/Michael-Harris.jpg",
+        "review": "Decent service, but the availability of cars during weekends could improve.",
+        "rating": 4,
+        "car_rent_date_from": "2024-08-05",
+        "car_rent_date_to": "2024-08-09"
+    },
+    {
+        "_id": "10",
+        "name": "Ava Martin",
+        "image": "https://i.ibb.co.com/ngLkp8P/Ava-Martin.jpg",
+        "review": "Loved the entire experience! The staff was very helpful.",
+        "rating": 5,
+        "car_rent_date_from": "2024-09-12",
+        "car_rent_date_to": "2024-09-16"
+    }
+]
