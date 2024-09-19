@@ -1,11 +1,12 @@
+import Banner from "./Banner";
 import HowItWorks from "../../components/HowItWorks";
 
 const HomePage = () => {
-    return (
-        <div>
-            <h1>Hello Dev Dynamos</h1>
-            <HowItWorks></HowItWorks>
-        </div>
+  return (
+    <div>
+      <Banner></Banner>{" "}
+      <HowItWorks></HowItWorks>
+    </div>
     );
 };
 
