@@ -1,10 +1,12 @@
+import Banner from "./Banner";
+
 const HomePage = () => {
-    return (
-        <div>
-            <h1>Hello Dev Dynamos</h1>
-            <h1>Banner</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Hello Dev Dynamos</h1>
+      <Banner></Banner>{" "}
+    </div>
+  );
 };
 
 export default HomePage;
