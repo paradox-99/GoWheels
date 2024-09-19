@@ -12,8 +12,9 @@ export default {
       },
       fontFamily: {
         merriweather: '"Merriweather", serif',
-        nunito: '"Nunito Sans", sans-serif'
-      }
+        nunito: '"Nunito Sans", sans-serif',
+      },
+      
     },
   },
   plugins: [],

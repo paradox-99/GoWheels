@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div>
+        <div className="pt-20">
             <p className="font-nunito">This  is  Footer </p>
         </div>
     );
