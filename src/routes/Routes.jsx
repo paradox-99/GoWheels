@@ -21,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: "contact",
                 element: <Contactpage></Contactpage>
+            },
+            {
+                path: "join",
+                element: <div>Join</div>
             }
         ]
     },
