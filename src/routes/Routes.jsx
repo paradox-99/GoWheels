@@ -24,7 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "join",
-                element: <div>Join</div>
+                element: <SignIn></SignIn>
             }
         ]
     },
