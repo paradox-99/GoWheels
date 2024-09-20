@@ -4,6 +4,7 @@ import HomePage from "../pages/home page/HomePage";
 import SignIn from "../pages/sign in page/SignIn";
 import AboutPage from "../pages/about/AboutPage";
 import Contactpage from "../pages/contact/Contactpage";
+import Background from "../pages/background/Background";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +31,14 @@ const router = createBrowserRouter([
     },
     {
         path: '/signin',
-        element: <SignIn></SignIn>
+        element: <Background></Background>,
+        children: [
+            {
+                path: '/signin',
+                element: <SignIn></SignIn>
+            },
+            
+        ]
     }
 ]);
 
