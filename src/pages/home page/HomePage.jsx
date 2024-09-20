@@ -1,20 +1,22 @@
+
+import Available from "./Available Section/Available";
+import Featured from "./Featured_Section/Featured";
 import Banner from "./Banner";
-
-
 import HowItWorks from "../../components/HowItWorks";
 import WhyChooseUs from "../../components/WhyChooseUs";
+import SpecialOffer from "../../components/HomeComponent/SpecialOffer";
 import CustomerTestimonial from "./CustomerTestimonial";
 
 const HomePage = () => {
     return (
         <div>
             <Banner></Banner>
+            <Featured></Featured>
+            <Available></Available>
             <HowItWorks></HowItWorks>
             <WhyChooseUs></WhyChooseUs>
-<<<<<<< HEAD
-=======
+            <SpecialOffer></SpecialOffer>
             <CustomerTestimonial></CustomerTestimonial>
->>>>>>> 94f03b229aeb1e9587029e50102598e95707948c
         </div>
     );
 };
