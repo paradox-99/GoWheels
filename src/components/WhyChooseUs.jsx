@@ -1,14 +1,14 @@
 import { GiFlexibleStar } from "react-icons/gi";
 import BasicHeading from "./BasicHeading";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
 
-AOS.init({
-    duration: 1000,
-    easing: 'ease-in-out',
-    // once: true,
-    mirror: false,
-});
+// AOS.init({
+//     duration: 1000,
+//     easing: 'ease-in-out',
+//     // once: true,
+//     mirror: false,
+// });
 
 const WhyChooseUs = () => {
     return (
@@ -20,9 +20,9 @@ const WhyChooseUs = () => {
                 <div className="space-y-6">
                     {/* Flexible Rentals */}
                     <div
-                        data-aos="fade-left"
-                        data-aos-delay="0"
-                        data-aos-duration="800"
+                        // data-aos="fade-left"
+                        // data-aos-delay="0"
+                        // data-aos-duration="800"
                         className="flex gap-8 items-center">
                         <div className="p-4 -mt-6 rounded-sm bg-primary text-white">
                             <GiFlexibleStar className="text-3xl" />
@@ -34,9 +34,9 @@ const WhyChooseUs = () => {
                     </div>
                     {/* No hidden fees */}
                     <div
-                        data-aos="fade-left"
-                        data-aos-delay="100"
-                        data-aos-duration="800"
+                        // data-aos="fade-left"
+                        // data-aos-delay="100"
+                        // data-aos-duration="800"
                         className="flex gap-8 items-center">
                         <div className="p-4 -mt-6 rounded-sm bg-primary text-white">
                             <GiFlexibleStar className="text-3xl" />
@@ -57,9 +57,9 @@ const WhyChooseUs = () => {
                 <div className="space-y-6">
                     {/* First-Class Services */}
                     <div
-                        data-aos="fade-right"
-                        data-aos-delay="0"
-                        data-aos-duration="800"
+                        // data-aos="fade-right"
+                        // data-aos-delay="0"
+                        // data-aos-duration="800"
                         className="flex flex-row-reverse gap-8 items-center">
                         <div className="p-4 -mt-6  rounded-sm bg-primary text-white">
                             <GiFlexibleStar className="text-3xl" />
@@ -71,9 +71,9 @@ const WhyChooseUs = () => {
                     </div>
                     {/* Price Match Guarantee */}
                     <div
-                        data-aos="fade-right"
-                        data-aos-delay="100"
-                        data-aos-duration="800"
+                        // data-aos="fade-right"
+                        // data-aos-delay="100"
+                        // data-aos-duration="800"
                         className="flex flex-row-reverse gap-8 items-center">
                         <div className="p-4  -mt-6  rounded-sm bg-primary text-white">
                             <GiFlexibleStar className="text-3xl" />
