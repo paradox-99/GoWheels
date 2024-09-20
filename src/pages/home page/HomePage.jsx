@@ -1,7 +1,11 @@
+import Available from "./Available Section/Available";
+import Featured from "./Featured_Section/Featured";
+
 const HomePage = () => {
     return (
         <div>
-            <h1>Hello Dev Dynamos</h1>
+            <Featured></Featured>
+            <Available></Available>
         </div>
     );
 };
