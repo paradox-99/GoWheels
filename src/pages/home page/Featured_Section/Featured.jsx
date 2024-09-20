@@ -76,7 +76,7 @@ const Featured = () => {
                 </h2>
               </div>
               <div>
-                <button className="bg-primary px-4 py-2 text-background rounded-lg font-nunito font-medium">
+                <button className="bg-primary hover:bg-transparent hover:border-2 border-primary hover:text-primary duration-500 active:scale-75 shadow-inner shadow-secondary border-2 px-4 py-2 text-background rounded-lg font-nunito font-semibold">
                   Rent Now
                 </button>
               </div>
