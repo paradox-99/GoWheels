@@ -18,7 +18,7 @@ const SignIn = () => {
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
-            <div className='text-center mx-auto'>
+            <div className='text-center mx-auto pt-5'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
                 <h1 className='text-2xl lg:text-4xl font-bold text-[#fdfefe] font-merriweather'>Sign in to your account</h1>
             </div>
@@ -38,7 +38,7 @@ const SignIn = () => {
                     <div className='mt-3 relative'>
                         <input
                             type={showPassword ? "text" : "password"}
-                            name="passowrd"
+                            name="password"
                             id="password"
                             className='border-[1px] border-secondary outline-none w-full rounded-xl py-1 lg:py-2 px-6 text-secondary' placeholder='Enter your password'
                             required />
@@ -76,10 +76,10 @@ const SignIn = () => {
 
                 </form>
             </section>
-            <section className='mt-3'>
+            <section className='mt-3 pb-5'>
                 <div className='flex justify-center items-center space-x-2 font-nunito'>
                     <h1 className='text-lg lg:text-xl font-medium lg:font-semibold text-[#fdfefe]'>New to this site ?</h1>
-                    <Link className='text-xl lg:text-2xl font-semibold text-primary'>Join Now</Link>
+                    <Link to={'/join/register-new'} className='text-xl lg:text-2xl font-semibold text-primary'>Join Now</Link>
                 </div>
                 <div className=' mt-2'>
                     <button
