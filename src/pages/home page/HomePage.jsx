@@ -11,10 +11,7 @@ const HomePage = () => {
             <Banner></Banner>
             <HowItWorks></HowItWorks>
             <WhyChooseUs></WhyChooseUs>
-<<<<<<< HEAD
-=======
             <CustomerTestimonial></CustomerTestimonial>
->>>>>>> 94f03b229aeb1e9587029e50102598e95707948c
         </div>
     );
 };
