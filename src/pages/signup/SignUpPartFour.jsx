@@ -11,7 +11,7 @@ const SignUpPartFour = () => {
     const [dragActive, setDragActive] = useState(false);
 
 
-    const hnadleImage = (image) => {      
+    const hnadleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
         setImageText(image.name)
     };
@@ -76,23 +76,21 @@ const SignUpPartFour = () => {
                             className='border-[1px] border-secondary outline-none w-full rounded-xl py-1 lg:py-2 px-6 text-secondary' placeholder='Enter your address'
                         />
                     </div>
-
-                    <div className="mt-3 flex items-center justify-between">
-
+                    <div><h1 className="text-[#fdfefe] text-center mt-5">upload your profile picture</h1></div>
+                    <div className="mt-3 flex flex-col-reverse lg:flex-row gap-2 lg:gap-0  items-center lg:justify-between">
                         <div>
-                            <h1 className="text-[#fdfefe]">upload your profile picture</h1>
                             <div
                                 onDragOver={handleDragOver}
                                 onDrop={handleDrop}
                                 onDragLeave={handleDragLeave}
-                                className=" border-dashed border-[2px] border-primary flex flex-col items-center bg-[#fdfefe80] mt-2">
+                                className=" border-dashed border-[2px] border-primary lg:flex flex-col items-center bg-[#fdfefe80] mt-2 hidden ">
                                 <FiUpload className="text-7xl text-primary" />
                                 <div className="text-center">
                                     <h1>Drag and Drop</h1>
                                     <h1>Or</h1>
                                 </div>
                             </div>
-                            <div className="mt-3">
+                            <div className="lg:mt-3">
                                 <input
                                     onChange={e => hnadleImage(e.target.files[0])}
                                     type="file"
@@ -114,7 +112,7 @@ const SignUpPartFour = () => {
 
                         <div className="flex flex-col items-center">
                             <div className="w-40 h-40 border-2 border-primary rounded-full overflow-hidden flex justify-center items-center cursor-pointer">
-                            {imagePreview && <img src={imagePreview} />}
+                                {imagePreview && <img src={imagePreview} />}
 
                             </div>
                             {
@@ -123,7 +121,7 @@ const SignUpPartFour = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-between mt-5">
+                    <div className="flex justify-between lg:mt-5 mt-10">
                         <div>
                             <Link
                                 className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'>
