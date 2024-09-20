@@ -27,29 +27,25 @@ const router = createBrowserRouter([
                 element: <Contactpage></Contactpage>
             },
             {
-                path: "/join",
-                element: <SignIn></SignIn>
+                path: '/join',
+                element: <Background></Background>,
+                children: [
+                    {
+                        path: '/join',
+                        element: <SignIn></SignIn>
+                    },
+                    {
+                        path: "/join/register-new",
+                        element: <SignUp></SignUp>
+                    },
+                    {
+                        path: '/join/signUpFour',
+                        element: <SignUpPartFour></SignUpPartFour>
+                    }
+                ]
             },
-            {
-                path: "/register-new",
-                element: <SignUp></SignUp>
-            }
         ]
     },
-    {
-        path: '/join',
-        element: <Background></Background>,
-        children: [
-            {
-                path: '/join',
-                element: <SignIn></SignIn>
-            },
-            {
-                path: '/join/signUpFour',
-                element: <SignUpPartFour></SignUpPartFour>
-            }
-        ]
-    }
 ]);
 
 export default router;
