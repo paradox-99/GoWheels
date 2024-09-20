@@ -7,7 +7,7 @@ const SpecialOffer = () => {
   return (
     <div>
       <div className="lg:flex items-center justify-center lg:mt-20 mt-10 gap-5 container mx-auto">
-        <div className="lg:w-50% w-full">
+        <div className="">
           <img
             className="lg:w-[600px] max-w-full lg:h-[500px] rounded-tl-[150px] border-4 border-[#ff4c30] rounded-br-[150px]"
             src={image}
