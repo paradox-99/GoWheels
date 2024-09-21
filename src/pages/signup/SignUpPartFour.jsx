@@ -11,7 +11,7 @@ const SignUpPartFour = () => {
     const [dragActive, setDragActive] = useState(false);
 
 
-    const hnadleImage = (image) => {
+    const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
         setImageText(image.name)
     };
@@ -62,7 +62,6 @@ const SignUpPartFour = () => {
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
             <div className='text-center mx-auto'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
-                <h1 className='text-2xl lg:text-4xl font-bold text-[#fdfefe] font-merriweather'>Optional info</h1>
             </div>
             <section className='mt-3'>
                 <form
@@ -73,10 +72,10 @@ const SignUpPartFour = () => {
                             type="address"
                             name="address"
                             id="address"
-                            className='border-[1px] border-secondary outline-none w-full rounded-xl py-1 lg:py-2 px-6 text-secondary' placeholder='Enter your address'
+                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-6 text-secondary' placeholder='Enter your address'
                         />
                     </div>
-                    <div><h1 className="text-[#fdfefe] text-center mt-5">upload your profile picture</h1></div>
+                    <div><h1 className="text-[#fdfefe] text-center mt-5">Upload your profile picture</h1></div>
                     <div className="mt-3 flex flex-col-reverse lg:flex-row gap-2 lg:gap-0  items-center lg:justify-between">
                         <div>
                             <div
@@ -92,7 +91,7 @@ const SignUpPartFour = () => {
                             </div>
                             <div className="lg:mt-3">
                                 <input
-                                    onChange={e => hnadleImage(e.target.files[0])}
+                                    onChange={e => handleImage(e.target.files[0])}
                                     type="file"
                                     name="profile"
                                     id="profile"
@@ -104,7 +103,7 @@ const SignUpPartFour = () => {
                                 <button
                                     onClick={() => inputRef.current.click()}
                                     type="button"
-                                    className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'>
+                                    className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'>
                                     Browse from your device
                                 </button>
                             </div>
@@ -124,14 +123,14 @@ const SignUpPartFour = () => {
                     <div className="flex justify-between lg:mt-5 mt-10">
                         <div>
                             <Link
-                                className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'>
+                                className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer'>
                                 skip
                             </Link>
                         </div>
                         <div>
                             <button
-                                type="sumbit"
-                                className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'>
+                                type="submit"
+                                className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer'>
                                 Proceed
                             </button>
                         </div>
