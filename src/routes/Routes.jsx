@@ -5,8 +5,9 @@ import SignIn from "../pages/sign in page/SignIn";
 import AboutPage from "../pages/about/AboutPage";
 import Contactpage from "../pages/contact/Contactpage";
 import Background from "../pages/background/Background";
-import SignUpPartFour from "../pages/sign in page/SignUpPartFour";
+
 import SignUp from "../pages/signup/SignUp";
+import SignUpPartFour from "../pages/signup/SignUpPartFour";
 
 const router = createBrowserRouter([
     {
