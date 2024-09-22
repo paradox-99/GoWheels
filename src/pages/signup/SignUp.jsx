@@ -15,19 +15,14 @@ const SignUp = () => {
 
             <section className='mt-5 pb-5'>
                 <div className=' mt-2'>
-                    <button
-                        className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
-                        <HiOutlineMail className='text-3xl text-white' /> Continue with Email</button>
+                    <Link to={'/join/signUpTwo'} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
+                        <HiOutlineMail className='text-3xl text-white' /> Continue with Email
+                        </Link>
                 </div>
                 <div className=' mt-2'>
                     <button
                         className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
                         <FaGoogle className='text-3xl text-white' /> Continue with Google</button>
-                </div>
-                <div className=' mt-2'>
-                    <button
-                        className=' border py-1 lg:py-2 lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
-                        <BsMicrosoft className='text-3xl text-white' /> Continue with Microsoft</button>
                 </div>
                 <div className='mt-8 flex justify-center items-center space-x-2'>
                     <h1 className='text-lg lg:text-xl font-medium lg:font-semibold text-[#fdfefe]'>Already have an account?</h1>

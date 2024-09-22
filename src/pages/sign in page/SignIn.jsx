@@ -86,11 +86,6 @@ const SignIn = () => {
                         className='py-1 lg:py-2 border lg:border-secondary rounded w-full flex items-center justify-center gap-2 text-xl font-nunito font-medium text-white'>
                         <FaGoogle className='text-3xl text-white' /><span className='font-semibold'> Continue with Google</span></button>
                 </div>
-                <div className=' mt-2'>
-                    <button
-                        className=' border py-1 lg:py-2 lg:border-secondary rounded w-full flex items-center justify-center gap-2 text-xl font-nunito font-medium text-white'>
-                        <BsMicrosoft className='text-3xl text-white' /> <span className='font-semibold'>Continue with Microsoft</span></button>
-                </div>
             </section>
         </div>
     );
