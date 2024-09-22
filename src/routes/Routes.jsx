@@ -7,6 +7,7 @@ import Contactpage from "../pages/contact/Contactpage";
 import Background from "../pages/background/Background";
 import SignUp from "../pages/signup/SignUp";
 import SignUpPartFour from "../pages/signup/SignUpPartFour";
+import SignupPartTwo from "../pages/signup/SignupPartTwo";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
                     {
                         path: "/join/register-new",
                         element: <SignUp></SignUp>
+                    },
+                    {
+                        path: '/join/signUpTwo',
+                        element: <SignupPartTwo></SignupPartTwo>
                     },
                     {
                         path: '/join/signUpFour',
