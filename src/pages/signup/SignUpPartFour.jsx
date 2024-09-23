@@ -1,19 +1,24 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { FiUpload } from "react-icons/fi";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
-    const [imagePreview, setImagePreview] = useState();
-    const inputRef = useRef()
+    const [imagePreview, setImagePreview] = useState(null);
+    const inputRef = useRef();
     const [dragActive, setDragActive] = useState(false);
+    const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+    const [zoomLevel, setZoomLevel] = useState(1); // New zoom state
+    const [imageFile, setImageFile] = useState(null);
+    const navigateNext = useNavigate();
 
-
-    const hnadleImage = (image) => {
+    const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
-        setImageText(image.name)
+        setImageText(image.name);
+        setImageFile(image)
     };
 
     const handleDragOver = (e) => {
@@ -35,29 +40,34 @@ const SignUpPartFour = () => {
         const droppedFile = e.dataTransfer.files[0];
         setImageText(droppedFile.name);
         setImagePreview(URL.createObjectURL(droppedFile));
+        setImageFile(droppedFile)
     };
 
     const handleInfo = async (e) => {
         e.preventDefault();
 
-        const userImage = imageText;
-        console.log(userImage)
-
+        const image = imageFile;
         const formData = new FormData();
-        formData.append('image', userImage)
+        formData.append('image', image);
+
+        console.log(image)
 
         try {
-            const response = await axios.post(
-                `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
+            const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
                 formData
             );
-            const productImage = response.data.data.display_url;
-            console.log(productImage)
+            
+            const userImage = response.data.data.display_url;
+            console.log(response)
+            console.log("Image uploaded successfully:", userImage);
+            if (userImage) {
+                navigateNext('/join/signUpFive')
+            }
+        } catch (error) {
+            console.log(error);
         }
-        catch (error) {
-            console.log(error)
-        }
-    }
+    };
+ 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
             <div className='text-center mx-auto'>
@@ -68,76 +78,72 @@ const SignUpPartFour = () => {
                 <form
                     onSubmit={handleInfo}
                     className='font-nunito'>
-                    <div>
-                        <input
-                            type="address"
-                            name="address"
-                            id="address"
-                            className='border-[1px] border-secondary outline-none w-full rounded-xl py-1 lg:py-2 px-6 text-secondary' placeholder='Enter your address'
-                        />
-                    </div>
-                    <div><h1 className="text-[#fdfefe] text-center mt-5">upload your profile picture</h1></div>
-                    <div className="mt-3 flex flex-col-reverse lg:flex-row gap-2 lg:gap-0  items-center lg:justify-between">
-                        <div>
+                    <div><h1 className="text-[#fdfefe] text-center mt-5">Upload your profile picture</h1></div>
+
+                    {/* Upload Section */}
+                    <div className="mt-3 mx-auto">
+                        {/* Upload Button */}
+                        <div className='flex flex-col items-center justify-center '>
                             <div
                                 onDragOver={handleDragOver}
                                 onDrop={handleDrop}
                                 onDragLeave={handleDragLeave}
-                                className=" border-dashed border-[2px] border-primary lg:flex flex-col items-center bg-[#fdfefe80] mt-2 hidden ">
+                                style={{
+                                    backgroundImage: `url(${imagePreview})`
+                                }}
+                                className="border-dashed border-2 border-primary w-36 h-36 bg-no-repeat bg-center bg-cover px-5 pb-3 lg:flex flex-col items-center justify-center mt-2 hidden "
+                            >
                                 <FiUpload className="text-7xl text-primary" />
                                 <div className="text-center">
-                                    <h1>Drag and Drop</h1>
-                                    <h1>Or</h1>
+                                    {imagePreview ? "" : <h1>Drag and Drop</h1>}
                                 </div>
+                            </div>
+                            <div className="mt-2">
+                                {imagePreview ? <h1>{imageText}</h1> : <h1>Or</h1>}
                             </div>
                             <div className="lg:mt-3">
                                 <input
-                                    onChange={e => hnadleImage(e.target.files[0])}
+                                    onChange={e => handleImage(e.target.files[0])}
                                     type="file"
-                                    name="profile"
+                                    name="image"
                                     id="profile"
                                     hidden
                                     accept='image/*'
                                     ref={inputRef}
                                 />
-
                                 <button
                                     onClick={() => inputRef.current.click()}
                                     type="button"
-                                    className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'>
+                                    className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'
+                                >
                                     Browse from your device
                                 </button>
                             </div>
-                        </div>
+                        </div>       
 
-                        <div className="flex flex-col items-center">
-                            <div className="w-40 h-40 border-2 border-primary rounded-full overflow-hidden flex justify-center items-center cursor-pointer">
-                                {imagePreview && <img src={imagePreview} />}
-
-                            </div>
-                            {
-                                imageText.length > 15 ? imageText.split('.')[0].slice(0, 15) + '...' + imageText.split('.')[1] : imageText
-                            }
-                        </div>
                     </div>
 
+                    {/* Buttons */}
                     <div className="flex justify-between lg:mt-5 mt-10">
                         <div>
                             <Link
-                                className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'>
-                                skip
+                                type="button"
+                                className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'
+                                to="/"
+                            >
+                                Skip
                             </Link>
                         </div>
                         <div>
                             <button
-                                type="sumbit"
-                                className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'>
+                                disabled={imagePreview === null}
+                                type="submit"
+                                className={`bg-primary px-3 py-1 rounded-xl text-white font-semibold ${imagePreview === null ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                            >
                                 Proceed
                             </button>
                         </div>
                     </div>
-
-
                 </form>
             </section>
         </div>
