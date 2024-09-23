@@ -1,19 +1,48 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { FaGoogle } from 'react-icons/fa6';
+import { MdOutlineError } from 'react-icons/md';
 
 const SignUpLastPage = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null)
+    const location = useLocation();
+    const { firstName, lastName, email, phone, gender, division, district, upazilla, localAddress, dateOfBirth } = location.state || {};
 
-    const handleLogin = (e) => {
+
+    const handleJoin = (e) => {
         e.preventDefault()
         const form = e.target;
-        const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        const confirmPassword = form.confirmPassword.value;
+        const check = form.yes.checked
+
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        setErrorMessage('');
+
+        if (password.length < 6) {
+            setErrorMessage("your password should be at least 6 character!")
+            return
+        }
+        if (!regex.test(password)) {
+             setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special charachter')
+             return 
+        }
+        if (password !== confirmPassword) {
+           setErrorMessage('passowrd and confirm password didn`t match!!!')
+           return 
+        }
+        else if (!check) {
+            setErrorMessage('you have to accept our terms and condition!!!')
+            return 
+        }
+
+
+
+
     }
 
     return (
@@ -23,7 +52,7 @@ const SignUpLastPage = () => {
             </div>
             <section className='mt-8'>
                 <form
-                    onSubmit={handleLogin}
+                    onSubmit={handleJoin}
                     className='font-nunito'>
                     <div className='relative'>
                         <input
@@ -58,9 +87,15 @@ const SignUpLastPage = () => {
                         <input
                             type="checkbox"
                             name="yes"
-                            id="yes" />
-                            <label htmlFor="yes">
+                            id="yes"
+                        />
+
+                        <label htmlFor="yes">
                             Terms and Conditions</label>
+                    </div>
+
+                    <div>
+                        {errorMessage && <h1 className='text-red-800 bg-red-400 p-2 rounded-lg flex items-center'>{errorMessage} <MdOutlineError className='text-2xl text-red-700 '/></h1>}
                     </div>
 
                     <div className='flex justify-center items-center mt-3'>

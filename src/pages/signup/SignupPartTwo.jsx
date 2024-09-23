@@ -109,7 +109,7 @@ const SignupPartTwo = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-    const handleLogin = (e) => {
+    const handleJoin = (e) => {
         e.preventDefault()
         const form = e.target;
         const firstName = form.firstName.value;
@@ -121,11 +121,11 @@ const SignupPartTwo = () => {
         const district = form.district.value;
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
+        const dateOfBirth = e.target.birthDay.value;
 
-        const info = [firstName, lastName, email, phone, gender, division, district, upazilla, localAddress];
-
-        console.log(info);
-        navigate('/join/signUpFour');
+        console.log(dateOfBirth)
+        const info = {firstName, lastName, email, phone, gender, division, district, upazilla, localAddress, dateOfBirth};
+        navigate('/join/signUpLastPage', {state: {info}});
     }
 
     return (
@@ -135,20 +135,22 @@ const SignupPartTwo = () => {
             </div>
             <section className='mt-3'>
                 <form
-                    onSubmit={handleLogin}
+                    onSubmit={handleJoin}
                     className='font-nunito'>
                     <div className='flex gap-10'>
                         <input
                             type="text"
                             name="firstName"
                             id="firstName"
-                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='First Name'
+                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                            placeholder='First Name'
                             required />
                         <input
                             type="text"
                             name="lastName"
                             id="lastName"
-                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='Last Name'
+                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                            placeholder='Last Name'
                             required />
                     </div>
 
@@ -157,22 +159,33 @@ const SignupPartTwo = () => {
                             type="email"
                             name="email"
                             id="email"
-                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='Email'
+                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                            placeholder='Email'
                             required />
                         <input
-                            type="text"
+                            type="number"
                             name="phone"
                             id="phone"
-                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='Phone number'
+                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                            placeholder='Phone number'
                             required />
                         <div className='flex justify-between items-center'>
-                            <select name="gender" id="gender" className='outline-none w-[45%] rounded py-1 lg:py-2 px-2 text-secondary' required>
+                            <select
+                                name="gender"
+                                id="gender"
+                                className='outline-none w-[45%] rounded py-1 lg:py-2 px-2 text-secondary'
+                                required>
                                 <option defaultChecked className='text-gray-400'>Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="others">Others</option>
                             </select>
-                            <input type="date" name="birthDay" id="birthDay" placeholder='Birth date' className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary' />
+                            <input
+                                type="date"
+                                name="birthDay"
+                                id="birthDay"
+                                placeholder='Birth date'
+                                className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary' />
                         </div>
                         <h3 className='text-lg font-semibold text-white'>Address:</h3>
                         <div className='flex justify-between'>
@@ -203,7 +216,7 @@ const SignupPartTwo = () => {
                             )}
                         </div>
                         <div>
-                            <input type="text" name="localAddress" id="localAddress" className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='Enter House/road no' required/>
+                            <input type="text" name="localAddress" id="localAddress" className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='Enter House/road no' required />
                         </div>
                     </div>
                     <div className='pb-10 mt-5 flex justify-between'>

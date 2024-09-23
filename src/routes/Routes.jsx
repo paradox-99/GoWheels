@@ -7,6 +7,7 @@ import Contactpage from "../pages/contact/Contactpage";
 import Background from "../pages/background/Background";
 import SignUp from "../pages/signup/SignUp";
 import SignUpPartFour from "../pages/signup/SignUpPartFour";
+import SignUpPartFive from "../pages/signup/SignUpPartFive";
 import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import SignUpLastPage from "../pages/signup/SignUpLastPage";
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
                     {
                         path: '/join/signUpLastPage',
                         element: <SignUpLastPage></SignUpLastPage>
+                    },
+                    {
+                        path: '/join/signUpFive',
+                        element: <SignUpPartFive></SignUpPartFive>,
                     }
                 ]
             },
