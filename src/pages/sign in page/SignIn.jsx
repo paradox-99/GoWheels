@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { FaGoogle } from 'react-icons/fa6';
-import { BsMicrosoft } from 'react-icons/bs';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +13,6 @@ const SignIn = () => {
         const password = form.password.value;
         console.log(email, password)
     }
-
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>

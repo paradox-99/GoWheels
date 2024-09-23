@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { FiUpload } from "react-icons/fi";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
     const [imagePreview, setImagePreview] = useState();
     const inputRef = useRef()
     const [dragActive, setDragActive] = useState(false);
-
+    const navigate = useNavigate();
 
     const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
@@ -57,6 +56,8 @@ const SignUpPartFour = () => {
         catch (error) {
             console.log(error)
         }
+
+        navigate('/join/signUpLastPage');
     }
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
@@ -112,7 +113,6 @@ const SignUpPartFour = () => {
                         <div className="flex flex-col items-center">
                             <div className="w-40 h-40 border-2 border-primary rounded-full overflow-hidden flex justify-center items-center cursor-pointer">
                                 {imagePreview && <img src={imagePreview} />}
-
                             </div>
                             {
                                 imageText.length > 15 ? imageText.split('.')[0].slice(0, 15) + '...' + imageText.split('.')[1] : imageText
@@ -122,21 +122,19 @@ const SignUpPartFour = () => {
 
                     <div className="flex justify-between lg:mt-5 mt-10">
                         <div>
-                            <Link
+                            <Link to={'/join/signUpLastPage'}
                                 className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer'>
-                                skip
+                                Skip
                             </Link>
                         </div>
                         <div>
                             <button
                                 type="submit"
                                 className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer'>
-                                Proceed
+                                Next
                             </button>
                         </div>
                     </div>
-
-
                 </form>
             </section>
         </div>
