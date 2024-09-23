@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { FaGoogle } from 'react-icons/fa6';
-import { BsMicrosoft } from 'react-icons/bs';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +13,6 @@ const SignIn = () => {
         const password = form.password.value;
         console.log(email, password)
     }
-
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
@@ -85,11 +83,6 @@ const SignIn = () => {
                     <button
                         className='py-1 lg:py-2 border lg:border-secondary rounded w-full flex items-center justify-center gap-2 text-xl font-nunito font-medium text-white'>
                         <FaGoogle className='text-3xl text-white' /><span className='font-semibold'> Continue with Google</span></button>
-                </div>
-                <div className=' mt-2'>
-                    <button
-                        className=' border py-1 lg:py-2 lg:border-secondary rounded w-full flex items-center justify-center gap-2 text-xl font-nunito font-medium text-white'>
-                        <BsMicrosoft className='text-3xl text-white' /> <span className='font-semibold'>Continue with Microsoft</span></button>
                 </div>
             </section>
         </div>
