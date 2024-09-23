@@ -61,7 +61,7 @@ const SignUpPartFour = () => {
             console.log(response)
             console.log("Image uploaded successfully:", userImage);
             if (userImage) {
-                navigateNext('/join/signUpFive')
+                navigateNext('/join/signUpFive', {state: {userImage}})
             }
         } catch (error) {
             console.log(error);
@@ -72,7 +72,6 @@ const SignUpPartFour = () => {
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
             <div className='text-center mx-auto'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
-                <h1 className='text-2xl lg:text-4xl font-bold text-[#fdfefe] font-merriweather'>Optional info</h1>
             </div>
             <section className='mt-3'>
                 <form
@@ -80,9 +79,9 @@ const SignUpPartFour = () => {
                     className='font-nunito'>
                     <div><h1 className="text-[#fdfefe] text-center mt-5">Upload your profile picture</h1></div>
 
-                    {/* Upload Section */}
+                    
                     <div className="mt-3 mx-auto">
-                        {/* Upload Button */}
+                       
                         <div className='flex flex-col items-center justify-center '>
                             <div
                                 onDragOver={handleDragOver}
@@ -123,7 +122,6 @@ const SignUpPartFour = () => {
 
                     </div>
 
-                    {/* Buttons */}
                     <div className="flex justify-between lg:mt-5 mt-10">
                         <div>
                             <Link
@@ -138,8 +136,7 @@ const SignUpPartFour = () => {
                             <button
                                 disabled={imagePreview === null}
                                 type="submit"
-                                className={`bg-primary px-3 py-1 rounded-xl text-white font-semibold ${imagePreview === null ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-                            >
+                                className={`bg-primary px-3 py-1 rounded-xl text-white font-semibold ${imagePreview === null ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                                 Proceed
                             </button>
                         </div>
