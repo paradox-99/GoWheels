@@ -38,13 +38,13 @@ const CustomerTestimonial = () => {
                     className="rounded-full h-12 w-12 mb-4"
                     alt="Profile"
                   />
-                  <h1 className="font-bold">Name</h1>
+                  <h1 className="font-bold">Farzana</h1>
                 </div>
               </div>
               <a href="#">                <h4 className="text-sm mb-3 font-semibold">Booked :  2/3/2023 - 12-12-2023 </h4>
               </a>
               <p className="mb-2 text-sm">
-              I needed a last-minute rental, and [Your Car Rental Company] delivered! The rates were affordable, and the car was in excellent shape. Their customer service team was very helpful as well.
+              I needed a last-minute rental, and GoWheels delivered! The rates were affordable, and the car was in excellent shape. Their customer service team was very helpful as well.
               </p>
             </div>
           </div>
@@ -68,7 +68,7 @@ const CustomerTestimonial = () => {
               <a href="#">                <h4 className="text-sm mb-3 font-semibold">Booked :  2/3/2023 - 12-12-2023 </h4>
               </a>
               <p className="mb-2 text-sm">
-              I needed a last-minute rental, and [Your Car Rental Company] delivered! The rates were affordable, and the car was in excellent shape. Their customer service team was very helpful as well.
+              Fantastic experience! The vehicle was well-maintained and clean.
               </p>
             </div>
           </div>
@@ -92,7 +92,7 @@ const CustomerTestimonial = () => {
               <a href="#">                <h4 className="text-sm mb-3 font-semibold">Booked :  2/3/2023 - 12-12-2023 </h4>
               </a>
               <p className="mb-2 text-sm">
-              I needed a last-minute rental, and [Your Car Rental Company] delivered! The rates were affordable, and the car was in excellent shape. Their customer service team was very helpful as well.
+              Good experience overall. Customer support was responsive.
               </p>
             </div>
           </div>
