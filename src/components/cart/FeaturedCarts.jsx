@@ -2,6 +2,7 @@ import { BsFuelPumpFill } from "react-icons/bs";
 import { FaCarSide, FaStar } from "react-icons/fa";
 import { PiSeatFill } from "react-icons/pi";
 import { TbManualGearboxFilled } from "react-icons/tb";
+import { Link } from "react-router-dom";
 const FeaturedCarts = ({ car }) => {
   return (
     <div>
@@ -51,9 +52,9 @@ const FeaturedCarts = ({ car }) => {
             </h2>
           </div>
           <div>
-            <button className="bg-primary hover:bg-transparent hover:border-2 border-primary hover:text-primary duration-500 active:scale-75 shadow-inner shadow-secondary border-2 px-4 py-2 text-background rounded-lg font-nunito font-semibold">
-              Rent Now
-            </button>
+            <Link to={'/view-details'} className="bg-primary hover:bg-transparent hover:border-2 border-primary hover:text-primary duration-500 active:scale-75 shadow-inner shadow-secondary border-2 px-4 py-2 text-background rounded-lg font-nunito font-semibold">
+              View Details
+            </Link>
           </div>
         </div>
       </div>
