@@ -10,15 +10,13 @@ const SignUpPartFour = () => {
     const [imagePreview, setImagePreview] = useState(null);
     const inputRef = useRef();
     const [dragActive, setDragActive] = useState(false);
-    const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-    const [isDragging, setIsDragging] = useState(false);
-    const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-    const [zoomLevel, setZoomLevel] = useState(1); // New zoom state
     const [imageFile, setImageFile] = useState(null);
     const navigateNext = useNavigate();
+    const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth();
     const location = useLocation();
     const { userName } = location.state?.userInfo || {};
-    const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth();
+
+    const {displayName} = user || {};
     console.log(user)
 
     const handleImage = (image) => {
@@ -74,7 +72,7 @@ const SignUpPartFour = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigateNext('/join/signUpFive', {state: {userImage}})
+                navigateNext('/join/signUpFive', { state: { userImage } })
             }
         } catch (error) {
             setLoader(false)
@@ -91,7 +89,7 @@ const SignUpPartFour = () => {
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
             <div className='text-center mx-auto'>
-                <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>Hi! {user?.displayName}</h1>
+                <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>Hi! {displayName}</h1>
             </div>
             <section className='mt-3'>
                 <form
