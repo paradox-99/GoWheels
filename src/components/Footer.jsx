@@ -38,11 +38,11 @@ const Footer = () => {
                 </div>
 
                 {/* ********** */}
-                <div className=" mt-20 px-5 lg:px-20">
+                <div className=" mt-10 px-5 lg:px-20">
                     <hr />
                 </div>
                 {/* ***** */}
-                <div className="lg:flex text-center lg:text-left justify-around mt-20">
+                <div className="lg:flex text-center lg:text-left justify-around mt-10">
                     {/* div-2 */}
                     <div>
                         <p><PiCarProfileLight size={70}  className="text-[#ff4c30] mx-auto  lg:mx-0" /></p>
@@ -78,7 +78,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className=" mt-16 px-5 lg:px-20">
+                <div className=" mt-10 px-5 lg:px-20">
                     <hr />
                 </div>
                 <div className="lg:flex text-center lg:px-36 justify-between mt-3">
