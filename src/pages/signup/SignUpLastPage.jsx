@@ -32,7 +32,7 @@ const SignUpLastPage = () => {
              return 
         }
         if (password !== confirmPassword) {
-           setErrorMessage('passowrd and confirm password didn`t match!!!')
+           setErrorMessage('passowrd and confirm password didn`t match!!')
            return 
         }
         else if (!check) {
