@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit, FcInfo, FcList, FcViewDetails, FcRules, FcSalesPerformance } from "react-icons/fc";
+import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit,  FcList, FcViewDetails, FcSalesPerformance } from "react-icons/fc";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa"; // For green check icon
 
