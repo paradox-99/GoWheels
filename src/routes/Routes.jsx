@@ -10,6 +10,7 @@ import SignUpPartFive from "../pages/signup/SignUpPartFive";
 import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import SignUpPartOne from "../pages/signup/SignUpPartOne";
 import SignUpPartThree from "../pages/signup/SignUpPartThree";
+import ViewDetails from "../pages/ViewDetails/ViewDetails";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contactpage></Contactpage>
+            },
+            {
+                path: "/view-details",
+                element: <ViewDetails></ViewDetails>
             },
             {
                 path: '/join',
