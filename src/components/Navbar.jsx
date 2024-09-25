@@ -31,7 +31,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className={`font-medium fixed z-10 flex justify-between w-full items-center py-3 px-2 md:px-10 lg:px-16 xl:px-28 transition-colors duration-300`}>
+        <div className={`font-medium fixed z-10 flex justify-between w-screen items-center py-3 px-2 md:px-10 lg:px-16 xl:px-28 transition-colors duration-300 ${ scroll ? 'bg-[#161616] text-white':'bg-transparent'}`}>
             <div className="flex gap-1 items-center justify-center">
                 <figure><img src="/favicon.png" alt="logo" className="w-7 md:w-12" /></figure>
                 <h1 className="text-2xl font-nunito font-bold">GoWheels</h1>

@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.56.2",
-    "aos": "^2.3.4",
     "axios": "^1.7.7",
     "firebase": "^10.13.2",
     "gowheels": "file:",
@@ -28,8 +27,11 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.26.2",
+    "react-slick": "^0.30.2",
     "react-vertical-timeline-component": "^3.6.0",
-    "sort-by": "^1.2.0"
+    "slick-carousel": "^1.8.1",
+    "sort-by": "^0.0.2",
+    "sweetalert2": "^11.14.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

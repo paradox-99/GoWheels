@@ -1,6 +1,7 @@
+
+import Available from "./Available Section/Available";
+import Featured from "./Featured_Section/Featured";
 import Banner from "./Banner";
-
-
 import HowItWorks from "../../components/HowItWorks";
 import WhyChooseUs from "../../components/WhyChooseUs";
 import SpecialOffer from "../../components/HomeComponent/SpecialOffer";
@@ -10,6 +11,8 @@ const HomePage = () => {
     return (
         <div>
             <Banner></Banner>
+            <Featured></Featured>
+            <Available></Available>
             <HowItWorks></HowItWorks>
             <WhyChooseUs></WhyChooseUs>
             <SpecialOffer></SpecialOffer>

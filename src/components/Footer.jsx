@@ -30,7 +30,7 @@ const Footer = () => {
                             </div>
                         </div>
                         {/* input ;email */}
-                        <div className="flex gap-4">
+                        <div className="flex gap-4 flex-wrap">
                             <input className=" bg-[#3C3838]  w-[203px] h-10 py-3 px-3" type="text" name="" id="" placeholder="Your email" />
                             <p className="w-[119px] h-10 bg-[#ff4c30] text-sm flex items-center justify-center">SUBSCRIPTION</p>
                         </div>

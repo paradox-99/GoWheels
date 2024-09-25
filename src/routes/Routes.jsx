@@ -4,6 +4,13 @@ import HomePage from "../pages/home page/HomePage";
 import SignIn from "../pages/sign in page/SignIn";
 import AboutPage from "../pages/about/AboutPage";
 import Contactpage from "../pages/contact/Contactpage";
+import Background from "../pages/background/Background";
+import SignUp from "../pages/signup/SignUp";
+import SignUpPartFour from "../pages/signup/SignUpPartFour";
+import SignUpPartFive from "../pages/signup/SignUpPartFive";
+import SignupPartTwo from "../pages/signup/SignupPartTwo";
+import SignUpLastPage from "../pages/signup/SignUpLastPage";
+import ViewDetails from "../pages/ViewDetails/ViewDetails";
 
 const router = createBrowserRouter([
     {
@@ -15,23 +22,49 @@ const router = createBrowserRouter([
                 element: <HomePage></HomePage>
             },
             {
-                path: "about",
+                path: "/about",
                 element: <AboutPage></AboutPage>
             },
             {
-                path: "contact",
+                path: "/contact",
                 element: <Contactpage></Contactpage>
             },
             {
-                path: "join",
-                element: <div>Join</div>
-            }
+                path: "/view-details",
+                element: <ViewDetails></ViewDetails>
+            },
+            {
+                path: '/join',
+                element: <Background></Background>,
+                children: [
+                    {
+                        path: '/join',
+                        element: <SignIn></SignIn>
+                    },
+                    {
+                        path: "/join/register-new",
+                        element: <SignUp></SignUp>
+                    },
+                    {
+                        path: '/join/signUpTwo',
+                        element: <SignupPartTwo></SignupPartTwo>
+                    },
+                    {
+                        path: '/join/signUpFour',
+                        element: <SignUpPartFour></SignUpPartFour>
+                    },
+                    {
+                        path: '/join/signUpLastPage',
+                        element: <SignUpLastPage></SignUpLastPage>
+                    },
+                    {
+                        path: '/join/signUpFive',
+                        element: <SignUpPartFive></SignUpPartFive>,
+                    }
+                ]
+            },
         ]
     },
-    {
-        path: '/signin',
-        element: <SignIn></SignIn>
-    }
 ]);
 
 export default router;
