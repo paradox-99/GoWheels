@@ -11,6 +11,12 @@ import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import SignUpPartOne from "../pages/signup/SignUpPartOne";
 import SignUpPartThree from "../pages/signup/SignUpPartThree";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
+import Dashboard from "../Dashboard/Dashboard";
+import UserHome from "../Dashboard/User/UserHome";
+import Bookings from "../Dashboard/User/Bookings";
+import UserRatings from "../Dashboard/User/UserRatings";
+import AgencyHome from "../Dashboard/Agency/AgencyHome";
+import AdminHome from "../Dashboard/Admin/AdminHome";
 
 const router = createBrowserRouter([
     {
@@ -63,8 +69,36 @@ const router = createBrowserRouter([
                     }
                 ]
             },
+            
+            
         ]
     },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "user-home",
+                element: <UserHome></UserHome>
+            },
+            {
+                path: "user-bookings",
+                element: <Bookings></Bookings>
+            },
+            {
+                path: "user-ratings",
+                element: <UserRatings></UserRatings>
+            },
+            {
+                path: "agency-home",
+                element: <AgencyHome></AgencyHome>
+            },
+            {
+                path: "admin-home",
+                element: <AdminHome></AdminHome>
+            },
+        ]
+    }
 ]);
 
 export default router;
