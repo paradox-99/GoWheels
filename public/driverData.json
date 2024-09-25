@@ -1,0 +1,72 @@
+[
+    {
+      "nid": "1234567890123",
+      "drivingLicenseNumber": "DL123456789",
+      "issuingDate": "2020-01-15",
+      "expireDate": "2030-01-15",
+      "yearsOfExperience": 5
+    },
+    {
+      "nid": "2345678901234",
+      "drivingLicenseNumber": "DL987654321",
+      "issuingDate": "2019-03-22",
+      "expireDate": "2029-03-22",
+      "yearsOfExperience": 7
+    },
+    {
+      "nid": "3456789012345",
+      "drivingLicenseNumber": "DL112233445",
+      "issuingDate": "2021-05-10",
+      "expireDate": "2031-05-10",
+      "yearsOfExperience": 4
+    },
+    {
+      "nid": "4567890123456",
+      "drivingLicenseNumber": "DL223344556",
+      "issuingDate": "2018-07-30",
+      "expireDate": "2028-07-30",
+      "yearsOfExperience": 10
+    },
+    {
+      "nid": "5678901234567",
+      "drivingLicenseNumber": "DL334455667",
+      "issuingDate": "2022-09-05",
+      "expireDate": "2032-09-05",
+      "yearsOfExperience": 3
+    },
+    {
+      "nid": "6789012345678",
+      "drivingLicenseNumber": "DL445566778",
+      "issuingDate": "2017-11-20",
+      "expireDate": "2027-11-20",
+      "yearsOfExperience": 12
+    },
+    {
+      "nid": "7890123456789",
+      "drivingLicenseNumber": "DL556677889",
+      "issuingDate": "2023-02-15",
+      "expireDate": "2033-02-15",
+      "yearsOfExperience": 2
+    },
+    {
+      "nid": "8901234567890",
+      "drivingLicenseNumber": "DL667788990",
+      "issuingDate": "2020-12-01",
+      "expireDate": "2030-12-01",
+      "yearsOfExperience": 6
+    },
+    {
+      "nid": "9012345678901",
+      "drivingLicenseNumber": "DL778899001",
+      "issuingDate": "2019-04-18",
+      "expireDate": "2029-04-18",
+      "yearsOfExperience": 8
+    },
+    {
+      "nid": "0123456789012",
+      "drivingLicenseNumber": "DL889900112",
+      "issuingDate": "2021-06-25",
+      "expireDate": "2031-06-25",
+      "yearsOfExperience": 5
+    }
+  ]
