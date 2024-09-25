@@ -146,6 +146,8 @@ const Dashboard = () => {
                                 </button>
                             </div>
                         )}
+
+                        {/* AGENCY--------------------------------------- */}
                         {user?.role === "agency" && (
                             <div className="px-2 space-y-2 pt-8 pb-4">
                                 {/* <NavLink
@@ -176,7 +178,7 @@ const Dashboard = () => {
                                     Add Vehicle Information
                                 </NavLink>
                                 <NavLink
-                                    to="/dashboard/edit-agency-profile"
+                                    to="/dashboard/agency/booking-management"
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
@@ -186,7 +188,7 @@ const Dashboard = () => {
                                 </NavLink>
 
                                 <NavLink
-                                    to="/dashboard/posted-cars"
+                                    to="/dashboard/agency/review-from-customers"
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
@@ -196,7 +198,7 @@ const Dashboard = () => {
                                 </NavLink>
 
                                 <NavLink
-                                    to="/dashboard/posted-cars"
+                                    to="/dashboard/agency/staff-management"
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
@@ -216,6 +218,7 @@ const Dashboard = () => {
                                 </button>
                             </div>
                         )}
+                        {/* ----------------------------- */}
                     </ul>
                 </div>
                 <div className="flex-1 p-8">

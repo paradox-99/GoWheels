@@ -1,32 +1,30 @@
 const BookingManagement = () => {
   return (
     <div>
-      <div className="max-w-[720px] mx-auto">
+      <div className=" mx-auto">
         <div className="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px]">
           <a
             target="_blank"
-            href="https://www.material-tailwind.com/docs/html/table"
+            href=""
             className="block w-full px-4 py-2 text-center text-slate-700 transition-all "
           >
-            More components on <b>Material Tailwind</b>.
+            Manage Your All <b>Rental Cars</b>.
           </a>
         </div>
 
         <div className="w-full flex justify-between items-center mb-3 mt-1 pl-3">
           <div>
             <h3 className="text-lg font-semibold text-slate-800">
-              Projects with Invoices
+              Overview of the Booking Cars
             </h3>
-            <p className="text-slate-500">
-              Overview of the current activities.
-            </p>
+           
           </div>
           <div className="ml-3">
-            <div className="w-full max-w-sm min-w-[200px] relative">
+            <div className="w-full relative">
               <div className="relative">
                 <input
                   className="bg-white w-full pr-11 h-10 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded transition duration-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
-                  placeholder="Search for invoice..."
+                  placeholder="Search"
                 />
                 <button
                   className="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center bg-white rounded "
@@ -53,27 +51,27 @@ const BookingManagement = () => {
               <tr>
                 <th className="p-4 border-b border-slate-200 bg-slate-50">
                   <p className="text-sm font-normal leading-none text-slate-500">
-                    Invoice Number
+                    License Number
                   </p>
                 </th>
                 <th className="p-4 border-b border-slate-200 bg-slate-50">
                   <p className="text-sm font-normal leading-none text-slate-500">
-                    Customer
+                    Customer Name
                   </p>
                 </th>
                 <th className="p-4 border-b border-slate-200 bg-slate-50">
                   <p className="text-sm font-normal leading-none text-slate-500">
-                    Amount
+                    Booking Date & Time
                   </p>
                 </th>
                 <th className="p-4 border-b border-slate-200 bg-slate-50">
                   <p className="text-sm font-normal leading-none text-slate-500">
-                    Issued
+                    Return Date & Time
                   </p>
                 </th>
                 <th className="p-4 border-b border-slate-200 bg-slate-50">
                   <p className="text-sm font-normal leading-none text-slate-500">
-                    Due Date
+                    Rental Amount
                   </p>
                 </th>
               </tr>
@@ -82,79 +80,23 @@ const BookingManagement = () => {
               <tr className="hover:bg-slate-50 border-b border-slate-200">
                 <td className="p-4 py-5">
                   <p className="block font-semibold text-sm text-slate-800">
-                    PROJ1001
+                    L998979978
                   </p>
                 </td>
                 <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">John Doe</p>
+                  <p className="text-sm text-slate-500">farzana</p>
                 </td>
                 <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">$1,200.00</p>
+                  <p className="text-sm text-slate-500">29th April, 2024</p>
                 </td>
                 <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-01</p>
+                  <p className="text-sm text-slate-500">28th September, 2024</p>
                 </td>
                 <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-15</p>
+                  <p className="text-sm text-slate-500">1500</p>
                 </td>
               </tr>
-              <tr className="hover:bg-slate-50 border-b border-slate-200">
-                <td className="p-4 py-5">
-                  <p className="block font-semibold text-sm text-slate-800">
-                    PROJ1002
-                  </p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">Jane Smith</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">$850.00</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-05</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-20</p>
-                </td>
-              </tr>
-              <tr className="hover:bg-slate-50 border-b border-slate-200">
-                <td className="p-4 py-5">
-                  <p className="block font-semibold text-sm text-slate-800">
-                    PROJ1003
-                  </p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">Acme Corp</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">$2,500.00</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-07</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-21</p>
-                </td>
-              </tr>
-              <tr className="hover:bg-slate-50 border-b border-slate-200">
-                <td className="p-4 py-5">
-                  <p className="block font-semibold text-sm text-slate-800">
-                    PROJ1004
-                  </p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">Global Inc</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">$4,750.00</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-10</p>
-                </td>
-                <td className="p-4 py-5">
-                  <p className="text-sm text-slate-500">2024-08-25</p>
-                </td>
-              </tr>
+             
             </tbody>
           </table>
 
