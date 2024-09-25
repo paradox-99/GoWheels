@@ -17,6 +17,8 @@ import Bookings from "../Dashboard/User/Bookings";
 import UserRatings from "../Dashboard/User/UserRatings";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
+import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
+import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 
 const router = createBrowserRouter([
     {
@@ -89,10 +91,22 @@ const router = createBrowserRouter([
                 path: "user-ratings",
                 element: <UserRatings></UserRatings>
             },
+            // AGENCY ---------------
             {
                 path: "agency-home",
                 element: <AgencyHome></AgencyHome>
             },
+            {
+                path: "/dashboard/agency/owner-info/update",
+                element: <OwnerInfo></OwnerInfo>
+            },
+            {
+                path: "/dashboard/agency/add-vehicle-info",
+                element: <AddVehicleInfo></AddVehicleInfo>
+            },
+            // ----------------
+
+            // ADMIN
             {
                 path: "admin-home",
                 element: <AdminHome></AdminHome>

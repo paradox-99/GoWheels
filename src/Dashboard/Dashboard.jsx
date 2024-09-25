@@ -19,7 +19,7 @@ import { GiTentacleHeart } from "react-icons/gi";
 
 const Dashboard = () => {
     // const { user } = ...  todo :
-    const [user, setUser] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',role: "admin"})
+    const [user, setUser] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',role: "agency"})
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -150,6 +150,24 @@ const Dashboard = () => {
                                         <FaHome></FaHome>
                                     </div>
                                     Agency Home
+                                </NavLink>
+                                <NavLink
+                                    to="/dashboard/agency/owner-info/update"
+                                    className="flex p-2 gap-2 items-center"
+                                >
+                                    <div>
+                                        <CiEdit />
+                                    </div>
+                                    Edit Owner Information
+                                </NavLink>
+                                <NavLink
+                                    to="/dashboard/agency/add-vehicle-info"
+                                    className="flex p-2 gap-2 items-center"
+                                >
+                                    <div>
+                                        <CiEdit />
+                                    </div>
+                                    Add Vehicle Information
                                 </NavLink>
                                 <NavLink
                                     to="/dashboard/edit-agency-profile"
