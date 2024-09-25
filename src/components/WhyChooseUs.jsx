@@ -12,7 +12,7 @@ import BasicHeading from "./BasicHeading";
 
 const WhyChooseUs = () => {
     return (
-        <div className="max-w-6xl mx-auto mt-[200px] px-6 pb-20">
+        <div className="max-w-6xl mx-auto mt-20 lg:mt-32 px-6 pb-10">
             <BasicHeading title="FEATURES" heading={"Why Choose Us"} desc="Choose us for affordable rates, diverse vehicle options, excellent service, flexible rentals, and a seamless booking experience."></BasicHeading>
 
             <div className="mt-12 flex flex-col lg:flex-row gap-6 items-center">
@@ -75,10 +75,10 @@ const WhyChooseUs = () => {
                         // data-aos-delay="100"
                         // data-aos-duration="800"
                         className="flex flex-row-reverse gap-8 items-center">
-                        <div className="p-4  -mt-6  rounded-sm bg-primary text-white">
+                        <div className="p-4 -mt-6 rounded-sm bg-primary text-white">
                             <GiFlexibleStar className="text-3xl" />
                         </div>
-                        <div className=" mt-12">
+                        <div className="mt-12">
                             <h3 className=" font-bold text-end">Price Match Guarantee</h3>
                             <p className="text-end mt-3">We guarantee to match any competitor’s rate, ensuring you get the best deal available for your car rental.</p>
                         </div>

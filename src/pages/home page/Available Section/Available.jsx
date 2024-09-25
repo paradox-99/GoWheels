@@ -18,9 +18,9 @@ const Available = () => {
 
 
   return (
-    <div className="pt-28">
+    <div className="pt-16 md:pt-20 lg:pt-28">
       <Title title={"Available Cars"}></Title>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-center justify-items-center lg:px-40">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-center justify-items-center px-4 lg:px-40">
         {data.map((car) => (
          <AvailableCart key={car.name} car={car}></AvailableCart>
         ))}

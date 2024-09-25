@@ -8,7 +8,7 @@ const AvailableCart = ({ car }) => {
     <div>
       <div
         key={car.name}
-        className="hover w-full rounded-lg bg-background shadow-2xl relative h-[410px]"
+        className="hover w-full rounded-lg bg-background shadow-2xl relative h-[300px] lg:h-[410px]"
       >
         <figure className="h-full">
           <img src={car.image} alt="" className="rounded-lg w-full h-full" />
