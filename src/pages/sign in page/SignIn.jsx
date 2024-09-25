@@ -104,7 +104,7 @@ const SignIn = () => {
             <section className='mt-3 pb-5'>
                 <div className='flex justify-center items-center space-x-2 font-nunito'>
                     <h1 className='text-lg lg:text-xl font-medium lg:font-semibold'>New to this site ?</h1>
-                    <Link to={'/join/register-new'} className='text-xl lg:text-2xl font-semibold text-primary'>Join Now</Link>
+                    <Link to={'/join/signUpPartOne'} className='text-xl lg:text-2xl font-semibold text-primary'>Join Now</Link>
                 </div>
                 <div className=' mt-2'>
                     <button
