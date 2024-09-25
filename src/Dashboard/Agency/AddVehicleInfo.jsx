@@ -8,9 +8,9 @@ const AddVehicleInfo = () => {
           <div className="p-2">
             <input
               type="text"
-              id="userName"
-              name="userName"
-              placeholder="Username"
+              id="licenseNumber"
+              name="licenseNumber"
+              placeholder="License Number"
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: '#f6f6f6' }} 
             />
@@ -27,7 +27,7 @@ const AddVehicleInfo = () => {
                       type="button"
                       className="bg-[#ff4c30] hover:bg-[#161616] text-white rounded-full py-2 px-4"
                     >
-                      Select from the computer
+                      Select your car photo from the computer
                     </button>
                   </div>
                   <p className="text-gray-500">or drag photo here</p>
@@ -48,9 +48,9 @@ const AddVehicleInfo = () => {
             <div>
               <input
                 type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First name"
+                id="seat"
+                name="seat"
+                placeholder="Seat"
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                 style={{ backgroundColor: '#f6f6f6' }} 
               />
@@ -59,9 +59,57 @@ const AddVehicleInfo = () => {
             <div>
               <input
                 type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Last name"
+                id="mileage"
+                name="mileage"
+                placeholder="Mileage"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+          </div>
+
+          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <input
+                type="text"
+                id="gear"
+                name="gear"
+                placeholder="Gear"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+  
+            <div>
+              <input
+                type="text"
+                id="fuel"
+                name="fuel"
+                placeholder="Fuel"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+          </div>
+
+          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <input
+                type="text"
+                id="rentalPrice"
+                name="rentalPrice"
+                placeholder="Rental Price"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+  
+            <div>
+              <input
+                type="text"
+                id="transmission"
+                name="transmission"
+                placeholder="Transmission"
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                 style={{ backgroundColor: '#f6f6f6' }} 
               />
@@ -71,9 +119,9 @@ const AddVehicleInfo = () => {
             <div>
               <input
                 type="text"
-                id="contact"
-                name="contact"
-                placeholder="Contact"
+                id="brand"
+                name="brand"
+                placeholder="Brand"
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                 style={{ backgroundColor: '#f6f6f6' }} 
               />
@@ -82,44 +130,21 @@ const AddVehicleInfo = () => {
             <div>
               <input
                 type="text"
-                id="identification"
-                name="identification"
-                placeholder="Identification"
+                id="model"
+                name="model"
+                placeholder="Model"
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                 style={{ backgroundColor: '#f6f6f6' }} 
               />
             </div>
           </div>
-  
-          <div className="p-2">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-              style={{ backgroundColor: '#f6f6f6' }} 
-            />
-          </div>
-  
-          <div className="p-2">
-            <input
-              type="password"
-              id="currentPassword"
-              name="currentPassword"
-              placeholder="Current password"
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-              style={{ backgroundColor: '#f6f6f6' }} 
-            />
-          </div>
-  
           <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <input
-                type="password"
-                id="newPassword"
-                name="newPassword"
-                placeholder="New password"
+                type="text"
+                id="buildYear"
+                name="buildYear"
+                placeholder="Build Year"
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                 style={{ backgroundColor: '#f6f6f6' }} 
               />
@@ -127,14 +152,77 @@ const AddVehicleInfo = () => {
   
             <div>
               <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Confirmation password"
+                type="text"
+                id="expireDate"
+                name="expireDate"
+                placeholder="Expire Date"
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                 style={{ backgroundColor: '#f6f6f6' }} 
               />
             </div>
+          </div>
+          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <input
+                type="text"
+                id="fitnessCertificate"
+                name="fitnessCertificate"
+                placeholder="Fitness Certificate"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+  
+            <div>
+              <input
+                type="text"
+                id="issuingAuthority"
+                name="issuingAuthority"
+                placeholder="Issuing Authority"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+          </div>
+
+
+          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <input
+                type="text"
+                id="insuranceNumber"
+                name="insuranceNumber"
+                placeholder="Insurance Number"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+  
+            <div>
+              <input
+                type="text"
+                id="insurancePeriod"
+                name="insurancePeriod"
+                placeholder="Insurance Period"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                style={{ backgroundColor: '#f6f6f6' }} 
+              />
+            </div>
+          </div>
+  
+          
+  
+      
+  
+          <div>
+            <textarea
+              id="insuranceDetails"
+              name="insuranceDetails"
+              rows="3"
+              placeholder="Insurance Details"
+              className="block w-full h-48 rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: '#f6f6f6' }} // Corrected
+            ></textarea>
           </div>
   
           <div className="col-span-full mt-6 p-2">
@@ -142,7 +230,7 @@ const AddVehicleInfo = () => {
               type="submit"
               className="block w-full bg-[#ff4c30] hover:bg-[#161616] text-white font-bold py-3 px-4 rounded-full"
             >
-              Update Owner Information
+              Add Your Vehicle Information
             </button>
           </div>
         </form>
