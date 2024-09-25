@@ -15,7 +15,13 @@ import { LuHeartHandshake } from "react-icons/lu";
 import { MdMarkEmailRead, MdOutlineViewInAr } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { IoClose, IoShieldCheckmarkOutline } from "react-icons/io5";
+import { FaCarSide } from "react-icons/fa";
 import { GiTentacleHeart } from "react-icons/gi";
+import { MdOutlineEmojiPeople } from "react-icons/md";
+import { MdOutlineBook } from "react-icons/md";
+import { MdOutlineRateReview } from "react-icons/md";
+import { FaPeopleGroup } from "react-icons/fa6";
+
 
 const Dashboard = () => {
     // const { user } = ...  todo :
@@ -142,7 +148,7 @@ const Dashboard = () => {
                         )}
                         {user?.role === "agency" && (
                             <div className="px-2 space-y-2 pt-8 pb-4">
-                                <NavLink
+                                {/* <NavLink
                                     to="/dashboard/agency-home"
                                     className="flex p-2 gap-2 items-center"
                                 >
@@ -150,13 +156,13 @@ const Dashboard = () => {
                                         <FaHome></FaHome>
                                     </div>
                                     Agency Home
-                                </NavLink>
+                                </NavLink> */}
                                 <NavLink
                                     to="/dashboard/agency/owner-info/update"
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
-                                        <CiEdit />
+                                    <MdOutlineEmojiPeople />
                                     </div>
                                     Edit Owner Information
                                 </NavLink>
@@ -165,7 +171,7 @@ const Dashboard = () => {
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
-                                        <CiEdit />
+                                    <FaCarSide />
                                     </div>
                                     Add Vehicle Information
                                 </NavLink>
@@ -174,19 +180,31 @@ const Dashboard = () => {
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
-                                        <CiEdit />
+                                    <MdOutlineBook />
                                     </div>
-                                    Edit Profile
+                                    Booking Management
                                 </NavLink>
+
                                 <NavLink
                                     to="/dashboard/posted-cars"
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
-                                        <CiEdit />
+                                    <MdOutlineRateReview />
                                     </div>
-                                    posted cars
+                                    Review & Feedback of Customers
                                 </NavLink>
+
+                                <NavLink
+                                    to="/dashboard/posted-cars"
+                                    className="flex p-2 gap-2 items-center"
+                                >
+                                    <div>
+                                    <FaPeopleGroup />
+                                    </div>
+                                    Manage Staff
+                                </NavLink>
+
                                 <button
                                     onClick={handleLogout}
                                     className="flex p-2 gap-2 items-center"
