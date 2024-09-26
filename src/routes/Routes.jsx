@@ -19,9 +19,11 @@ import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
-import BookingManagement from "../Dashboard/Agency/BookingManagement";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
+import BookingHistory from "../Dashboard/Agency/BookingHistory";
+import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
+import BookingRequest from "../Dashboard/Agency/BookingRequest";
 
 const router = createBrowserRouter([
     {
@@ -108,17 +110,26 @@ const router = createBrowserRouter([
                 element: <AddVehicleInfo></AddVehicleInfo>
             },
             {
-                path: "/dashboard/agency/booking-management",
-                element: <BookingManagement></BookingManagement>
+                path: "/dashboard/agency/vehicle-info",
+                element: <VehicleInfo></VehicleInfo>
+            },
+            {
+                path: "/dashboard/agency/booking-history",
+                element: <BookingHistory></BookingHistory>
+            },
+            {
+                path: "/dashboard/agency/booking-request",
+                element: <BookingRequest></BookingRequest>
+            },
+            {
+                path: "/dashboard/agency/active-booking",
+                element: <BookingRequest></BookingRequest>
             },
             {
                 path: "/dashboard/agency/review-from-customers",
                 element: <ReviewFromCustomer></ReviewFromCustomer>
             },
-            {
-                path: "/dashboard/agency/staff-management",
-                element: <AgencyStaffManagement></AgencyStaffManagement>
-            },
+            
             // ----------------
 
             // ADMIN

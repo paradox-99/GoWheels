@@ -14,7 +14,10 @@ import { GiTentacleHeart } from "react-icons/gi";
 import { MdOutlineEmojiPeople } from "react-icons/md";
 import { MdOutlineBook } from "react-icons/md";
 import { MdOutlineRateReview } from "react-icons/md";
-import { FaPeopleGroup } from "react-icons/fa6";
+import { FaHistory } from "react-icons/fa";
+import { FaCar } from "react-icons/fa";
+
+
 
 const Dashboard = () => {
   // const { user } = ...  todo :
@@ -162,7 +165,7 @@ const Dashboard = () => {
                   <div>
                     <MdOutlineEmojiPeople />
                   </div>
-                  Edit Owner Information
+                   Owner Information
                 </NavLink>
                 <NavLink
                   to="/dashboard/agency/add-vehicle-info"
@@ -171,16 +174,34 @@ const Dashboard = () => {
                   <div>
                     <FaCarSide />
                   </div>
-                  Add Vehicle Information
+                  Add Vehicle 
                 </NavLink>
                 <NavLink
-                  to="/dashboard/agency/booking-management"
+                  to="/dashboard/agency/vehicle-info"
+                  className="flex p-2 gap-2 items-center"
+                >
+                  <div>
+                  <FaCar />
+                  </div>
+                   Vehicle Information
+                </NavLink>
+                <NavLink
+                  to="/dashboard/agency/booking-history"
+                  className="flex p-2 gap-2 items-center"
+                >
+                  <div>
+                  <FaHistory />
+                  </div>
+                  Booking History
+                </NavLink>
+                <NavLink
+                  to="/dashboard/agency/booking-request"
                   className="flex p-2 gap-2 items-center"
                 >
                   <div>
                     <MdOutlineBook />
                   </div>
-                  Booking Management
+                  Booking Request
                 </NavLink>
 
                 <NavLink
@@ -190,18 +211,10 @@ const Dashboard = () => {
                   <div>
                     <MdOutlineRateReview />
                   </div>
-                  Review & Feedback of Customers
+                  Review & Feedback 
                 </NavLink>
 
-                <NavLink
-                  to="/dashboard/agency/staff-management"
-                  className="flex p-2 gap-2 items-center"
-                >
-                  <div>
-                    <FaPeopleGroup />
-                  </div>
-                  Manage Staff
-                </NavLink>
+                
                 {/* ----------------------------- */}
                 <hr />
                 <NavLink to="/" className="flex p-2 gap-2 items-center">
