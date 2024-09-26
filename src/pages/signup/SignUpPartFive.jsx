@@ -1,14 +1,14 @@
-import { useState } from "react";
 import UseAuth from "../../hooks/UseAuth";
 import Avatar from "react-avatar-edit";
 import { Link, useNavigate } from "react-router-dom";
+import { imageUpload } from "../../api/utilities";
+import { useState } from "react";
 
 const SignUpPartFive = () => {
 
-    const { user, setLoader, setImagePreview } = UseAuth() || {};
+    const { user, setLoader } = UseAuth() || {};
     const { displayName, photoURL } = user || {};
     const [preview, setPreview] = useState(null);
-    const [src, setSrc] = useState(photoURL);
     const navigate = useNavigate();
 
     const onClose = () => {
@@ -19,14 +19,26 @@ const SignUpPartFive = () => {
         setPreview(croppedPreview);
     };
 
+    const base64ToFile = (base64, filename) => {
+        const arr = base64.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    };
+
     const handlesubmit = async (e) => {
         e.preventDefault();
-
         try {
             if (preview) {
                 setLoader(true);
-                setImagePreview(preview);
-                navigate('/');
+                const croppedImageFile = base64ToFile(preview, `${user?.displayName} cropped-image.jpg`);
+                const userCropImage = await imageUpload(croppedImageFile);
+                // navigate('/');
             }
         }
         catch (error) {
@@ -46,14 +58,15 @@ const SignUpPartFive = () => {
 
             <form onSubmit={handlesubmit}>
                 <div className="relative flex justify-center items-center mt-5">
-
-                    <Avatar
-                        width={400}
-                        height={300}
-                        onCrop={onCrop}
-                        onClose={onClose}
-                        src={src}
-                    />
+                    {user && <>
+                        <Avatar
+                            width={400}
+                            height={300}
+                            onCrop={onCrop}
+                            onClose={onClose}
+                            src={user?.photoURL}
+                        />
+                    </>}
                 </div>
 
                 <div className="flex justify-between lg:mt-5 mt-10">
@@ -76,7 +89,6 @@ const SignUpPartFive = () => {
                     </div>
                 </div>
             </form>
-
         </div>
     );
 };
