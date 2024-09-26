@@ -11,6 +11,7 @@ import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import SignUpPartOne from "../pages/signup/SignUpPartOne";
 import SignUpPartThree from "../pages/signup/SignUpPartThree";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
+// Assuming you have this component
 import Dashboard from "../Dashboard/Dashboard";
 import UserHome from "../Dashboard/User/UserHome";
 import Bookings from "../Dashboard/User/Bookings";
@@ -20,6 +21,13 @@ import AdminHome from "../Dashboard/Admin/AdminHome";
 import UserProfile from "../Dashboard/User/UserProfile";
 import BookingHistory from "../Dashboard/User/BookingHistory";
 import FavouriteCars from "../Dashboard/User/FavouriteCars";
+import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
+import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
+import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
+import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
+import BookingRequest from "../Dashboard/Agency/BookingRequest";
+import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
+import Filter from "../pages/Filter/Filter";
 
 const router = createBrowserRouter([
     {
@@ -96,6 +104,7 @@ const router = createBrowserRouter([
                 path: "user-ratings",
                 element: <UserRatings></UserRatings>
             },
+            // AGENCY ---------------
             {
                 path: "user-favourite",
                 element: <FavouriteCars></FavouriteCars>
@@ -108,6 +117,38 @@ const router = createBrowserRouter([
                 path: "agency-home",
                 element: <AgencyHome></AgencyHome>
             },
+            {
+                path: "/dashboard/agency/owner-info/update",
+                element: <OwnerInfo></OwnerInfo>
+            },
+            {
+                path: "/dashboard/agency/add-vehicle-info",
+                element: <AddVehicleInfo></AddVehicleInfo>
+            },
+            {
+                path: "/dashboard/agency/vehicle-info",
+                element: <VehicleInfo></VehicleInfo>
+            },
+            {
+                path: "/dashboard/agency/booking-history",
+                element: <BookingHistory></BookingHistory>
+            },
+            {
+                path: "/dashboard/agency/booking-request",
+                element: <BookingRequest></BookingRequest>
+            },
+            {
+                path: "/dashboard/agency/active-booking",
+                element: <ActiveBooking></ActiveBooking>
+            },
+            {
+                path: "/dashboard/agency/review-from-customers",
+                element: <ReviewFromCustomer></ReviewFromCustomer>
+            },
+            
+            // ----------------
+
+            // ADMIN
             {
                 path: "admin-home",
                 element: <AdminHome></AdminHome>

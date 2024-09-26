@@ -5,10 +5,9 @@ import {
     FaHome,
     FaUsers,
 } from "react-icons/fa";
-import { NavLink, Outlet, } from "react-router-dom";
+import { Link, NavLink, Outlet, } from "react-router-dom";
 import { useState } from "react";
 import {
-    CiEdit,
     CiLogout,
     CiUser,
     CiStar,
@@ -42,7 +41,7 @@ const Dashboard = () => {
             { to: "/dashboard/user-favourite", label: "Favourite Cars", icon: <CiHeart /> },
         ],
         agency: [
-            { to: "/dashboard/agency-home", label: "Agency Home", icon: <FaHome /> },
+            { to: "/dashboard/agency-home", label: "Dashboard", icon: <FaHome /> },
             { to: "/dashboard/agency/owner-info/update", label: "Owner Information", icon: <FaCarSide /> },
             { to: "/dashboard/agency/review-from-customers", label: "Review & Feedback", icon: <MdOutlineRateReview /> },
             { to: "/dashboard/agency/stuff-managment", label: "Manage Staff", icon: <FaPeopleGroup /> },
@@ -83,6 +82,12 @@ const Dashboard = () => {
                                     {item.label}
                                 </NavLink>
                             ))}
+
+                            
+                        </div>
+
+                        <div className="mt-12 flex items-center gap-4">
+                            <Link to={"/"} className="text-primary underline">Back to Home</Link>
                             <button onClick={handleLogout} className="flex p-2 gap-2 items-center">
                                 <div><CiLogout /></div>
                                 Logout

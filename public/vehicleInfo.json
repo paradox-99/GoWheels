@@ -1,0 +1,574 @@
+[
+    {
+        "vehicle_info": {
+          "photo": "https://i.ibb.co/kXkCd9H/t1.jpg",
+          "seats": 5,
+          "mileage": "30,000 miles",
+          "gear": "Automatic",
+          "fuel": "Gasoline",
+          "rental_price": 75,
+          "transmission_type": "8-speed automatic",
+          "brand": "Toyota",
+          "model": "Camry",
+          "build_year": 2024,
+          "license_number": "ABC1234",
+          "expire_date": "2025-06-30",
+          "fitness_certificate": "873456128",
+          "issuing_authority": "Department of Motor Vehicles",
+          "insurance_number": "INS-987654321",
+          "insurance_coverage_period": "2023-09-01 to 2024-09-01",
+          "insurance_details": {
+            "provider": "XYZ Insurance Co.",
+            "coverage_type": "Full coverage",
+            "deductible": 500
+          }
+        },
+        "additional_features": {
+          "air_conditioning": true,
+          "gps": true,
+          "bluetooth": true
+        }
+      },
+      {
+        "vehicle_info": {
+          "photo": "https://i.ibb.co/m56vx2S/c20.jpg",
+          "seats": 5,
+          "mileage": "25,000 miles",
+          "gear": "Automatic",
+          "fuel": "Gasoline",
+          "rental_price": 70,
+          "transmission_type": "CVT",
+          "brand": "Nissan",
+          "model": "Altima",
+          "build_year": 2023,
+          "license_number": "DEF5678",
+          "expire_date": "2025-04-15",
+          "fitness_certificate": "467123789",
+          "issuing_authority": "Department of Motor Vehicles",
+          "insurance_number": "INS-123456789",
+          "insurance_coverage_period": "2023-08-01 to 2024-08-01",
+          "insurance_details": {
+            "provider": "ABC Insurance Co.",
+            "coverage_type": "Full coverage",
+            "deductible": 300
+          }
+        },
+        "additional_features": {
+          "air_conditioning": true,
+          "gps": true,
+          "bluetooth": true
+        }
+      },
+      {
+        "vehicle_info": {
+          "photo": "https://i.ibb.co/QDcX7Fm/c19.jpg",
+          "seats": 7,
+          "mileage": "20,000 miles",
+          "gear": "Automatic",
+          "fuel": "Gasoline",
+          "rental_price": 80,
+          "transmission_type": "CVT",
+          "brand": "Mitsubishi",
+          "model": "Outlander",
+          "build_year": 2023,
+          "license_number": "GHI9101",
+          "expire_date": "2025-05-20",
+          "fitness_certificate": "934782615",
+          "issuing_authority": "Department of Motor Vehicles",
+          "insurance_number": "INS-456789012",
+          "insurance_coverage_period": "2023-10-01 to 2024-10-01",
+          "insurance_details": {
+            "provider": "LMN Insurance Co.",
+            "coverage_type": "Full coverage",
+            "deductible": 400
+          }
+        },
+        "additional_features": {
+          "air_conditioning": true,
+          "gps": true,
+          "bluetooth": true
+        }
+      },
+      {
+        "vehicle_info": {
+          "photo": "https://i.ibb.co/Bnf4zMj/c18.jpg",
+          "seats": 5,
+          "mileage": "15,000 miles",
+          "gear": "Automatic",
+          "fuel": "Gasoline",
+          "rental_price": 85,
+          "transmission_type": "8-speed automatic",
+          "brand": "Toyota",
+          "model": "RAV4",
+          "build_year": 2024,
+          "license_number": "JKL1122",
+          "expire_date": "2025-08-12",
+          "fitness_certificate": "671245890",
+          "issuing_authority": "Department of Motor Vehicles",
+          "insurance_number": "INS-987123456",
+          "insurance_coverage_period": "2023-09-15 to 2024-09-15",
+          "insurance_details": {
+            "provider": "OPQ Insurance Co.",
+            "coverage_type": "Full coverage",
+            "deductible": 600
+          }
+        },
+        "additional_features": {
+          "air_conditioning": true,
+          "gps": true,
+          "bluetooth": true
+        }
+      },
+
+    {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/v1mSm7K/c17.jpg",
+      "seats": 5,
+      "mileage": "12,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 90,
+      "transmission_type": "CVT",
+      "brand": "Nissan",
+      "model": "Rogue",
+      "build_year": 2024,
+      "license_number": "MNO3456",
+      "expire_date": "2025-09-10",
+      "fitness_certificate": "847263915",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-654321987",
+      "insurance_coverage_period": "2023-11-01 to 2024-11-01",
+      "insurance_details": {
+        "provider": "RST Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 250
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/JQZVL9Q/c16.jpg",
+      "seats": 5,
+      "mileage": "22,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 65,
+      "transmission_type": "6-speed automatic",
+      "brand": "Hyundai",
+      "model": "Elantra",
+      "build_year": 2023,
+      "license_number": "PQR1234",
+      "expire_date": "2025-07-20",
+      "fitness_certificate": "739265847",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-321654987",
+      "insurance_coverage_period": "2023-10-01 to 2024-10-01",
+      "insurance_details": {
+        "provider": "XYZ Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 300
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/7CmRTWC/c15.jpg",
+      "seats": 5,
+      "mileage": "15,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 70,
+      "transmission_type": "CVT",
+      "brand": "Honda",
+      "model": "Civic",
+      "build_year": 2024,
+      "license_number": "STU5678",
+      "expire_date": "2025-08-30",
+      "fitness_certificate": "915487326",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-987654321",
+      "insurance_coverage_period": "2023-09-15 to 2024-09-15",
+      "insurance_details": {
+        "provider": "ABC Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 250
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/hRzRMLQ/c14.jpg",
+      "seats": 5,
+      "mileage": "18,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 60,
+      "transmission_type": "5-speed automatic",
+      "brand": "Suzuki",
+      "model": "Swift",
+      "build_year": 2023,
+      "license_number": "VWX9101",
+      "expire_date": "2025-06-10",
+      "fitness_certificate": "523897461",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-456123789",
+      "insurance_coverage_period": "2023-11-01 to 2024-11-01",
+      "insurance_details": {
+        "provider": "LMN Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 200
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/0Bbsdx4/c13.jpg",
+      "seats": 5,
+      "mileage": "10,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 80,
+      "transmission_type": "6-speed automatic",
+      "brand": "Mazda",
+      "model": "CX-5",
+      "build_year": 2024,
+      "license_number": "YZA2345",
+      "expire_date": "2025-09-15",
+      "fitness_certificate": "674398152",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-654987321",
+      "insurance_coverage_period": "2023-11-01 to 2024-11-01",
+      "insurance_details": {
+        "provider": "OPQ Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 400
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/SywzBNy/c12.webp",
+      "seats": 5,
+      "mileage": "12,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 90,
+      "transmission_type": "CVT",
+      "brand": "Honda",
+      "model": "CR-V",
+      "build_year": 2024,
+      "license_number": "BCD6789",
+      "expire_date": "2025-10-25",
+      "fitness_certificate": "849173625",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-321987654",
+      "insurance_coverage_period": "2023-12-01 to 2024-12-01",
+      "insurance_details": {
+        "provider": "RST Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 350
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/Y0LH1Ln/c11.jpg",
+      "seats": 2,
+      "mileage": "10,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 70,
+      "transmission_type": "6-speed automatic",
+      "brand": "Mazda",
+      "model": "MX-5 Miata",
+      "build_year": 2023,
+      "license_number": "MIA1234",
+      "expire_date": "2025-06-30",
+      "fitness_certificate": "317294685",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-123456789",
+      "insurance_coverage_period": "2023-09-01 to 2024-09-01",
+      "insurance_details": {
+        "provider": "XYZ Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 300
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/1v29qjb/c10.webp",
+      "seats": 5,
+      "mileage": "15,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 85,
+      "transmission_type": "6-speed automatic",
+      "brand": "Mazda",
+      "model": "CX-30",
+      "build_year": 2024,
+      "license_number": "CXA5678",
+      "expire_date": "2025-08-12",
+      "fitness_certificate": "612438759",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-987654321",
+      "insurance_coverage_period": "2023-10-01 to 2024-10-01",
+      "insurance_details": {
+        "provider": "ABC Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 400
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/34kshtk/c9.jpg",
+      "seats": 5,
+      "mileage": "20,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 60,
+      "transmission_type": "IVT",
+      "brand": "Kia",
+      "model": "Forte",
+      "build_year": 2023,
+      "license_number": "KIF9012",
+      "expire_date": "2025-07-15",
+      "fitness_certificate": "578364192",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-456789123",
+      "insurance_coverage_period": "2023-10-01 to 2024-10-01",
+      "insurance_details": {
+        "provider": "LMN Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 250
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/vJjbz1D/c8.jpg",
+      "seats": 5,
+      "mileage": "18,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 75,
+      "transmission_type": "CVT",
+      "brand": "Chevrolet",
+      "model": "Trailblazer",
+      "build_year": 2024,
+      "license_number": "CTR3456",
+      "expire_date": "2025-09-25",
+      "fitness_certificate": "436218759",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-654321123",
+      "insurance_coverage_period": "2023-11-01 to 2024-11-01",
+      "insurance_details": {
+        "provider": "OPQ Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 500
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/Pcr3M6b/c7.jpg",
+      "seats": 5,
+      "mileage": "20,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 90,
+      "transmission_type": "6-speed automatic",
+      "brand": "Mazda",
+      "model": "CX-5",
+      "build_year": 2023,
+      "license_number": "MZC3456",
+      "expire_date": "2025-09-20",
+      "fitness_certificate": "729384615",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-321654987",
+      "insurance_coverage_period": "2023-12-01 to 2024-12-01",
+      "insurance_details": {
+        "provider": "PQR Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 400
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/fv5h9Tn/c6.jpg",
+      "seats": 5,
+      "mileage": "5,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 140,
+      "transmission_type": "9-speed automatic",
+      "brand": "Mercedes-Benz",
+      "model": "GLC",
+      "build_year": 2024,
+      "license_number": "MGLC7890",
+      "expire_date": "2025-11-11",
+      "fitness_certificate": "517862349",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-654987321",
+      "insurance_coverage_period": "2023-10-01 to 2024-10-01",
+      "insurance_details": {
+        "provider": "STU Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 450
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/xLm575X/c5.jpg",
+      "seats": 7,
+      "mileage": "22,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 95,
+      "transmission_type": "10-speed automatic",
+      "brand": "Ford",
+      "model": "Explorer",
+      "build_year": 2023,
+      "license_number": "FDX5678",
+      "expire_date": "2025-05-30",
+      "fitness_certificate": "862514937",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-987123456",
+      "insurance_coverage_period": "2023-09-15 to 2024-09-15",
+      "insurance_details": {
+        "provider": "XYZ Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 300
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/rpZznCB/c4.jpg",
+      "seats": 5,
+      "mileage": "9,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 160,
+      "transmission_type": "8-speed automatic",
+      "brand": "BMW",
+      "model": "X5",
+      "build_year": 2024,
+      "license_number": "BMX6789",
+      "expire_date": "2025-07-15",
+      "fitness_certificate": "394862751",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-321987654",
+      "insurance_coverage_period": "2023-12-15 to 2024-12-15",
+      "insurance_details": {
+        "provider": "RST Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 600
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/GHtyPHd/c3.png",
+      "seats": 5,
+      "mileage": "11,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 130,
+      "transmission_type": "7-speed automatic",
+      "brand": "Audi",
+      "model": "Q5",
+      "build_year": 2023,
+      "license_number": "AUD5678",
+      "expire_date": "2025-09-10",
+      "fitness_certificate": "286753910",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-987654321",
+      "insurance_coverage_period": "2023-11-20 to 2024-11-20",
+      "insurance_details": {
+        "provider": "JKL Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 450
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  }
+  ]
+  

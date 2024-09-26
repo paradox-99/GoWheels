@@ -13,7 +13,7 @@ const SignUpPartThree = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null)
     const location = useLocation();
-    const { user, setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
+    const { setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
     const navigate = useNavigate();
 
     const {
@@ -26,10 +26,10 @@ const SignUpPartThree = () => {
         district,
         upazilla,
         localAddress,
-        dateOfBirth
+        dateOfBirth,
+        userRole,
+        accountStatus,
     } = location.state?.info || {};
-
-    console.log(firstName, lastName, email, phone,division)
 
     const handleJoin = async (e) => {
         e.preventDefault()
@@ -51,7 +51,9 @@ const SignUpPartThree = () => {
             dateOfBirth,
             userAddress,
             localAddress,
-            image
+            image,
+            userRole,
+            accountStatus,
         }
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
@@ -117,7 +119,8 @@ const SignUpPartThree = () => {
                             type={showPassword ? "text" : "password"}
                             name="password"
                             id="password"
-                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary' placeholder='Enter your password'
+                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary' 
+                            placeholder='Enter your password'
                             required />
                         <span
                             className='absolute top-2 lg:top-3 right-3 text-xl'
