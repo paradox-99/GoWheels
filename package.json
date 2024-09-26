@@ -14,7 +14,6 @@
     "axios": "^1.7.7",
     "firebase": "^10.13.2",
     "gowheels": "file:",
-    "i": "^0.3.7",
     "install": "^0.13.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
