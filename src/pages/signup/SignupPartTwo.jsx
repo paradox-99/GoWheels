@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {locationData} from '../../../public/locationData.js'
+import { locationData } from '../../../public/locationData.js'
 // zipcode
 
 
@@ -40,10 +40,25 @@ const SignupPartTwo = () => {
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
+        const userRole = "User";
+        const accountStatus = "Unverified";
+       
 
-        
-        const info = { firstName, lastName, email, phone, gender, division, district, upazilla, localAddress, dateOfBirth };
-        console.log(info)
+
+        const info = {
+            firstName,
+            lastName,
+            email,
+            phone,
+            gender,
+            division,
+            district,
+            upazilla,
+            localAddress,
+            dateOfBirth,
+            userRole,
+            accountStatus,
+        };
         navigate('/join/signUpPartThree', { state: { info } });
     }
 
