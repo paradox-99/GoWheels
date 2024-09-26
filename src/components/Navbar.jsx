@@ -32,6 +32,7 @@ const Navbar = () => {
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'about'}>About</NavLink></li>
         <li><NavLink to={'contact'}>Contact</NavLink></li>
+        <li><NavLink to={'filter'}>Filter</NavLink></li>
         <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>
     </>
 
