@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import { CgMenu } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
+import useAuth  from "../hooks/UseAuth";
 
 const Navbar = () => {
 
+    const { user , logout } = useAuth();
     const [scroll, setScroll] = useState(false);
     const [value, setValue] = useState(false);
+
+    console.log("user:",user);
+    
 
     const handleScroll = () => {
         if (window.scrollY > 100) {
