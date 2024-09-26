@@ -16,6 +16,8 @@ import { MdOutlineBook } from "react-icons/md";
 import { MdOutlineRateReview } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
+import { GiRadioactive } from "react-icons/gi";
+
 
 
 
@@ -202,6 +204,15 @@ const Dashboard = () => {
                     <MdOutlineBook />
                   </div>
                   Booking Request
+                </NavLink>
+                <NavLink
+                  to="/dashboard/agency/active-booking"
+                  className="flex p-2 gap-2 items-center"
+                >
+                  <div>
+                  <GiRadioactive />
+                  </div>
+                 Active Booking 
                 </NavLink>
 
                 <NavLink
