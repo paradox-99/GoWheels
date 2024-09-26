@@ -24,6 +24,9 @@ import BookingManagement from "../Dashboard/Agency/BookingManagement";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import Filter from "../pages/Filter/Filter";
+import ManageUsers from "../Dashboard/Admin/ManageUsers";
+import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
+import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +131,18 @@ const router = createBrowserRouter([
         path: "admin-home",
         element: <AdminHome />,
       },
+      {
+        path: 'manage-users',
+       element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: 'manage-moderators',
+        element: <ManageModaretors></ManageModaretors>,
+      },
+      {
+        path: 'manage-agencies',
+        element: <ManageAgencies></ManageAgencies>
+      }
     ],
   },
 ]);

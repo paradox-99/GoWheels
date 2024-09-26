@@ -1,7 +1,6 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { FaGoogle } from 'react-icons/fa6';
 import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
