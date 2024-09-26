@@ -1,94 +1,93 @@
 
 import CommonTable from './CommonTable';
 
-const Bookings = () => {
-    // const [bookings, setBookings] = useState([]);
-
+const BookingHistory = () => {
+   
     const bookings = [
         {
             "_id": "1",
             "car": {
-                "name": "Porsche Taycan"
+                "name": "Tesla Model S"
             },
             "bookingDate": "2023-09-15T08:30:00Z",
             "dropoffDate": "2023-09-18T10:00:00Z",
-            "status": "Pending",
+            "status": "Completed",
             "pickupLocation": "San Francisco",
             "dropoffLocation": "Los Angeles",
-            "price": 300
+            "price": 200
         },
         {
             "_id": "2",
             "car": {
-                "name": "Mercedes-Benz C-Class"
+                "name": "BMW 5 Series"
             },
             "bookingDate": "2023-08-10T10:00:00Z",
             "dropoffDate": "2023-08-12T12:00:00Z",
-            "status": "Confirmed",
+            "status": "Cancelled",
             "pickupLocation": "New York",
             "dropoffLocation": "Washington DC",
-            "price": 180
+            "price": 150
         },
         {
             "_id": "3",
             "car": {
-                "name": "BMW X5"
+                "name": "Audi Q5"
             },
             "bookingDate": "2023-09-20T12:00:00Z",
             "dropoffDate": "2023-09-22T14:00:00Z",
-            "status": "Pending",
+            "status": "Completed",
             "pickupLocation": "Miami",
             "dropoffLocation": "Orlando",
-            "price": 220
+            "price": 180
         },
         {
             "_id": "4",
             "car": {
-                "name": "Audi A6"
+                "name": "Mercedes-Benz E-Class"
             },
             "bookingDate": "2023-07-05T09:00:00Z",
             "dropoffDate": "2023-07-08T11:00:00Z",
-            "status": "Confirmed",
+            "status": "Completed",
             "pickupLocation": "Los Angeles",
             "dropoffLocation": "Las Vegas",
-            "price": 280
+            "price": 250
         },
         {
             "_id": "5",
             "car": {
-                "name": "Toyota Camry"
+                "name": "Ford Mustang"
             },
             "bookingDate": "2023-10-01T13:00:00Z",
             "dropoffDate": "2023-10-05T15:00:00Z",
-            "status": "Confirmed",
+            "status": "Completed",
             "pickupLocation": "Dallas",
             "dropoffLocation": "Houston",
-            "price": 150
+            "price": 220
         },
         {
             "_id": "6",
             "car": {
-                "name": "Honda Accord"
+                "name": "Chevrolet Camaro"
             },
             "bookingDate": "2023-09-25T08:00:00Z",
             "dropoffDate": "2023-09-27T10:00:00Z",
-            "status": "Confirmed",
+            "status": "Cancelled",
             "pickupLocation": "Chicago",
             "dropoffLocation": "Detroit",
-            "price": 160
+            "price": 170
         },
         {
             "_id": "7",
             "car": {
-                "name": "Ford Explorer"
+                "name": "Jaguar XF"
             },
             "bookingDate": "2023-08-15T14:00:00Z",
             "dropoffDate": "2023-08-18T16:00:00Z",
-            "status": "Confirmed",
+            "status": "Completed",
             "pickupLocation": "Seattle",
             "dropoffLocation": "Portland",
-            "price": 200
-        }
+            "price": 190
+        },
     ]
 
     console.log(bookings);
@@ -108,11 +107,12 @@ const Bookings = () => {
     //     fetchBookings();
     // }, []);
 
+
     return (
         <div>
-            <CommonTable bookings={bookings} heading={"My Bookings"}></CommonTable>
+            <CommonTable bookings={bookings} heading={"Booking History"}></CommonTable>
         </div>
     );
 };
 
-export default Bookings;
+export default BookingHistory;
