@@ -7,12 +7,13 @@ import {
 } from "react-icons/fa";
 import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import "./Dashboard.css";
 import toast from "react-hot-toast";
 import AdminItems from "./Admin/AdminItems";
 import UserItems from "./User/UserItems";
 import CommonItems from "./common/CommonItems";
 import AgencyItems from "./Agency/AgencyItems";
+
+
 
 
 const Dashboard = () => {
@@ -33,13 +34,12 @@ const Dashboard = () => {
     //         });
     // };
 
-
     return (
         <div className="">
             <section className="flex flex-col lg:flex-row">
                 <div className={`  lg:block lg:w-[300px] pt-24 pb-12 bg-red-50`}>
                     <ul
-                        className={`lg:static top-0  z-[11] lg:block bg-white p-5 h-full lg:w-[250px] w-[75%] max-w-[300px] space-y-3 rounded-xl transform transition-transform duration-300 `}
+                        className={`lg:static top-0  z-[11] lg:block bg-white p-5 h-full lg:w-[250px] w-[75%] max-w-[300px] space-y-3 rounded-xl transform transition-transform duration-300 border`}
                     >
                         <div className="flex justify-between items-center">
                             <div className="px-6 pt-">
@@ -65,3 +65,6 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+

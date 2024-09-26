@@ -21,14 +21,16 @@ import AdminHome from "../Dashboard/Admin/AdminHome";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
-import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import BookingHistory from "../Dashboard/Agency/BookingHistory";
 import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
+import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
 import Filter from "../pages/Filter/Filter";
 import ManageUsers from "../Dashboard/Admin/ManageUsers";
 import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
 import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
+import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
+import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
 
 const router = createBrowserRouter([
   {
@@ -106,27 +108,43 @@ const router = createBrowserRouter([
       // AGENCY ---------------
       {
         path: "agency-home",
-        element: <AgencyHome />,
+        element: <AgencyHome></AgencyHome>
       },
       {
-        path: "agency/owner-info/update",
-        element: <OwnerInfo />,
+        path: "/dashboard/agency/owner-info/update",
+        element: <OwnerInfo></OwnerInfo>
       },
       {
-        path: "agency/add-vehicle-info",
-        element: <AddVehicleInfo />,
+        path: "/dashboard/agency/add-vehicle-info",
+        element: <AddVehicleInfo></AddVehicleInfo>
       },
       {
-        path: "agency/booking-management",
-        element: <BookingManagement />,
+        path: "/dashboard/agency/vehicle-info",
+        element: <VehicleInfo></VehicleInfo>
       },
       {
-        path: "agency/review-from-customers",
-        element: <ReviewFromCustomer />,
+        path: "/dashboard/agency/booking-history",
+        element: <BookingHistory></BookingHistory>
       },
       {
-        path: "agency/staff-management",
-        element: <AgencyStaffManagement />,
+        path: "/dashboard/agency/booking-request",
+        element: <BookingRequest></BookingRequest>
+      },
+      {
+        path: "/dashboard/agency/active-booking",
+        element: <ActiveBooking></ActiveBooking>
+      },
+      {
+        path: "/dashboard/agency/review-from-customers",
+        element: <ReviewFromCustomer></ReviewFromCustomer>
+      },
+      {
+        path: "/dashboard/agency/stuff-managment",
+        element: <AgencyStaffManagement></AgencyStaffManagement>,
+      },
+      {
+        path: "/dashboard/agency/customer-management",
+        element: <CustomerManagement></CustomerManagement>
       },
       // ADMIN
       {
@@ -135,7 +153,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'manage-users',
-       element: <ManageUsers></ManageUsers>,
+        element: <ManageUsers></ManageUsers>,
       },
       {
         path: 'manage-moderators',
@@ -147,6 +165,7 @@ const router = createBrowserRouter([
       }
     ],
   },
-]);
+],
+)
 
 export default router;
