@@ -8,59 +8,125 @@ import Background from "../pages/background/Background";
 import SignUpPartFour from "../pages/signup/SignUpPartFour";
 import SignUpPartFive from "../pages/signup/SignUpPartFive";
 import SignupPartTwo from "../pages/signup/SignupPartTwo";
-import SignUpLastPage from "../pages/signup/SignUpLastPage";
+import SignUpPartOne from "../pages/signup/SignUpPartOne";
+import SignUpPartThree from "../pages/signup/SignUpPartThree";
+import ViewDetails from "../pages/ViewDetails/ViewDetails";
+// Assuming you have this component
+import Dashboard from "../Dashboard/Dashboard";
+import UserHome from "../Dashboard/User/UserHome";
+import Bookings from "../Dashboard/User/Bookings";
+import UserRatings from "../Dashboard/User/UserRatings";
+import AgencyHome from "../Dashboard/Agency/AgencyHome";
+import AdminHome from "../Dashboard/Admin/AdminHome";
+import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
+import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
+import BookingManagement from "../Dashboard/Agency/BookingManagement";
+import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
+import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import Filter from "../pages/Filter/Filter";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
+    element: <Root />,
     children: [
       {
         path: "/",
-        element: <HomePage></HomePage>,
+        element: <HomePage />,
       },
       {
         path: "/about",
-        element: <AboutPage></AboutPage>,
+        element: <AboutPage />,
       },
       {
         path: "/contact",
-        element: <Contactpage></Contactpage>,
+        element: <Contactpage />,
       },
       {
         path: "/filter",
-        element: <Filter></Filter>,
+        element: <Filter />,
+      },
+      {
+        path: "/view-details",
+        element: <ViewDetails />,
       },
       {
         path: "/join",
-        element: <Background></Background>,
+        element: <Background />,
         children: [
           {
             path: "/join",
-            element: <SignIn></SignIn>,
+            element: <SignIn />,
           },
           {
-            path: "/join/register-new",
-            element: <SignUp></SignUp>,
+            path: "/join/signUpPartOne",
+            element: <SignUpPartOne />,
           },
           {
-            path: "/join/signUpTwo",
-            element: <SignupPartTwo></SignupPartTwo>,
+            path: "/join/signUpPartTwo",
+            element: <SignupPartTwo />,
+          },
+          {
+            path: "/join/signUpPartThree",
+            element: <SignUpPartThree />,
           },
           {
             path: "/join/signUpFour",
-            element: <SignUpPartFour></SignUpPartFour>,
-          },
-          {
-            path: "/join/signUpLastPage",
-            element: <SignUpLastPage></SignUpLastPage>,
+            element: <SignUpPartFour />,
           },
           {
             path: "/join/signUpFive",
-            element: <SignUpPartFive></SignUpPartFive>,
+            element: <SignUpPartFive />,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "user-home",
+        element: <UserHome />,
+      },
+      {
+        path: "user-bookings",
+        element: <Bookings />,
+      },
+      {
+        path: "user-ratings",
+        element: <UserRatings />,
+      },
+      // AGENCY ---------------
+      {
+        path: "agency-home",
+        element: <AgencyHome />,
+      },
+      {
+        path: "agency/owner-info/update",
+        element: <OwnerInfo />,
+      },
+      {
+        path: "agency/add-vehicle-info",
+        element: <AddVehicleInfo />,
+      },
+      {
+        path: "agency/booking-management",
+        element: <BookingManagement />,
+      },
+      {
+        path: "agency/review-from-customers",
+        element: <ReviewFromCustomer />,
+      },
+      {
+        path: "agency/staff-management",
+        element: <AgencyStaffManagement />,
+      },
+      // ADMIN
+      {
+        path: "admin-home",
+        element: <AdminHome />,
       },
     ],
   },

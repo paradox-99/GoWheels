@@ -643,12 +643,12 @@ const Filter = () => {
     <div>
       <form
         onSubmit={handleFilter}
-        className="flex justify-center items-center gap-4 bg-[#0000001a] py-2 rounded-full"
+        className="flex justify-center items-center flex-col lg:flex-row gap-4 bg-[#0000001a] py-2 lg:rounded-full rounded-lg"
       >
-        <div className="flex justify-center items-end rounded-full gap-5 ">
-          <div>
+        <div className="flex justify-center items-center flex-col lg:flex-row rounded-full gap-5">
+          <div className="px-5">
             <p>Where</p>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
               <select
                 name="division"
                 onChange={handleDivisionChange}
@@ -698,7 +698,7 @@ const Filter = () => {
               )}
             </div>
           </div>
-          <div>
+          <div className="px-5">
             <p>From</p>
             <div className="flex justify-center items-center">
               <input
@@ -719,7 +719,7 @@ const Filter = () => {
               />
             </div>
           </div>
-          <div>
+          <div className="px-5">
             <p>Until</p>
             <div className="flex justify-center items-center">
               <input
