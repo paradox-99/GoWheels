@@ -47,7 +47,7 @@ const Dashboard = () => {
             { to: "/dashboard/agency/stuff-managment", label: "Manage Staff", icon: <FaPeopleGroup /> },
             { to: "/dashboard/agency/vehicle-info", label: "Vehicle Information", icon: <FaCar /> },
             { to: "/dashboard/agency/booking-history", label: "Booking History", icon: <FaHistory /> },
-            { to: "/dashboard/agency/active-booking", label: "Booking Request", icon: <MdOutlineBook /> },
+            { to: "/dashboard/agency/booking-request", label: "Booking Request", icon: <MdOutlineBook /> },
             { to: "/dashboard/agency/active-booking", label: "Active Booking", icon: <GiRadioactive /> },
             { to: "/dashboard/agency/customer-management", label: "Customer Management", icon: <IoIosPeople /> },
         ],
@@ -74,7 +74,7 @@ const Dashboard = () => {
                                     key={index}
                                     to={item.to}
                                     className={({ isActive }) =>
-                                        `flex p-2 gap-2 items-center rounded-lg transition-colors duration-300 
+                                        `flex p-2 pl-4 gap-2 items-center rounded-lg transition-colors duration-300 
                                         ${isActive ? 'bg-gradient-to-r from-[#ff4c30] to-white text-white' : 'text-gray-700'}`
                                     }
                                 >
