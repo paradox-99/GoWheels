@@ -7,9 +7,8 @@ const HowItWorks = () => {
     return (
         <div className="max-w-6xl mx-auto mt-20 lg:px-0 px-6">
             <BasicHeading title={"PROCESS"} heading={"How It Works"} desc={"Select your car, book online, and pick it up hassle-free. Flexible rentals, easy payments, and 24/7 customer support."}></BasicHeading>
-
             <div>
-                <div className='mt-20'>
+                <div className='mt-10 lg:mt-20'>
                     <VerticalTimeline className='before:!bg-primary'>
                         <VerticalTimelineElement
                             className="vertical-timeline-element--work border-r-primary"

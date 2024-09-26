@@ -1,19 +1,23 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { FiUpload } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import UseAuth from "../../hooks/UseAuth";
+import Swal from "sweetalert2";
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
     const [imagePreview, setImagePreview] = useState(null);
     const inputRef = useRef();
     const [dragActive, setDragActive] = useState(false);
-    const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-    const [isDragging, setIsDragging] = useState(false);
-    const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-    const [zoomLevel, setZoomLevel] = useState(1); // New zoom state
     const [imageFile, setImageFile] = useState(null);
     const navigateNext = useNavigate();
+    const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth();
+    const location = useLocation();
+    const { userName } = location.state?.userInfo || {};
+
+    const {displayName} = user || {};
+    console.log(user)
 
     const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
@@ -45,33 +49,47 @@ const SignUpPartFour = () => {
 
     const handleInfo = async (e) => {
         e.preventDefault();
-
+        const fullName = userName;
         const image = imageFile;
         const formData = new FormData();
         formData.append('image', image);
 
-        console.log(image)
-
         try {
+            setLoader(true)
             const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
                 formData
             );
-            
             const userImage = response.data.data.display_url;
-            console.log(response)
-            console.log("Image uploaded successfully:", userImage);
+
             if (userImage) {
-                navigateNext('/join/signUpFive', {state: {userImage}})
+                await updateUserProfile(fullName, userImage)
+                setUser({...user, displayName: fullName, photoURL: userImage })
+
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Image Uploaded Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigateNext('/join/signUpFive', { state: { userImage } })
             }
         } catch (error) {
+            setLoader(false)
             console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Image uploading failed',
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
         }
     };
- 
+
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
             <div className='text-center mx-auto'>
-                <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
+                <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>Hi! {displayName}</h1>
             </div>
             <section className='mt-3'>
                 <form
@@ -79,9 +97,9 @@ const SignUpPartFour = () => {
                     className='font-nunito'>
                     <div><h1 className="text-[#fdfefe] text-center mt-5">Upload your profile picture</h1></div>
 
-                    
+
                     <div className="mt-3 mx-auto">
-                       
+
                         <div className='flex flex-col items-center justify-center '>
                             <div
                                 onDragOver={handleDragOver}
@@ -118,7 +136,7 @@ const SignUpPartFour = () => {
                                     Browse from your device
                                 </button>
                             </div>
-                        </div>       
+                        </div>
 
                     </div>
 
