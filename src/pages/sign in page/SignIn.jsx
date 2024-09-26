@@ -109,7 +109,7 @@ const SignIn = () => {
                 <div className=' mt-2'>
                     <button
                         className='py-1 lg:py-2 border lg:border-secondary rounded w-full flex items-center justify-center gap-2 text-xl font-nunito font-medium text-white'>
-                        <FaGoogle className='text-3xl text-white' /><span className='font-semibold'> Continue with Google</span>
+                        <FaGoogle className='text-3xl text-white font-merriweather' /><span className='font-semibold'> Continue with Google</span>
                     </button>
                 </div>
             </section>

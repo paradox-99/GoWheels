@@ -11,6 +11,17 @@ import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import SignUpPartOne from "../pages/signup/SignUpPartOne";
 import SignUpPartThree from "../pages/signup/SignUpPartThree";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
+import Dashboard from "../Dashboard/Dashboard";
+import UserHome from "../Dashboard/User/UserHome";
+import Bookings from "../Dashboard/User/Bookings";
+import UserRatings from "../Dashboard/User/UserRatings";
+import AgencyHome from "../Dashboard/Agency/AgencyHome";
+import AdminHome from "../Dashboard/Admin/AdminHome";
+import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
+import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
+import BookingManagement from "../Dashboard/Agency/BookingManagement";
+import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
+import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 
 const router = createBrowserRouter([
     {
@@ -63,8 +74,60 @@ const router = createBrowserRouter([
                     }
                 ]
             },
+            
+            
         ]
     },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "user-home",
+                element: <UserHome></UserHome>
+            },
+            {
+                path: "user-bookings",
+                element: <Bookings></Bookings>
+            },
+            {
+                path: "user-ratings",
+                element: <UserRatings></UserRatings>
+            },
+            // AGENCY ---------------
+            {
+                path: "agency-home",
+                element: <AgencyHome></AgencyHome>
+            },
+            {
+                path: "/dashboard/agency/owner-info/update",
+                element: <OwnerInfo></OwnerInfo>
+            },
+            {
+                path: "/dashboard/agency/add-vehicle-info",
+                element: <AddVehicleInfo></AddVehicleInfo>
+            },
+            {
+                path: "/dashboard/agency/booking-management",
+                element: <BookingManagement></BookingManagement>
+            },
+            {
+                path: "/dashboard/agency/review-from-customers",
+                element: <ReviewFromCustomer></ReviewFromCustomer>
+            },
+            {
+                path: "/dashboard/agency/staff-management",
+                element: <AgencyStaffManagement></AgencyStaffManagement>
+            },
+            // ----------------
+
+            // ADMIN
+            {
+                path: "admin-home",
+                element: <AdminHome></AdminHome>
+            },
+        ]
+    }
 ]);
 
 export default router;
