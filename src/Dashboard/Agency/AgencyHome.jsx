@@ -1,9 +1,8 @@
-import React from 'react';
 
 const AgencyHome = () => {
     return (
         <div>
-            this is Agency home
+            this is Agency homejnjnj
         </div>
     );
 };

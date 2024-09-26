@@ -15,11 +15,17 @@ import { LuHeartHandshake } from "react-icons/lu";
 import { MdMarkEmailRead, MdOutlineViewInAr } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { IoClose, IoShieldCheckmarkOutline } from "react-icons/io5";
+import { FaCarSide } from "react-icons/fa";
 import { GiTentacleHeart } from "react-icons/gi";
+import { MdOutlineEmojiPeople } from "react-icons/md";
+import { MdOutlineBook } from "react-icons/md";
+import { MdOutlineRateReview } from "react-icons/md";
+import { FaPeopleGroup } from "react-icons/fa6";
+
 
 const Dashboard = () => {
     // const { user } = ...  todo :
-    const [user, setUser] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',role: "admin"})
+    const [user, setUser] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',role: "agency"})
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -140,9 +146,11 @@ const Dashboard = () => {
                                 </button>
                             </div>
                         )}
+
+                        {/* AGENCY--------------------------------------- */}
                         {user?.role === "agency" && (
                             <div className="px-2 space-y-2 pt-8 pb-4">
-                                <NavLink
+                                {/* <NavLink
                                     to="/dashboard/agency-home"
                                     className="flex p-2 gap-2 items-center"
                                 >
@@ -150,25 +158,55 @@ const Dashboard = () => {
                                         <FaHome></FaHome>
                                     </div>
                                     Agency Home
-                                </NavLink>
+                                </NavLink> */}
                                 <NavLink
-                                    to="/dashboard/edit-agency-profile"
+                                    to="/dashboard/agency/owner-info/update"
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
-                                        <CiEdit />
+                                    <MdOutlineEmojiPeople />
                                     </div>
-                                    Edit Profile
+                                    Edit Owner Information
                                 </NavLink>
                                 <NavLink
-                                    to="/dashboard/posted-cars"
+                                    to="/dashboard/agency/add-vehicle-info"
                                     className="flex p-2 gap-2 items-center"
                                 >
                                     <div>
-                                        <CiEdit />
+                                    <FaCarSide />
                                     </div>
-                                    posted cars
+                                    Add Vehicle Information
                                 </NavLink>
+                                <NavLink
+                                    to="/dashboard/agency/booking-management"
+                                    className="flex p-2 gap-2 items-center"
+                                >
+                                    <div>
+                                    <MdOutlineBook />
+                                    </div>
+                                    Booking Management
+                                </NavLink>
+
+                                <NavLink
+                                    to="/dashboard/agency/review-from-customers"
+                                    className="flex p-2 gap-2 items-center"
+                                >
+                                    <div>
+                                    <MdOutlineRateReview />
+                                    </div>
+                                    Review & Feedback of Customers
+                                </NavLink>
+
+                                <NavLink
+                                    to="/dashboard/agency/staff-management"
+                                    className="flex p-2 gap-2 items-center"
+                                >
+                                    <div>
+                                    <FaPeopleGroup />
+                                    </div>
+                                    Manage Staff
+                                </NavLink>
+
                                 <button
                                     onClick={handleLogout}
                                     className="flex p-2 gap-2 items-center"
@@ -180,6 +218,7 @@ const Dashboard = () => {
                                 </button>
                             </div>
                         )}
+                        {/* ----------------------------- */}
                     </ul>
                 </div>
                 <div className="flex-1 p-8">
