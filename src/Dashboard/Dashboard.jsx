@@ -44,7 +44,7 @@ const Dashboard = () => {
             { to: "/dashboard/agency-home", label: "Dashboard", icon: <FaHome /> },
             { to: "/dashboard/agency/owner-info/update", label: "Owner Information", icon: <FaCarSide /> },
             { to: "/dashboard/agency/review-from-customers", label: "Review & Feedback", icon: <MdOutlineRateReview /> },
-            { to: "/dashboard/agency/stuff-managment", label: "Manage Staff", icon: <FaPeopleGroup /> },
+            { to: "/dashboard/agency/stuff-management", label: "Manage Staff", icon: <FaPeopleGroup /> },
             { to: "/dashboard/agency/vehicle-info", label: "Vehicle Information", icon: <FaCar /> },
             { to: "/dashboard/agency/booking-history", label: "Booking History", icon: <FaHistory /> },
             { to: "/dashboard/agency/booking-request", label: "Booking Request", icon: <MdOutlineBook /> },
