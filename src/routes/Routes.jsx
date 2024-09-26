@@ -11,6 +11,7 @@ import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import SignUpPartOne from "../pages/signup/SignUpPartOne";
 import SignUpPartThree from "../pages/signup/SignUpPartThree";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
+// Assuming you have this component
 import Dashboard from "../Dashboard/Dashboard";
 import UserHome from "../Dashboard/User/UserHome";
 import Bookings from "../Dashboard/User/Bookings";
@@ -24,6 +25,7 @@ import BookingHistory from "../Dashboard/Agency/BookingHistory";
 import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
+import Filter from "../pages/Filter/Filter";
 
 const router = createBrowserRouter([
     {
