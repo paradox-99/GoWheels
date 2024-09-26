@@ -17,6 +17,9 @@ import Bookings from "../Dashboard/User/Bookings";
 import UserRatings from "../Dashboard/User/UserRatings";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
+import UserProfile from "../Dashboard/User/UserProfile";
+import BookingHistory from "../Dashboard/User/BookingHistory";
+import FavouriteCars from "../Dashboard/User/FavouriteCars";
 
 const router = createBrowserRouter([
     {
@@ -86,8 +89,20 @@ const router = createBrowserRouter([
                 element: <Bookings></Bookings>
             },
             {
+                path: "user-booking-history",
+                element: <BookingHistory></BookingHistory>
+            },
+            {
                 path: "user-ratings",
                 element: <UserRatings></UserRatings>
+            },
+            {
+                path: "user-favourite",
+                element: <FavouriteCars></FavouriteCars>
+            },
+            {
+                path: "user-profile",
+                element: <UserProfile></UserProfile>
             },
             {
                 path: "agency-home",
