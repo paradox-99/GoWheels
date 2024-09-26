@@ -20,9 +20,11 @@ import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
-import BookingManagement from "../Dashboard/Agency/BookingManagement";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
+import BookingHistory from "../Dashboard/Agency/BookingHistory";
+import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
+import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import Filter from "../pages/Filter/Filter";
 
 const router = createBrowserRouter([
