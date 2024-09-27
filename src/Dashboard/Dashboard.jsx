@@ -25,7 +25,7 @@ import { FaPeopleGroup } from "react-icons/fa6";
 
 const Dashboard = () => {
     // const { user } = ...  todo :
-    const [user, setUser] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',role: "agency"})
+    const [user, setUser] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',role: "admin"})
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -85,6 +85,15 @@ const Dashboard = () => {
                                         <GiTentacleHeart />
                                     </div>
                                     ALl Reviews
+                                </NavLink>
+                                <NavLink
+                                    to="/dashboard/approve-agency"
+                                    className="flex p-2 gap-2 items-center"
+                                >
+                                    <div>
+                                        <GiTentacleHeart />
+                                    </div>
+                                   Approve Agency
                                 </NavLink>
                                 <button
                                     onClick={handleLogout}

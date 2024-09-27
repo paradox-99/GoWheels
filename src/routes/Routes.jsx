@@ -24,6 +24,9 @@ import BookingManagement from "../Dashboard/Agency/BookingManagement";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import Filter from "../pages/Filter/Filter";
+import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
+import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
+import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 
 const router = createBrowserRouter([
   {
@@ -127,6 +130,22 @@ const router = createBrowserRouter([
       {
         path: "admin-home",
         element: <AdminHome />,
+      },
+
+      // Moderator
+      {
+        path: "moderator-profile",
+        element: <ModeratorProfile />,
+      },
+
+      // Approve Agency
+      {
+        path: "approve-agency",
+        element: <AgencyApprove />,
+      },
+      {
+        path: "approve-agency/agencyDetails/:id",
+        element: <AgencyDeatils />,
       },
     ],
   },
