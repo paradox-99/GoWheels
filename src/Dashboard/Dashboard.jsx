@@ -15,43 +15,42 @@ const Dashboard = () => {
   const { logout } = UseAuth();
   const [user] = useDesignation();
 
-  // const [user, setUser] = useState({
-  //   photoURL:
-  //     "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
-  //   role: "agency",
-  // });
-
   const handleLogout = () => {
     logout();
     navigate("/join")
   };
 
     const menuItems = {
-      admin: [
-        { to: "/dashboard/admin-home", label: "Admin Home", icon: <FaHome /> },
-        { to: "/dashboard/manage-users", label: "Manage Users", icon: <FaUsers /> },
-        { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
-        { to: "/dashboard/manage-agencies", label: "Manage Agencies", icon: <GiTentacleHeart /> },
-      ],
-      user: [
-        { to: "/dashboard/user-home", label: "Dashboard", icon: <FaHome /> },
-        { to: "/dashboard/user-profile", label: "My Profile", icon: <CiUser /> },
-        { to: "/dashboard/user-bookings", label: "Bookings", icon: <RiListOrdered /> },
-        { to: "/dashboard/user-booking-history", label: "Booking History", icon: <MdManageHistory /> },
-        { to: "/dashboard/user-ratings", label: "Reviews", icon: <CiStar /> },
-        { to: "/dashboard/user-favorite", label: "Favorite Cars", icon: <CiHeart /> },
-      ],
-      agency: [
-        { to: "/dashboard/agency-home", label: "Dashboard", icon: <FaHome /> },
-        { to: "/dashboard/agency/owner-info/update", label: "Owner Information", icon: <FaCarSide /> },
-        { to: "/dashboard/agency/review-from-customers", label: "Review & Feedback", icon: <MdOutlineRateReview /> },
-        { to: "/dashboard/agency/stuff-management", label: "Manage Staff", icon: <FaPeopleGroup /> },
-        { to: "/dashboard/agency/vehicle-info", label: "Vehicle Information", icon: <FaCar /> },
-        { to: "/dashboard/agency/booking-history", label: "Booking History", icon: <FaHistory /> },
-        { to: "/dashboard/agency/booking-request", label: "Booking Request", icon: <MdOutlineBook /> },
-        { to: "/dashboard/agency/active-booking", label: "Active Booking", icon: <GiRadioactive /> },
-        { to: "/dashboard/agency/customer-management", label: "Customer Management", icon: <IoIosPeople /> },
-      ],
+        admin: [
+            { to: "/dashboard/admin-home", label: "Admin Home", icon: <FaHome /> },
+            { to: "/dashboard/manage-users", label: "Manage Users", icon: <FaUsers /> },
+            { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
+            { to: "/dashboard/manage-agencies", label: "Manage Agencies", icon: <GiTentacleHeart /> },
+            { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
+        ],
+        user: [
+            { to: "/dashboard/user-home", label: "Dashboard", icon: <FaHome /> },
+            { to: "/dashboard/user-profile", label: "My Profile", icon: <CiUser /> },
+            { to: "/dashboard/user-bookings", label: "Bookings", icon: <RiListOrdered /> },
+            { to: "/dashboard/user-booking-history", label: "Booking History", icon: <MdManageHistory /> },
+            { to: "/dashboard/user-ratings", label: "Reviews", icon: <CiStar /> },
+            { to: "/dashboard/user-favourite", label: "Favourite Cars", icon: <CiHeart /> },
+        ],
+        agency: [
+            { to: "/dashboard/agency-home", label: "Dashboard", icon: <FaHome /> },
+            { to: "/dashboard/agency/owner-info/update", label: "Owner Information", icon: <FaCarSide /> },
+            { to: "/dashboard/agency/review-from-customers", label: "Review & Feedback", icon: <MdOutlineRateReview /> },
+            { to: "/dashboard/agency/stuff-management", label: "Manage Staff", icon: <FaPeopleGroup /> },
+            { to: "/dashboard/agency/vehicle-info", label: "Vehicle Information", icon: <FaCar /> },
+            { to: "/dashboard/agency/booking-history", label: "Booking History", icon: <FaHistory /> },
+            { to: "/dashboard/agency/booking-request", label: "Booking Request", icon: <MdOutlineBook /> },
+            { to: "/dashboard/agency/active-booking", label: "Active Booking", icon: <GiRadioactive /> },
+            { to: "/dashboard/agency/customer-management", label: "Customer Management", icon: <IoIosPeople /> },
+        ],
+        moderator: [
+            { to: "/dashboard/moderator-profile", label: "Moderator", icon: <GiTentacleHeart /> },
+            { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
+        ],
     };
 
     return (
@@ -104,4 +103,4 @@ const Dashboard = () => {
     );
   };
 
-  export default Dashboard;
+export default Dashboard;

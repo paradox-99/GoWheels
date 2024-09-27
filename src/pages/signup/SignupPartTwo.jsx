@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { locationData } from '../../../public/locationData.js'
-// zipcode
-
-
 
 const SignupPartTwo = () => {
 
@@ -42,8 +39,6 @@ const SignupPartTwo = () => {
         const dateOfBirth = e.target.birthDay.value;
         const userRole = "User";
         const accountStatus = "Unverified";
-       
-
 
         const info = {
             firstName,
