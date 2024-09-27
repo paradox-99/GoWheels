@@ -39,13 +39,14 @@ const Dashboard = () => {
         agency: [
             { to: "/dashboard/agency-home", label: "Dashboard", icon: <FaHome /> },
             { to: "/dashboard/agency/owner-info/update", label: "Owner Information", icon: <FaCarSide /> },
-            { to: "/dashboard/agency/review-from-customers", label: "Review & Feedback", icon: <MdOutlineRateReview /> },
-            { to: "/dashboard/agency/stuff-management", label: "Manage Staff", icon: <FaPeopleGroup /> },
+          
+            // { to: "/dashboard/agency/stuff-management", label: "Manage Staff", icon: <FaPeopleGroup /> },
             { to: "/dashboard/agency/vehicle-info", label: "Vehicle Information", icon: <FaCar /> },
             { to: "/dashboard/agency/booking-history", label: "Booking History", icon: <FaHistory /> },
             { to: "/dashboard/agency/booking-request", label: "Booking Request", icon: <MdOutlineBook /> },
             { to: "/dashboard/agency/active-booking", label: "Active Booking", icon: <GiRadioactive /> },
             { to: "/dashboard/agency/customer-management", label: "Customer Management", icon: <IoIosPeople /> },
+            { to: "/dashboard/agency/review-from-customers", label: "Review & Feedback", icon: <MdOutlineRateReview /> },
         ],
         moderator: [
             { to: "/dashboard/moderator-profile", label: "Moderator", icon: <GiTentacleHeart /> },
