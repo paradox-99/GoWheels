@@ -1,39 +1,44 @@
 // import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
+// import useAxiosPublic from "../../hooks/useAxiosPublic"; 
 
-const OwnerInfo = () => {
-  // FETCH DATA WITH TANSTACK QUERY
+import useDesignation from "../../hooks/useDesignation";
+
+const userInfo = () => {
+  // const axiosPublic = useAxiosPublic(); 
+ 
   // const {
-  //   data: owner,
+  //   data: user,
   //   isLoading,
   //   error,
   // } = useQuery({
-  //   queryKey: ["owner-info", agencyId],
+  //   queryKey: ["user-info", email],
   //   queryFn: async () => {
-  //     const response = await axios.get(
-  //       `http://localhost:3000/api/agencyRoute/agency/${agencyId}`
-  //     );
+  //     const response = await axiosPublic.get(`/api/usersRoute/users/${email}`);
   //     console.log(response.data);
   //     return response.data;
   //   },
+  //   enabled: !!email, 
   // });
+
+
+  const [user] = useDesignation();
+
 
   // if (isLoading) return <div>Loading...</div>;
   // if (error) return <div>Error: {error.message}</div>;
 
+  if (!user) return <div>No user information found.</div>; 
+
   return (
     <div className="container mx-auto p-4">
-      {/* <Helmet>
-        <title>GoWheels | Dashboard | Owner Information</title>
-      </Helmet> */}
-      <h1 className="text-3xl font-bold text-[black] mb-6">
-        Update Owner Information
+      <h1 className="text-3xl font-bold text-black mb-6">
+        Update user Information
       </h1>
 
-      <form className="grid grid-cols-1 gap-6">
+      <form className="grid grid-cols-1 gap-6" key={user._id}>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className=" w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
+            <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
               <div className="text-center">
                 <div className="mb-2">
                   <button
@@ -64,22 +69,13 @@ const OwnerInfo = () => {
               id="firstName"
               name="firstName"
               placeholder="First name"
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-              style={{ backgroundColor: "#f6f6f6" }}
-            />
-          </div>
-
-          <div>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              placeholder="Last name"
+              defaultValue={user.name}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
           </div>
         </div>
+
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <input
@@ -87,6 +83,7 @@ const OwnerInfo = () => {
               id="contact"
               name="contact"
               placeholder="Contact"
+              defaultValue={user.phone || ""}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -98,6 +95,7 @@ const OwnerInfo = () => {
               id="identification"
               name="identification"
               placeholder="Identification"
+              defaultValue={user.nid || ""}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -110,6 +108,7 @@ const OwnerInfo = () => {
             id="email"
             name="email"
             placeholder="Email"
+            defaultValue={user.email}
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
             style={{ backgroundColor: "#f6f6f6" }}
           />
@@ -143,7 +142,7 @@ const OwnerInfo = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              placeholder="Confirmation password"
+              placeholder="Confirm password"
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -155,7 +154,7 @@ const OwnerInfo = () => {
             type="submit"
             className="block w-full bg-[#ff4c30] hover:bg-[#161616] text-white font-bold py-3 px-4 rounded-full"
           >
-            Update Owner Information
+            Update user Information
           </button>
         </div>
       </form>
@@ -163,4 +162,4 @@ const OwnerInfo = () => {
   );
 };
 
-export default OwnerInfo;
+export default userInfo;
