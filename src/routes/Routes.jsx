@@ -51,6 +51,10 @@ const router = createBrowserRouter([
                 element: <ViewDetails></ViewDetails>
             },
             {
+                path: "/filter",
+                element: <Filter></Filter>
+            },
+            {
                 path: '/join',
                 element: <Background></Background>,
                 children: [

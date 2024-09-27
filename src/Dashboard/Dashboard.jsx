@@ -14,8 +14,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { logout } = UseAuth();
   const [user] = useDesignation();
-  console.log(user);
-  
 
   // const [user, setUser] = useState({
   //   photoURL:
@@ -72,7 +70,7 @@ const Dashboard = () => {
               </div>
 
               <div className="px-2 space-y-2 pt-8 pb-4">
-                {menuItems["admin"]?.map((item, index) => (
+                {menuItems[user?.role]?.map((item, index) => (
                   <NavLink
                     key={index}
                     to={item.to}
