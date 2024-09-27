@@ -1,6 +1,29 @@
-const OwnerInfo = () => {
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Helmet } from "react-helmet-async";
+
+
+
+
+  const OwnerInfo = ({ agencyId }) => {
+    // FETCH DATA WITH TANSTACK QUERY
+    const { data: owner, isLoading, error } = useQuery({
+      queryKey: ["owner-info", agencyId],
+      queryFn: async () => {
+        const response = await axios.get(`http://localhost:3000/api/agencyRoute/agency/${agencyId}`);
+        console.log(response.data);
+        return response.data;
+      },
+    });
+  
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
+
     return (
       <div className="container mx-auto p-4">
+         <Helmet>
+        <title>GoWheels | Dashboard | Owner Information</title>
+      </Helmet>
         <h1 className="text-3xl font-bold text-[black] mb-6">Update Owner Information</h1>
   
         <form className="grid grid-cols-1 gap-6">
