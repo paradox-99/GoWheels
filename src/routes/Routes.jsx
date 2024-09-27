@@ -18,10 +18,12 @@ import Bookings from "../Dashboard/User/Bookings";
 import UserRatings from "../Dashboard/User/UserRatings";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
+import UserProfile from "../Dashboard/User/UserProfile";
+import BookingHistory from "../Dashboard/User/BookingHistory";
+import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
-import BookingHistory from "../Dashboard/Agency/BookingHistory";
 import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
@@ -63,55 +65,68 @@ const router = createBrowserRouter([
         element: <Background />,
         children: [
           {
-            path: "/join",
-            element: <SignIn />,
+            path: '/join',
+            element: <SignIn></SignIn>
           },
           {
             path: "/join/signUpPartOne",
-            element: <SignUpPartOne />,
+            element: <SignUpPartOne></SignUpPartOne>
           },
           {
-            path: "/join/signUpPartTwo",
-            element: <SignupPartTwo />,
+            path: '/join/signUpPartTwo',
+            element: <SignupPartTwo></SignupPartTwo>
           },
           {
-            path: "/join/signUpPartThree",
-            element: <SignUpPartThree />,
+            path: '/join/signUpPartThree',
+            element: <SignUpPartThree></SignUpPartThree>
           },
           {
-            path: "/join/signUpFour",
-            element: <SignUpPartFour />,
+            path: '/join/signUpFour',
+            element: <SignUpPartFour></SignUpPartFour>
           },
           {
-            path: "/join/signUpFive",
-            element: <SignUpPartFive />,
-          },
-        ],
+            path: '/join/signUpFive',
+            element: <SignUpPartFive></SignUpPartFive>,
+          }
+        ]
       },
-    ],
+    ]
   },
-
   {
-    path: '/login-Info',
-    element: <GoogleLogin></GoogleLogin>,
+    path: "login-Info",
+    element: <GoogleLogin></GoogleLogin>
   },
-  
   {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
     children: [
+
+      // user routes
       {
         path: "user-home",
-        element: <UserHome />,
+        element: <UserHome></UserHome>
       },
       {
         path: "user-bookings",
-        element: <Bookings />,
+        element: <Bookings></Bookings>
+      },
+      {
+        path: "user-booking-history",
+        element: <BookingHistory></BookingHistory>
       },
       {
         path: "user-ratings",
-        element: <UserRatings />,
+        element: <UserRatings></UserRatings>
       },
+      {
+        path: "user-favourite",
+        element: <FavouriteCars></FavouriteCars>
+      },
+      {
+        path: "user-profile",
+        element: <UserProfile></UserProfile>
+      },
+
       // AGENCY ---------------
       {
         path: "agency-home",
@@ -153,7 +168,8 @@ const router = createBrowserRouter([
         path: "/dashboard/agency/customer-management",
         element: <CustomerManagement></CustomerManagement>
       },
-      // ADMIN
+
+      // admin routes
       {
         path: "admin-home",
         element: <AdminHome />,
@@ -174,5 +190,6 @@ const router = createBrowserRouter([
   },
 ],
 )
+
 
 export default router;

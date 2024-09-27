@@ -64,11 +64,11 @@ const SignUpPartThree = () => {
             return
         }
         if (!regex.test(password)) {
-            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special charachter')
+            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special character')
             return
         }
         if (password !== confirmPassword) {
-            setErrorMessage('passowrd and confirm password didn`t match!!')
+            setErrorMessage('password and confirm password didn`t match!!')
             return
         }
         else if (!check) {

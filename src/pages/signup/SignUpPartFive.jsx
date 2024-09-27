@@ -38,7 +38,9 @@ const SignUpPartFive = () => {
                 setLoader(true);
                 const croppedImageFile = base64ToFile(preview, `${user?.displayName} cropped-image.jpg`);
                 const userCropImage = await imageUpload(croppedImageFile);
-                // navigate('/');
+
+                
+                navigate('/');
             }
         }
         catch (error) {
