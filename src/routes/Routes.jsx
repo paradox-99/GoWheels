@@ -31,6 +31,12 @@ import GoogleLogin from "../pages/sign in page/GoogleLogin";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
+import BookingHistory from "../Dashboard/User/BookingHistory";
+import FavouriteCars from "../Dashboard/User/FavouriteCars";
+import UserProfile from "../Dashboard/User/UserProfile";
+import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
+import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
+import BookingRequest from "../Dashboard/Agency/BookingRequest";
 
 const router = createBrowserRouter([
   {
@@ -182,12 +188,9 @@ const router = createBrowserRouter([
       {
         path: 'manage-agencies',
         element: <ManageAgencies></ManageAgencies>
-      }
-    ],
-  },
-],
-)
+      },
 
+      // MODERATOR
       // Moderator
       {
         path: "moderator-profile",
@@ -204,6 +207,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+],
+)
+
+      
+
 
 export default router;
