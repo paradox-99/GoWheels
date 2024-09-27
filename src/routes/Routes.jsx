@@ -22,6 +22,12 @@ import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import Filter from "../pages/Filter/Filter";
+import ManageUsers from "../Dashboard/Admin/ManageUsers";
+import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
+import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
+import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
+import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
+import GoogleLogin from "../pages/sign in page/GoogleLogin";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
@@ -56,71 +62,132 @@ const router = createBrowserRouter([
         element: <Background />,
         children: [
           {
-            path: "/join",
-            element: <SignIn />,
+            path: '/join',
+            element: <SignIn></SignIn>
           },
           {
             path: "/join/signUpPartOne",
-            element: <SignUpPartOne />,
+            element: <SignUpPartOne></SignUpPartOne>
           },
           {
-            path: "/join/signUpPartTwo",
-            element: <SignupPartTwo />,
+            path: '/join/signUpPartTwo',
+            element: <SignupPartTwo></SignupPartTwo>
           },
           {
-            path: "/join/signUpPartThree",
-            element: <SignUpPartThree />,
+            path: '/join/signUpPartThree',
+            element: <SignUpPartThree></SignUpPartThree>
           },
           {
-            path: "/join/signUpFour",
-            element: <SignUpPartFour />,
+            path: '/join/signUpFour',
+            element: <SignUpPartFour></SignUpPartFour>
           },
           {
-            path: "/join/signUpFive",
-            element: <SignUpPartFive />,
-          },
-        ],
+            path: '/join/signUpFive',
+            element: <SignUpPartFive></SignUpPartFive>,
+          }
+        ]
       },
-    ],
+    ]
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "login-Info",
+    element: <GoogleLogin></GoogleLogin>
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
     children: [
+
+      // user routes
       {
         path: "user-home",
-        element: <UserHome />,
+        element: <UserHome></UserHome>
       },
       {
         path: "user-bookings",
-        element: <Bookings />,
+        element: <Bookings></Bookings>
+      },
+      {
+        path: "user-booking-history",
+        element: <BookingHistory></BookingHistory>
       },
       {
         path: "user-ratings",
-        element: <UserRatings />,
+        element: <UserRatings></UserRatings>
       },
+      {
+        path: "user-favourite",
+        element: <FavouriteCars></FavouriteCars>
+      },
+      {
+        path: "user-profile",
+        element: <UserProfile></UserProfile>
+      },
+
       // AGENCY ---------------
       {
         path: "agency-home",
-        element: <AgencyHome />,
+        element: <AgencyHome></AgencyHome>
       },
       {
-        path: "agency/owner-info/update",
-        element: <OwnerInfo />,
+        path: "/dashboard/agency/owner-info/update",
+        element: <OwnerInfo></OwnerInfo>
       },
       {
-        path: "agency/add-vehicle-info",
-        element: <AddVehicleInfo />,
+        path: "/dashboard/agency/add-vehicle-info",
+        element: <AddVehicleInfo></AddVehicleInfo>
       },
       {
-        path: "agency/review-from-customers",
-        element: <ReviewFromCustomer />,
+        path: "/dashboard/agency/vehicle-info",
+        element: <VehicleInfo></VehicleInfo>
       },
-      // ADMIN
+      {
+        path: "/dashboard/agency/booking-history",
+        element: <BookingHistory></BookingHistory>
+      },
+      {
+        path: "/dashboard/agency/booking-request",
+        element: <BookingRequest></BookingRequest>
+      },
+      {
+        path: "/dashboard/agency/active-booking",
+        element: <ActiveBooking></ActiveBooking>
+      },
+      {
+        path: "/dashboard/agency/review-from-customers",
+        element: <ReviewFromCustomer></ReviewFromCustomer>
+      },
+      {
+        path: "/dashboard/agency/stuff-managment",
+        element: <AgencyStaffManagement></AgencyStaffManagement>,
+      },
+      {
+        path: "/dashboard/agency/customer-management",
+        element: <CustomerManagement></CustomerManagement>
+      },
+
+      // admin routes
       {
         path: "admin-home",
         element: <AdminHome />,
       },
+      {
+        path: 'manage-users',
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: 'manage-moderators',
+        element: <ManageModaretors></ManageModaretors>,
+      },
+      {
+        path: 'manage-agencies',
+        element: <ManageAgencies></ManageAgencies>
+      }
+    ],
+  },
+],
+)
+
       // Moderator
       {
         path: "moderator-profile",

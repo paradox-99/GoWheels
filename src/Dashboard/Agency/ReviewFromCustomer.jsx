@@ -2,7 +2,7 @@
 const ReviewFromCustomer = () => {
     return (
         <div>
-            
+            this is review
         </div>
     );
 };

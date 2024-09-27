@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
     const [imagePreview, setImagePreview] = useState(null);
     const axiosPublic = useAxiosPublic();
 
+
     // user creation
     const createUser = (email, password) => {
         setLoader(true)
@@ -53,7 +54,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             if (currentUser) {
                 const userInfo = { email: currentUser.email };
-                
+
                 axiosPublic.post('/authorization/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
@@ -73,7 +74,19 @@ const AuthProvider = ({ children }) => {
     }, [axiosPublic])
 
 
-    const authInfo = { user, setUser, loader, setLoader, logout, loginWithGoogle, userLogin, updateUserProfile, createUser, setImagePreview, imagePreview };
+    const authInfo = {
+        user,
+        setUser,
+        loader,
+        setLoader,
+        logout,
+        loginWithGoogle,
+        userLogin,
+        updateUserProfile,
+        createUser,
+        setImagePreview,
+        imagePreview
+    };
 
     return (
         <AuthContext.Provider value={authInfo}>

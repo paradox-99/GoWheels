@@ -4,7 +4,8 @@ import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { FaGoogle } from 'react-icons/fa6';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
-import { googleLogin } from '../../api/utilities/index'
+import { googleLogin } from '../../api/utilities/index';
+import loaderEliment from '../../../public/logo.gif';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +43,7 @@ const SignIn = () => {
         }
     }
 
-    const handleGoogle = async () => {
+    const handleGoogleLogin = async () => {
         try {
             setLoader(true);
             const user = await googleLogin(loginWithGoogle);
@@ -54,13 +55,20 @@ const SignIn = () => {
                 userRole: "User",
                 accountStatus: "Unverified"
             }
-            navigate();
+
+            navigate('/login-Info', { state: { userInfo } });
             console.log(userInfo)
 
         } catch (error) {
             setLoader(false);
             console.log(error);
         }
+    }
+
+    if (loader) {
+        return <div className='fles justify-center'>
+            <img className='mx-auto' src={loaderEliment} alt="" />
+        </div>
     }
 
     return (
@@ -130,7 +138,7 @@ const SignIn = () => {
                 </div>
                 <div className=' mt-2'>
                     <button
-                        onClick={handleGoogle}
+                        onClick={handleGoogleLogin}
                         className='py-1 lg:py-2 border lg:border-secondary rounded w-full flex items-center justify-center gap-2 text-xl font-nunito font-medium text-white'>
                         <FaGoogle className='text-3xl text-white font-merriweather' /><span className='font-semibold'> Continue with Google</span>
                     </button>
