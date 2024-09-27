@@ -31,6 +31,7 @@ import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
 import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
+import GoogleLogin from "../pages/sign in page/GoogleLogin";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,12 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: '/login-Info',
+    element: <GoogleLogin></GoogleLogin>,
+  },
+  
   {
     path: "/dashboard",
     element: <Dashboard />,

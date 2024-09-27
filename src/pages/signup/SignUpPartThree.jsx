@@ -4,6 +4,7 @@ import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
+import loaderEliment from '../../../public/logo.gif';
 
 
 const SignUpPartThree = () => {
@@ -102,6 +103,12 @@ const SignUpPartThree = () => {
             });
         }
 
+    }
+
+    if (loader) {
+        return <div className='fles justify-center'>
+            <img className='mx-auto' src={loaderEliment} alt="" />
+        </div>
     }
 
     return (

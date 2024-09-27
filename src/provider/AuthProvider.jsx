@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     const [loader, setLoader] = useState(true);
     const [imagePreview, setImagePreview] = useState(null);
 
+
     // user creation
     const createUser = (email, password) => {
         setLoader(true)
@@ -68,7 +69,7 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         createUser,
         setImagePreview,
-        imagePreview
+        imagePreview,
     };
     return (
         <AuthContext.Provider value={authInfo}>

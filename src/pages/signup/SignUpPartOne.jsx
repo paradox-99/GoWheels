@@ -3,16 +3,17 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { FaGoogle } from 'react-icons/fa6';
 import UseAuth from '../../hooks/UseAuth';
 import { googleLogin } from '../../api/utilities';
+import loaderEliment from '../../../public/logo.gif';
 
 const SignUpPartOne = () => {
-    const { Loader, setLoader, loginWithGoogle, setUser } = UseAuth();
+    const { loader, setLoader, loginWithGoogle, setUser } = UseAuth();
     const navigate = useNavigate();
 
     const handleGoogle = async () => {
         try {
-            setLoader(true)
+            setLoader(true);
             const user = await googleLogin(loginWithGoogle);
-            setUser(user)
+            setUser(user);
             const userInfo = {
                 email: user?.email,
                 name: user?.displayName,
@@ -20,17 +21,22 @@ const SignUpPartOne = () => {
                 userRole: "User",
                 accountStatus: "Unverified"
             }
-            navigate();
+            navigate('/login-Info', {state: {userInfo}});
             console.log(userInfo)
 
         } catch (error) {
-            setLoader(false)
+            setLoader(false);
             console.log(error);
         }
     }
 
-    return (
+    if (loader) {
+        return <div>
+            <img src={loaderEliment} alt="" />
+        </div>
+    }
 
+    return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
             <div className='text-center mx-auto pt-5'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
