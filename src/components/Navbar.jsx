@@ -7,7 +7,7 @@ import useDesignation from "../hooks/useDesignation";
 
 const Navbar = () => {
 
-    const { user , logout } = useAuth();
+    const { user } = useAuth();
     const [scroll, setScroll] = useState(false);
     const [value, setValue] = useState(false);
     const [data] = useDesignation();

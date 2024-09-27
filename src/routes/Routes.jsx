@@ -68,6 +68,10 @@ const router = createBrowserRouter([
             },
 
             {
+                path: "/filter",
+                element: <Filter></Filter>
+            },
+            {
                 path: "/join",
                 element: <Background />,
                 children: [
