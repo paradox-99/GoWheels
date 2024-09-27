@@ -1,10 +1,10 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { FaGoogle } from 'react-icons/fa6';
 import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
+import loaderEliment from '../../../public/logo.gif';
 
 
 const SignUpPartThree = () => {
@@ -13,7 +13,7 @@ const SignUpPartThree = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null)
     const location = useLocation();
-    const { user, setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
+    const { setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
     const navigate = useNavigate();
 
     const {
@@ -26,10 +26,10 @@ const SignUpPartThree = () => {
         district,
         upazilla,
         localAddress,
-        dateOfBirth
+        dateOfBirth,
+        userRole,
+        accountStatus,
     } = location.state?.info || {};
-
-    console.log(firstName, lastName, email, phone,division)
 
     const handleJoin = async (e) => {
         e.preventDefault()
@@ -51,22 +51,24 @@ const SignUpPartThree = () => {
             dateOfBirth,
             userAddress,
             localAddress,
-            image
+            image,
+            userRole,
+            accountStatus,
         }
 
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         setErrorMessage('');
 
         if (password.length < 6) {
-            setErrorMessage("your password should be at least 6 character!")
+            setErrorMessage("Your password should be at least 6 character!")
             return
         }
         if (!regex.test(password)) {
-            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special charachter')
+            setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
             return
         }
         if (password !== confirmPassword) {
-            setErrorMessage('passowrd and confirm password didn`t match!!')
+            setErrorMessage('password and confirm password didn`t match!!')
             return
         }
         else if (!check) {
@@ -103,6 +105,12 @@ const SignUpPartThree = () => {
 
     }
 
+    if (loader) {
+        return <div className='fles justify-center'>
+            <img className='mx-auto' src={loaderEliment} alt="" />
+        </div>
+    }
+
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto p-10 rounded-lg'>
             <div className='text-center mx-auto'>
@@ -117,7 +125,8 @@ const SignUpPartThree = () => {
                             type={showPassword ? "text" : "password"}
                             name="password"
                             id="password"
-                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary' placeholder='Enter your password'
+                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary' 
+                            placeholder='Enter your password'
                             required />
                         <span
                             className='absolute top-2 lg:top-3 right-3 text-xl'

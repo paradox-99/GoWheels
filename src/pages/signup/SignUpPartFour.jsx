@@ -1,9 +1,11 @@
-import axios from "axios";
+
 import { useRef, useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import Swal from "sweetalert2";
+import { imageUpload } from "../../api/utilities";
+import loaderEliment from '../../../public/logo.gif';
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
@@ -17,7 +19,6 @@ const SignUpPartFour = () => {
     const { userName } = location.state?.userInfo || {};
 
     const {displayName} = user || {};
-    console.log(user)
 
     const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
@@ -51,15 +52,9 @@ const SignUpPartFour = () => {
         e.preventDefault();
         const fullName = userName;
         const image = imageFile;
-        const formData = new FormData();
-        formData.append('image', image);
-
         try {
             setLoader(true)
-            const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
-                formData
-            );
-            const userImage = response.data.data.display_url;
+            const userImage = await imageUpload(image)
 
             if (userImage) {
                 await updateUserProfile(fullName, userImage)
@@ -85,6 +80,12 @@ const SignUpPartFour = () => {
             });
         }
     };
+
+    if (loader) {
+        return <div className='fles justify-center'>
+            <img className='mx-auto' src={loaderEliment} alt="" />
+        </div>
+    }
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
