@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineMail } from 'react-icons/hi';
 import { FaGoogle } from 'react-icons/fa6';
+import { FaRegHandshake } from 'react-icons/fa';
 import UseAuth from '../../hooks/UseAuth';
 import { googleLogin } from '../../api/utilities';
 import loaderEliment from '../../../public/logo.gif';
@@ -49,11 +50,17 @@ const SignUpPartOne = () => {
                         <HiOutlineMail className='text-3xl text-white' /> Continue with Email
                     </Link>
                 </div>
+
                 <div className=' mt-2'>
                     <button
                         onClick={handleGoogle}
                         className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
                         <FaGoogle className='text-3xl text-white' /> Continue with Google</button>
+                </div>
+                <div className=' mt-2'>
+                    <Link to={'/join/agencyRegister'} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
+                        <FaRegHandshake className='text-3xl text-white' /> Register as a agency
+                    </Link>
                 </div>
                 <div className='mt-8 flex justify-center items-center space-x-2'>
                     <h1 className='text-lg lg:text-xl font-medium lg:font-semibold text-[#fdfefe]'>Already have an account?</h1>
