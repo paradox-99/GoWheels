@@ -1,17 +1,18 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-    
+
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(true);
     const [imagePreview, setImagePreview] = useState(null);
+    const axiosPublic = useAxiosPublic();
 
     // user creation
     const createUser = (email, password) => {
@@ -48,29 +49,33 @@ const AuthProvider = ({ children }) => {
 
     // state change
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            setLoader(false)
+            if (currentUser) {
+                const userInfo = { email: currentUser.email };
+                console.log(userInfo);
+                
+                axiosPublic.post('/authorization/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            console.log(res.data.token);
+                            localStorage.setItem('accessToken', res.data.token.accessToken);
+                            setLoader(false);
+                        }
+                    })
+            } else {
+                localStorage.removeItem('access-token');
+                setLoader(false)
+            }
         })
         return () => {
             unsubscribe()
         }
-    },[])
+    }, [axiosPublic])
 
 
-    const authInfo = {
-        user,
-        setUser,
-        loader,
-        setLoader,
-        logout,
-        loginWithGoogle,
-        userLogin,
-        updateUserProfile,
-        createUser,
-        setImagePreview,
-        imagePreview
-    };
+    const authInfo = { user, setUser, loader, setLoader, logout, loginWithGoogle, userLogin, updateUserProfile, createUser, setImagePreview, imagePreview };
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

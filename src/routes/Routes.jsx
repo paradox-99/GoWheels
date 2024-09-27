@@ -18,45 +18,26 @@ import Bookings from "../Dashboard/User/Bookings";
 import UserRatings from "../Dashboard/User/UserRatings";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
+import UserProfile from "../Dashboard/User/UserProfile";
+import BookingHistory from "../Dashboard/User/BookingHistory";
+import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
-import BookingManagement from "../Dashboard/Agency/BookingManagement";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
-import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
+import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
+import BookingRequest from "../Dashboard/Agency/BookingRequest";
+import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
 import Filter from "../pages/Filter/Filter";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
+    {
         path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/about",
-        element: <AboutPage />,
-      },
-      {
-        path: "/contact",
-        element: <Contactpage />,
-      },
-      {
-        path: "/filter",
-        element: <Filter />,
-      },
-      {
-        path: "/view-details",
-        element: <ViewDetails />,
-      },
-      {
-        path: "/join",
-        element: <Background />,
+        element: <Root></Root>,
         children: [
+<<<<<<< HEAD
           {
             path: "/join",
             element: <SignIn />,
@@ -149,6 +130,129 @@ const router = createBrowserRouter([
       },
     ],
   },
+=======
+            {
+                path: "/",
+                element: <HomePage></HomePage>
+            },
+            {
+                path: "/about",
+                element: <AboutPage></AboutPage>
+            },
+            {
+                path: "/contact",
+                element: <Contactpage></Contactpage>
+            },
+            {
+                path: "/view-details",
+                element: <ViewDetails></ViewDetails>
+            },
+            {
+                path: '/join',
+                element: <Background></Background>,
+                children: [
+                    {
+                        path: '/join',
+                        element: <SignIn></SignIn>
+                    },
+                    {
+                        path: "/join/signUpPartOne",
+                        element: <SignUpPartOne></SignUpPartOne>
+                    },
+                    {
+                        path: '/join/signUpPartTwo',
+                        element: <SignupPartTwo></SignupPartTwo>
+                    },
+                    {
+                        path: '/join/signUpPartThree',
+                        element: <SignUpPartThree></SignUpPartThree>
+                    },
+                    {
+                        path: '/join/signUpFour',
+                        element: <SignUpPartFour></SignUpPartFour>
+                    },                    
+                    {
+                        path: '/join/signUpFive',
+                        element: <SignUpPartFive></SignUpPartFive>,
+                    }
+                ]
+            },
+            
+            
+        ]
+    },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "user-home",
+                element: <UserHome></UserHome>
+            },
+            {
+                path: "user-bookings",
+                element: <Bookings></Bookings>
+            },
+            {
+                path: "user-booking-history",
+                element: <BookingHistory></BookingHistory>
+            },
+            {
+                path: "user-ratings",
+                element: <UserRatings></UserRatings>
+            },
+            // AGENCY ---------------
+            {
+                path: "user-favourite",
+                element: <FavouriteCars></FavouriteCars>
+            },
+            {
+                path: "user-profile",
+                element: <UserProfile></UserProfile>
+            },
+            {
+                path: "agency-home",
+                element: <AgencyHome></AgencyHome>
+            },
+            {
+                path: "/dashboard/agency/owner-info/update",
+                element: <OwnerInfo></OwnerInfo>
+            },
+            {
+                path: "/dashboard/agency/add-vehicle-info",
+                element: <AddVehicleInfo></AddVehicleInfo>
+            },
+            {
+                path: "/dashboard/agency/vehicle-info",
+                element: <VehicleInfo></VehicleInfo>
+            },
+            {
+                path: "/dashboard/agency/booking-history",
+                element: <BookingHistory></BookingHistory>
+            },
+            {
+                path: "/dashboard/agency/booking-request",
+                element: <BookingRequest></BookingRequest>
+            },
+            {
+                path: "/dashboard/agency/active-booking",
+                element: <ActiveBooking></ActiveBooking>
+            },
+            {
+                path: "/dashboard/agency/review-from-customers",
+                element: <ReviewFromCustomer></ReviewFromCustomer>
+            },
+            
+            // ----------------
+
+            // ADMIN
+            {
+                path: "admin-home",
+                element: <AdminHome></AdminHome>
+            },
+        ]
+    }
+>>>>>>> 2066154c123826fe08e189416c14ac27b0aeceae
 ]);
 
 export default router;
