@@ -18,15 +18,9 @@ import Bookings from "../Dashboard/User/Bookings";
 import UserRatings from "../Dashboard/User/UserRatings";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
-import UserProfile from "../Dashboard/User/UserProfile";
-import BookingHistory from "../Dashboard/User/BookingHistory";
-import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
-import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
-import BookingRequest from "../Dashboard/Agency/BookingRequest";
-import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
 import Filter from "../pages/Filter/Filter";
 import ManageUsers from "../Dashboard/Admin/ManageUsers";
 import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
@@ -34,6 +28,9 @@ import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
 import GoogleLogin from "../pages/sign in page/GoogleLogin";
+import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
+import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
+import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 
 const router = createBrowserRouter([
   {
@@ -191,5 +188,22 @@ const router = createBrowserRouter([
 ],
 )
 
+      // Moderator
+      {
+        path: "moderator-profile",
+        element: <ModeratorProfile />,
+      },
+      // Approve Agency
+      {
+        path: "approve-agency",
+        element: <AgencyApprove />,
+      },
+      {
+        path: "approve-agency/agencyDetails/:id",
+        element: <AgencyDeatils />,
+      },
+    ],
+  },
+]);
 
 export default router;

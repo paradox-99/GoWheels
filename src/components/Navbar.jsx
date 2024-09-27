@@ -3,12 +3,14 @@ import { CgMenu } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
 import useAuth  from "../hooks/UseAuth";
+import useDesignation from "../hooks/useDesignation";
 
 const Navbar = () => {
 
     const { user , logout } = useAuth();
     const [scroll, setScroll] = useState(false);
     const [value, setValue] = useState(false);
+    const [data] = useDesignation();
     
     const handleScroll = () => {
         if (window.scrollY > 100) {
@@ -37,7 +39,7 @@ const Navbar = () => {
             user && <li  className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><Link to={'/dashboard'}>Dashboard</Link></li>
         }
         {
-            user && <li><img src="" alt="Profile Picture" className="w-10 h-10"/></li>
+            user && <img src={data?.photo} alt="Profile Picture" className="w-12 h-12 rounded-full"/>
         }
     </>
 
