@@ -5,7 +5,7 @@ import {
     FaHome,
     FaUsers,
 } from "react-icons/fa";
-import { Link, NavLink, Outlet, } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate, } from "react-router-dom";
 import { useState } from "react";
 import {
     CiLogout,
@@ -18,18 +18,12 @@ import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons
 import { RiListOrdered } from "react-icons/ri";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { IoIosPeople } from "react-icons/io";
+import UseAuth from "../hooks/UseAuth";
 
 const Dashboard = () => {
-<<<<<<< HEAD
-    // const { user } = ...  todo :
-    const [user, setUser] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',role: "admin"})
-    const navigate = useNavigate();
-
-=======
   const {logout} = UseAuth();
   const navigate = useNavigate();
-    const [user] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=', role: "agency" });
->>>>>>> 2066154c123826fe08e189416c14ac27b0aeceae
+    const [user] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=', role: "moderator" });
     const handleLogout = () => {
     logout();
     navigate("/join")
@@ -41,6 +35,7 @@ const Dashboard = () => {
             { to: "/dashboard/manage-users", label: "Manage Users", icon: <FaUsers /> },
             { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
             { to: "/dashboard/manage-agencies", label: "Manage Agencies", icon: <GiTentacleHeart /> },
+            { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
         ],
         user: [
             { to: "/dashboard/user-home", label: "Dashboard", icon: <FaHome /> },
@@ -61,6 +56,10 @@ const Dashboard = () => {
             { to: "/dashboard/agency/active-booking", label: "Active Booking", icon: <GiRadioactive /> },
             { to: "/dashboard/agency/customer-management", label: "Customer Management", icon: <IoIosPeople /> },
         ],
+        moderator: [
+            { to: "/dashboard/moderator-profile", label: "Moderator", icon: <GiTentacleHeart /> },
+            { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
+        ],
     };
 
     return (
@@ -77,107 +76,6 @@ const Dashboard = () => {
                                 />
                             </div>
                         </div>
-<<<<<<< HEAD
-                        {user?.role === "admin" && (
-                            <div className="px-2 space-y-2 pt-6 pb-4 font-light">
-                                <NavLink
-                                    to="/dashboard/admin-home"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <FaHome></FaHome>
-                                    </div>
-                                    Admin Home
-                                </NavLink>
-                                <NavLink
-                                    to="/dashboard/manage-users"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <FaUsers />
-                                    </div>
-                                    Manage Users
-                                </NavLink>
-                                <NavLink
-                                    to="/dashboard/reviews"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <GiTentacleHeart />
-                                    </div>
-                                    ALl Reviews
-                                </NavLink>
-                                <NavLink
-                                    to="/dashboard/approve-agency"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <GiTentacleHeart />
-                                    </div>
-                                   Approve Agency
-                                </NavLink>
-                                <button
-                                    onClick={handleLogout}
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <CiLogout />
-                                    </div>
-                                    Logout
-                                </button>
-                            </div>
-                        )}
-                        {user?.role==="user" &&  (
-                            <div className="px-2 space-y-2 pt-8 pb-4">
-                                <NavLink
-                                    to="/dashboard/user-home"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <FaHome></FaHome>
-                                    </div>
-                                    User Home
-                                </NavLink>
-                                <NavLink
-                                    to="/dashboard/edit-profile"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <CiEdit />
-                                    </div>
-                                    Edit Profile
-                                </NavLink>
-                                <NavLink
-                                    to="/dashboard/user-bookings"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <CiEdit />
-                                    </div>
-                                    Bookings
-                                </NavLink>
-                                <NavLink
-                                    to="/dashboard/user-ratings"
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <CiEdit />
-                                    </div>
-                                    All Reviews
-                                </NavLink>
-                                <button
-                                    onClick={handleLogout}
-                                    className="flex p-2 gap-2 items-center"
-                                >
-                                    <div>
-                                        <CiLogout />
-                                    </div>
-                                    Logout
-                                </button>
-                            </div>
-                        )}
-=======
->>>>>>> 2066154c123826fe08e189416c14ac27b0aeceae
 
                         <div className="px-2 space-y-2 pt-8 pb-4">
                             {menuItems[user.role]?.map((item, index) => (
