@@ -9,10 +9,7 @@ const Navbar = () => {
     const { user , logout } = useAuth();
     const [scroll, setScroll] = useState(false);
     const [value, setValue] = useState(false);
-
-    console.log("user:",user);
     
-
     const handleScroll = () => {
         if (window.scrollY > 100) {
             setScroll(true);
@@ -33,7 +30,15 @@ const Navbar = () => {
         <li><NavLink to={'about'}>About</NavLink></li>
         <li><NavLink to={'contact'}>Contact</NavLink></li>
         <li><NavLink to={'filter'}>Filter</NavLink></li>
-        <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>
+        {
+            !user && <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>
+        }
+        {
+            user && <li  className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><Link to={'/dashboard'}>Dashboard</Link></li>
+        }
+        {
+            user && <li><img src="" alt="Profile Picture" className="w-10 h-10"/></li>
+        }
     </>
 
     return (
@@ -44,8 +49,9 @@ const Navbar = () => {
             </div>
             <div className="flex items-start">
                 <div className="hidden md:flex">
-                    <ul className="flex gap-4 text-lg font-nunito items-center">
+                    <ul className="flex gap-8 text-lg font-nunito items-center">
                         {routes}
+
                     </ul>
                 </div>
                 <div className="flex md:hidden">
@@ -64,5 +70,6 @@ const Navbar = () => {
         </div>
     );
 };
+
 
 export default Navbar;

@@ -16,10 +16,13 @@ import { MdOutlineBook } from "react-icons/md";
 import { MdOutlineRateReview } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
+import UseAuth from "../hooks/UseAuth";
 
 
 
 const Dashboard = () => {
+
+  const {logout} = UseAuth();
   // const { user } = ...  todo :
   const [user, setUser] = useState({
     photoURL:
@@ -29,15 +32,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // todo :
-    // signOut(auth)
-    //     .then(() => {
-    //         toast.success("Successfully logged out!");
-    //         navigate("/login");
-    //     })
-    //     .catch((err) => {
-    //         console.log(err.message);
-    //     });
+    logout();
+    navigate("/join")
   };
 
   return (

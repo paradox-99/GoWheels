@@ -115,7 +115,7 @@ const router = createBrowserRouter([
       },
       {
         path: "agency/booking-management",
-        element: <BookingManagement />,
+        // element: <BookingManagement />,
       },
       {
         path: "agency/review-from-customers",
