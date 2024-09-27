@@ -11,6 +11,9 @@ import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import SignUpPartOne from "../pages/signup/SignUpPartOne";
 import SignUpPartThree from "../pages/signup/SignUpPartThree";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
+import AgencyRegister from "../pages/Agency/AgencyRegister";
+import AgencyInfo from "../pages/Agency/AgencyInfo";
+import CarInfo from "../pages/Agency/CarInfo";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +63,47 @@ const router = createBrowserRouter([
                     {
                         path: '/join/signUpFive',
                         element: <SignUpPartFive></SignUpPartFive>,
+                    },
+                ]
+            },
+            {
+                path: '/join',
+                children: [
+                    {
+                        path: '/join',
+                        element: <SignIn></SignIn>
+                    },
+                    {
+                        path: "/join/signUpPartOne",
+                        element: <SignUpPartOne></SignUpPartOne>
+                    },
+                    {
+                        path: '/join/signUpPartTwo',
+                        element: <SignupPartTwo></SignupPartTwo>
+                    },
+                    {
+                        path: '/join/signUpPartThree',
+                        element: <SignUpPartThree></SignUpPartThree>
+                    },
+                    {
+                        path: '/join/signUpFour',
+                        element: <SignUpPartFour></SignUpPartFour>
+                    },                    
+                    {
+                        path: '/join/signUpFive',
+                        element: <SignUpPartFive></SignUpPartFive>,
+                    },
+                    {
+                        path:'/join/agencyRegister',
+                        element:<AgencyRegister></AgencyRegister>
+                    },
+                    {
+                        path:'/join/agencyInfo',
+                        element:<AgencyInfo></AgencyInfo>
+                    },
+                    {
+                        path: '/join/addCarInfo',
+                        element:<CarInfo></CarInfo>
                     }
                 ]
             },
