@@ -1,14 +1,7 @@
-import { FaBook, FaHome, FaList, FaUsers, FaUtensils } from "react-icons/fa";
-import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { FaHome, FaUsers } from "react-icons/fa";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import toast from "react-hot-toast";
 import { CiEdit, CiLogout } from "react-icons/ci";
-import { SlCallOut } from "react-icons/sl";
-import { LuHeartHandshake } from "react-icons/lu";
-import { MdMarkEmailRead, MdOutlineViewInAr } from "react-icons/md";
-import { IoMdClose } from "react-icons/io";
-import { IoClose, IoShieldCheckmarkOutline } from "react-icons/io5";
 import { FaCarSide } from "react-icons/fa";
 import { GiTentacleHeart } from "react-icons/gi";
 import { MdOutlineEmojiPeople } from "react-icons/md";
@@ -17,18 +10,25 @@ import { MdOutlineRateReview } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import UseAuth from "../hooks/UseAuth";
+import useDesignation from "../hooks/useDesignation";
 
 
 
 const Dashboard = () => {
 
-  const {logout} = UseAuth();
+  const { user, logout } = UseAuth();
+  const [ role ] = useDesignation();
+  console.log(role);
+  
   // const { user } = ...  todo :
-  const [user, setUser] = useState({
-    photoURL:
-      "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
-    role: "agency",
-  });
+  // const [user, setUser] = useState({
+  //   photoURL:
+  //     "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
+  //   role: "agency",
+  // });
+
+
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
