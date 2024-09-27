@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { FaGoogle } from 'react-icons/fa6';
 import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
@@ -64,11 +63,11 @@ const SignUpPartThree = () => {
             return
         }
         if (!regex.test(password)) {
-            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special charachter')
+            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special character')
             return
         }
         if (password !== confirmPassword) {
-            setErrorMessage('passowrd and confirm password didn`t match!!')
+            setErrorMessage('password and confirm password didn`t match!!')
             return
         }
         else if (!check) {
