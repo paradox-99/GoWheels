@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { FaGoogle } from 'react-icons/fa6';
 
 const SignUpLastPage = () => {
 

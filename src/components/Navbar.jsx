@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { CgMenu } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth  from "../hooks/UseAuth";
+import useDesignation from "../hooks/useDesignation";
 
 const Navbar = () => {
 
+    const { user } = useAuth();
     const [scroll, setScroll] = useState(false);
     const [value, setValue] = useState(false);
-
+    const [data] = useDesignation();
+    
     const handleScroll = () => {
         if (window.scrollY > 100) {
             setScroll(true);
@@ -27,19 +31,29 @@ const Navbar = () => {
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'about'}>About</NavLink></li>
         <li><NavLink to={'contact'}>Contact</NavLink></li>
-        <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>
+        <li><NavLink to={'filter'}>Filter</NavLink></li>
+        {
+            !user && <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>
+        }
+        {
+            user && <li  className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><Link to={'/dashboard'}>Dashboard</Link></li>
+        }
+        {
+            user && <img src={data?.photo} alt="Profile Picture" className="w-12 h-12 rounded-full"/>
+        }
     </>
 
     return (
-        <div className={`font-medium fixed z-10 flex justify-between w-screen items-center py-3 px-2 md:px-10 lg:px-16 xl:px-28 transition-colors duration-300 ${ scroll ? 'bg-[#161616] text-white':'bg-transparent'}`}>
+        <div className={`font-medium fixed z-10 flex justify-between w-screen items-center py-2 px-2 md:px-10 lg:px-16 xl:px-28 transition-colors duration-300 ${ scroll ? 'bg-[#161616] text-white':'bg-transparent'}`}>
             <div className="flex gap-1 items-center justify-center">
-                <figure><img src="/favicon.png" alt="logo" className="w-7 md:w-12" /></figure>
-                <h1 className="text-2xl font-nunito font-bold">GoWheels</h1>
+                <figure><img src="/logo.gif" alt="logo" className="w-10 md:w-12" /></figure>
+                <Link to={'/'} className="text-2xl font-nunito font-bold">GoWheels</Link>
             </div>
             <div className="flex items-start">
                 <div className="hidden md:flex">
-                    <ul className="flex gap-4 text-lg font-nunito items-center">
+                    <ul className="flex gap-8 text-lg font-nunito items-center">
                         {routes}
+
                     </ul>
                 </div>
                 <div className="flex md:hidden">
@@ -58,5 +72,6 @@ const Navbar = () => {
         </div>
     );
 };
+
 
 export default Navbar;

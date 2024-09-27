@@ -1,0 +1,152 @@
+[
+    {
+      "agencyName": "Sunrise Travel Agency",
+      "agencyAddress": {
+        "division": "Dhaka",
+        "district": "Dhaka",
+        "upazilla": "Mirpur",
+        "area": "Mirpur",
+        "street": "Block A, House 15"
+      },
+      "businessRegNumber": "BR111223344",
+      "taxIdentificationNumber": "TIN222333444",
+      "transportLicenseNumber": "LIC11111",
+      "insuranceLicenseNumber": "INS22222",
+      "numberOfVehicles": 20
+    },
+    {
+      "agencyName": "Bangla Road Trips",
+      "agencyAddress": {
+        "division": "Khulna",
+        "district": "Khulna",
+        "upazilla": "Sonadanga",
+        "area": "Sonadanga",
+        "street": "Road 12, House 30"
+      },
+      "businessRegNumber": "BR222334455",
+      "taxIdentificationNumber": "TIN333444555",
+      "transportLicenseNumber": "LIC33333",
+      "insuranceLicenseNumber": "INS44444",
+      "numberOfVehicles": 15
+    },
+    {
+      "agencyName": "Coastal Travels",
+      "agencyAddress": {
+        "division": "Chittagong",
+        "district": "Cox's Bazar",
+        "upazilla": "Cox's Bazar Sadar",
+        "area": "Cox's Bazar",
+        "street": "Hotel Road, Block B"
+      },
+      "businessRegNumber": "BR333445566",
+      "taxIdentificationNumber": "TIN444555666",
+      "transportLicenseNumber": "LIC44445",
+      "insuranceLicenseNumber": "INS55555",
+      "numberOfVehicles": 25
+    },
+    {
+      "agencyName": "Evergreen Travels",
+      "agencyAddress": {
+        "division": "Rajshahi",
+        "district": "Rajshahi",
+        "upazilla": "Rajshahi Sadar",
+        "area": "Rajshahi",
+        "street": "Green Road, House 8"
+      },
+      "businessRegNumber": "BR444556677",
+      "taxIdentificationNumber": "TIN555666777",
+      "transportLicenseNumber": "LIC55556",
+      "insuranceLicenseNumber": "INS66666",
+      "numberOfVehicles": 10
+    },
+    {
+      "agencyName": "Adventure Seekers",
+      "agencyAddress": {
+        "division": "Sylhet",
+        "district": "Sylhet",
+        "upazilla": "Jaintiapur",
+        "area": "Jaintiapur",
+        "street": "Adventure Park, Road 5"
+      },
+      "businessRegNumber": "BR555667788",
+      "taxIdentificationNumber": "TIN666777888",
+      "transportLicenseNumber": "LIC66667",
+      "insuranceLicenseNumber": "INS77777",
+      "numberOfVehicles": 18
+    },
+    {
+      "agencyName": "City Tours",
+      "agencyAddress": {
+        "division": "Dhaka",
+        "district": "Narayanganj",
+        "upazilla": "Sadar",
+        "area": "Narayanganj",
+        "street": "Sadar Road, House 25"
+      },
+      "businessRegNumber": "BR666778899",
+      "taxIdentificationNumber": "TIN777888999",
+      "transportLicenseNumber": "LIC77778",
+      "insuranceLicenseNumber": "INS88888",
+      "numberOfVehicles": 30
+    },
+    {
+      "agencyName": "Heritage Travels",
+      "agencyAddress": {
+        "division": "Barisal",
+        "district": "Barisal",
+        "upazilla": "Barisal Sadar",
+        "area": "Barisal",
+        "street": "Heritage Street, Block C"
+      },
+      "businessRegNumber": "BR777889900",
+      "taxIdentificationNumber": "TIN888999000",
+      "transportLicenseNumber": "LIC88879",
+      "insuranceLicenseNumber": "INS99999",
+      "numberOfVehicles": 22
+    },
+    {
+      "agencyName": "Mountain Adventures",
+      "agencyAddress": {
+        "division": "Chittagong",
+        "district": "Bandarban",
+        "upazilla": "Bandarban Sadar",
+        "area": "Bandarban",
+        "street": "Mountain Road, House 3"
+      },
+      "businessRegNumber": "BR888990011",
+      "taxIdentificationNumber": "TIN999000111",
+      "transportLicenseNumber": "LIC99980",
+      "insuranceLicenseNumber": "INS00000",
+      "numberOfVehicles": 12
+    },
+    {
+      "agencyName": "Sundarbans Travels",
+      "agencyAddress": {
+        "division": "Khulna",
+        "district": "Khulna",
+        "upazilla": "Dumuria",
+        "area": "Dumuria",
+        "street": "Sundarbans Road, House 18"
+      },
+      "businessRegNumber": "BR999001122",
+      "taxIdentificationNumber": "TIN000111222",
+      "transportLicenseNumber": "LIC00001",
+      "insuranceLicenseNumber": "INS11111",
+      "numberOfVehicles": 8
+    },
+    {
+      "agencyName": "Deshi Travels",
+      "agencyAddress": {
+        "division": "Mymensingh",
+        "district": "Mymensingh",
+        "upazilla": "Mymensingh Sadar",
+        "area": "Mymensingh",
+        "street": "Deshi Road, House 40"
+      },
+      "businessRegNumber": "BR001122334",
+      "taxIdentificationNumber": "TIN111222333",
+      "transportLicenseNumber": "LIC22220",
+      "insuranceLicenseNumber": "INS33330",
+      "numberOfVehicles": 16
+    }
+  ]
