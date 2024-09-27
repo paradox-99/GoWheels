@@ -13,7 +13,7 @@ const Featured = () => {
         setData(data);
       });
   }, []);
-  console.log(data);
+
   return (
     <div className="pt-20 lg:pt-32 bg-background ">
       <Title title={"Featured Cars"}></Title>

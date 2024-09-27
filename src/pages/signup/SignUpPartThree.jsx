@@ -55,15 +55,15 @@ const SignUpPartThree = () => {
             accountStatus,
         }
 
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         setErrorMessage('');
 
         if (password.length < 6) {
-            setErrorMessage("your password should be at least 6 character!")
+            setErrorMessage("Your password should be at least 6 character!")
             return
         }
         if (!regex.test(password)) {
-            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special character')
+            setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
             return
         }
         if (password !== confirmPassword) {
