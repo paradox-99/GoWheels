@@ -10,7 +10,7 @@ const AgencyItems = () => {
     return (
         <div className="space-y-4">
             <MenuItem label={'Agency Home'} address={'agency-home'} icon={FaHome}> </MenuItem>
-            <MenuItem label={'Owner Information'} address={'agency/owner-info/update'} icon={MdOutlineEmojiPeople}> </MenuItem>
+            <MenuItem label={'Owner Information'} address={'/agency/owner/:email'} icon={MdOutlineEmojiPeople}> </MenuItem>
             <MenuItem label={'Add Vehicle'} address={'agency/add-vehicle-info'} icon={FaCarSide}> </MenuItem>
             <MenuItem label={'Review & Feedback'} address={'agency/review-from-customers'} icon={MdOutlineRateReview}> </MenuItem>
             <MenuItem label={'Manage Staff'} address={'agency/stuff-managment'} icon={FaPeopleGroup}> </MenuItem>

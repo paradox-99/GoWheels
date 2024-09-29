@@ -136,7 +136,7 @@ const router = createBrowserRouter([
         element: <AgencyHome></AgencyHome>
       },
       {
-        path: "/dashboard/agency/owner-info/update",
+        path: "/dashboard/agency/owner/:email",
         element: <OwnerInfo></OwnerInfo>
       },
       {

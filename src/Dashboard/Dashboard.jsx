@@ -15,6 +15,9 @@ const Dashboard = () => {
   const { logout } = UseAuth();
   const [user] = useDesignation();
 
+  const { email } = user || {}; 
+
+
   const handleLogout = () => {
     logout();
     navigate("/join")
@@ -38,7 +41,7 @@ const Dashboard = () => {
         ],
         agency: [
             { to: "/dashboard/agency-home", label: "Dashboard", icon: <FaHome /> },
-            { to: "/dashboard/agency/owner-info/update", label: "Owner Information", icon: <FaCarSide /> },
+            { to: `/dashboard/agency/owner/${email}`, label: "Owner Information", icon: <FaCarSide /> },
           
             // { to: "/dashboard/agency/stuff-management", label: "Manage Staff", icon: <FaPeopleGroup /> },
             { to: "/dashboard/agency/vehicle-info", label: "Vehicle Information", icon: <FaCar /> },
