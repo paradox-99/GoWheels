@@ -18,9 +18,9 @@ const SignIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
 
         try {
+            setLoader(true)
             const result = await userLogin(email, password);
             setUser(result.user)
             Swal.fire({
@@ -33,6 +33,7 @@ const SignIn = () => {
             navigate(location?.state ? location.state : '/')
         }
         catch (error) {
+            setLoader(false)
             console.log(error.message);
             Swal.fire({
                 icon: "error",

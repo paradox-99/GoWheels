@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { locationData } from '../../../public/locationData.js'
 
 const SignupPartTwo = () => {
@@ -9,6 +9,8 @@ const SignupPartTwo = () => {
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location.pathname)
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
