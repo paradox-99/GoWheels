@@ -17,7 +17,7 @@ const SignUpPartFour = () => {
     const navigateNext = useNavigate();
     const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth();
     const location = useLocation();
-    const { userName, userEmail } = location.state?.userInfo || {};
+    const { firstName, lastName } = location.state?.userInfo || {};
     const axiosPublic = useAxiosPublic();
 
     const { displayName } = user || {};
@@ -52,7 +52,7 @@ const SignUpPartFour = () => {
 
     const handleInfo = async (e) => {
         e.preventDefault();
-        const fullName = userName;
+        const fullName = `${firstName} ${lastName}`;
         const image = imageFile;
         const email = user?.email;
         try {

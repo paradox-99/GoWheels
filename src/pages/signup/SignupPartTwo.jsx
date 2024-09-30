@@ -37,8 +37,8 @@ const SignupPartTwo = () => {
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
-        const userRole = "User";
-        const accountStatus = "Unverified";
+        // const userRole = "User";
+        // const accountStatus = "Unverified";
 
         const info = {
             firstName,
@@ -51,8 +51,8 @@ const SignupPartTwo = () => {
             upazilla,
             localAddress,
             dateOfBirth,
-            userRole,
-            accountStatus,
+            // userRole,
+            // accountStatus,
         };
         navigate('/join/signUpPartThree', { state: { info } });
     }

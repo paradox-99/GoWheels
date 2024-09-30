@@ -18,16 +18,20 @@ const SignUpPartOne = () => {
             setLoader(true);
             const user = await googleLogin(loginWithGoogle);
             setUser(user);
+
+            const firstName = user?.displayName.trim().split(" ")[0];
+            const lastName = user?.displayName.trim().split(" ").slice(1).join(" ");
+
             const userInfo = {
                 userEmail: user?.email,
-                userName: user?.displayName,
+                firstName: firstName,
+                lastName: lastName,
                 image: user?.photoURL,
-                userRole: "User",
-                accountStatus: "Unverified"
             }
             const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
             if (data.insertedId) {
+                setLoader(true);
                 navigate('/login-Info', { state: { userInfo } });
             }
             else {

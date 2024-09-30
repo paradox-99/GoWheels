@@ -34,10 +34,9 @@ const GoogleLogin = () => {
 
     const {
         userEmail,
-        userName,
+        firstName,
+        lastName,
         image,
-        userRole,
-        accountStatus
     } = location.state?.userInfo || {}
 
     const handleJoin = async (e) => {
@@ -50,10 +49,14 @@ const GoogleLogin = () => {
         const upazilla = form.upazilla.value;
         const userAddress = { division, district, upazilla };
         const localAddress = form.localAddress.value;
-        const dateOfBirth = e.target.birthDay.value;
+        const dateOfBirth = form.birthDay.value;
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value;
+        const fullName = `${firstName} ${lastName}`;
 
         const userInfo = {
-            userName,
+            firstName,
+            lastName,
             userEmail,
             phone,
             gender,
@@ -61,13 +64,11 @@ const GoogleLogin = () => {
             userAddress,
             localAddress,
             image,
-            userRole,
-            accountStatus,
         }
 
         try {
-            await updateUserProfile(userName, image);
-            setUser({ ...user, displayName: userName, photoURL: image });
+            await updateUserProfile(fullName, image);
+            setUser({ ...user, displayName: fullName, photoURL: image });
 
             const { data } = await axiosPublic.put(`/usersRoute/user/${userEmail}`, userInfo)
 
@@ -109,7 +110,7 @@ const GoogleLogin = () => {
                             <input
                                 type="text"
                                 name="firstName"
-                                defaultValue={userName.trim().split(" ")[0]}
+                                defaultValue={firstName}
                                 id="firstName"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='First Name'
@@ -117,7 +118,7 @@ const GoogleLogin = () => {
                             <input
                                 type="text"
                                 name="lastName"
-                                defaultValue={userName.trim().split(" ").slice(1).join(" ")}
+                                defaultValue={lastName}
                                 id="lastName"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='Last Name'

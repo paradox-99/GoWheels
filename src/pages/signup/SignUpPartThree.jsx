@@ -29,8 +29,8 @@ const SignUpPartThree = () => {
         upazilla,
         localAddress,
         dateOfBirth,
-        userRole,
-        accountStatus,
+        // userRole,
+        // accountStatus,
     } = location.state?.info || {};
 
     const handleJoin = async (e) => {
@@ -39,14 +39,15 @@ const SignUpPartThree = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
         const check = form.yes.checked;
-        const userName = `${firstName} ${lastName}`;
+        const fullName = `${firstName} ${lastName}`;
         const userEmail = email;
         const userAddress = { division, district, upazilla };
         const image = null
 
 
         const userInfo = {
-            userName,
+            firstName,
+            lastName,
             userEmail,
             phone,
             gender,
@@ -54,8 +55,8 @@ const SignUpPartThree = () => {
             userAddress,
             localAddress,
             image,
-            userRole,
-            accountStatus,
+            // userRole,
+            // accountStatus,
         }
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -83,7 +84,7 @@ const SignUpPartThree = () => {
 
             const result = await createUser(userEmail, password);
             setUser(result.user)
-            await updateUserProfile(userName, image);
+            await updateUserProfile(fullName, image);
             const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
             if (result.user && data) {

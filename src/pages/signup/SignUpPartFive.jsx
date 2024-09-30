@@ -64,8 +64,7 @@ const SignUpPartFive = () => {
             console.log(error)
         }
     }
-
-
+    
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
             <div className='text-center mx-auto'>
