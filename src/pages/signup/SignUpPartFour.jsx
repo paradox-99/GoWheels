@@ -6,6 +6,7 @@ import UseAuth from "../../hooks/UseAuth";
 import Swal from "sweetalert2";
 import { imageUpload } from "../../api/utilities";
 import loaderEliment from '../../../public/logo.gif';
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
@@ -16,9 +17,10 @@ const SignUpPartFour = () => {
     const navigateNext = useNavigate();
     const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth();
     const location = useLocation();
-    const { userName } = location.state?.userInfo || {};
+    const { userName, userEmail } = location.state?.userInfo || {};
+    const axiosPublic = useAxiosPublic();
 
-    const {displayName} = user || {};
+    const { displayName } = user || {};
 
     const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
@@ -52,22 +54,26 @@ const SignUpPartFour = () => {
         e.preventDefault();
         const fullName = userName;
         const image = imageFile;
+        const email = user?.email;
         try {
             setLoader(true)
             const userImage = await imageUpload(image)
 
             if (userImage) {
-                await updateUserProfile(fullName, userImage)
-                setUser({...user, displayName: fullName, photoURL: userImage })
+                await updateUserProfile(fullName, userImage);
+                setUser({ ...user, displayName: fullName, photoURL: userImage });
 
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Image Uploaded Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigateNext('/join/signUpFive', { state: { userImage } })
+                const { data } = await axiosPublic.patch(`/usersRoute/users/${email}`, { image: userImage });
+                if (data.modifiedCount) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Image Uploaded Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigateNext('/join/signUpFive', { state: { userImage } });
+                }
             }
         } catch (error) {
             setLoader(false)

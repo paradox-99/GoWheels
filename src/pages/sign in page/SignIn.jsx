@@ -6,12 +6,14 @@ import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import { googleLogin } from '../../api/utilities/index';
 import loaderEliment from '../../../public/logo.gif';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { userLogin, setUser, loginWithGoogle, loader, setLoader } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -50,16 +52,27 @@ const SignIn = () => {
             const user = await googleLogin(loginWithGoogle);
             setUser(user);
             const userInfo = {
-                email: user?.email,
-                name: user?.displayName,
-                photo: user?.photoURL,
+                userEmail: user?.email,
+                userName: user?.displayName,
+                image: user?.photoURL,
                 userRole: "User",
                 accountStatus: "Unverified"
             }
+            const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
-            navigate('/login-Info', { state: { userInfo } });
-            console.log(userInfo)
-
+            if (data.insertedId) {
+                navigate('/login-Info', { state: { userInfo } });
+            }
+            else {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully login with google",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/');
+            }
         } catch (error) {
             setLoader(false);
             console.log(error);

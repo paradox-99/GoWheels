@@ -1,126 +1,125 @@
 [
-    {
-        "vehicle_info": {
-          "photo": "https://i.ibb.co/kXkCd9H/t1.jpg",
-          "seats": 5,
-          "mileage": "30,000 miles",
-          "gear": "Automatic",
-          "fuel": "Gasoline",
-          "rental_price": 75,
-          "transmission_type": "8-speed automatic",
-          "brand": "Toyota",
-          "model": "Camry",
-          "build_year": 2024,
-          "license_number": "ABC1234",
-          "expire_date": "2025-06-30",
-          "fitness_certificate": "873456128",
-          "issuing_authority": "Department of Motor Vehicles",
-          "insurance_number": "INS-987654321",
-          "insurance_coverage_period": "2023-09-01 to 2024-09-01",
-          "insurance_details": {
-            "provider": "XYZ Insurance Co.",
-            "coverage_type": "Full coverage",
-            "deductible": 500
-          }
-        },
-        "additional_features": {
-          "air_conditioning": true,
-          "gps": true,
-          "bluetooth": true
-        }
-      },
-      {
-        "vehicle_info": {
-          "photo": "https://i.ibb.co/m56vx2S/c20.jpg",
-          "seats": 5,
-          "mileage": "25,000 miles",
-          "gear": "Automatic",
-          "fuel": "Gasoline",
-          "rental_price": 70,
-          "transmission_type": "CVT",
-          "brand": "Nissan",
-          "model": "Altima",
-          "build_year": 2023,
-          "license_number": "DEF5678",
-          "expire_date": "2025-04-15",
-          "fitness_certificate": "467123789",
-          "issuing_authority": "Department of Motor Vehicles",
-          "insurance_number": "INS-123456789",
-          "insurance_coverage_period": "2023-08-01 to 2024-08-01",
-          "insurance_details": {
-            "provider": "ABC Insurance Co.",
-            "coverage_type": "Full coverage",
-            "deductible": 300
-          }
-        },
-        "additional_features": {
-          "air_conditioning": true,
-          "gps": true,
-          "bluetooth": true
-        }
-      },
-      {
-        "vehicle_info": {
-          "photo": "https://i.ibb.co/QDcX7Fm/c19.jpg",
-          "seats": 7,
-          "mileage": "20,000 miles",
-          "gear": "Automatic",
-          "fuel": "Gasoline",
-          "rental_price": 80,
-          "transmission_type": "CVT",
-          "brand": "Mitsubishi",
-          "model": "Outlander",
-          "build_year": 2023,
-          "license_number": "GHI9101",
-          "expire_date": "2025-05-20",
-          "fitness_certificate": "934782615",
-          "issuing_authority": "Department of Motor Vehicles",
-          "insurance_number": "INS-456789012",
-          "insurance_coverage_period": "2023-10-01 to 2024-10-01",
-          "insurance_details": {
-            "provider": "LMN Insurance Co.",
-            "coverage_type": "Full coverage",
-            "deductible": 400
-          }
-        },
-        "additional_features": {
-          "air_conditioning": true,
-          "gps": true,
-          "bluetooth": true
-        }
-      },
-      {
-        "vehicle_info": {
-          "photo": "https://i.ibb.co/Bnf4zMj/c18.jpg",
-          "seats": 5,
-          "mileage": "15,000 miles",
-          "gear": "Automatic",
-          "fuel": "Gasoline",
-          "rental_price": 85,
-          "transmission_type": "8-speed automatic",
-          "brand": "Toyota",
-          "model": "RAV4",
-          "build_year": 2024,
-          "license_number": "JKL1122",
-          "expire_date": "2025-08-12",
-          "fitness_certificate": "671245890",
-          "issuing_authority": "Department of Motor Vehicles",
-          "insurance_number": "INS-987123456",
-          "insurance_coverage_period": "2023-09-15 to 2024-09-15",
-          "insurance_details": {
-            "provider": "OPQ Insurance Co.",
-            "coverage_type": "Full coverage",
-            "deductible": 600
-          }
-        },
-        "additional_features": {
-          "air_conditioning": true,
-          "gps": true,
-          "bluetooth": true
-        }
-      },
-
-    {
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/kXkCd9H/t1.jpg",
+      "seats": 5,
+      "mileage": "30,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 75,
+      "transmission_type": "8-speed automatic",
+      "brand": "Toyota",
+      "model": "Camry",
+      "build_year": 2024,
+      "license_number": "ABC1234",
+      "expire_date": "2025-06-30",
+      "fitness_certificate": "873456128",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-987654321",
+      "insurance_coverage_period": "2023-09-01 to 2024-09-01",
+      "insurance_details": {
+        "provider": "XYZ Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 500
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/m56vx2S/c20.jpg",
+      "seats": 5,
+      "mileage": "25,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 70,
+      "transmission_type": "CVT",
+      "brand": "Nissan",
+      "model": "Altima",
+      "build_year": 2023,
+      "license_number": "DEF5678",
+      "expire_date": "2025-04-15",
+      "fitness_certificate": "467123789",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-123456789",
+      "insurance_coverage_period": "2023-08-01 to 2024-08-01",
+      "insurance_details": {
+        "provider": "ABC Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 300
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/QDcX7Fm/c19.jpg",
+      "seats": 7,
+      "mileage": "20,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 80,
+      "transmission_type": "CVT",
+      "brand": "Mitsubishi",
+      "model": "Outlander",
+      "build_year": 2023,
+      "license_number": "GHI9101",
+      "expire_date": "2025-05-20",
+      "fitness_certificate": "934782615",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-456789012",
+      "insurance_coverage_period": "2023-10-01 to 2024-10-01",
+      "insurance_details": {
+        "provider": "LMN Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 400
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
+    "vehicle_info": {
+      "photo": "https://i.ibb.co/Bnf4zMj/c18.jpg",
+      "seats": 5,
+      "mileage": "15,000 miles",
+      "gear": "Automatic",
+      "fuel": "Gasoline",
+      "rental_price": 85,
+      "transmission_type": "8-speed automatic",
+      "brand": "Toyota",
+      "model": "RAV4",
+      "build_year": 2024,
+      "license_number": "JKL1122",
+      "expire_date": "2025-08-12",
+      "fitness_certificate": "671245890",
+      "issuing_authority": "Department of Motor Vehicles",
+      "insurance_number": "INS-987123456",
+      "insurance_coverage_period": "2023-09-15 to 2024-09-15",
+      "insurance_details": {
+        "provider": "OPQ Insurance Co.",
+        "coverage_type": "Full coverage",
+        "deductible": 600
+      }
+    },
+    "additional_features": {
+      "air_conditioning": true,
+      "gps": true,
+      "bluetooth": true
+    }
+  },
+  {
     "vehicle_info": {
       "photo": "https://i.ibb.co/v1mSm7K/c17.jpg",
       "seats": 5,
@@ -570,5 +569,4 @@
       "bluetooth": true
     }
   }
-  ]
-  
+]

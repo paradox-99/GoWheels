@@ -3,6 +3,8 @@ import Avatar from "react-avatar-edit";
 import { Link, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../api/utilities";
 import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const SignUpPartFive = () => {
 
@@ -10,6 +12,7 @@ const SignUpPartFive = () => {
     const { displayName, photoURL } = user || {};
     const [preview, setPreview] = useState(null);
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const onClose = () => {
         setPreview(photoURL);
@@ -33,14 +36,27 @@ const SignUpPartFive = () => {
 
     const handlesubmit = async (e) => {
         e.preventDefault();
+        const email = user?.email;
+
         try {
             if (preview) {
                 setLoader(true);
                 const croppedImageFile = base64ToFile(preview, `${user?.displayName} cropped-image.jpg`);
                 const userCropImage = await imageUpload(croppedImageFile);
 
-                
-                navigate('/');
+                if (userCropImage) {
+                    const { data } = await axiosPublic.patch(`/usersRoute/user/${email}`, { userCropImage })
+                    if (data.modifiedCount) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Image cropped Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+                    }
+                }
             }
         }
         catch (error) {

@@ -5,6 +5,7 @@ import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 
 const SignUpPartThree = () => {
@@ -15,6 +16,7 @@ const SignUpPartThree = () => {
     const location = useLocation();
     const { setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic()
 
     const {
         firstName,
@@ -41,7 +43,7 @@ const SignUpPartThree = () => {
         const userEmail = email;
         const userAddress = { division, district, upazilla };
         const image = null
-       
+
 
         const userInfo = {
             userName,
@@ -56,15 +58,15 @@ const SignUpPartThree = () => {
             accountStatus,
         }
 
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         setErrorMessage('');
 
         if (password.length < 6) {
-            setErrorMessage("your password should be at least 6 character!")
+            setErrorMessage("Your password should be at least 6 character!")
             return
         }
         if (!regex.test(password)) {
-            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special character')
+            setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
             return
         }
         if (password !== confirmPassword) {
@@ -78,19 +80,22 @@ const SignUpPartThree = () => {
 
         try {
             setLoader(true);
-        
+
             const result = await createUser(userEmail, password);
             setUser(result.user)
-            await updateUserProfile(userName, image)
+            await updateUserProfile(userName, image);
+            const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Successfully joined",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate('/join/signUpFour', {state: {userInfo}});
+            if (result.user && data) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully joined",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/join/signUpFour', { state: { userInfo } });
+            }
         }
         catch (error) {
             console.log(error)
@@ -125,7 +130,7 @@ const SignUpPartThree = () => {
                             type={showPassword ? "text" : "password"}
                             name="password"
                             id="password"
-                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary' 
+                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary'
                             placeholder='Enter your password'
                             required />
                         <span

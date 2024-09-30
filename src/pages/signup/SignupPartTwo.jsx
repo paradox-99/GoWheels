@@ -9,8 +9,6 @@ const SignupPartTwo = () => {
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
-    const location = useLocation();
-    console.log(location.pathname)
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;

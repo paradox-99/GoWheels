@@ -1,28 +1,22 @@
+import { Link, useNavigate } from "react-router-dom";
+import { locationData } from "../../../public/locationData";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { locationData } from '../../../public/locationData';
 import background from '../../../public/asset/background.jpg'
-import UseAuth from "../../hooks/UseAuth";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import Swal from "sweetalert2";
 
-const GoogleLogin = () => {
 
+const AgencyRegister = () => {
 
     const [selectedDivision, setSelectedDivision] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
-    const location = useLocation();
-    const { user, setUser, updateUserProfile } = UseAuth() || {};
-    const axiosPublic = useAxiosPublic();
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
         setSelectedDivision(division);
-        setSelectedDistrict('');
-        setUpazillas([]);
+        setSelectedDistrict(''); // Reset district on division change
+        setUpazillas([]); // Reset upazillas on division change
         setDistricts(Object.keys(locationData[division] || {}));
     };
 
@@ -32,74 +26,36 @@ const GoogleLogin = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-    const {
-        userEmail,
-        userName,
-        image,
-        userRole,
-        accountStatus
-    } = location.state?.userInfo || {}
-
-    const handleJoin = async (e) => {
+    const handleJoin = (e) => {
         e.preventDefault()
         const form = e.target;
+        const name = form.name.value;
+        const lastName = form.lastName.value;
+        const email = form.email.value;
         const phone = form.phone.value;
         const gender = form.gender.value;
         const division = form.division.value;
         const district = form.district.value;
         const upazilla = form.upazilla.value;
-        const userAddress = { division, district, upazilla };
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
+        
 
-        const userInfo = {
-            userName,
-            userEmail,
-            phone,
-            gender,
-            dateOfBirth,
-            userAddress,
-            localAddress,
-            image,
-            userRole,
-            accountStatus,
-        }
 
-        try {
-            await updateUserProfile(userName, image);
-            setUser({ ...user, displayName: userName, photoURL: image });
 
-            const { data } = await axiosPublic.put(`/usersRoute/user/${userEmail}`, userInfo)
-
-            if (data.modifiedCount) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Info updated successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate('/')
-            }
-        }
-        catch (error) {
-            console.log(error)
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: error.message,
-                footer: '<a href="#">Why do I have this issue?</a>'
-            });
-        }
+        const info = { name, lastName, email, phone, gender, division, district, upazilla, localAddress, dateOfBirth };
+        console.log(info)
+        navigate('/join/agencyInfo');
     }
-
+    // 
     return (
-        <div style={{ backgroundImage: `url(${background})` }}
-            className='h-[100vh] bg-center bg-cover bg-no-repeat pt-10'>
-
+        <div style={{ backgroundImage: `url(${background})` }} className="h-[89vh] bg-center bg-cover bg-no-repeat pt-10">
             <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
                 <div className='text-center mx-auto pt-5'>
                     <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather mb-10'>GoWheels</h1>
+                </div>
+                <div className='text-center mx-auto pt-5' >
+                    <h1 className="text-3xl lg:text-3xl font-bold text-white font-merriweather mb-10">Owner Information</h1>
                 </div>
                 <section className='mt-3'>
                     <form
@@ -108,16 +64,15 @@ const GoogleLogin = () => {
                         <div className='flex gap-10'>
                             <input
                                 type="text"
-                                name="firstName"
-                                defaultValue={userName.trim().split(" ")[0]}
+                                name="name"
                                 id="firstName"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
-                                placeholder='First Name'
+                                placeholder='Your Name'
                                 required />
+
                             <input
                                 type="text"
                                 name="lastName"
-                                defaultValue={userName.trim().split(" ").slice(1).join(" ")}
                                 id="lastName"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='Last Name'
@@ -128,18 +83,19 @@ const GoogleLogin = () => {
                             <input
                                 type="email"
                                 name="email"
-                                defaultValue={userEmail}
                                 id="email"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='Email'
                                 required />
-                            <input
-                                type="number"
-                                name="phone"
-                                id="phone"
-                                className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
-                                placeholder='Phone number'
-                                required />
+                            <div className='flex gap-10'>
+                                <input
+                                    type="number"
+                                    name="phone"
+                                    id="phone"
+                                    className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                                    placeholder='Phone number'
+                                    required />
+                            </div>
                             <div className='flex justify-between items-center'>
                                 <select
                                     name="gender"
@@ -209,7 +165,10 @@ const GoogleLogin = () => {
                             </div>
                         </div>
                         <div className='pb-10 mt-5 flex justify-between'>
-                            <button className='bg-primary text-white rounded py-1 px-2 lg:px-4 font-semibold text-lg lg:text-xl'>Submit</button>
+                            <Link
+                                to={'/join/signUpPartOne'}
+                                className='bg-primary text-white rounded py-1 px-2 lg:px-4 font-semibold text-lg lg:text-xl'>Back</Link>
+                            <button className='bg-primary text-white rounded py-1 px-2 lg:px-4 font-semibold text-lg lg:text-xl'>Next</button>
                         </div>
                     </form>
                 </section>
@@ -218,4 +177,4 @@ const GoogleLogin = () => {
     );
 };
 
-export default GoogleLogin;
+export default AgencyRegister;
