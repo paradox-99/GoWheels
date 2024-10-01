@@ -40,6 +40,7 @@ import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import AgencyRegister from "../pages/Agency/AgencyRegister";
 import AgencyInfo from "../pages/Agency/AgencyInfo";
 import CarInfo from "../pages/Agency/CarInfo";
+import ShowBrandCars from "../pages/Filter/ShowBrandCars";
 
 const router = createBrowserRouter([
     {
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
                 element: <Filter />,
             },
             {
-                path: "/view-details",
+                path: "/view-details/:id",
                 element: <ViewDetails />,
             },
 
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
             {
                 path: '/join/addCarInfo',
                 element: <CarInfo></CarInfo>
+            },
+            {
+                path: '/brand/:brand_name',
+                element: <ShowBrandCars/>
             }
         ]
     },
