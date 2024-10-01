@@ -5,25 +5,45 @@ import { FaRegHandshake } from 'react-icons/fa';
 import UseAuth from '../../hooks/UseAuth';
 import { googleLogin } from '../../api/utilities';
 import loaderEliment from '../../../public/logo.gif';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const SignUpPartOne = () => {
     const { loader, setLoader, loginWithGoogle, setUser } = UseAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const handleGoogle = async () => {
         try {
             setLoader(true);
             const user = await googleLogin(loginWithGoogle);
             setUser(user);
+
+            const firstName = user?.displayName.trim().split(" ")[0];
+            const lastName = user?.displayName.trim().split(" ").slice(1).join(" ");
+
             const userInfo = {
-                email: user?.email,
-                name: user?.displayName,
-                photo: user?.photoURL,
-                userRole: "User",
-                accountStatus: "Unverified"
+                userEmail: user?.email,
+                firstName: firstName,
+                lastName: lastName,
+                image: user?.photoURL,
             }
-            navigate('/login-Info', {state: {userInfo}});
-            console.log(userInfo)
+            const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
+
+            if (data.insertedId) {
+                setLoader(true);
+                navigate('/login-Info', { state: { userInfo } });
+            }
+            else {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully login with google",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/');
+            }
 
         } catch (error) {
             setLoader(false);

@@ -6,21 +6,23 @@ import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import { googleLogin } from '../../api/utilities/index';
 import loaderEliment from '../../../public/logo.gif';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { userLogin, setUser, loginWithGoogle, loader, setLoader } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
 
     const handleLogin = async (e) => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
 
         try {
+            setLoader(true)
             const result = await userLogin(email, password);
             setUser(result.user)
             Swal.fire({
@@ -33,6 +35,7 @@ const SignIn = () => {
             navigate(location?.state ? location.state : '/')
         }
         catch (error) {
+            setLoader(false)
             console.log(error.message);
             Swal.fire({
                 icon: "error",
@@ -48,17 +51,32 @@ const SignIn = () => {
             setLoader(true);
             const user = await googleLogin(loginWithGoogle);
             setUser(user);
+
+            const firstName = user?.displayName.trim().split(" ")[0];
+            const lastName = user?.displayName.trim().split(" ").slice(1).join(" ");
+
             const userInfo = {
-                email: user?.email,
-                name: user?.displayName,
-                photo: user?.photoURL,
-                userRole: "User",
-                accountStatus: "Unverified"
+                userEmail: user?.email,
+                firstName: firstName,
+                lastName: lastName,
+                image: user?.photoURL,
             }
+            const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
-            navigate('/login-Info', { state: { userInfo } });
-            console.log(userInfo)
-
+            if (data.insertedId) {
+                setLoader(true);
+                navigate('/login-Info', { state: { userInfo } });
+            }
+            else {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully login with google",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/');
+            }
         } catch (error) {
             setLoader(false);
             console.log(error);
