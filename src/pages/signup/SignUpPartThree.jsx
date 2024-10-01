@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
-
 const SignUpPartThree = () => {
 
     const [showPassword, setShowPassword] = useState(false);
@@ -112,8 +111,8 @@ const SignUpPartThree = () => {
     }
 
     if (loader) {
-        return <div className='fles justify-center'>
-            <img className='mx-auto' src={loaderEliment} alt="" />
+        return <div className='flex justify-center'>
+            <img className='mx-auto' src={loaderElement} alt="" />
         </div>
     }
 
