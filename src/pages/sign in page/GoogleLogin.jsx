@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { locationData } from '../../../public/locationData';
 import background from '../../../public/asset/background.jpg'
+import UseAuth from "../../hooks/UseAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const GoogleLogin = () => {
 
@@ -12,12 +15,14 @@ const GoogleLogin = () => {
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+    const { user, setUser, updateUserProfile } = UseAuth() || {};
+    const axiosPublic = useAxiosPublic();
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
         setSelectedDivision(division);
-        setSelectedDistrict(''); // Reset district on division change
-        setUpazillas([]); // Reset upazillas on division change
+        setSelectedDistrict('');
+        setUpazillas([]);
         setDistricts(Object.keys(locationData[division] || {}));
     };
 
@@ -28,33 +33,70 @@ const GoogleLogin = () => {
     };
 
     const {
-        email, 
-        name,
-        photo,
-        userRole,
-        accountStatus
+        userEmail,
+        firstName,
+        lastName,
+        image,
     } = location.state?.userInfo || {}
 
-    const handleJoin = (e) => {
+    const handleJoin = async (e) => {
         e.preventDefault()
         const form = e.target;
-        const firstName = form.firstName.value;
-        const lastName = form.lastName.value;
-        const email = form.email.value;
         const phone = form.phone.value;
         const gender = form.gender.value;
         const division = form.division.value;
         const district = form.district.value;
         const upazilla = form.upazilla.value;
+        const userAddress = { division, district, upazilla };
         const localAddress = form.localAddress.value;
-        const dateOfBirth = e.target.birthDay.value;
-        const userRole = "User";
-        const accountStatus = "Unverified";
+        const dateOfBirth = form.birthDay.value;
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value;
+        const fullName = `${firstName} ${lastName}`;
+
+        const userInfo = {
+            firstName,
+            lastName,
+            userEmail,
+            phone,
+            gender,
+            dateOfBirth,
+            userAddress,
+            localAddress,
+            image,
+        }
+
+        try {
+            await updateUserProfile(fullName, image);
+            setUser({ ...user, displayName: fullName, photoURL: image });
+
+            const { data } = await axiosPublic.put(`/usersRoute/user/${userEmail}`, userInfo)
+
+            if (data.modifiedCount) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Info updated successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+            }
+        }
+        catch (error) {
+            console.log(error)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.message,
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+        }
     }
 
     return (
         <div style={{ backgroundImage: `url(${background})` }}
-        className='h-[100vh] bg-center bg-cover bg-no-repeat pt-10'>
+            className='h-[100vh] bg-center bg-cover bg-no-repeat pt-10'>
 
             <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
                 <div className='text-center mx-auto pt-5'>
@@ -68,7 +110,7 @@ const GoogleLogin = () => {
                             <input
                                 type="text"
                                 name="firstName"
-                                defaultValue={name.trim().split(" ")[0]}
+                                defaultValue={firstName}
                                 id="firstName"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='First Name'
@@ -76,7 +118,7 @@ const GoogleLogin = () => {
                             <input
                                 type="text"
                                 name="lastName"
-                                defaultValue={name.trim().split(" ").slice(1).join(" ")}
+                                defaultValue={lastName}
                                 id="lastName"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='Last Name'
@@ -87,7 +129,7 @@ const GoogleLogin = () => {
                             <input
                                 type="email"
                                 name="email"
-                                defaultValue={email}
+                                defaultValue={userEmail}
                                 id="email"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='Email'

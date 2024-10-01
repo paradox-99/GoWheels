@@ -4,8 +4,8 @@ import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
-import loaderElement from '../../../public/logo.gif';
-
+import loaderEliment from '../../../public/logo.gif';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SignUpPartThree = () => {
 
@@ -15,6 +15,7 @@ const SignUpPartThree = () => {
     const location = useLocation();
     const { setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic()
 
     const {
         firstName,
@@ -27,8 +28,8 @@ const SignUpPartThree = () => {
         upazilla,
         localAddress,
         dateOfBirth,
-        userRole,
-        accountStatus,
+        // userRole,
+        // accountStatus,
     } = location.state?.info || {};
 
     const handleJoin = async (e) => {
@@ -37,14 +38,15 @@ const SignUpPartThree = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
         const check = form.yes.checked;
-        const userName = `${firstName} ${lastName}`;
+        const fullName = `${firstName} ${lastName}`;
         const userEmail = email;
         const userAddress = { division, district, upazilla };
         const image = null
-       
+
 
         const userInfo = {
-            userName,
+            firstName,
+            lastName,
             userEmail,
             phone,
             gender,
@@ -52,8 +54,8 @@ const SignUpPartThree = () => {
             userAddress,
             localAddress,
             image,
-            userRole,
-            accountStatus,
+            // userRole,
+            // accountStatus,
         }
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -78,19 +80,22 @@ const SignUpPartThree = () => {
 
         try {
             setLoader(true);
-        
+
             const result = await createUser(userEmail, password);
             setUser(result.user)
-            await updateUserProfile(userName, image)
+            await updateUserProfile(fullName, image);
+            const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Successfully joined",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate('/join/signUpFour', {state: {userInfo}});
+            if (result.user && data) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully joined",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/join/signUpFour', { state: { userInfo } });
+            }
         }
         catch (error) {
             console.log(error)
@@ -125,7 +130,7 @@ const SignUpPartThree = () => {
                             type={showPassword ? "text" : "password"}
                             name="password"
                             id="password"
-                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary' 
+                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary'
                             placeholder='Enter your password'
                             required />
                         <span
