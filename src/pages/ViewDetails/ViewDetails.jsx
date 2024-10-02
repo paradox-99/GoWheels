@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit,  FcList, FcViewDetails, FcSalesPerformance } from "react-icons/fc";
+import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit, FcList, FcViewDetails, FcSalesPerformance } from "react-icons/fc";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa"; // For green check icon
-
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
+const ViewDetails = () => {
 
-const ViewDetails = ({ id }) => {
+    const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [relatedData, setRelatedData] = useState([]);
+    const axiosPublic = useAxiosPublic();
+
     useEffect(() => {
-        fetch("./featuredAndAvaiable.json")
+        fetch("../../../public/featuredAndAvailable.json")
             .then((res) => {
                 return res.json();
             })
@@ -22,46 +26,27 @@ const ViewDetails = ({ id }) => {
                 setRelatedData(data);
             });
     }, []);
-console.log(relatedData);
-    const data = {
-        "name": "Toyota Prius",
-        "rating": 4.5,
-        "brand": "Toyota",
-        "fuel": "Hybrid",
-        "about": "The Toyota Prius is a hybrid vehicle with a mileage of 22,000 miles and full insurance coverage.",
-        "seats": 5,
-        "gear": "Automatic",
-        "rental_price": 50,
-        "image": "/car.png",
-        "mileage": "25,000 miles",
-        "transmission_type": "automatic",
-        "model": "Prius",
-        "build_year": 2022,
-        "license_number": "XYZ9876",
-        "expire_date": "2024-12-31",
-        "fitness_certificate": "Valid",
-        "issuing_authority": "Department of Motor Vehicles",
-        "insurance_number": "INS-123456789",
-        "insurance_coverage_period": "2023-01-01 to 2024-01-01",
-        "insurance_details": {
-            "provider": "ABC Insurance Co.",
-            "coverage_type": "Full coverage",
-            "deductible": 300
-        },
-        "additional_features": {
-            "air_conditioning": true,
-            "gps": true,
-            "bluetooth": true,
-            "sunroof": false,
-            "parking_sensors": true
+
+    const { data } = useQuery({
+        queryKey: ['carData'],
+        queryFn: async () => {
+            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`)
+            return response.data;
         }
-    };
+    })
+
+    const add_features = data?.additional_features;
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 50);
         window.scrollTo(0, 0);
+        console.log("loading");
+
         return () => clearTimeout(timer);
     }, [id]);
+
+    console.log(relatedData);
+
     const settings = {
         dots: true,
         infinite: true,
@@ -130,52 +115,52 @@ console.log(relatedData);
                     {/* Image Section */}
                     <div className="mx-auto lg:w-[580px] px-6 md:px-6 lg:px-0 flex-grow">
                         <div className="image-container">
-                            <img className="lg:w-[580px]" src={data.image} alt={data.name} />
+                            <img className="lg:w-[580px]" src={data?.vehicle_info.photo} alt={data?.vehicle_info.name} />
                         </div>
                         <div className="flex flex-row-reverse mt-12 relative">
                             <button className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button bg-primary text-white hover:text-black px-4 duration-700 md:py-3">
                                 Rent Now
                             </button>
-                            <button onClick={() => toast("added to Favourites")} className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
-                                Add to Favourites
+                            <button onClick={() => toast("added to Favorites")} className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
+                                Add to Favorites
                             </button>
                         </div>
                     </div>
 
                     {/* Details Section */}
                     <div className="p-6 lg:mt-0 lg:w-1/2">
-                        <h2 className="text-4xl mb-4 font-bold font-secondary text-heading">{data.name}</h2>
+                        <h2 className="text-4xl mb-4 font-bold text-secondary font-nunito text-heading">{data?.vehicle_info.brand}<span className="ml-3">{data?.vehicle_info.model}</span></h2>
                         <div className="flex gap-6">
-                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{data.brand}</h3>
-                            <p className="dark:text-heading2">Model: <span className="bg-[#FFEEE9] px-1 rounded-md text-black">{data.model}</span></p>
+                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{data?.vehicle_info.brand}</h3>
+                            <p className="dark:text-heading2">Model: <span className="bg-[#FFEEE9] px-1 rounded-md text-black">{data?.vehicle_info.model}</span></p>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-heading">
                             <div className="flex flex-col py-2 px-10 items-center border border-gray-300 rounded-md">
                                 <FcDepartment className="text-4xl" />
                                 <span className="font-light mt-2">Build:</span>
-                                <span className="text-lg font-semibold font-secondary">{data.build_year}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.build_year}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcPieChart className="text-4xl" />
                                 <span className="font-light mt-2">Fuel:</span>
-                                <span className="text-lg font-semibold font-secondary">{data.fuel}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.fuel}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcOrgUnit className="text-4xl" />
                                 <span className="font-light mt-2">Seats:</span>
-                                <span className="text-lg font-semibold font-secondary">{data.seats}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.seats}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcHeatMap className="text-4xl" />
                                 <span className="font-light mt-2">Transmission:</span>
-                                <span className="text-lg font-semibold font-secondary">{data.transmission_type}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.transmission_type}</span>
                             </div>
                         </div>
 
                         {/* About Section */}
                         <div>
                             <p className="text-xl mt-6">About</p>
-                            <p className="mt-4 text-[16px] font-secondary !leading-[26px] text-Description dark:text-Description2">{data.about}</p>
+                            <p className="mt-4 text-[16px] font-secondary !leading-[26px] text-Description dark:text-Description2">{data?.vehicle_info.about}</p>
                         </div>
                     </div>
                 </div>
@@ -193,19 +178,19 @@ console.log(relatedData);
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>License Number: {data.license_number}</span>
+                                <span>License Number: {data?.vehicle_info.license_number}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Expire Date: {data.expire_date}</span>
+                                <span>Expire Date: {data?.vehicle_info.expire_date}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Fitness Certificate: {data.fitness_certificate}</span>
+                                <span>Fitness Certificate: {data?.vehicle_info.fitness_certificate}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Issuing Authority: {data.issuing_authority}</span>
+                                <span>Issuing Authority: {data?.vehicle_info.issuing_authority}</span>
                             </li>
                         </ul>
                     </div>
@@ -219,23 +204,23 @@ console.log(relatedData);
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Insurance Number: {data.insurance_number}</span>
+                                <span>Insurance Number: {data?.vehicle_info.insurance_number}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Period: {data.insurance_coverage_period}</span>
+                                <span>Coverage Period: {data?.vehicle_info.insurance_coverage_period}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Provider: {data.insurance_details.provider}</span>
+                                <span>Provider: {data?.vehicle_info.insurance_details.provider}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Type: {data.insurance_details.coverage_type}</span>
+                                <span>Coverage Type: {data?.vehicle_info.insurance_details.coverage_type}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Deductible: ${data.insurance_details.deductible}</span>
+                                <span>Deductible: ${data?.vehicle_info.insurance_details.deductible}</span>
                             </li>
                         </ul>
                     </div>
@@ -247,12 +232,17 @@ console.log(relatedData);
                             Additional Features
                         </h2>
                         <ul className="list-none ml-4 mt-4">
-                            {Object.entries(data.additional_features).map(([feature, value]) => (
-                                <li key={feature} className="mb-2 flex items-center gap-2">
-                                    <FaCheckCircle className={`${value ? 'text-green-500' : 'text-gray-500'}`} />
-                                    <span>{feature.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}: {value ? 'Available' : 'Not Available'}</span>
-                                </li>
-                            ))}
+                            {
+                                data && <>
+                                    {Object.entries(add_features).map(([feature, value]) => (
+                                        <li key={feature} className="mb-2 flex items-center gap-2">
+                                            <FaCheckCircle className={`${value ? 'text-green-500' : 'text-gray-500'}`} />
+                                            <span>{feature.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}: {value ? 'Available' : 'Not Available'}</span>
+                                        </li>
+                                    ))}
+                                </>
+                            }
+
                         </ul>
                     </div>
                 </div>

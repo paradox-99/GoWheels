@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const FeaturedCarts = ({ car }) => {
   return (
     <div>
-      <div className="w-full p-5 rounded-lg bg-background shadow-2xl">
+      <div className="w-full p-5 rounded-lg shadow-2xl">
         <figure className="h-60">
           <img src={car.image} alt="" className="rounded-lg h-full w-full" />
         </figure>

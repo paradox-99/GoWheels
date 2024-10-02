@@ -34,7 +34,7 @@ const BookingRequest = () => {
             <h1 className="text-black dark:text-gray-200 font-bold">
               Farzana Hossain
             </h1>
-            <p className="text-black">Car Brand: Toyota</p>
+            <p className="text-black">Car Brand: Audi</p>
             <a className="text-lg front-extrabold text-black group-hover:opacity-100 opacity-0 transform transition-all delay-300 duration-500">
               want to Book from: 29th june 2024, <br /> To: 2 july, 2024
             </a>
@@ -56,7 +56,7 @@ const BookingRequest = () => {
             <h1 className="text-black dark:text-gray-200 font-bold">
               Farzana Hossain
             </h1>
-            <p className="text-black">Car Brand: Toyota</p>
+            <p className="text-black">Car Brand: Marcidis</p>
             <a className="text-lg front-extrabold text-black group-hover:opacity-100 opacity-0 transform transition-all delay-300 duration-500">
               want to Book from: 29th june 2024, <br /> To: 2 july, 2024
             </a>

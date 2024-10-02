@@ -4,7 +4,6 @@ import { CiLogout, CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
-import { FaPeopleGroup } from "react-icons/fa6";
 import { IoIosPeople } from "react-icons/io";
 import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";

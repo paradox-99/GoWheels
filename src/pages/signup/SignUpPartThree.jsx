@@ -8,7 +8,6 @@ import loaderEliment from '../../../public/logo.gif';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useSignUp from '../../hooks/useSignUp';
 
-
 const SignUpPartThree = () => {
 
     const [showPassword, setShowPassword] = useState(false);

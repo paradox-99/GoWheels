@@ -1,6 +1,7 @@
-export const locationData = {
+export const locationData =
+{
     "Dhaka": {
-        "Dhaka": ["Dhamrai", "Dohar", "Keraniganj", "Nawabganj", "Savar"],
+        "Dhaka": ["Dhaka North", "Dhaka South", "Dhamrai", "Dohar", "Keraniganj", "Nawabganj", "Savar"],
         "Faridpur": ["Alfadanga", "Bhanga", "Boalmari", "Charbhadrasan", "Faridpur Sadar", "Madhukhali", "Nagarkanda", "Sadarpur", "Saltha"],
         "Gazipur": ["Gazipur Sadar", "Kaliakair", "Kaliganj", "Kapasia", "Sreepur"],
         "Gopalganj": ["Gopalganj Sadar", "Kashiani", "Kotalipara", "Muksudpur", "Tungipara"],
@@ -79,4 +80,9 @@ export const locationData = {
         "Netrokona": ["Atpara", "Barhatta", "Durgapur", "Khaliajuri", "Kalmakanda", "Kendua", "Madan", "Mohanganj", "Netrokona Sadar", "Purbadhala"],
         "Sherpur": ["Jhenaigati", "Nakla", "Nalitabari", "Sherpur Sadar", "Sreebardi"]
     }
+}
+
+export const keyArea = {
+    "Dhaka North": ["Uttara", "Mirpur", "Gulshan", "Banani", "Baridhara", "Mohakhali", "Bashundhara", "Badda", "Khilkhet", "Pallabi", "Tejgaon", "Kafrul", "Kalachandpur"],
+    "Dhaka South": ["Dhanmondi", "Jatrabari", "Motijheel", "Lalbagh", "Azimpur", "Paltan", "Khilgaon", "Wari", "Gendaria", "Shahbagh", "Sutrapur", "Hazaribagh", "New Market"]
 }

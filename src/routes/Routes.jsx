@@ -20,7 +20,6 @@ import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
 import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
-import GoogleLogin from "../pages/sign in page/GoogleLogin";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
@@ -34,6 +33,7 @@ import AgencyRegister from "../pages/Agency/AgencyRegister";
 import AgencyInfo from "../pages/Agency/AgencyInfo";
 import CarInfo from "../pages/Agency/CarInfo";
 import { SignUpRoutes } from "./SignUpRoutes";
+import ShowBrandCars from "../pages/Filter/ShowBrandCars";
 
 const router = createBrowserRouter([
     {
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
                 element: <Filter />,
             },
             {
-                path: "/view-details",
+                path: "/view-details/:id",
                 element: <ViewDetails />,
             },
 
@@ -77,13 +77,13 @@ const router = createBrowserRouter([
             {
                 path: '/join/addCarInfo',
                 element: <CarInfo></CarInfo>
+            },
+            {
+                path: '/brand/:brand_name',
+                element: <ShowBrandCars/>
             }
         ]
     },
-    // {
-    //     path: "login-Info",
-    //     element: <GoogleLogin></GoogleLogin>
-    // },
     {
         path: "dashboard",
         element: <Dashboard></Dashboard>,
