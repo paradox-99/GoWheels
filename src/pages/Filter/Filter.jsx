@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Address from "../../components/address/Address";
 import { useRef, useState } from "react";
+import FeaturedCarts from "../../components/cart/FeaturedCarts";
 
 const top_brands = [
   {
@@ -38,6 +39,7 @@ const top_brands = [
 const Filter = () => {
 
   const [address, setAddress] = useState();
+  const [searchResult, setSearchResult] = useState();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const ref1 = useRef();
@@ -55,9 +57,9 @@ const Filter = () => {
     const division = address.selectedDivision;
     const district = address.selectedDistrict;
     const upazilla = address.selectedUpazilla;
-    let keyArea = "";
-    if( address.keyArea){
-      keyArea = address.keyArea
+    let area = "";
+    if (address.keyArea) {
+      area = address.keyArea
     }
 
     const filterData = {
@@ -68,13 +70,13 @@ const Filter = () => {
       division,
       district,
       upazilla,
-      keyArea
+      area
     };
 
     const result = await axiosPublic.get('/bookings/getSearchData', { params: filterData })
       .then(res => { return res.data })
 
-    console.log(result);
+    setSearchResult(result);
   };
 
   const handleBrand = brand_name => {
@@ -161,8 +163,13 @@ const Filter = () => {
           </div>
         </form>
       </div>
-      <div>
-
+      <div className="grid grid-cols-3 gap-10">
+        {
+          searchResult?.map(car => <FeaturedCarts
+          key={car._id}
+          car={car}
+          ></FeaturedCarts>)
+        }
       </div>
       <div className="mt-28">
         <div className="bg-secondary w-20 h-2 mb-8"></div>
