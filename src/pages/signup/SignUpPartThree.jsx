@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useSignUp from '../../hooks/useSignUp';
 
 
 const SignUpPartThree = () => {
@@ -14,9 +15,11 @@ const SignUpPartThree = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null)
     const location = useLocation();
-    const { setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
+    const { setUser, updateUserProfile, createUser } = UseAuth();
     const navigate = useNavigate();
-    const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic();
+    const { setSignUpStep, signUpStep } = useSignUp();
+    const [loading, setLoading] = useState(false);
 
     const {
         firstName,
@@ -29,9 +32,13 @@ const SignUpPartThree = () => {
         upazilla,
         localAddress,
         dateOfBirth,
-        // userRole,
-        // accountStatus,
     } = location.state?.info || {};
+
+    useEffect(() => {
+        if (signUpStep < 3) {
+            navigate('/join');
+        }
+    }, [navigate, signUpStep]);
 
     const handleJoin = async (e) => {
         e.preventDefault()
@@ -44,7 +51,6 @@ const SignUpPartThree = () => {
         const userAddress = { division, district, upazilla };
         const image = null
 
-
         const userInfo = {
             firstName,
             lastName,
@@ -55,8 +61,6 @@ const SignUpPartThree = () => {
             userAddress,
             localAddress,
             image,
-            // userRole,
-            // accountStatus,
         }
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -80,14 +84,13 @@ const SignUpPartThree = () => {
         }
 
         try {
-            setLoader(true);
-
+            setLoading(true);
             const result = await createUser(userEmail, password);
             setUser(result.user)
             await updateUserProfile(fullName, image);
             const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
-            if (result.user && data) {
+            if (result.user && data.insertedId) {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -95,24 +98,24 @@ const SignUpPartThree = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                setSignUpStep(4);
                 navigate('/join/signUpFour', { state: { userInfo } });
             }
         }
         catch (error) {
             console.log(error)
-            setLoader(false);
+            setLoading(false);
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: { error },
+                text: error.message,
                 footer: '<a href="#">Why do I have this issue?</a>'
             });
         }
-
     }
 
-    if (loader) {
-        return <div className='fles justify-center'>
+    if (loading) {
+        return <div className='flex justify-center'>
             <img className='mx-auto' src={loaderEliment} alt="" />
         </div>
     }
