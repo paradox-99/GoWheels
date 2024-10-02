@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { locationData } from "../../../public/locationData";
 import { useState } from "react";
 import background from '../../../public/asset/background.jpg'
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 
 const AgencyRegister = () => {
@@ -11,6 +13,7 @@ const AgencyRegister = () => {
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
+    // const imgbbApiKey = 'upload?key=0873ad3ca7a49d847f0ce5628d0e79ee'
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -26,30 +29,92 @@ const AgencyRegister = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-    const handleJoin = (e) => {
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (ownerData) => {
+            const { data } = await axios.post(`http://localhost:3000/api/usersRoute/ownerInfo`, ownerData)
+            return data
+        },
+        onSuccess: () => {
+            console.log('data saved successfully')
+            // toast.success(' data added successfully')
+            navigate('/join/agencyInfo');
+
+
+        }
+
+    })
+
+    const handleImageUpload = async (e) => {
+        const imageFile = e.target.files[0]; // Get the selected file
+        if (!imageFile) {
+            console.error("No file selected");
+            return;
+        }
+    
+        const formData = new FormData();
+        formData.append("image", imageFile); // 'image' key is required for imgbb
+    
+        try {
+            const response = await axios.post("https://api.imgbb.com/1/upload?key=0873ad3ca7a49d847f0ce5628d0e79ee", 
+            formData // Pass the formData directly here
+            );
+            
+            const imageUrl = response.data.data.display_url;
+            console.log("Image uploaded:", imageUrl);
+            return imageUrl; // Return the image URL to use later
+        } catch (error) {
+            console.error("Image upload failed:", error);
+        }
+    };
+    
+    
+    
+
+    const handleJoin =async (e) => {
         e.preventDefault()
         const form = e.target;
-        const name = form.name.value;
+        const firstName = form.firstName.value;
         const lastName = form.lastName.value;
-        const email = form.email.value;
+        const userEmail = form.email.value;
         const phone = form.phone.value;
+        const nid = form.nid.value;
         const gender = form.gender.value;
         const division = form.division.value;
         const district = form.district.value;
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
-        
+        const userRole = "agency"
+        const accountStatus = "not verified"
+
+        const imageFile = form.photo.files[0]; // Get the file from the form
+        console.log(imageFile.name)
+        const image = await handleImageUpload({ target: { files: [imageFile] } });
+
+        const userAddress = {
+            division,
+            district,
+            upazilla,
+            localAddress
+        }
+
+        const ownerInfo = { firstName, lastName, userEmail, phone, gender,image, userAddress, dateOfBirth, nid, userRole, accountStatus };
+        console.log(ownerInfo)
 
 
+        try {
+            mutateAsync(ownerInfo)
 
-        const info = { name, lastName, email, phone, gender, division, district, upazilla, localAddress, dateOfBirth };
-        console.log(info)
-        navigate('/join/agencyInfo');
+        } catch (error) {
+            console.log(error)
+        }
+
+
     }
     // 
     return (
-        <div style={{ backgroundImage: `url(${background})` }} className="h-[89vh] bg-center bg-cover bg-no-repeat pt-10">
+        <div style={{ backgroundImage: `url(${background})` }} className="h-[100vh] bg-center bg-cover bg-no-repeat pt-10">
             <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
                 <div className='text-center mx-auto pt-5'>
                     <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather mb-10'>GoWheels</h1>
@@ -64,7 +129,7 @@ const AgencyRegister = () => {
                         <div className='flex gap-10'>
                             <input
                                 type="text"
-                                name="name"
+                                name="firstName"
                                 id="firstName"
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='Your Name'
@@ -87,13 +152,20 @@ const AgencyRegister = () => {
                                 className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                 placeholder='Email'
                                 required />
-                            <div className='flex gap-10'>
+                            <div className='space-y-4'>
                                 <input
                                     type="number"
                                     name="phone"
                                     id="phone"
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Phone number'
+                                    required />
+                                <input
+                                    type="text"
+                                    name="nid"
+                                    id="nid"
+                                    className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                                    placeholder='Your Nid'
                                     required />
                             </div>
                             <div className='flex justify-between items-center'>
@@ -162,6 +234,22 @@ const AgencyRegister = () => {
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Enter House/road no'
                                     required />
+                            </div>
+                            <div className="relative">
+                                <input
+                                    type="file"
+                                    name="photo"
+                                    accept="image/*"
+                                    id="photo-upload"
+                                    onChange={(e) => handleImageUpload(e)}
+                                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                                />
+                                <label
+                                    htmlFor="photo-upload"
+                                    className="border-2 border-dashed border-primary p-2 w-full text-white outline-none rounded py-1 lg:py-2 px-2  flex items-center justify-center cursor-pointer"
+                                >
+                                    Upload your photo
+                                </label>
                             </div>
                         </div>
                         <div className='pb-10 mt-5 flex justify-between'>
