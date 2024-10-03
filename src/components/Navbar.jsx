@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CgMenu } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth  from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
 import { TbMapPinSearch } from "react-icons/tb";
@@ -11,7 +11,6 @@ const Navbar = () => {
     const { user } = useAuth();
     const [scroll, setScroll] = useState(false);
     const [value, setValue] = useState(false);
-    const location = useLocation();
     const [data] = useDesignation();
 
     const handleScroll = () => {
@@ -34,8 +33,8 @@ const Navbar = () => {
         <li><NavLink to={'about'}>About</NavLink></li>
         <li><NavLink to={'contact'}>Contact</NavLink></li>
         {
-            (!user && location.pathname !== "/join/signUpPartTwo" && location.pathname !== "/join/signUpPartThree" && location.pathname !== "/join/signUpFour" && location.pathname !== "/join/signUpFive") && (
-            <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>)
+            !user && 
+            <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>
         }
         {
             user && <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><Link to={'/dashboard'}>Dashboard</Link></li>

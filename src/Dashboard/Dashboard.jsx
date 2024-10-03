@@ -18,10 +18,11 @@ const Dashboard = () => {
     
     // const [user:auser] = useDesignation();
 
-    const handleLogout = () => {
-      logout();
+    const handleLogout = async() => {
+      await logout();
       navigate("/join")
     };
+    
     const menuItems = {
       admin: [
         { to: "/dashboard/admin-home", label: "Admin Home", icon: <FaHome /> },
