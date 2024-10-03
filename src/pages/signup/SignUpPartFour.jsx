@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import Swal from "sweetalert2";
 import { imageUpload } from "../../api/utilities";
-import loaderEliment from '../../../public/logo.gif';
+import loaderElement from '../../../public/logo.gif';
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useSignUp from "../../hooks/useSignUp";
 
@@ -99,7 +99,7 @@ const SignUpPartFour = () => {
 
     if (loader) {
         return <div className='flex justify-center'>
-            <img className='mx-auto' src={loaderEliment} alt="" />
+            <img className='mx-auto' src={loaderElement} alt="" />
         </div>
     }
 
@@ -150,7 +150,7 @@ const SignUpPartFour = () => {
                                 <button
                                     onClick={() => inputRef.current.click()}
                                     type="button"
-                                    className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'
+                                    className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'
                                 >
                                     Browse from your device
                                 </button>
@@ -163,7 +163,7 @@ const SignUpPartFour = () => {
                         <div>
                             <Link
                                 type="button"
-                                className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'
+                                className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer'
                                 to="/"
                             >
                                 Skip
@@ -173,7 +173,7 @@ const SignUpPartFour = () => {
                             <button
                                 disabled={imagePreview === null}
                                 type="submit"
-                                className={`bg-primary px-3 py-1 rounded-xl text-white font-semibold ${imagePreview === null ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+                                className={`bg-primary px-3 py-1 rounded text-white font-semibold ${imagePreview === null ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                                 Proceed
                             </button>
                         </div>
