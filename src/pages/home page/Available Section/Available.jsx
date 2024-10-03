@@ -7,7 +7,7 @@ const Available = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    fetch("./featuredAndAvaiable.json")
+    fetch("../Available Section/Available.jsx")
       .then((res) => {
         return res.json();
       })

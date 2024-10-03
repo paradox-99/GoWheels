@@ -11,7 +11,7 @@ import Bookings from "../Dashboard/User/Bookings";
 import UserRatings from "../Dashboard/User/UserRatings";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AdminHome from "../Dashboard/Admin/AdminHome";
-import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
+// import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import Filter from "../pages/Filter/Filter";
@@ -120,10 +120,10 @@ const router = createBrowserRouter([
         path: "agency-home",
         element: <AgencyHome></AgencyHome>
       },
-      {
-        path: "/dashboard/agency/owner/:email",
-        element: <OwnerInfo></OwnerInfo>
-      },
+    //   {
+    //     path: "/dashboard/agency/owner/:email",
+    //     element: <OwnerInfo></OwnerInfo>
+    //   },
       {
         path: "/dashboard/agency/add-vehicle-info",
         element: <AddVehicleInfo></AddVehicleInfo>
