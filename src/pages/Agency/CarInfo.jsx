@@ -1,3 +1,5 @@
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -5,11 +7,16 @@ import { Link } from "react-router-dom";
 const CarInfo = () => {
     const [formCount, setFormCount] = useState(0);
     const [formData, setFormData] = useState([]);
+    const [additionalInfo, setAdditionalInfo] = useState({
+        air_conditioning: true,
+        gps: true,
+        bluetooth: true,
+    });
 
     const handleDropdownChange = (e) => {
         const selectedValue = parseInt(e.target.value);
         setFormCount(selectedValue);
-        setFormData(Array.from({ length: selectedValue }, () => ({})));;
+        setFormData(Array.from({ length: selectedValue }, () => ({})));
     };
 
     const handleInputChange = (index, event) => {
@@ -18,6 +25,26 @@ const CarInfo = () => {
         newData[index] = { ...newData[index], [name]: value };
         setFormData(newData);
     };
+
+
+    // const handleAdditionalInfoChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setAdditionalInfo((prev) => ({
+    //         ...prev,
+    //         [name]: value === "true" ? true : false,
+    //     }));
+    // };
+
+
+    const handleAdditionalInfoChange = (event) => {
+        const { name, value } = event.target;
+        setAdditionalInfo((prev) => ({
+            ...prev,
+            [name]: value === "true", // Convert string "true"/"false" to boolean
+        }));
+    };
+
+
 
     const handleImageUpload = async (e, index) => {
         const file = e.target.files[0];
@@ -45,16 +72,74 @@ const CarInfo = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (carData) => {
+            const { data } = await axios.post(`http://localhost:3000/api/carsRoute/vehilesInfo`, carData)
+            return data
+        },
+        onSuccess: () => {
+            console.log('data saved successfully')
+            // toast.success(' data added successfully')
+            // navigate('/join/agencyInfo');
+
+
+        }
+
+
+    })
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Submitted Data:", formData); // Logs the complete form data, including all input fields and the image URLs
-        setFormCount(0);      // Reset form count to 0
-        setFormData([]);       // Clear all form data
+
+
+
+        const vehicle_info = formData.map(car => {
+            const startDate = car['insurance-coverage-start'];
+            const endDate = car['insurance-coverage-end'];
+            if (startDate && endDate) {
+                car.insuranceCoveragePeriod = `${startDate} to ${endDate}`;
+            }
+            return {
+                ...car,
+                insurance_details: {
+                    insurance_provider: e.target.insurance_details_provider.value,
+                    coverage_type: e.target.insurance_details_coverage_type.value,
+                    deductible: e.target.insurance_details_deductible.value,
+                },
+            };
+        });
+
+
+
+        const allVehilesInfo = {
+            vehicle_info,
+            aditional_info: additionalInfo,
+            agency_id: true,
+            bookingStatus: true
+
+        }
+
+        console.log(allVehilesInfo)
+        // console.log("Submitted Data:", data,adetional_info, {agency_id:'AG1'} , {bookingStatus:true});
+
+        try {
+            await mutateAsync(allVehilesInfo)
+
+        } catch (error) {
+            console.log('error here', error)
+        }
+
+
+        // setFormCount(0);     
+        // setFormData('');
         // setSelectedValue("0")
     };
     return (
         <div>
-            <div className='lg:w-[50vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
+            <div className='lg:w-[60vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
                 <form onSubmit={handleSubmit} className="p-5">
                     <div className='text-center mx-auto pt-5' >
                         <h1 className="text-3xl lg:text-3xl font-bold  font-merriweather mb-10">Add your Car Information</h1>
@@ -156,7 +241,7 @@ const CarInfo = () => {
                                 />
                                 <input
                                     type="text"
-                                    name="transmission"
+                                    name="transmission_type"
 
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
@@ -164,7 +249,7 @@ const CarInfo = () => {
                                 />
                                 <input
                                     type="text"
-                                    name="build-year"
+                                    name="build_year"
 
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
@@ -176,7 +261,7 @@ const CarInfo = () => {
                             <div className=" flex mt-3 gap-10 mb-3">
                                 <input
                                     type="text"
-                                    name="license"
+                                    name="license_number"
 
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
@@ -184,7 +269,7 @@ const CarInfo = () => {
                                 />
                                 <input
                                     type="text"
-                                    name="expire-date"
+                                    name="expire_date"
 
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
@@ -196,7 +281,7 @@ const CarInfo = () => {
                             <div className=" flex mt-3 gap-10 mb-3">
                                 <input
                                     type="text"
-                                    name="authority"
+                                    name="issue_authority"
 
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
@@ -204,7 +289,7 @@ const CarInfo = () => {
                                 />
                                 <input
                                     type="text"
-                                    name="insurance-number"
+                                    name="insurance_number"
 
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
@@ -215,31 +300,99 @@ const CarInfo = () => {
                             {/* *** */}
                             <div className=" flex mt-3 gap-10 mb-3">
                                 <input
-                                    type="text"
-                                    name="insurance-coverage"
-
+                                    type="date"
+                                    name="insurance_coverage_start"
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
-                                    placeholder="Insurance coverage period"
+                                    placeholder="Insurance coverage start date"
                                 />
                                 <input
-                                    type="text"
-                                    name="field2"
-
+                                    type="date"
+                                    name="insurance_coverage_end"
                                     onChange={(e) => handleInputChange(index, e)}
                                     className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
-                                    placeholder="Fitness certificate"
+                                    placeholder="Insurance coverage end date"
                                 />
                             </div>
+
+                            <input
+                                type="text"
+                                name="fitness_certicate"
+
+                                onChange={(e) => handleInputChange(index, e)}
+                                className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
+                                placeholder="Fitness certificate"
+                            />
                             {/* **** */}
-                            {/* *** */}
-                            <div className=" flex mt-3 gap-10 mb-3">
+
+                            <div className="flex gap-10 mb-3 mt-4">
+                                <select
+                                    name="air_conditioning"
+                                    value={additionalInfo.air_conditioning}
+                                    onChange={handleAdditionalInfoChange}
+                                    className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
+                                >
+                                    <option value="true">Air Conditioning: Yes</option>
+                                    <option value="false">Air Conditioning: No</option>
+                                </select>
+
+                                <select
+                                    name="gps"
+                                    value={additionalInfo.gps}
+                                    onChange={handleAdditionalInfoChange}
+                                    className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
+                                >
+                                    <option value="true">GPS: Yes</option>
+                                    <option value="false">GPS: No</option>
+                                </select>
+
+                                <select
+                                    name="bluetooth"
+                                    value={additionalInfo.bluetooth}
+                                    onChange={handleAdditionalInfoChange}
+                                    className="border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
+                                >
+                                    <option value="true">Bluetooth: Yes</option>
+                                    <option value="false">Bluetooth: No</option>
+                                </select>
+                            </div>
+
+                            {/* &&&&&&&&&&&&&&&& */}
+
+
+                            <div className="mb-4">
+                                <h4 className="text-lg mb-2">Insurance Details</h4>
+
                                 <input
                                     type="text"
-                                    name="details"
+                                    name="insurance_details_provider"
+
                                     onChange={(e) => handleInputChange(index, e)}
-                                    className="  border p-2 w-full outline-none rounded py-1 lg:py-2 px-2 text-secondary"
-                                    placeholder="Insurance Details" />
+                                    className="border p-2 w-full outline-none rounded mb-2"
+                                    placeholder="Insurance Provider"
+                                />
+
+                                <input
+                                    type="text"
+                                    name="insurance_details_coverage_type"
+
+                                    onChange={(e) => handleInputChange(index, e)}
+                                    className="border p-2 w-full outline-none rounded mb-2"
+                                    placeholder="Coverage Type"
+                                />
+
+                                <input
+                                    type="number"
+                                    name="insurance_details_deductible"
+
+                                    onChange={(e) => handleInputChange(index, e)}
+                                    className="border p-2 w-full outline-none rounded mb-2"
+                                    placeholder="Deductible"
+                                />
+                            </div>
+                            {/* **&&&&&&&&&&&&&&&&&&&&&&&&&&&&* */}
+                            <div className=" flex mt-3 gap-10 mb-3">
+                                
                                 <input
                                     type="file"
                                     name="photo"
