@@ -1,5 +1,5 @@
 import { FaCar, FaCarSide, FaHistory, FaHome, FaUsers } from "react-icons/fa";
-import { Link, NavLink, Outlet, useNavigate, } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate, useParams, } from "react-router-dom";
 import { CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
@@ -9,12 +9,16 @@ import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
+import { GrUserAdmin } from "react-icons/gr";
+
 
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
   const {userInfo} = useDesignation();
+  const { email } = useParams(); 
+
 
   const handleLogout = async () => {
     await logout();
@@ -39,7 +43,9 @@ const Dashboard = () => {
     ],
     agency: [
       { to: "/dashboard/agency-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
-      { to: `/dashboard/agency/owner/${"hasan.ahmed@example.com"}`, label: "Owner Information", icon: <FaCarSide /> },
+      { to: "/dashboard/agency/owner", label: "Owner Information", icon: <GrUserAdmin />
+      },
+      { to: "/dashboard/agency/add-vehicle-info", label: "Add Vehicle", icon: <FaCarSide /> },
 
       // { to: "/dashboard/agency/stuff-management", label: "Manage Staff", icon: <FaPeopleGroup /> },
       { to: "/dashboard/agency/vehicle-info", label: "Vehicle Information", icon: <FaCar /> },
