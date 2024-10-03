@@ -16,7 +16,7 @@ const useDesignation = () => {
         }
     })
 
-    return {userInfo};
+    return userInfo;
 };
 
 

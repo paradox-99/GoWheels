@@ -13,10 +13,7 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
-  const {userInfo} = useDesignation();
-
-  console.log(userInfo);
-
+  const userInfo = useDesignation();
 
   const handleLogout = async () => {
     await logout();
@@ -65,7 +62,7 @@ const Dashboard = () => {
             <div className="flex justify-between items-center">
               <div className="px-6">
                 <img
-                  src={user?.photo}
+                  src={userInfo?.photo}
                   className="size-[150px] object-cover rounded-full border-4 border-primary"
                   alt="User Avatar"
                 />
