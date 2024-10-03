@@ -37,98 +37,118 @@ import UserProfile from "../Dashboard/User/UserProfile";
 import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
 import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
+import AgencyRegister from "../pages/Agency/AgencyRegister";
+import AgencyInfo from "../pages/Agency/AgencyInfo";
+import CarInfo from "../pages/Agency/CarInfo";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
+    {
         path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/about",
-        element: <AboutPage />,
-      },
-      {
-        path: "/contact",
-        element: <Contactpage />,
-      },
-      {
-        path: "/filter",
-        element: <Filter />,
-      },
-      {
-        path: "/view-details",
-        element: <ViewDetails />,
-      },
-      {
-        path: "/join",
-        element: <Background />,
+        element: <Root />,
         children: [
-          {
-            path: '/join',
-            element: <SignIn></SignIn>
-          },
-          {
-            path: "/join/signUpPartOne",
-            element: <SignUpPartOne></SignUpPartOne>
-          },
-          {
-            path: '/join/signUpPartTwo',
-            element: <SignupPartTwo></SignupPartTwo>
-          },
-          {
-            path: '/join/signUpPartThree',
-            element: <SignUpPartThree></SignUpPartThree>
-          },
-          {
-            path: '/join/signUpFour',
-            element: <SignUpPartFour></SignUpPartFour>
-          },
-          {
-            path: '/join/signUpFive',
-            element: <SignUpPartFive></SignUpPartFive>,
-          }
-        ]
-      },
-    ]
-  },
-  {
-    path: "login-Info",
-    element: <GoogleLogin></GoogleLogin>
-  },
-  {
-    path: "dashboard",
-    element: <Dashboard></Dashboard>,
-    children: [
+            {
+                path: "/",
+                element: <HomePage />,
+            },
+            {
+                path: "/about",
+                element: <AboutPage />,
+            },
+            {
+                path: "/contact",
+                element: <Contactpage />,
+            },
+            {
+                path: "/filter",
+                element: <Filter />,
+            },
+            {
+                path: "/view-details",
+                element: <ViewDetails />,
+            },
 
-      // user routes
-      {
-        path: "user-home",
-        element: <UserHome></UserHome>
-      },
-      {
-        path: "user-bookings",
-        element: <Bookings></Bookings>
-      },
-      {
-        path: "user-booking-history",
-        element: <BookingHistory></BookingHistory>
-      },
-      {
-        path: "user-ratings",
-        element: <UserRatings></UserRatings>
-      },
-      {
-        path: "user-favourite",
-        element: <FavouriteCars></FavouriteCars>
-      },
-      {
-        path: "user-profile",
-        element: <UserProfile></UserProfile>
-      },
+            {
+                path: "/filter",
+                element: <Filter></Filter>
+            },
+            {
+                path: "/join",
+                element: <Background />,
+                children: [
+                    {
+                        path: '/join',
+                        element: <SignIn></SignIn>
+                    },
+                    {
+                        path: "/join/signUpPartOne",
+                        element: <SignUpPartOne></SignUpPartOne>
+                    },
+                    {
+                        path: '/join/signUpPartTwo',
+                        element: <SignupPartTwo></SignupPartTwo>
+                    },
+                    {
+                        path: '/join/signUpPartThree',
+                        element: <SignUpPartThree></SignUpPartThree>
+                    },
+                    {
+                        path: '/join/signUpFour',
+                        element: <SignUpPartFour></SignUpPartFour>
+                    },
+                    {
+                        path: '/join/signUpFive',
+                        element: <SignUpPartFive></SignUpPartFive>,
+                    }
+                ]
+            },
+            {
+                path: '/join/agencyRegister',
+                element: <AgencyRegister></AgencyRegister>
+            },
+            {
+                path: '/join/agencyInfo',
+                element: <AgencyInfo></AgencyInfo>
+            },
+            {
+                path: '/join/addCarInfo',
+                element: <CarInfo></CarInfo>
+            }
+        ]
+    },
+    {
+        path: "login-Info",
+        element: <GoogleLogin></GoogleLogin>
+    },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+
+            // user routes
+            {
+                path: "user-home",
+                element: <UserHome></UserHome>
+            },
+            {
+                path: "user-bookings",
+                element: <Bookings></Bookings>
+            },
+            {
+                path: "user-booking-history",
+                element: <BookingHistory></BookingHistory>
+            },
+            {
+                path: "user-ratings",
+                element: <UserRatings></UserRatings>
+            },
+            {
+                path: "user-favourite",
+                element: <FavouriteCars></FavouriteCars>
+            },
+            {
+                path: "user-profile",
+                element: <UserProfile></UserProfile>
+            },
 
       // AGENCY ---------------
       {
@@ -172,45 +192,42 @@ const router = createBrowserRouter([
         element: <CustomerManagement></CustomerManagement>
       },
 
-      // admin routes
-      {
-        path: "admin-home",
-        element: <AdminHome />,
-      },
-      {
-        path: 'manage-users',
-        element: <ManageUsers></ManageUsers>,
-      },
-      {
-        path: 'manage-moderators',
-        element: <ManageModaretors></ManageModaretors>,
-      },
-      {
-        path: 'manage-agencies',
-        element: <ManageAgencies></ManageAgencies>
-      },
+            // admin routes
+            {
+                path: "admin-home",
+                element: <AdminHome />,
+            },
+            {
+                path: 'manage-users',
+                element: <ManageUsers></ManageUsers>,
+            },
+            {
+                path: 'manage-moderators',
+                element: <ManageModaretors></ManageModaretors>,
+            },
+            {
+                path: 'manage-agencies',
+                element: <ManageAgencies></ManageAgencies>
+            },
 
-      // MODERATOR
-      // Moderator
-      {
-        path: "moderator-profile",
-        element: <ModeratorProfile />,
-      },
-      // Approve Agency
-      {
-        path: "approve-agency",
-        element: <AgencyApprove />,
-      },
-      {
-        path: "approve-agency/agencyDetails/:id",
-        element: <AgencyDeatils />,
-      },
-    ],
-  },
+            // MODERATOR
+            // Moderator
+            {
+                path: "moderator-profile",
+                element: <ModeratorProfile />,
+            },
+            // Approve Agency
+            {
+                path: "approve-agency",
+                element: <AgencyApprove />,
+            },
+            {
+                path: "approve-agency/agencyDetails/:id",
+                element: <AgencyDeatils />,
+            },
+        ],
+    },
 ],
 )
-
-      
-
 
 export default router;
