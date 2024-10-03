@@ -13,9 +13,9 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
-  const [user] = useDesignation();
+  const {userInfo} = useDesignation();
 
-  console.log(user);
+  console.log(userInfo);
 
 
   const handleLogout = async () => {
@@ -72,7 +72,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="px-2 space-y-2 pt-8 pb-4">
-              {menuItems["user"]?.map((item, index) => (
+              {menuItems[userInfo?.userRole]?.map((item, index) => (
                 <NavLink
                   key={index}
                   to={item.to}
@@ -87,7 +87,7 @@ const Dashboard = () => {
               ))}
             </div>
             <div className="mt-12 flex flex-col items-center gap-4 font-nunito font-medium">
-              <Link to={"/"} className="flex p-2 gap-2 items-center text-lg text-red-500"><FaHome/>Back to Home</Link>
+              <Link to={"/"} className="flex p-2 gap-2 items-center text-lg text-red-500"><FaHome />Back to Home</Link>
               <button onClick={handleLogout} className="flex p-2 gap-2 items-center text-xl ">
                 <div><CiLogout /></div>
                 Logout
