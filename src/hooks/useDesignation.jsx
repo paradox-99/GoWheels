@@ -12,11 +12,11 @@ const useDesignation = () => {
         enabled: !loader && !!user?.email,
         queryFn: async () => {
             const {data} = await axiosSecure.get(`/usersRoute/users/${user?.email}`);
-            return data;
+            return data[0];
         }
     })
 
-    return {userInfo};
+    return userInfo;
 };
 
 
