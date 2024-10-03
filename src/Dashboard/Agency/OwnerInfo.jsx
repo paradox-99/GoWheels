@@ -1,41 +1,42 @@
-// import { useQuery } from "@tanstack/react-query";
-// import useAxiosPublic from "../../hooks/useAxiosPublic"; 
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-import useDesignation from "../../hooks/useDesignation";
+const OwnerInfo = () => {
+  const { email } = useParams();
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  const {
+    data: owner, 
+    refetch,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["owner", email],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/agencyRoute/agency/owner/${email}`);
+      return data; 
+    },
+    enabled: !!email,
+  });
 
-const userInfo = () => {
-  // const axiosPublic = useAxiosPublic(); 
- 
-  // const {
-  //   data: user,
-  //   isLoading,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["user-info", email],
-  //   queryFn: async () => {
-  //     const response = await axiosPublic.get(`/api/usersRoute/users/${email}`);
-  //     console.log(response.data);
-  //     return response.data;
-  //   },
-  //   enabled: !!email, 
-  // });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-
-  const [user] = useDesignation();
-
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error.message}</div>;
-
-  if (!user) return <div>No user information found.</div>; 
+  if (error) {
+    return <div>Error fetching data: {error.message}</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-black mb-6">
-        Update user Information
+        Update Owner Information
       </h1>
 
-      <form className="grid grid-cols-1 gap-6" key={user._id}>
+      <form className="grid grid-cols-1 gap-6">
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
@@ -69,7 +70,7 @@ const userInfo = () => {
               id="firstName"
               name="firstName"
               placeholder="First name"
-              defaultValue={user.name}
+              defaultValue={owner.name} 
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -83,7 +84,7 @@ const userInfo = () => {
               id="contact"
               name="contact"
               placeholder="Contact"
-              defaultValue={user.phone || ""}
+              defaultValue={owner.phone || ""} 
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -95,7 +96,7 @@ const userInfo = () => {
               id="identification"
               name="identification"
               placeholder="Identification"
-              defaultValue={user.nid || ""}
+              defaultValue={owner.nid || ""} // Use nid directly
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -108,7 +109,7 @@ const userInfo = () => {
             id="email"
             name="email"
             placeholder="Email"
-            defaultValue={user.email}
+            defaultValue={owner.email}
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
             style={{ backgroundColor: "#f6f6f6" }}
           />
@@ -154,7 +155,7 @@ const userInfo = () => {
             type="submit"
             className="block w-full bg-[#ff4c30] hover:bg-[#161616] text-white font-bold py-3 px-4 rounded-full"
           >
-            Update user Information
+            Update Owner Information
           </button>
         </div>
       </form>
@@ -162,4 +163,4 @@ const userInfo = () => {
   );
 };
 
-export default userInfo;
+export default OwnerInfo;
