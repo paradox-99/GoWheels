@@ -1,6 +1,6 @@
 import { FaCar, FaCarSide, FaHistory, FaHome, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate, } from "react-router-dom";
-import { CiLogout, CiUser, CiStar, CiHeart } from 'react-icons/ci';
+import { CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
@@ -8,6 +8,7 @@ import { IoIosPeople } from "react-icons/io";
 import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { BiLogOut } from "react-icons/bi";
 
 const Dashboard = () => {
 
@@ -55,10 +56,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="">
-      <section className="flex flex-col lg:flex-row">
-        <div className="lg:w-[20%] pt-16 pb-12 bg-red-50 fixed font-nunito">
-          <ul className="lg:static bg-white p-5 h-full w-[75%] max-w-[300px] space-y-3 rounded-xl">
+    <div className="flex relative">
+      <div className="w-[20%] fixed left-0">
+        <div className="bg-primary min-h-screen font-nunito">
+          <ul className="lg:static bg-white p-5 min-h-screen w-[95%] max-w-[300px]">
             <div className="flex justify-between items-center">
               <div className="px-6">
                 <img
@@ -83,19 +84,18 @@ const Dashboard = () => {
                 </NavLink>
               ))}
             </div>
-            <div className="mt-12 flex flex-col items-center gap-4 font-nunito font-medium">
-              <Link to={"/"} className="flex p-2 gap-2 items-center text-lg text-red-500"><FaHome />Back to Home</Link>
-              <button onClick={handleLogout} className="flex p-2 gap-2 items-center text-xl ">
-                <div><CiLogout /></div>
-                Logout
+            <div className="mt-5 pl-5 flex flex-col font-nunito">
+              <Link to={"/"} className="flex p-2 items-center text-xl text-red-500 font-semibold"><FaHome />Back to Home</Link>
+              <button onClick={handleLogout} className="flex gap-2 pl-1 items-center text-xl font-semibold">
+                <BiLogOut />Logout
               </button>
             </div>
           </ul>
         </div>
-        <div className="flex-1 p-8 ">
+      </div>
+      <div className="w-[80%] h-screen absolute right-0">
           <Outlet />
         </div>
-      </section>
     </div>
   );
 };
