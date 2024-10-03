@@ -10,7 +10,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
-    const [loader, setLoader] = useState(true);
+    const [loader, setLoader] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const axiosPublic = useAxiosPublic();
 
@@ -58,7 +58,6 @@ const AuthProvider = ({ children }) => {
                 axiosPublic.post('/authorization/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
-                            console.log(res.data.token);
                             localStorage.setItem('accessToken', res.data.token.accessToken);
                             setLoader(false);
                         }

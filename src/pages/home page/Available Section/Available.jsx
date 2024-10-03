@@ -14,7 +14,6 @@ const Available = () => {
         setData(data);
       });
   }, []);
-  console.log(data);
 
 
   return (
