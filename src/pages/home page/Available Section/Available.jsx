@@ -5,6 +5,7 @@ import AvailableCart from "../../../components/cart/AvailableCart";
 
 const Available = () => {
   const [data, setData] = useState([]);
+  
   useEffect(() => {
     fetch("./featuredAndAvaiable.json")
       .then((res) => {
@@ -14,7 +15,6 @@ const Available = () => {
         setData(data);
       });
   }, []);
-  console.log(data);
 
 
   return (

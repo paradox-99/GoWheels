@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { locationData } from '../../../public/locationData.js'
+import UseAuth from '../../hooks/UseAuth.jsx';
+import loaderEliment from '../../../public/logo.gif';
+import useSignUp from '../../hooks/useSignUp.jsx';
 
 const SignupPartTwo = () => {
 
@@ -9,6 +12,8 @@ const SignupPartTwo = () => {
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
+    const { loader } = UseAuth() || {};
+    const { setSignUpStep, signUpStep } = useSignUp();
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -24,6 +29,12 @@ const SignupPartTwo = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
+    useEffect( () => {
+        if(signUpStep < 2 ) {
+            navigate('/join');
+        }
+    }, [navigate, signUpStep]);
+
     const handleJoin = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -37,8 +48,6 @@ const SignupPartTwo = () => {
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
-        const userRole = "User";
-        const accountStatus = "Unverified";
 
         const info = {
             firstName,
@@ -51,10 +60,15 @@ const SignupPartTwo = () => {
             upazilla,
             localAddress,
             dateOfBirth,
-            userRole,
-            accountStatus,
         };
-        navigate('/join/signUpPartThree', { state: { info } });
+        setSignUpStep(3);
+        navigate('/join/signUpThree', { state: { info } });
+    }
+
+    if (loader) {
+        return <div className='flex justify-center'>
+            <img className='mx-auto' src={loaderEliment} alt="" />
+        </div>
     }
 
     return (
@@ -168,7 +182,7 @@ const SignupPartTwo = () => {
                     </div>
                     <div className='pb-10 mt-5 flex justify-between'>
                         <Link
-                            to={'/join/register-new'}
+                            to={'/join/signUpOne'}
                             className='bg-primary text-white rounded py-1 px-2 lg:px-4 font-semibold text-lg lg:text-xl'>Back</Link>
                         <button className='bg-primary text-white rounded py-1 px-2 lg:px-4 font-semibold text-lg lg:text-xl'>Next</button>
                     </div>

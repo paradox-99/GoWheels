@@ -10,7 +10,7 @@ const Root = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className={`pt-14 lg:pt-20 ${ noFooter || 'max-w-7xl mx-auto noFooter'}`}>
+            <div className={`pt-14 lg:pt-20 ${noFooter || 'max-w-7xl mx-auto noFooter'}`}>
                 <Outlet></Outlet>
             </div>
             {
