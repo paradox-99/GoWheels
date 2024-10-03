@@ -39,6 +39,8 @@ const SignUpPartThree = () => {
         }
     }, [navigate, signUpStep]);
 
+    console.log(firstName, lastName,email, phone, gender, division, district, upazilla)
+
     const handleJoin = async (e) => {
         e.preventDefault()
         const form = e.target;
