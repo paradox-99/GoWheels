@@ -4,6 +4,7 @@ import FeaturedCarts from "../../../components/cart/FeaturedCarts";
 
 const Featured = () => {
   const [data, setData] = useState([]);
+  
   useEffect(() => {
     fetch("./featuredAndAvaiable.json")
       .then((res) => {
