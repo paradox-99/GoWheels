@@ -8,7 +8,7 @@ const ShowBrandCars = () => {
     const {brand_name} = useParams();
     const axiosPublic = useAxiosPublic()
 
-    const { data: cars} = useQuery({
+    const { isPending, data: cars} = useQuery({
         queryKey: ['carsData'],
         queryFn: async() => {
             const datas = await axiosPublic.get(`/carsRoute/brand/${brand_name}`);
@@ -17,7 +17,9 @@ const ShowBrandCars = () => {
         }
     })
 
-    console.log(cars);
+    if(isPending){
+        return <div>Loading...</div>;
+    }
     
 
     return (
