@@ -1,34 +1,6 @@
-import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-
 const OwnerInfo = () => {
-  const { email } = useParams();
-  const { user } = useContext(AuthContext);
-  const axiosSecure = useAxiosSecure();
-  const {
-    data: owner, 
-    refetch,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["owner", email],
-    queryFn: async () => {
-      const { data } = await axiosSecure.get(`/agencyRoute/agency/owner/${email}`);
-      return data; 
-    },
-    enabled: !!email,
-  });
+  
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error fetching data: {error.message}</div>;
-  }
 
   return (
     <div className="container mx-auto p-4">

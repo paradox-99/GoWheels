@@ -7,17 +7,17 @@ const AvailableCart = ({ car }) => {
   return (
     <div>
       <div
-        key={car.name}
+        key={car.vehicle_info.name}
         className="hover w-full rounded-lg bg-background shadow-2xl relative h-[300px] lg:h-[410px]"
       >
         <figure className="h-full">
-          <img src={car.image} alt="" className="rounded-lg w-full h-full" />
+          <img src={car.vehicle_info.image} alt="" className="rounded-lg w-full h-full" />
         </figure>
         <div className="show absolute top-0 bg-[#161616c5] h-full w-full rounded-lg p-5 lg:px-10">
           <div className="pt-5 flex justify-between items-center pb-3">
-            <h2 className="text-3xl font-bold text-background">{car.name}</h2>
+            <h2 className="text-3xl font-bold text-background">{car.vehicle_info.name}</h2>
             <p className="text-xl font-semibold flex items-center gap-2 text-background">
-              <FaStar className="text-primary" /> <span>{car.rating}</span>
+              <FaStar className="text-primary" /> <span>{car.vehicle_info.rating}</span>
             </p>
           </div>
           <hr className="h-[3px] bg-secondary" />
@@ -25,25 +25,25 @@ const AvailableCart = ({ car }) => {
             <p className="flex md:gap-4 gap-1 items-center flex-wrap">
               <FaCarSide className="text-primary" />{" "}
               <span className="pl-4 border-l-2 border-l-primary border-secondary">
-                {car.brand}
+                {car.vehicle_info.brand}
               </span>
             </p>
             <p className="flex md:gap-4 gap-1 items-center flex-wrap">
               <BsFuelPumpFill className="text-primary" />{" "}
               <span className="pl-4 border-l-2 border-l-primary border-secondary">
-                {car.fuel}
+                {car.vehicle_info.fuel}
               </span>
             </p>
             <p className="flex md:gap-4 gap-1 items-center flex-wrap">
               <PiSeatFill className="text-primary" />
               <span className="pl-4 border-l-2 border-l-primary border-secondary">
-                {car.seat}
+                {car.vehicle_info.seat}
               </span>
             </p>
             <p className="flex md:gap-4 gap-1 items-center flex-wrap">
               <TbManualGearboxFilled className="text-primary" />
               <span className="pl-4 border-l-2 border-l-primary border-secondary">
-                {car.gear}
+                {car.vehicle_info.gear}
               </span>
             </p>
           </div>
@@ -53,7 +53,7 @@ const AvailableCart = ({ car }) => {
               <p className="text-xl font-semibold py-1">Daily rate from</p>
               <h2 className="text-4xl font-semibold">
                 <span className="text-primary">$</span>
-                <span>{car.price}</span>
+                <span>{car.vehicle_info.price}</span>
               </h2>
             </div>
             <div className="py-10">

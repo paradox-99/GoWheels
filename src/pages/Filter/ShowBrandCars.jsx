@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import ShowCars from "./ShowCars.jsx";
 import useAxiosPublic from "../../hooks/useAxiosPublic.jsx";
 import FeaturedCarts from "../../components/cart/FeaturedCarts.jsx";
 
