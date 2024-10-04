@@ -1,5 +1,68 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
+
 const OwnerInfo = () => {
-  
+  // console.log(email);
+  const { user } = useContext(AuthContext);
+  const queryClient = useQueryClient();
+  const axiosSecure = useAxiosSecure();
+  // Fetch owner information
+  const {
+    data: owner,
+    refetch,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["owner", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `/agencyRoute/agency/owner/${user?.email}`
+      );
+      console.log(data);
+      return data;
+    },
+    enabled: !!user?.email,
+  });
+
+  // Update agency owner info mutation
+  const {mutateAsync} = useMutation({
+      mutationFn: async (updateAgencyOwnerInfo) => {
+          const { data } = await axiosSecure.patch(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updateAgencyOwnerInfo);
+          console.log(data);
+          return data;
+      },
+      onSuccess: () => {
+          queryClient.invalidateQueries(['owner', user?.email]);
+          alert('Owner information updated successfully!');
+      },
+      onError: (error) => {
+          alert(`Failed to update owner information: ${error.message}`);
+      },
+  });
+
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error fetching data: {error.message}</div>;
+  }
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const updatedOwnerData = Object.fromEntries(formData.entries());
+
+    await mutateAsync(updatedOwnerData);
+    // const { data } = await axiosSecure.put(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updatedOwnerData);
+
+  };
+  if (!user) {
+    return <div>Loading the data...</div>;
+  }
 
 
   return (
@@ -8,7 +71,7 @@ const OwnerInfo = () => {
         Update Owner Information
       </h1>
 
-      <form className="grid grid-cols-1 gap-6">
+      <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
@@ -42,7 +105,18 @@ const OwnerInfo = () => {
               id="firstName"
               name="firstName"
               placeholder="First name"
-              defaultValue={owner.name} 
+              defaultValue={owner?.firstName}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+              defaultValue={owner?.lastName}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -53,10 +127,10 @@ const OwnerInfo = () => {
           <div>
             <input
               type="text"
-              id="contact"
-              name="contact"
-              placeholder="Contact"
-              defaultValue={owner.phone || ""} 
+              id="phone"
+              name="phone"
+              placeholder="phone"
+              defaultValue={owner?.phone || ""}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -65,12 +139,39 @@ const OwnerInfo = () => {
           <div>
             <input
               type="text"
-              id="identification"
-              name="identification"
-              placeholder="Identification"
-              defaultValue={owner.nid || ""} // Use nid directly
+              id="nid"
+              name="nid"
+              placeholder="Nid"
+              defaultValue={owner?.nid || ""} // Use nid directly
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+        </div>
+
+        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <input
+              type="text"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              placeholder="Date Of Birth"
+              defaultValue={owner?.dateOfBirth || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+
+          <div>
+            <input
+              type="text"
+              id="accountStatus"
+              name="accountStatus"
+              placeholder="Account status"
+              defaultValue={owner?.accountStatus || ""} // Use nid directly
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+              disabled
             />
           </div>
         </div>
@@ -81,23 +182,62 @@ const OwnerInfo = () => {
             id="email"
             name="email"
             placeholder="Email"
-            defaultValue={owner.email}
+            defaultValue={owner?.userEmail}
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
             style={{ backgroundColor: "#f6f6f6" }}
           />
         </div>
 
-        <div className="p-2">
-          <input
-            type="password"
-            id="currentPassword"
-            name="currentPassword"
-            placeholder="Current password"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-            style={{ backgroundColor: "#f6f6f6" }}
-          />
+        {/* address */}
+        <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="font-bold" htmlFor="">
+              District
+            </label>
+
+            <input
+              type="text"
+              id="district"
+              name="district"
+              placeholder="district"
+              defaultValue={owner?.userAddress?.district || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+
+          <div>
+            <label className="font-bold" htmlFor="">
+              Division
+            </label>
+            <input
+              type="text"
+              id="division"
+              name="division"
+              placeholder="division"
+              defaultValue={owner?.userAddress?.division || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+          <div>
+            <label className="font-bold" htmlFor="">
+              Upazilla
+            </label>
+
+            <input
+              type="text"
+              id="upazilla"
+              name="upazilla"
+              placeholder="upazilla"
+              defaultValue={owner?.userAddress?.upazilla || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
         </div>
 
+        {/* password */}
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <input
@@ -121,6 +261,8 @@ const OwnerInfo = () => {
             />
           </div>
         </div>
+
+        {/* agency information----------- */}
 
         <div className="col-span-full mt-6 p-2">
           <button

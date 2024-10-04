@@ -120,48 +120,47 @@ const router = createBrowserRouter([
                 element: <UserProfile></UserProfile>
             },
 
-            // AGENCY ---------------
-            {
-                path: "agency-home",
-                element: <AgencyHome></AgencyHome>
-            },
-            {
-                path: "/dashboard/agency/owner/:email",
-                element: <OwnerInfo></OwnerInfo>
-            },
-            {
-                path: "/dashboard/agency/add-vehicle-info",
-                element: <AddVehicleInfo></AddVehicleInfo>
-            },
-            {
-                path: "/dashboard/agency/vehicle-info",
-                element: <VehicleInfo></VehicleInfo>
-            },
-            {
-                path: "/dashboard/agency/booking-history",
-                element: <BookingHistory></BookingHistory>
-            },
-            {
-                path: "/dashboard/agency/booking-request",
-                element: <BookingRequest></BookingRequest>
-            },
-            {
-                path: "/dashboard/agency/active-booking",
-                element: <ActiveBooking></ActiveBooking>
-            },
-            {
-                path: "/dashboard/agency/review-from-customers",
-                element: <ReviewFromCustomer></ReviewFromCustomer>
-            },
-            {
-                path: "/dashboard/agency/stuff-managment",
-                element: <AgencyStaffManagement></AgencyStaffManagement>,
-            },
-            {
-                path: "/dashboard/agency/customer-management",
-                element: <CustomerManagement></CustomerManagement>
-            },
-
+      // AGENCY ---------------
+      {
+        path: "agency-home",
+        element: <AgencyHome></AgencyHome>
+      },
+      {
+        path: "/dashboard/agency/owner",
+        element: <OwnerInfo></OwnerInfo>
+      },
+      {
+        path: "/dashboard/agency/add-vehicle-info",
+        element: <AddVehicleInfo></AddVehicleInfo>
+      },
+      {
+        path: "/dashboard/agency/vehicle-info",
+        element: <VehicleInfo></VehicleInfo>
+      },
+      {
+        path: "/dashboard/agency/booking-history",
+        element: <BookingHistory></BookingHistory>
+      },
+      {
+        path: "/dashboard/agency/booking-request",
+        element: <BookingRequest></BookingRequest>
+      },
+      {
+        path: "/dashboard/agency/active-booking",
+        element: <ActiveBooking></ActiveBooking>
+      },
+      {
+        path: "/dashboard/agency/review-from-customers",
+        element: <ReviewFromCustomer></ReviewFromCustomer>
+      },
+      {
+        path: "/dashboard/agency/stuff-managment",
+        element: <AgencyStaffManagement></AgencyStaffManagement>,
+      },
+      {
+        path: "/dashboard/agency/customer-management",
+        element: <CustomerManagement></CustomerManagement>
+      },
             // admin routes
             {
                 path: "admin-home",
