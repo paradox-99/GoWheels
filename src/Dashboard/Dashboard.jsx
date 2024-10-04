@@ -5,7 +5,7 @@ import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
 import { IoIosPeople } from "react-icons/io";
-import useDesignation from "../hooks/useDesignation";
+// import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
-  const [user] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=', role: "agency" });
+  const [user] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=', role: "moderator" });
 
     
     // const [user:auser] = useDesignation();
