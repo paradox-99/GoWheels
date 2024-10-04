@@ -66,15 +66,15 @@ const Dashboard = () => {
           <ul className="lg:static bg-white p-5 min-h-screen w-[95%] max-w-[300px]">
             <div className="flex justify-between items-center">
               <div className="px-6">
-                {userInfo?.circleImage ? (<img
-                  src={userInfo?.circleImage}
+                {userInfo?.image ? (<img
+                  src={userInfo?.image}
                   className="size-[150px] object-cover rounded-full border-4 border-primary"
-                  alt="User Avatar"
+                  alt={userInfo.firstName}
                 />) : ( <img
                   src={userInfo?.image}
                   className="size-[150px] object-cover rounded-full border-4 border-primary"
                   referrerPolicy="no-referrer" 
-                  alt="User Avatar"
+                  alt={userInfo.firstName}
                 />)}
               </div>
             </div>
