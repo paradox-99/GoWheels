@@ -13,11 +13,6 @@ import { GrUserAdmin } from "react-icons/gr";
 
 
 const Dashboard = () => {
-<<<<<<< HEAD
-    const [user] = useState({ photoURL: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=', role: "user" });
-    const handleLogout = () => {
-=======
->>>>>>> 82bcd6f1c1a180117a437255301a8d47b7e7dfa5
 
   const navigate = useNavigate();
   const { logout } = UseAuth();

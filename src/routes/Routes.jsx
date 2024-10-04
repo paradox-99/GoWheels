@@ -119,13 +119,14 @@ const router = createBrowserRouter([
                 path: "user-profile",
                 element: <UserProfile></UserProfile>
             },
-<<<<<<< HEAD
+
+            // AGENCY ---------------
             {
                 path: "agency-home",
                 element: <AgencyHome></AgencyHome>
             },
             {
-                path: "/dashboard/agency/owner-info/update",
+                path: "/dashboard/agency/owner",
                 element: <OwnerInfo></OwnerInfo>
             },
             {
@@ -152,51 +153,14 @@ const router = createBrowserRouter([
                 path: "/dashboard/agency/review-from-customers",
                 element: <ReviewFromCustomer></ReviewFromCustomer>
             },
-            // ----------------
-=======
->>>>>>> 82bcd6f1c1a180117a437255301a8d47b7e7dfa5
-
-      // AGENCY ---------------
-      {
-        path: "agency-home",
-        element: <AgencyHome></AgencyHome>
-      },
-      {
-        path: "/dashboard/agency/owner",
-        element: <OwnerInfo></OwnerInfo>
-      },
-      {
-        path: "/dashboard/agency/add-vehicle-info",
-        element: <AddVehicleInfo></AddVehicleInfo>
-      },
-      {
-        path: "/dashboard/agency/vehicle-info",
-        element: <VehicleInfo></VehicleInfo>
-      },
-      {
-        path: "/dashboard/agency/booking-history",
-        element: <BookingHistory></BookingHistory>
-      },
-      {
-        path: "/dashboard/agency/booking-request",
-        element: <BookingRequest></BookingRequest>
-      },
-      {
-        path: "/dashboard/agency/active-booking",
-        element: <ActiveBooking></ActiveBooking>
-      },
-      {
-        path: "/dashboard/agency/review-from-customers",
-        element: <ReviewFromCustomer></ReviewFromCustomer>
-      },
-      {
-        path: "/dashboard/agency/stuff-managment",
-        element: <AgencyStaffManagement></AgencyStaffManagement>,
-      },
-      {
-        path: "/dashboard/agency/customer-management",
-        element: <CustomerManagement></CustomerManagement>
-      },
+            {
+                path: "/dashboard/agency/stuff-managment",
+                element: <AgencyStaffManagement></AgencyStaffManagement>,
+            },
+            {
+                path: "/dashboard/agency/customer-management",
+                element: <CustomerManagement></CustomerManagement>
+            },
             // admin routes
             {
                 path: "admin-home",

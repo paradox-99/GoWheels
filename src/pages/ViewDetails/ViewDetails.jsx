@@ -6,18 +6,30 @@ import { FaCheckCircle } from "react-icons/fa"; // For green check icon
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useDesignation from "../../hooks/useDesignation";
 import axios from "axios";
 
 
-const ViewDetails = ({ id }) => {
-    const carId = "66f4ec9b3ba27ae46940f6b0"
-    const [isLoading, setIsLoading] = useState(true);
+const ViewDetails = () => {
+
+    const { userInfo } = useDesignation();
+    const { id } = useParams();
     const [relatedData, setRelatedData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const axiosPublic = useAxiosPublic();
+    const location = useLocation();
+    const { area, district, division, fromDate, fromTime, untilDate, untilTime, upazilla } = location.state?.carBookingInfo || {};
+    const navigate = useNavigate();
+
+    const carId = "66f4ec9b3ba27ae46940f6b0"
+    
 
     useEffect(() => {
         const fetchReviews = async () => {
@@ -34,27 +46,6 @@ const ViewDetails = ({ id }) => {
         fetchReviews();
     }, [carId]);
     console.log(reviews);
-
-
-=======
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import useDesignation from "../../hooks/useDesignation";
-
-
-const ViewDetails = () => {
-
-    const { userInfo } = useDesignation();
-    const { id } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
-    const [relatedData, setRelatedData] = useState([]);
-    const axiosPublic = useAxiosPublic();
-    const location = useLocation();
-    const { area, district, division, fromDate, fromTime, untilDate, untilTime, upazilla } = location.state?.carBookingInfo || {};
-    const navigate = useNavigate();
-
-
     const { data } = useQuery({
         queryKey: ['carData'],
         queryFn: async () => {
@@ -81,7 +72,6 @@ const ViewDetails = () => {
         navigate('/bookingInfo', {state: bookingInformation})
     }
 
->>>>>>> 82bcd6f1c1a180117a437255301a8d47b7e7dfa5
     useEffect(() => {
         fetch("../../../public/featuredAndAvailable.json")
             .then((res) => {
@@ -91,47 +81,9 @@ const ViewDetails = () => {
                 setRelatedData(data);
             });
     }, []);
-<<<<<<< HEAD
-    console.log(relatedData);
-
-    const data = {
-        "name": "Toyota Prius",
-        "rating": 4.5,
-        "brand": "Toyota",
-        "fuel": "Hybrid",
-        "about": "The Toyota Prius is a hybrid vehicle with a mileage of 22,000 miles and full insurance coverage.",
-        "seats": 5,
-        "gear": "Automatic",
-        "rental_price": 50,
-        "image": "/car.png",
-        "mileage": "25,000 miles",
-        "transmission_type": "automatic",
-        "model": "Prius",
-        "build_year": 2022,
-        "license_number": "XYZ9876",
-        "expire_date": "2024-12-31",
-        "fitness_certificate": "Valid",
-        "issuing_authority": "Department of Motor Vehicles",
-        "insurance_number": "INS-123456789",
-        "insurance_coverage_period": "2023-01-01 to 2024-01-01",
-        "insurance_details": {
-            "provider": "ABC Insurance Co.",
-            "coverage_type": "Full coverage",
-            "deductible": 300
-        },
-        "additional_features": {
-            "air_conditioning": true,
-            "gps": true,
-            "bluetooth": true,
-            "sunroof": false,
-            "parking_sensors": true
-        }
-    };
-=======
 
 
     const add_features = data?.additional_features;
->>>>>>> 82bcd6f1c1a180117a437255301a8d47b7e7dfa5
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 50);

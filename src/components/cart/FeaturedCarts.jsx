@@ -2,11 +2,6 @@ import { BsFuelPumpFill } from "react-icons/bs";
 import { FaCarSide, FaStar } from "react-icons/fa";
 import { PiSeatFill } from "react-icons/pi";
 import { TbManualGearboxFilled } from "react-icons/tb";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-const FeaturedCarts = ({ car }) => {
-  console.log(car);
-=======
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -19,7 +14,6 @@ const FeaturedCarts = ({ car, carBookingInfo }) => {
     navigate(`/view-details/${car._id}`, { state: { carBookingInfo } });
   }
 
->>>>>>> 82bcd6f1c1a180117a437255301a8d47b7e7dfa5
   return (
     <div>
       <div className="w-full p-5 rounded-lg shadow-2xl">
