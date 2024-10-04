@@ -6,16 +6,49 @@ import { FaCheckCircle } from "react-icons/fa"; // For green check icon
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useDesignation from "../../hooks/useDesignation";
+
 
 const ViewDetails = () => {
 
+    const { userInfo } = useDesignation();
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [relatedData, setRelatedData] = useState([]);
     const axiosPublic = useAxiosPublic();
+    const location = useLocation();
+    const { area, district, division, fromDate, fromTime, untilDate, untilTime, upazilla } = location.state?.carBookingInfo || {};
+    const navigate = useNavigate();
+
+
+    const { data } = useQuery({
+        queryKey: ['carData'],
+        queryFn: async () => {
+            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`)
+            return response.data;
+        }
+    })
+
+    const handleRent = (e) => {
+        e.preventDefault();
+        const bookingInformation = {
+            area,
+            district,
+            division,
+            fromDate,
+            fromTime,
+            untilDate,
+            untilTime,
+            upazilla,
+            data,
+            userInfo
+        }
+
+        navigate('/bookingInfo', {state: bookingInformation})
+    }
 
     useEffect(() => {
         fetch("../../../public/featuredAndAvailable.json")
@@ -27,25 +60,14 @@ const ViewDetails = () => {
             });
     }, []);
 
-    const { data } = useQuery({
-        queryKey: ['carData'],
-        queryFn: async () => {
-            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`)
-            return response.data;
-        }
-    })
 
     const add_features = data?.additional_features;
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 50);
         window.scrollTo(0, 0);
-        console.log("loading");
-
         return () => clearTimeout(timer);
     }, [id]);
-
-    console.log(relatedData);
 
     const settings = {
         dots: true,
@@ -102,6 +124,7 @@ const ViewDetails = () => {
             },
         ],
     };
+
     return (
         <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto">
             {/* Skeleton Loader */}
@@ -118,10 +141,14 @@ const ViewDetails = () => {
                             <img className="lg:w-[580px]" src={data?.vehicle_info.photo} alt={data?.vehicle_info.name} />
                         </div>
                         <div className="flex flex-row-reverse mt-12 relative">
-                            <button className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button bg-primary text-white hover:text-black px-4 duration-700 md:py-3">
+                            <button
+                                onClick={handleRent}
+                                className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button bg-primary text-white hover:text-black px-4 duration-700 md:py-3">
                                 Rent Now
                             </button>
-                            <button onClick={() => toast("added to Favorites")} className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
+                            <button
+                                onClick={() => toast("added to Favorites")}
+                                className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
                                 Add to Favorites
                             </button>
                         </div>

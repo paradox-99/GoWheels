@@ -15,9 +15,10 @@ const useDesignation = () => {
             return data;
         }
     })
-
     return {userInfo};
 };
 
 
 export default useDesignation;
+
+

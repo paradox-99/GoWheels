@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useState } from "react";
  export const SignUpContext = createContext(null); 
 
@@ -12,4 +13,7 @@ const [signUpStep, setSignUpStep] = useState(1)
     );
 };
 
+SignUpProvider.propTypes = {
+    children: PropTypes.node
+}
 export default SignUpProvider;
