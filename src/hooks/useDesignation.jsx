@@ -7,17 +7,18 @@ const useDesignation = () => {
     const {user, loader} = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const { data: role, isPending: isRole } = useQuery({
-        queryKey: [user?.email, 'designation'],
-        enabled: !loader,
+    const { data: userInfo= '' } = useQuery({
+        queryKey: [user?.email, 'userInfo'],
+        enabled: !loader && !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/usersRoute/users/${user.email}`);
-            return res.data[0];
+            const {data} = await axiosSecure.get(`/usersRoute/users/${user?.email}`);
+            return data;
         }
     })
-
-    return [role, isRole]
+    return {userInfo};
 };
 
 
 export default useDesignation;
+
+

@@ -1,41 +1,77 @@
-// import { useQuery } from "@tanstack/react-query";
-// import useAxiosPublic from "../../hooks/useAxiosPublic"; 
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
 
-import useDesignation from "../../hooks/useDesignation";
+const OwnerInfo = () => {
+  // console.log(email);
+  const { user } = useContext(AuthContext);
+  const queryClient = useQueryClient();
+  const axiosSecure = useAxiosSecure();
+  // Fetch owner information
+  const {
+    data: owner,
+    refetch,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["owner", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `/agencyRoute/agency/owner/${user?.email}`
+      );
+      console.log(data);
+      return data;
+    },
+    enabled: !!user?.email,
+  });
 
-const userInfo = () => {
-  // const axiosPublic = useAxiosPublic(); 
- 
-  // const {
-  //   data: user,
-  //   isLoading,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["user-info", email],
-  //   queryFn: async () => {
-  //     const response = await axiosPublic.get(`/api/usersRoute/users/${email}`);
-  //     console.log(response.data);
-  //     return response.data;
-  //   },
-  //   enabled: !!email, 
-  // });
+  // Update agency owner info mutation
+  const {mutateAsync} = useMutation({
+      mutationFn: async (updateAgencyOwnerInfo) => {
+          const { data } = await axiosSecure.patch(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updateAgencyOwnerInfo);
+          console.log(data);
+          return data;
+      },
+      onSuccess: () => {
+          queryClient.invalidateQueries(['owner', user?.email]);
+          alert('Owner information updated successfully!');
+      },
+      onError: (error) => {
+          alert(`Failed to update owner information: ${error.message}`);
+      },
+  });
 
 
-  const [user] = useDesignation();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error fetching data: {error.message}</div>;
+  }
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const updatedOwnerData = Object.fromEntries(formData.entries());
 
+    await mutateAsync(updatedOwnerData);
+    // const { data } = await axiosSecure.put(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updatedOwnerData);
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error.message}</div>;
+  };
+  if (!user) {
+    return <div>Loading the data...</div>;
+  }
 
-  if (!user) return <div>No user information found.</div>; 
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-black mb-6">
-        Update user Information
+        Update Owner Information
       </h1>
 
-      <form className="grid grid-cols-1 gap-6" key={user._id}>
+      <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
@@ -69,7 +105,18 @@ const userInfo = () => {
               id="firstName"
               name="firstName"
               placeholder="First name"
-              defaultValue={user.name}
+              defaultValue={owner?.firstName}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+              defaultValue={owner?.lastName}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -80,10 +127,10 @@ const userInfo = () => {
           <div>
             <input
               type="text"
-              id="contact"
-              name="contact"
-              placeholder="Contact"
-              defaultValue={user.phone || ""}
+              id="phone"
+              name="phone"
+              placeholder="phone"
+              defaultValue={owner?.phone || ""}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -92,12 +139,39 @@ const userInfo = () => {
           <div>
             <input
               type="text"
-              id="identification"
-              name="identification"
-              placeholder="Identification"
-              defaultValue={user.nid || ""}
+              id="nid"
+              name="nid"
+              placeholder="Nid"
+              defaultValue={owner?.nid || ""} // Use nid directly
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+        </div>
+
+        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <input
+              type="text"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              placeholder="Date Of Birth"
+              defaultValue={owner?.dateOfBirth || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+
+          <div>
+            <input
+              type="text"
+              id="accountStatus"
+              name="accountStatus"
+              placeholder="Account status"
+              defaultValue={owner?.accountStatus || ""} // Use nid directly
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+              disabled
             />
           </div>
         </div>
@@ -108,23 +182,62 @@ const userInfo = () => {
             id="email"
             name="email"
             placeholder="Email"
-            defaultValue={user.email}
+            defaultValue={owner?.userEmail}
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
             style={{ backgroundColor: "#f6f6f6" }}
           />
         </div>
 
-        <div className="p-2">
-          <input
-            type="password"
-            id="currentPassword"
-            name="currentPassword"
-            placeholder="Current password"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-            style={{ backgroundColor: "#f6f6f6" }}
-          />
+        {/* address */}
+        <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="font-bold" htmlFor="">
+              District
+            </label>
+
+            <input
+              type="text"
+              id="district"
+              name="district"
+              placeholder="district"
+              defaultValue={owner?.userAddress?.district || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+
+          <div>
+            <label className="font-bold" htmlFor="">
+              Division
+            </label>
+            <input
+              type="text"
+              id="division"
+              name="division"
+              placeholder="division"
+              defaultValue={owner?.userAddress?.division || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+          <div>
+            <label className="font-bold" htmlFor="">
+              Upazilla
+            </label>
+
+            <input
+              type="text"
+              id="upazilla"
+              name="upazilla"
+              placeholder="upazilla"
+              defaultValue={owner?.userAddress?.upazilla || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
         </div>
 
+        {/* password */}
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <input
@@ -149,12 +262,14 @@ const userInfo = () => {
           </div>
         </div>
 
+        {/* agency information----------- */}
+
         <div className="col-span-full mt-6 p-2">
           <button
             type="submit"
             className="block w-full bg-[#ff4c30] hover:bg-[#161616] text-white font-bold py-3 px-4 rounded-full"
           >
-            Update user Information
+            Update Owner Information
           </button>
         </div>
       </form>
@@ -162,4 +277,4 @@ const userInfo = () => {
   );
 };
 
-export default userInfo;
+export default OwnerInfo;

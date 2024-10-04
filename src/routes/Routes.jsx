@@ -1,46 +1,41 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root";
 import HomePage from "../pages/home page/HomePage";
-import SignIn from "../pages/sign in page/SignIn";
 import AboutPage from "../pages/about/AboutPage";
 import Contactpage from "../pages/contact/Contactpage";
-import Background from "../pages/background/Background";
-import SignUpPartFour from "../pages/signup/SignUpPartFour";
-import SignUpPartFive from "../pages/signup/SignUpPartFive";
-import SignupPartTwo from "../pages/signup/SignupPartTwo";
-import SignUpPartOne from "../pages/signup/SignUpPartOne";
-import SignUpPartThree from "../pages/signup/SignUpPartThree";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
 // Assuming you have this component
-import Dashboard from "../Dashboard/Dashboard";
-import UserHome from "../Dashboard/User/UserHome";
-import Bookings from "../Dashboard/User/Bookings";
-import UserRatings from "../Dashboard/User/UserRatings";
-import AgencyHome from "../Dashboard/Agency/AgencyHome";
-import AdminHome from "../Dashboard/Admin/AdminHome";
-import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
-import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
-import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import Filter from "../pages/Filter/Filter";
-import ManageUsers from "../Dashboard/Admin/ManageUsers";
-import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
-import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
-import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
-import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
-import GoogleLogin from "../pages/sign in page/GoogleLogin";
-import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
-import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
-import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
-import BookingHistory from "../Dashboard/User/BookingHistory";
-import FavouriteCars from "../Dashboard/User/FavouriteCars";
-import UserProfile from "../Dashboard/User/UserProfile";
-import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
-import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
-import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import AgencyRegister from "../pages/Agency/AgencyRegister";
 import AgencyInfo from "../pages/Agency/AgencyInfo";
 import CarInfo from "../pages/Agency/CarInfo";
+import { SignUpRoutes } from "./SignUpRoutes";
 import ShowBrandCars from "../pages/Filter/ShowBrandCars";
+import BookingInfo from "../pages/bookingInfo/BookingInfo";
+import PaymentPage from "../pages/paymentPage/PaymentPage";
+import Dashboard from "../Dashboard/Dashboard";
+import UserHome from "../Dashboard/User/UserHome";
+import Bookings from "../Dashboard/User/Bookings";
+import BookingHistory from "../Dashboard/User/BookingHistory";
+import UserRatings from "../Dashboard/User/UserRatings";
+import FavouriteCars from "../Dashboard/User/FavouriteCars";
+import UserProfile from "../Dashboard/User/UserProfile";
+import AgencyHome from "../Dashboard/Agency/AgencyHome";
+import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
+import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
+import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
+import BookingRequest from "../Dashboard/Agency/BookingRequest";
+import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
+import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
+import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
+import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
+import AdminHome from "../Dashboard/Admin/AdminHome";
+import ManageUsers from "../Dashboard/Admin/ManageUsers";
+import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
+import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
+import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
+import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
+import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 
 const router = createBrowserRouter([
     {
@@ -67,41 +62,15 @@ const router = createBrowserRouter([
                 path: "/view-details/:id",
                 element: <ViewDetails />,
             },
-
             {
-                path: "/filter",
-                element: <Filter></Filter>
+                path: "/bookingInfo",
+                element: <BookingInfo></BookingInfo>
             },
             {
-                path: "/join",
-                element: <Background />,
-                children: [
-                    {
-                        path: '/join',
-                        element: <SignIn></SignIn>
-                    },
-                    {
-                        path: "/join/signUpPartOne",
-                        element: <SignUpPartOne></SignUpPartOne>
-                    },
-                    {
-                        path: '/join/signUpPartTwo',
-                        element: <SignupPartTwo></SignupPartTwo>
-                    },
-                    {
-                        path: '/join/signUpPartThree',
-                        element: <SignUpPartThree></SignUpPartThree>
-                    },
-                    {
-                        path: '/join/signUpFour',
-                        element: <SignUpPartFour></SignUpPartFour>
-                    },
-                    {
-                        path: '/join/signUpFive',
-                        element: <SignUpPartFive></SignUpPartFive>,
-                    }
-                ]
+                path: '/payment-page',
+                element: <PaymentPage></PaymentPage>
             },
+            ...SignUpRoutes,
             {
                 path: '/join/agencyRegister',
                 element: <AgencyRegister></AgencyRegister>
@@ -119,10 +88,6 @@ const router = createBrowserRouter([
                 element: <ShowBrandCars/>
             },
         ]
-    },
-    {
-        path: "login-Info",
-        element: <GoogleLogin></GoogleLogin>
     },
     {
         path: "dashboard",
@@ -155,48 +120,47 @@ const router = createBrowserRouter([
                 element: <UserProfile></UserProfile>
             },
 
-            // AGENCY ---------------
-            {
-                path: "agency-home",
-                element: <AgencyHome></AgencyHome>
-            },
-            {
-                path: "/dashboard/agency/owner-info/update",
-                element: <OwnerInfo></OwnerInfo>
-            },
-            {
-                path: "/dashboard/agency/add-vehicle-info",
-                element: <AddVehicleInfo></AddVehicleInfo>
-            },
-            {
-                path: "/dashboard/agency/vehicle-info",
-                element: <VehicleInfo></VehicleInfo>
-            },
-            {
-                path: "/dashboard/agency/booking-history",
-                element: <BookingHistory></BookingHistory>
-            },
-            {
-                path: "/dashboard/agency/booking-request",
-                element: <BookingRequest></BookingRequest>
-            },
-            {
-                path: "/dashboard/agency/active-booking",
-                element: <ActiveBooking></ActiveBooking>
-            },
-            {
-                path: "/dashboard/agency/review-from-customers",
-                element: <ReviewFromCustomer></ReviewFromCustomer>
-            },
-            {
-                path: "/dashboard/agency/stuff-managment",
-                element: <AgencyStaffManagement></AgencyStaffManagement>,
-            },
-            {
-                path: "/dashboard/agency/customer-management",
-                element: <CustomerManagement></CustomerManagement>
-            },
-
+      // AGENCY ---------------
+      {
+        path: "agency-home",
+        element: <AgencyHome></AgencyHome>
+      },
+      {
+        path: "/dashboard/agency/owner",
+        element: <OwnerInfo></OwnerInfo>
+      },
+      {
+        path: "/dashboard/agency/add-vehicle-info",
+        element: <AddVehicleInfo></AddVehicleInfo>
+      },
+      {
+        path: "/dashboard/agency/vehicle-info",
+        element: <VehicleInfo></VehicleInfo>
+      },
+      {
+        path: "/dashboard/agency/booking-history",
+        element: <BookingHistory></BookingHistory>
+      },
+      {
+        path: "/dashboard/agency/booking-request",
+        element: <BookingRequest></BookingRequest>
+      },
+      {
+        path: "/dashboard/agency/active-booking",
+        element: <ActiveBooking></ActiveBooking>
+      },
+      {
+        path: "/dashboard/agency/review-from-customers",
+        element: <ReviewFromCustomer></ReviewFromCustomer>
+      },
+      {
+        path: "/dashboard/agency/stuff-managment",
+        element: <AgencyStaffManagement></AgencyStaffManagement>,
+      },
+      {
+        path: "/dashboard/agency/customer-management",
+        element: <CustomerManagement></CustomerManagement>
+      },
             // admin routes
             {
                 path: "admin-home",
