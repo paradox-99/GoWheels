@@ -1,5 +1,5 @@
 import { FaCar, FaCarSide, FaHistory, FaHome, FaUsers } from "react-icons/fa";
-import { Link, NavLink, Outlet, useNavigate, useParams, } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate} from "react-router-dom";
 import { CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
@@ -17,9 +17,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { logout } = UseAuth();
   const {userInfo} = useDesignation();
-  const { email } = useParams(); 
-
-
   const handleLogout = async () => {
     await logout();
     navigate("/join")
