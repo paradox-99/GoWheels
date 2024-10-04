@@ -6,7 +6,7 @@ const Featured = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    fetch("./featuredAndAvaiable.json")
+    fetch("./featuredAndAvailable.json")
       .then((res) => {
         return res.json();
       })
