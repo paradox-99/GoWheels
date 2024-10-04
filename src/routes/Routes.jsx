@@ -85,8 +85,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brand/:brand_name',
-                element: <ShowBrandCars />
-            }
+                element: <ShowBrandCars/>
+            },
         ]
     },
     {
@@ -180,7 +180,6 @@ const router = createBrowserRouter([
             },
 
             // MODERATOR
-            // Moderator
             {
                 path: "moderator-profile",
                 element: <ModeratorProfile />,
