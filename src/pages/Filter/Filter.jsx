@@ -1,51 +1,25 @@
 import { FaSearch } from "react-icons/fa";
-import toyoto_car from "../../assets/topBrands/toyoto_car.png"
-import toyoto_logo from "../../assets/topBrands/toyoto_logo.png"
-import honda_car from "../../assets/topBrands/honda_car.png"
-import honda_logo from "../../assets/topBrands/honda_logo.png"
-import nissan_car from "../../assets/topBrands/nissan_car.png"
-import nissan_logo from "../../assets/topBrands/nissan_logo.png"
-import suzuki_car from "../../assets/topBrands/suzuki_car.png"
-import suzuki_logo from "../../assets/topBrands/suzuki_logo.png"
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Address from "../../components/address/Address";
 import { useRef, useState } from "react";
 import FeaturedCarts from "../../components/cart/FeaturedCarts";
-
-const top_brands = [
-  {
-    name: "Toyota",
-    image: toyoto_car,
-    logo: toyoto_logo
-  },
-  {
-    name: "Honda",
-    image: honda_car,
-    logo: honda_logo
-  },
-  {
-    name: "Nissan",
-    image: nissan_car,
-    logo: nissan_logo
-  },
-  {
-    name: "Suzuki",
-    image: suzuki_car,
-    logo: suzuki_logo
-  }
-]
+import { top_brands } from "../../../public/locationData";
 
 const Filter = () => {
-
+  const [searchResult, setSearchResult] = useState([]);
   const [address, setAddress] = useState();
-  const [searchResult, setSearchResult] = useState();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const ref1 = useRef();
   const ref2 = useRef();
   const ref3 = useRef();
   const ref4 = useRef();
+  const [carBookingInfo, setCarBookingInfo] = useState(null);
+
+  const todayDate = new Date().toISOString().split("T")[0];
+  const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+
 
   const handleFilter = async (e) => {
     e.preventDefault();
@@ -73,10 +47,9 @@ const Filter = () => {
       area
     };
 
-    const result = await axiosPublic.get('/bookings/getSearchData', { params: filterData })
-      .then(res => { return res.data })
-
-    setSearchResult(result);
+    const { data } = await axiosPublic.get('/bookings/getSearchData', { params: filterData })
+    setSearchResult(data)
+    setCarBookingInfo(filterData)
   };
 
   const handleBrand = brand_name => {
@@ -105,15 +78,23 @@ const Filter = () => {
               <p className="text-lg font-semibold mb-3">From</p>
               <div className="flex justify-center items-center gap-4">
                 <input
-                  type="text"
+                  type="text" // Start as text to show placeholder
                   name="fromDate"
                   id="fromDate"
                   className="outline-none w-[130px] bg-transparent font-nunito border-b-primary py-1 lg:py-2 border-b-2"
                   placeholder="Select Date"
                   required
                   ref={ref1}
-                  onFocus={() => (ref1.current.type = "date")}
-                  onBlur={() => (ref1.current.type = "text")}
+                  readOnly={ref1?.current?.type === "text"}
+                  onFocus={() => {
+                    ref1.current.type = "date";
+                    ref1.current.readOnly = false;
+                  }}
+                  onBlur={() => {
+                    ref1.current.type = "text";
+                    ref1.current.readOnly = true;
+                  }}
+                  min={todayDate}
                 />
                 <input
                   type="text"
@@ -125,6 +106,7 @@ const Filter = () => {
                   ref={ref2}
                   onFocus={() => (ref2.current.type = "time")}
                   onBlur={() => (ref2.current.type = "text")}
+                  min={nowTime}
                 />
               </div>
             </div>
@@ -139,8 +121,16 @@ const Filter = () => {
                   placeholder="Select Date"
                   required
                   ref={ref3}
-                  onFocus={() => (ref3.current.type = "date")}
-                  onBlur={() => (ref3.current.type = "text")}
+                  readOnly={ref3?.current?.type === "text"}
+                  onFocus={() => {
+                    ref3.current.type = "date";
+                    ref3.current.readOnly = false;
+                  }}
+                  onBlur={() => {
+                    ref3.current.type = "text";
+                    ref3.current.readOnly = true;
+                  }}
+                  min={todayDate}
                 />
                 <input
                   type="text"
@@ -152,6 +142,7 @@ const Filter = () => {
                   ref={ref4}
                   onFocus={() => (ref4.current.type = "time")}
                   onBlur={() => (ref4.current.type = "text")}
+                  min={nowTime}
                 />
               </div>
             </div>
@@ -163,14 +154,17 @@ const Filter = () => {
           </div>
         </form>
       </div>
+
       <div className="grid grid-cols-3 gap-10">
         {
           searchResult?.map(car => <FeaturedCarts
-          key={car._id}
-          car={car}
+            key={car._id}
+            car={car}
+            carBookingInfo={carBookingInfo}
           ></FeaturedCarts>)
         }
       </div>
+
       <div className="mt-28">
         <div className="bg-secondary w-20 h-2 mb-8"></div>
         <h1 className="text-5xl font-merriweather font-bold">Top Brands</h1>
