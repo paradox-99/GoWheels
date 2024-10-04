@@ -256,12 +256,12 @@ const ViewDetails = () => {
                                         <div key={index} className='relative '>
                                             <Link to={`/view-details`}>
                                                 <div className='h-[290px]'>
-                                                    <span className='absolute text-white text-[12px] left-[15px] top-3'><span>{car.brand}</span> Car </span>
-                                                    <img className='h-[250px] w-[150px] md:w-[180px] object-cover' src={car.image} alt={`Profile Photo of ${car.name}`} />
+                                                    <span className='absolute text-white text-[12px] left-[15px] top-3'><span>{car.vehicle_info.brand}</span> Car </span>
+                                                    <img className='h-[250px] w-[150px] md:w-[180px] object-cover' src={car.vehicle_info.photo} alt={`Profile Photo of ${car.vehicle_info.name}`} />
                                                 </div>
                                                 <div className='bg-blue-200 text-[12px] md:text-[14px] shadow-xl z-10 left-[10px] rounded-t-md bottom-0 absolute p-3 md:w-[160px] w-[130px]'>
-                                                    <p className=''>{car.name}</p>
-                                                    <p className=''>Price : <span className=''>${car.price}</span></p>
+                                                    <p className=''>{car.vehicle_info.name}</p>
+                                                    <p className=''>Price : <span className=''>${car.vehicle_info.price}</span></p>
                                                 </div>
                                             </Link>
                                         </div>
