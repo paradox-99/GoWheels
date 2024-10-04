@@ -110,7 +110,7 @@ const UserHome = () => {
             {/* Line Chart Section */}
             <div className="max-w-6xl mx-auto px-6 mt-16">
                 <div className=" ">
-                    <h3 className="text-3xl font-bold text-gray-700 mb-6">Booking Trends</h3>
+                    <h3 className="text-3xl font-bold text-gray-700 mb-6">My Booking Trends</h3>
                     <div className="relative">
                         <Line data={data} options={options} />
                     </div>
