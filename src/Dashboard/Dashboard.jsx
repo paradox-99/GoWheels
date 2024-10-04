@@ -17,6 +17,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { logout } = UseAuth();
   const {userInfo} = useDesignation();
+  
   const handleLogout = async () => {
     await logout();
     navigate("/join")
@@ -65,11 +66,16 @@ const Dashboard = () => {
           <ul className="lg:static bg-white p-5 min-h-screen w-[95%] max-w-[300px]">
             <div className="flex justify-between items-center">
               <div className="px-6">
-                <img
-                  src={userInfo?.photo}
+                {userInfo?.circleImage ? (<img
+                  src={userInfo?.circleImage}
                   className="size-[150px] object-cover rounded-full border-4 border-primary"
                   alt="User Avatar"
-                />
+                />) : ( <img
+                  src={userInfo?.image}
+                  className="size-[150px] object-cover rounded-full border-4 border-primary"
+                  referrerPolicy="no-referrer" 
+                  alt="User Avatar"
+                />)}
               </div>
             </div>
             <div className="px-2 space-y-2 pt-8 pb-4">
@@ -97,8 +103,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="w-[80%] h-screen absolute right-0">
-          <Outlet />
-        </div>
+        <Outlet />
+      </div>
     </div>
   );
 };
