@@ -1,23 +1,110 @@
-import  { useState } from 'react';
+import { useState } from 'react';
+import { FaPen, FaStar } from 'react-icons/fa'; 
 
-const CommonTable = ({bookings,heading}) => {
-    const [loading] = useState(false); //default
-    const [error] = useState(null);//default
-    if (loading) {
-        return <p className="text-center text-lg text-gray-600">Loading bookings...</p>;
-    }
 
-    if (error) {
-        return <p className="text-center text-red-600">{error}</p>;
-    }
+const ReviewModal = ({ isOpen, onClose, booking }) => {
+    const [rating, setRating] = useState(0);  
+    const [reviewText, setReviewText] = useState('');  
+    const [imageUrl, setImageUrl] = useState('');  
+
+    if (!isOpen) return null;
+
+    const handleRatingChange = (rating) => {
+        setRating(rating);
+    };
+
+    const handleReviewTextChange = (e) => {
+        setReviewText(e.target.value);
+    };
+
+    const handleImageUrlChange = (e) => {
+        setImageUrl(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        //TODO : Submit the rating, reviewText, and imageUrl to the server 
+        console.log("Review:", reviewText, "Rating:", rating, "Image URL:", imageUrl);
+        onClose(); 
+    };
+
     return (
-        <div className="container mx-auto p-6">
-            <h2 className="text-3xl font-semibold mb-6">{heading}</h2>
-            {bookings.length > 0 ? (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-black bg-opacity-50 absolute inset-0"></div>
+            <div className="bg-white p-6 rounded-lg shadow-lg z-10 w-96">
+                <h3 className="text-lg font-semibold mb-4">Add Review for {booking?.name}</h3>
+                <form onSubmit={handleSubmit}>
+                    {/* Ratings input */}
+                    <div className="mb-4">
+                        <label className="block mb-1 text-sm font-medium">Rating</label>
+                        <div className="flex items-center">
+                            {[...Array(5)].map((_, index) => (
+                                <FaStar
+                                    key={index}
+                                    onClick={() => handleRatingChange(index + 1)}
+                                    className={`cursor-pointer ${index < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                                />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Review Text */}
+                    <div className="mb-4">
+                        <label className="block mb-1 text-sm font-medium">Review</label>
+                        <textarea
+                            value={reviewText}
+                            onChange={handleReviewTextChange}
+                            className="w-full p-2 border rounded-md"
+                            rows="4"
+                            placeholder="Write your review"
+                        />
+                    </div>
+
+                    {/* Image URL Input */}
+                    <div className="mb-4">
+                        <label className="block mb-1 text-sm font-medium">Car Image URL</label>
+                        <input
+                            type="text"
+                            value={imageUrl}
+                            onChange={handleImageUrlChange}
+                            className="w-full p-2 border rounded-md"
+                            placeholder="Enter the car image URL"
+                        />
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="flex justify-end gap-4">
+                        <button type="button" onClick={onClose} className="bg-gray-500 text-white py-1 px-4 rounded-md">Cancel</button>
+                        <button type="submit" className="bg-blue-500 text-white py-1 px-4 rounded-md">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+const CommonTable = ({ bookings, heading, loading, error }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState(null);
+
+    const handleAddReviewClick = (booking) => {
+        setSelectedBooking(booking);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedBooking(null);
+    };
+    if (loading) {
+        return (
+            <div className="container mx-auto p-6">
+                <h2 className="text-3xl font-semibold mb-6">{heading}</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-red-50 text-gray-500 text-sm leading-normal">
+                            <tr className="bg-gray-200 text-gray-500 text-sm leading-normal">
+                                {/* Table headings */}
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
                                 <th className="py-3 px-6 text-left">Drop-off Date</th>
@@ -28,16 +115,73 @@ const CommonTable = ({bookings,heading}) => {
                             </tr>
                         </thead>
                         <tbody className="text-gray-600 text-sm">
-                            {bookings.map((booking) => (
+                            {Array(5).fill("").map((_, index) => (
+                                <tr key={index} className="border-b border-gray-200 animate-pulse">
+                                    <td className="py-3 px-6">
+                                        <div className="w-24 h-12 bg-gray-300 rounded-md"></div>
+                                        <div className="h-4 bg-gray-300 rounded mt-2"></div>
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        <div className="h-4 bg-gray-300 rounded"></div>
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        <div className="h-4 bg-gray-300 rounded"></div>
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        <div className="h-4 bg-gray-300 rounded"></div>
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        <div className="h-4 bg-gray-300 rounded"></div>
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        <div className="h-4 bg-gray-300 rounded"></div>
+                                    </td>
+                                    <td className="py-3 px-6">
+                                        <div className="h-4 bg-gray-300 rounded"></div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return <p className="text-center text-red-600">{error}</p>;
+    }
+
+    return (
+        <div className="container mx-auto p-6">
+            <h2 className="text-3xl font-semibold mb-6">{heading}</h2>
+            {bookings?.userBookings.length > 0 ? (
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white shadow-md rounded-lg">
+                        <thead>
+                            <tr className="bg-red-50 text-gray-500 text-sm leading-normal">
+                                <th className="py-3 px-6 text-left">Car</th>
+                                <th className="py-3 px-6 text-left">Booking Date</th>
+                                <th className="py-3 px-6 text-left">Drop-off Date</th>
+                                <th className="py-3 px-6 text-left">Status</th>
+                                <th className="py-3 px-6 text-left">Drop-off Location</th>
+                                <th className="py-3 px-6 text-left">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody className="text-gray-600 text-sm">
+                            {bookings.userBookings.map((booking) => (
                                 <tr key={booking._id} className="border-b border-red-50 hover:bg-red-50">
-                                    <td className="py-3 px-6">{booking.car.name}</td>
+                                    <td className="py-3 font-semibold px-6">
+                                        <img src={booking.image} className="rounded-md h-16 w-22 object-cover mb-2" alt="" />
+                                        {booking.name}
+                                    </td>
                                     <td className="py-3 px-6">{new Date(booking.bookingDate).toLocaleDateString()}</td>
                                     <td className="py-3 px-6">{new Date(booking.dropoffDate).toLocaleDateString()}</td>
                                     <td className={`py-3 px-6`}>
                                         <span
                                             className={`px-3 rounded-full py-1 ${booking.status === 'Confirmed' && 'bg-green-50 text-green-500'
                                                 } ${booking.status === 'Pending' && 'bg-yellow-50 text-yellow-500'
-                                                } ${booking.status === 'Completed' && 'bg-blue-50-50 text-blue-500'
+                                                } ${booking.status === 'Completed' && 'bg-blue-50 text-blue-500'
                                                 } ${booking.status === 'Cancelled' && 'bg-red-50 text-red-500'
                                                 }`}
                                         >
@@ -45,8 +189,18 @@ const CommonTable = ({bookings,heading}) => {
                                         </span>
                                     </td>
                                     <td className="py-3 px-6">{booking.pickupLocation}</td>
-                                    <td className="py-3 px-6">{booking.dropoffLocation}</td>
                                     <td className="py-3 px-6 text-gray-600 font-semibold">${booking.price}</td>
+                                    {/*  Review Button */}
+                                    {booking.status === "Completed" && (
+                                        <td className="py-3 px-6 text-gray-600 font-semibold">
+                                            <button
+                                                className="flex items-center gap-1 text-blue-500 hover:underline"
+                                                onClick={() => handleAddReviewClick(booking)}
+                                            >
+                                                <FaPen className="inline-block" /> Add Review
+                                            </button>
+                                        </td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>
@@ -55,6 +209,8 @@ const CommonTable = ({bookings,heading}) => {
             ) : (
                 <p className="text-center text-gray-600">No bookings found.</p>
             )}
+
+            <ReviewModal isOpen={isModalOpen} onClose={handleCloseModal} booking={selectedBooking} />
         </div>
     );
 };

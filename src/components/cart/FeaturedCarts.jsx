@@ -4,6 +4,7 @@ import { PiSeatFill } from "react-icons/pi";
 import { TbManualGearboxFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
 const FeaturedCarts = ({ car }) => {
+  console.log(car);
   return (
     <div>
       <div className="w-full p-5 rounded-lg bg-background shadow-2xl">

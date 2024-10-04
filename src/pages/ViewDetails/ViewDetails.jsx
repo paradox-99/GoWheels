@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit,  FcList, FcViewDetails, FcSalesPerformance } from "react-icons/fc";
+import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit, FcList, FcViewDetails, FcSalesPerformance } from "react-icons/fc";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa"; // For green check icon
 
@@ -8,11 +8,34 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const ViewDetails = ({ id }) => {
+    const carId = "66f4ec9b3ba27ae46940f6b0"
     const [isLoading, setIsLoading] = useState(true);
     const [relatedData, setRelatedData] = useState([]);
+    const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/feedbackRoute/feedbacks/${carId}`);
+                setReviews(response.data);
+                setLoading(false);
+            } catch (err) {
+                setError('Failed to fetch reviews', err);
+                setLoading(false);
+            }
+        };
+
+        fetchReviews();
+    }, [carId]);
+    console.log(reviews);
+
+
     useEffect(() => {
         fetch("./featuredAndAvaiable.json")
             .then((res) => {
@@ -22,7 +45,8 @@ const ViewDetails = ({ id }) => {
                 setRelatedData(data);
             });
     }, []);
-console.log(relatedData);
+    console.log(relatedData);
+
     const data = {
         "name": "Toyota Prius",
         "rating": 4.5,
@@ -59,7 +83,7 @@ console.log(relatedData);
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 50);
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         return () => clearTimeout(timer);
     }, [id]);
     const settings = {
@@ -256,6 +280,112 @@ console.log(relatedData);
                         </ul>
                     </div>
                 </div>
+
+                {/* reviews */}
+                <div className='mt-24'>
+                    <h2 className='text-3xl font-semibold capitalize '>
+                        Reviews
+                    </h2>
+                    <br />
+                    <hr />
+                    {/* reviews */}
+                    <div className='mt-12'>
+                        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8'>
+                            {loading ? (
+                                // Skeleton loader
+                                Array.from({ length: 6 }).map((_, index) => (
+                                    <div key={index} className='p-6 bg-white animate-pulse'>
+                                        <div className="flex justify-between">
+                                            <div className="flex gap-3">
+                                                {/* Skeleton for user image */}
+                                                <div className='w-10 h-10 bg-gray-300 rounded-full'></div>
+                                                <div>
+                                                    {/* Skeleton for user name */}
+                                                    <div className='w-24 h-4 bg-gray-300 rounded-md mb-2'></div>
+                                                    {/* Skeleton for date */}
+                                                    <div className='w-16 h-3 bg-gray-200 rounded-md'></div>
+                                                </div>
+                                            </div>
+                                            {/* Skeleton for rating */}
+                                            <div className='mt-4 flex'>
+                                                {Array.from({ length: 5 }).map((_, i) => (
+                                                    <div key={i} className='w-4 h-4 bg-gray-300 rounded-md'></div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Skeleton for review text */}
+                                        <div className='mt-4 w-full h-12 bg-gray-200 rounded-md'></div>
+
+                                        {/* Skeleton for review image */}
+                                        <div className='mt-4 w-full h-40 bg-gray-300 rounded-md'></div>
+
+                                        {/* Skeleton for agency response */}
+                                        <div className='mt-4 w-3/4 h-8 bg-gray-100 rounded-md'></div>
+                                    </div>
+                                ))
+                            ) : (
+                                // Actual reviews
+                                reviews?.map((review, index) => (
+                                    <div key={index} className='p-6 bg-white'>
+                                        <div className="flex justify-between">
+                                            <div className="flex gap-3">
+                                                <img
+                                                    src={review.userImage}
+                                                    alt={review.userName}
+                                                    className='w-10 h-10 rounded-full shadow-md object-cover border border-primary'
+                                                />
+                                                <div>
+                                                    <h3 className='font-semibold text-heading'>
+                                                        {review.userName}
+                                                    </h3>
+                                                    <p className='text-sm text-gray-500'>{new Date(review.date).toDateString()}</p>
+                                                </div>
+                                            </div>
+                                            <div className='mt-4 flex'>
+                                                {Array.from({ length: 5 }, (_, i) => (
+                                                    <svg
+                                                        key={i}
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className={`w-4 h-4 ${i < review.ratings ? 'text-yellow-400' : 'text-gray-300'}`}
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                    >
+                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.897c.969 0 1.371 1.24.588 1.81l-3.96 2.881a1 1 0 00-.363 1.118l1.518 4.674c.3.921-.755 1.688-1.538 1.118l-3.96-2.881a1 1 0 00-1.176 0l-3.96 2.881c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L.845 9.102c-.783-.57-.38-1.81.588-1.81h4.897a1 1 0 00.95-.69l1.518-4.674z" />
+                                                    </svg>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <p className='mt-4 text-gray-700 text-sm leading-relaxed'>{review.review}</p>
+
+                                        {review.reviewImage && (
+                                            <div className='mt-4'>
+                                                <img
+                                                    src={review.reviewImage}
+                                                    alt='Review'
+                                                    className='w-full h-40 object-cover rounded-lg shadow-md transition-transform transform hover:scale-105 duration-300'
+                                                />
+                                            </div>
+                                        )}
+
+                                        {review.agencyResponse && (
+                                            <div className='mt-4 bg-gray-100 p-3 rounded-md shadow-inner'>
+                                                <p className='text-xs text-gray-600 italic'>
+                                                    <span className='font-semibold text-primary'>Agency Response:</span> {review.agencyResponse}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <hr />
+                {/* slider */}
                 <div className='mt-24'>
                     <h2 className='text-3xl font-semibold capitalize text-heading dark:text-heading2'>Related Cars</h2>
                     <div className='mt-12'>
