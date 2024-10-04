@@ -1,18 +1,38 @@
 import UseAuth from "../../hooks/UseAuth";
 import Avatar from "react-avatar-edit";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../api/utilities";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import loaderEliment from '../../../public/logo.gif';
+import useSignUp from "../../hooks/useSignUp";
 
 const SignUpPartFive = () => {
 
-    const { user, setLoader } = UseAuth() || {};
-    const { displayName, photoURL } = user || {};
+    const { user, loader, setLoader } = UseAuth() || {};
+    const { displayName } = user || {};
     const [preview, setPreview] = useState(null);
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
+    const { signUpStep } = useSignUp();
+    const location = useLocation();
+
+    const userImage = location.state?.userImage;
+    useEffect(() => {
+        if (signUpStep < 5) {
+            navigate('/join');
+        }
+    }, [navigate, signUpStep]);
+
+    useEffect(() => {
+        if (!userImage) {
+            navigate('/join/signUpFour');
+        }
+    }, [navigate, userImage]);
 
     const onClose = () => {
-        setPreview(photoURL);
+        setPreview(userImage);
     };
 
     const onCrop = (croppedPreview) => {
@@ -30,15 +50,29 @@ const SignUpPartFive = () => {
         }
         return new File([u8arr], filename, { type: mime });
     };
-
     const handlesubmit = async (e) => {
         e.preventDefault();
+        const email = user?.email;
+
         try {
             if (preview) {
                 setLoader(true);
                 const croppedImageFile = base64ToFile(preview, `${user?.displayName} cropped-image.jpg`);
                 const userCropImage = await imageUpload(croppedImageFile);
-                // navigate('/');
+
+                if (userCropImage) {
+                    const { data } = await axiosPublic.patch(`/usersRoute/user/${email}`, { userCropImage })
+                    if (data.modifiedCount) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Image cropped Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+                    }
+                }
             }
         }
         catch (error) {
@@ -47,7 +81,11 @@ const SignUpPartFive = () => {
         }
     }
 
-
+    if (loader) {
+        return <div className='flex justify-center'>
+            <img className='mx-auto' src={loaderEliment} alt="" />
+        </div>
+    }
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
             <div className='text-center mx-auto'>
@@ -64,7 +102,7 @@ const SignUpPartFive = () => {
                             height={300}
                             onCrop={onCrop}
                             onClose={onClose}
-                            src={user?.photoURL}
+                            src={userImage}
                         />
                     </>}
                 </div>

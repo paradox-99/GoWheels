@@ -5,8 +5,9 @@ import AvailableCart from "../../../components/cart/AvailableCart";
 
 const Available = () => {
   const [data, setData] = useState([]);
+  
   useEffect(() => {
-    fetch("./featuredAndAvaiable.json")
+    fetch("./featuredAndAvailable.json")
       .then((res) => {
         return res.json();
       })
@@ -14,7 +15,6 @@ const Available = () => {
         setData(data);
       });
   }, []);
-  console.log(data);
 
 
   return (
@@ -22,7 +22,7 @@ const Available = () => {
       <Title title={"Available Cars"}></Title>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-center justify-items-center px-4 lg:px-40">
         {data.map((car) => (
-         <AvailableCart key={car.name} car={car}></AvailableCart>
+         <AvailableCart key={car.vehicle_info.name} car={car}></AvailableCart>
         ))}
       </div>
     </div>

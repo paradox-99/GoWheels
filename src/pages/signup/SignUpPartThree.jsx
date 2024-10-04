@@ -1,11 +1,12 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { FaGoogle } from 'react-icons/fa6';
 import { MdOutlineError } from 'react-icons/md';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
-
+import loaderEliment from '../../../public/logo.gif';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useSignUp from '../../hooks/useSignUp';
 
 const SignUpPartThree = () => {
 
@@ -13,8 +14,11 @@ const SignUpPartThree = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null)
     const location = useLocation();
-    const { setUser, loader, updateUserProfile, setLoader, createUser } = UseAuth();
+    const { setUser, updateUserProfile, createUser } = UseAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
+    const { setSignUpStep, signUpStep } = useSignUp();
+    const [loading, setLoading] = useState(false);
 
     const {
         firstName,
@@ -27,9 +31,15 @@ const SignUpPartThree = () => {
         upazilla,
         localAddress,
         dateOfBirth,
-        userRole,
-        accountStatus,
     } = location.state?.info || {};
+
+    useEffect(() => {
+        if (signUpStep < 3) {
+            navigate('/join');
+        }
+    }, [navigate, signUpStep]);
+
+    console.log(firstName, lastName,email, phone, gender, division, district, upazilla)
 
     const handleJoin = async (e) => {
         e.preventDefault()
@@ -37,14 +47,14 @@ const SignUpPartThree = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
         const check = form.yes.checked;
-        const userName = `${firstName} ${lastName}`;
+        const fullName = `${firstName} ${lastName}`;
         const userEmail = email;
         const userAddress = { division, district, upazilla };
         const image = null
-       
 
         const userInfo = {
-            userName,
+            firstName,
+            lastName,
             userEmail,
             phone,
             gender,
@@ -52,23 +62,21 @@ const SignUpPartThree = () => {
             userAddress,
             localAddress,
             image,
-            userRole,
-            accountStatus,
         }
 
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         setErrorMessage('');
 
         if (password.length < 6) {
-            setErrorMessage("your password should be at least 6 character!")
+            setErrorMessage("Your password should be at least 6 character!")
             return
         }
         if (!regex.test(password)) {
-            setErrorMessage('your password must have at least one capital letter, one small letter, one number and one special charachter')
+            setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
             return
         }
         if (password !== confirmPassword) {
-            setErrorMessage('passowrd and confirm password didn`t match!!')
+            setErrorMessage('password and confirm password didn`t match!!')
             return
         }
         else if (!check) {
@@ -77,32 +85,40 @@ const SignUpPartThree = () => {
         }
 
         try {
-            setLoader(true);
-        
+            setLoading(true);
             const result = await createUser(userEmail, password);
             setUser(result.user)
-            await updateUserProfile(userName, image)
+            await updateUserProfile(fullName, image);
+            const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
 
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Successfully joined",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate('/join/signUpFour', {state: {userInfo}});
+            if (result.user && data.insertedId) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully joined",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setSignUpStep(4);
+                navigate('/join/signUpFour', { state: { userInfo } });
+            }
         }
         catch (error) {
             console.log(error)
-            setLoader(false);
+            setLoading(false);
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: { error },
+                text: error.message,
                 footer: '<a href="#">Why do I have this issue?</a>'
             });
         }
+    }
 
+    if (loading) {
+        return <div className='flex justify-center'>
+            <img className='mx-auto' src={loaderEliment} alt="" />
+        </div>
     }
 
     return (
@@ -119,7 +135,7 @@ const SignUpPartThree = () => {
                             type={showPassword ? "text" : "password"}
                             name="password"
                             id="password"
-                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary' 
+                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-3 text-secondary'
                             placeholder='Enter your password'
                             required />
                         <span

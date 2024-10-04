@@ -1,10 +1,13 @@
-import axios from "axios";
-import { useRef, useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import Swal from "sweetalert2";
 import { imageUpload } from "../../api/utilities";
+import loaderElement from '../../../public/logo.gif';
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useSignUp from "../../hooks/useSignUp";
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
@@ -12,12 +15,20 @@ const SignUpPartFour = () => {
     const inputRef = useRef();
     const [dragActive, setDragActive] = useState(false);
     const [imageFile, setImageFile] = useState(null);
-    const navigateNext = useNavigate();
-    const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth();
+    const navigate = useNavigate();
+    const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth() || {};
     const location = useLocation();
-    const { userName } = location.state?.userInfo || {};
+    const { firstName, lastName } = location.state?.userInfo || {};
+    const axiosPublic = useAxiosPublic();
+    const { setSignUpStep, signUpStep } = useSignUp();
 
-    const {displayName} = user || {};
+    const { displayName } = user || {};
+
+    useEffect(() => {
+        if (signUpStep < 4) {
+            navigate('/join');
+        }
+    }, [navigate, signUpStep]);
 
     const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
@@ -49,24 +60,30 @@ const SignUpPartFour = () => {
 
     const handleInfo = async (e) => {
         e.preventDefault();
-        const fullName = userName;
+        const fullName = `${firstName} ${lastName}`;
         const image = imageFile;
+        const email = user?.email;
         try {
             setLoader(true)
             const userImage = await imageUpload(image)
 
             if (userImage) {
-                await updateUserProfile(fullName, userImage)
-                setUser({...user, displayName: fullName, photoURL: userImage })
+                await updateUserProfile(fullName, userImage);
+                setUser({ ...user, displayName: fullName, photoURL: userImage });
 
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Image Uploaded Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigateNext('/join/signUpFive', { state: { userImage } })
+                const { data } = await axiosPublic.patch(`/usersRoute/users/${email}`, { image: userImage });
+                if (data.modifiedCount) {
+                    setLoader(false)
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Image Uploaded Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setSignUpStep(5)
+                    navigate('/join/signUpFive', { state: { userImage } });
+                }
             }
         } catch (error) {
             setLoader(false)
@@ -79,6 +96,12 @@ const SignUpPartFour = () => {
             });
         }
     };
+
+    if (loader) {
+        return <div className='flex justify-center'>
+            <img className='mx-auto' src={loaderElement} alt="" />
+        </div>
+    }
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
@@ -109,9 +132,11 @@ const SignUpPartFour = () => {
                                     {imagePreview ? "" : <h1>Drag and Drop</h1>}
                                 </div>
                             </div>
-                            <div className="mt-2">
-                                {imagePreview ? <h1>{imageText}</h1> : <h1>Or</h1>}
-                            </div>
+                            {
+                                imagePreview && <div className="mt-2">
+                                    <h1>{imageText.length > 15 ? imageText.split('.')[0].slice(0, 15) + '...' + imageText.split('.')[1] : imageText}</h1>
+                                </div>
+                            }
                             <div className="lg:mt-3">
                                 <input
                                     onChange={e => handleImage(e.target.files[0])}
@@ -125,7 +150,7 @@ const SignUpPartFour = () => {
                                 <button
                                     onClick={() => inputRef.current.click()}
                                     type="button"
-                                    className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'
+                                    className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary'
                                 >
                                     Browse from your device
                                 </button>
@@ -138,7 +163,7 @@ const SignUpPartFour = () => {
                         <div>
                             <Link
                                 type="button"
-                                className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'
+                                className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer'
                                 to="/"
                             >
                                 Skip
@@ -148,7 +173,7 @@ const SignUpPartFour = () => {
                             <button
                                 disabled={imagePreview === null}
                                 type="submit"
-                                className={`bg-primary px-3 py-1 rounded-xl text-white font-semibold ${imagePreview === null ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+                                className={`bg-primary px-3 py-1 rounded text-white font-semibold ${imagePreview === null ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                                 Proceed
                             </button>
                         </div>

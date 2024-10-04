@@ -1,0 +1,74 @@
+[
+  {
+    "vehicle_info": {
+      "name": "Toyota Prius",
+      "rating": 4.5,
+      "brand": "Toyota",
+      "fuel": "Hybrid",
+      "seat": 5,
+      "gear": "Automatic",
+      "price": 50,
+      "photo": "https://i.ibb.co.com/qCZsxR7/2022-toyota-prius-xle-nightshade-exterior-front-quarter.jpg"
+    }
+  },
+  {
+    "vehicle_info": {
+      "name": "Honda Civic",
+      "rating": 4.7,
+      "brand": "Honda",
+      "fuel": "Petrol",
+      "seat": 5,
+      "gear": "Manual",
+      "price": 45,
+      "photo": "https://i.ibb.co.com/jfC8FqH/24-honda-civic-ext1.jpg"
+    }
+  },
+  {
+    "vehicle_info": {
+      "name": "Ford Mustang",
+      "rating": 4.9,
+      "brand": "Ford",
+      "fuel": "Petrol",
+      "seat": 4,
+      "gear": "Automatic",
+      "price": 120,
+      "photo": "https://i.ibb.co.com/Px92Jst/AA1p3ixr.jpg"
+    }
+  },
+  {
+    "vehicle_info": {
+      "name": "Tesla Model 3",
+      "rating": 4.8,
+      "brand": "Tesla",
+      "fuel": "Electric",
+      "seat": 5,
+      "gear": "Automatic",
+      "price": 90,
+      "photo": "https://i.ibb.co.com/SJgJQsb/Tesla-Model-3-body-kit-performance-full-61.jpg"
+    }
+  },
+  {
+    "vehicle_info": {
+      "name": "BMW X5",
+      "rating": 4.6,
+      "brand": "BMW",
+      "fuel": "Diesel",
+      "seat": 7,
+      "gear": "Automatic",
+      "price": 100,
+      "photo": "https://i.ibb.co.com/sytsZ5D/X5-3.png"
+    }
+  },
+  {
+    "vehicle_info": {
+      "name": "Audi A4",
+      "rating": 4.5,
+      "brand": "Audi",
+      "fuel": "Petrol",
+      "seat": 5,
+      "gear": "Automatic",
+      "price": 70,
+      "photo": "https://i.ibb.co.com/dBrRys7/2023-audi-a4-dynamic-black-sedan-01.jpg"
+    }
+  }
+]

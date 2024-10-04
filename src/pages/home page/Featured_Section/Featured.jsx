@@ -4,8 +4,9 @@ import FeaturedCarts from "../../../components/cart/FeaturedCarts";
 
 const Featured = () => {
   const [data, setData] = useState([]);
+  
   useEffect(() => {
-    fetch("./featuredAndAvaiable.json")
+    fetch("./featuredAndAvailable.json")
       .then((res) => {
         return res.json();
       })
@@ -13,14 +14,14 @@ const Featured = () => {
         setData(data);
       });
   }, []);
-  console.log(data);
+
   return (
-    <div className="pt-20 lg:pt-32 bg-background ">
+    <div className="pt-20 lg:pt-32 ">
       <Title title={"Featured Cars"}></Title>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-center justify-items-center">
         {data.map((car) => (
-          <FeaturedCarts key={car.name} car={car}></FeaturedCarts>
+          <FeaturedCarts key={car.id} car={car}></FeaturedCarts>
         ))}
       </div>
     </div>
