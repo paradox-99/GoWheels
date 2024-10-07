@@ -10,12 +10,14 @@ import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { GrUserAdmin } from "react-icons/gr";
+import useDesignation from "../hooks/useDesignation";
 
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
   const {userInfo} = useDesignation();
+  console.log(userInfo);
   
   const handleLogout = async () => {
     await logout();
