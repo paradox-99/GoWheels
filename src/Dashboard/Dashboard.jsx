@@ -5,18 +5,18 @@ import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
 import { IoIosPeople } from "react-icons/io";
-import useDesignation from "../hooks/useDesignation";
+// import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { GrUserAdmin } from "react-icons/gr";
-
 
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
   const {userInfo} = useDesignation();
+  
   const handleLogout = async () => {
     await logout();
     navigate("/join")
@@ -65,11 +65,16 @@ const Dashboard = () => {
           <ul className="lg:static bg-white p-5 min-h-screen w-[95%] max-w-[300px]">
             <div className="flex justify-between items-center">
               <div className="px-6">
-                <img
-                  src={userInfo?.photo}
+                {userInfo?.image ? (<img
+                  src={userInfo?.image}
                   className="size-[150px] object-cover rounded-full border-4 border-primary"
-                  alt="User Avatar"
-                />
+                  alt={userInfo.firstName}
+                />) : ( <img
+                  src={userInfo?.image}
+                  className="size-[150px] object-cover rounded-full border-4 border-primary"
+                  referrerPolicy="no-referrer" 
+                  alt={userInfo.firstName}
+                />)}
               </div>
             </div>
             <div className="px-2 space-y-2 pt-8 pb-4">
@@ -97,8 +102,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="w-[80%] h-screen absolute right-0">
-          <Outlet />
-        </div>
+        <Outlet />
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
 tr:nth-child(2n){
-    background-color: rgb(69, 67, 67);
+    background-color: rgb(79, 72, 72);
+    color: white;
 }

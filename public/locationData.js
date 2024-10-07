@@ -1,3 +1,15 @@
+import toyoto_car from "/src/assets/topBrands/toyoto_car.png"
+import toyoto_logo from "/src/assets/topBrands/toyoto_logo.png"
+import honda_car from "/src/assets/topBrands/honda_car.png"
+import honda_logo from "/src/assets/topBrands/honda_logo.png"
+import nissan_car from "/src/assets/topBrands/nissan_car.png"
+import nissan_logo from "/src/assets/topBrands/nissan_logo.png"
+import suzuki_car from "/src/assets/topBrands/suzuki_car.png"
+import suzuki_logo from "/src/assets/topBrands/suzuki_logo.png"
+
+
+
+
 export const locationData =
 {
     "Dhaka": {
@@ -86,3 +98,27 @@ export const keyArea = {
     "Dhaka North": ["Uttara", "Mirpur", "Gulshan", "Banani", "Baridhara", "Mohakhali", "Bashundhara", "Badda", "Khilkhet", "Pallabi", "Tejgaon", "Kafrul", "Kalachandpur"],
     "Dhaka South": ["Dhanmondi", "Jatrabari", "Motijheel", "Lalbagh", "Azimpur", "Paltan", "Khilgaon", "Wari", "Gendaria", "Shahbagh", "Sutrapur", "Hazaribagh", "New Market"]
 }
+
+
+export const top_brands = [
+    {
+        name: "Toyota",
+        image: toyoto_car,
+        logo: toyoto_logo
+    },
+    {
+        name: "Honda",
+        image: honda_car,
+        logo: honda_logo
+    },
+    {
+        name: "Nissan",
+        image: nissan_car,
+        logo: nissan_logo
+    },
+    {
+        name: "Suzuki",
+        image: suzuki_car,
+        logo: suzuki_logo
+    }
+]

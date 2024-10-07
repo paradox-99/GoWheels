@@ -6,7 +6,7 @@ const Featured = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    fetch("../Featured_Section/Featured.jsx")
+    fetch("./featuredAndAvailable.json")
       .then((res) => {
         return res.json();
       })
@@ -21,7 +21,7 @@ const Featured = () => {
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-center justify-items-center">
         {data.map((car) => (
-          <FeaturedCarts key={car.name} car={car}></FeaturedCarts>
+          <FeaturedCarts key={car.id} car={car}></FeaturedCarts>
         ))}
       </div>
     </div>

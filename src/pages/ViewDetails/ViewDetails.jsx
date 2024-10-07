@@ -6,16 +6,71 @@ import { FaCheckCircle } from "react-icons/fa"; // For green check icon
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useDesignation from "../../hooks/useDesignation";
+import axios from "axios";
+
 
 const ViewDetails = () => {
 
+    const { userInfo } = useDesignation();
     const { id } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
     const [relatedData, setRelatedData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     const axiosPublic = useAxiosPublic();
+    const location = useLocation();
+    const { area, district, division, fromDate, fromTime, untilDate, untilTime, upazilla } = location.state?.carBookingInfo || {};
+    const navigate = useNavigate();
+
+    const carId = "66f4ec9b3ba27ae46940f6b0"
+    
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/feedbackRoute/feedbacks/${carId}`);
+                setReviews(response.data);
+                setLoading(false);
+            } catch (err) {
+                setError('Failed to fetch reviews', err);
+                setLoading(false);
+            }
+        };
+
+        fetchReviews();
+    }, [carId]);
+    console.log(reviews);
+    const { data } = useQuery({
+        queryKey: ['carData'],
+        queryFn: async () => {
+            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`)
+            return response.data;
+        }
+    })
+
+    const handleRent = (e) => {
+        e.preventDefault();
+        const bookingInformation = {
+            area,
+            district,
+            division,
+            fromDate,
+            fromTime,
+            untilDate,
+            untilTime,
+            upazilla,
+            data,
+            userInfo
+        }
+
+        navigate('/bookingInfo', {state: bookingInformation})
+    }
 
     useEffect(() => {
         fetch("../../../public/featuredAndAvailable.json")
@@ -27,25 +82,14 @@ const ViewDetails = () => {
             });
     }, []);
 
-    const { data } = useQuery({
-        queryKey: ['carData'],
-        queryFn: async () => {
-            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`)
-            return response.data;
-        }
-    })
 
     const add_features = data?.additional_features;
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 50);
-        window.scrollTo(0, 0);
-        console.log("loading");
-
+        // window.scrollTo(0, 0);
         return () => clearTimeout(timer);
     }, [id]);
-
-    console.log(relatedData);
 
     const settings = {
         dots: true,
@@ -102,6 +146,7 @@ const ViewDetails = () => {
             },
         ],
     };
+
     return (
         <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto">
             {/* Skeleton Loader */}
@@ -118,10 +163,14 @@ const ViewDetails = () => {
                             <img className="lg:w-[580px]" src={data?.vehicle_info.photo} alt={data?.vehicle_info.name} />
                         </div>
                         <div className="flex flex-row-reverse mt-12 relative">
-                            <button className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button bg-primary text-white hover:text-black px-4 duration-700 md:py-3">
+                            <button
+                                onClick={handleRent}
+                                className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button bg-primary text-white hover:text-black px-4 duration-700 md:py-3">
                                 Rent Now
                             </button>
-                            <button onClick={() => toast("added to Favorites")} className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
+                            <button
+                                onClick={() => toast("added to Favorites")}
+                                className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
                                 Add to Favorites
                             </button>
                         </div>
@@ -246,6 +295,112 @@ const ViewDetails = () => {
                         </ul>
                     </div>
                 </div>
+
+                {/* reviews */}
+                <div className='mt-24'>
+                    <h2 className='text-3xl font-semibold capitalize '>
+                        Reviews
+                    </h2>
+                    <br />
+                    <hr />
+                    {/* reviews */}
+                    <div className='mt-12'>
+                        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8'>
+                            {loading ? (
+                                // Skeleton loader
+                                Array.from({ length: 6 }).map((_, index) => (
+                                    <div key={index} className='p-6 bg-white animate-pulse'>
+                                        <div className="flex justify-between">
+                                            <div className="flex gap-3">
+                                                {/* Skeleton for user image */}
+                                                <div className='w-10 h-10 bg-gray-300 rounded-full'></div>
+                                                <div>
+                                                    {/* Skeleton for user name */}
+                                                    <div className='w-24 h-4 bg-gray-300 rounded-md mb-2'></div>
+                                                    {/* Skeleton for date */}
+                                                    <div className='w-16 h-3 bg-gray-200 rounded-md'></div>
+                                                </div>
+                                            </div>
+                                            {/* Skeleton for rating */}
+                                            <div className='mt-4 flex'>
+                                                {Array.from({ length: 5 }).map((_, i) => (
+                                                    <div key={i} className='w-4 h-4 bg-gray-300 rounded-md'></div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Skeleton for review text */}
+                                        <div className='mt-4 w-full h-12 bg-gray-200 rounded-md'></div>
+
+                                        {/* Skeleton for review image */}
+                                        <div className='mt-4 w-full h-40 bg-gray-300 rounded-md'></div>
+
+                                        {/* Skeleton for agency response */}
+                                        <div className='mt-4 w-3/4 h-8 bg-gray-100 rounded-md'></div>
+                                    </div>
+                                ))
+                            ) : (
+                                // Actual reviews
+                                reviews?.map((review, index) => (
+                                    <div key={index} className='p-6 bg-white'>
+                                        <div className="flex justify-between">
+                                            <div className="flex gap-3">
+                                                <img
+                                                    src={review.userImage}
+                                                    alt={review.userName}
+                                                    className='w-10 h-10 rounded-full shadow-md object-cover border border-primary'
+                                                />
+                                                <div>
+                                                    <h3 className='font-semibold text-heading'>
+                                                        {review.userName}
+                                                    </h3>
+                                                    <p className='text-sm text-gray-500'>{new Date(review.date).toDateString()}</p>
+                                                </div>
+                                            </div>
+                                            <div className='mt-4 flex'>
+                                                {Array.from({ length: 5 }, (_, i) => (
+                                                    <svg
+                                                        key={i}
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className={`w-4 h-4 ${i < review.ratings ? 'text-yellow-400' : 'text-gray-300'}`}
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                    >
+                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.897c.969 0 1.371 1.24.588 1.81l-3.96 2.881a1 1 0 00-.363 1.118l1.518 4.674c.3.921-.755 1.688-1.538 1.118l-3.96-2.881a1 1 0 00-1.176 0l-3.96 2.881c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L.845 9.102c-.783-.57-.38-1.81.588-1.81h4.897a1 1 0 00.95-.69l1.518-4.674z" />
+                                                    </svg>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <p className='mt-4 text-gray-700 text-sm leading-relaxed'>{review.review}</p>
+
+                                        {review.reviewImage && (
+                                            <div className='mt-4'>
+                                                <img
+                                                    src={review.reviewImage}
+                                                    alt='Review'
+                                                    className='w-full h-40 object-cover rounded-lg shadow-md transition-transform transform hover:scale-105 duration-300'
+                                                />
+                                            </div>
+                                        )}
+
+                                        {review.agencyResponse && (
+                                            <div className='mt-4 bg-gray-100 p-3 rounded-md shadow-inner'>
+                                                <p className='text-xs text-gray-600 italic'>
+                                                    <span className='font-semibold text-primary'>Agency Response:</span> {review.agencyResponse}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <hr />
+                {/* slider */}
                 <div className='mt-24'>
                     <h2 className='text-3xl font-semibold capitalize text-heading dark:text-heading2'>Related Cars</h2>
                     <div className='mt-12'>
@@ -256,12 +411,12 @@ const ViewDetails = () => {
                                         <div key={index} className='relative '>
                                             <Link to={`/view-details`}>
                                                 <div className='h-[290px]'>
-                                                    <span className='absolute text-white text-[12px] left-[15px] top-3'><span>{car.brand}</span> Car </span>
-                                                    <img className='h-[250px] w-[150px] md:w-[180px] object-cover' src={car.image} alt={`Profile Photo of ${car.name}`} />
+                                                    <span className='absolute text-white text-[12px] left-[15px] top-3'><span>{car.vehicle_info.brand}</span> Car </span>
+                                                    <img className='h-[250px] w-[150px] md:w-[180px] object-cover' src={car.vehicle_info.photo} alt={`Profile Photo of ${car.vehicle_info.name}`} />
                                                 </div>
                                                 <div className='bg-blue-200 text-[12px] md:text-[14px] shadow-xl z-10 left-[10px] rounded-t-md bottom-0 absolute p-3 md:w-[160px] w-[130px]'>
-                                                    <p className=''>{car.name}</p>
-                                                    <p className=''>Price : <span className=''>${car.price}</span></p>
+                                                    <p className=''>{car.vehicle_info.name}</p>
+                                                    <p className=''>Price : <span className=''>${car.vehicle_info.price}</span></p>
                                                 </div>
                                             </Link>
                                         </div>
