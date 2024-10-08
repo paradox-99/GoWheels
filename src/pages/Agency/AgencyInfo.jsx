@@ -6,9 +6,10 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 
 const AgencyInfo = () => {
-    const [agencyId, setAgencyId] = useState(1); // Start from 1
+    const [agencyId, setAgencyId] = useState(1); 
 
     const [selectedDivision, setSelectedDivision] = useState('');
+    // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
@@ -17,8 +18,8 @@ const AgencyInfo = () => {
     const handleDivisionChange = (e) => {
         const division = e.target.value;
         setSelectedDivision(division);
-        setSelectedDistrict(''); // Reset district on division change
-        setUpazillas([]); // Reset upazillas on division change
+        setSelectedDistrict(''); 
+        setUpazillas([]); 
         setDistricts(Object.keys(locationData[division] || {}));
     };
 
@@ -46,8 +47,6 @@ const AgencyInfo = () => {
         const businessRegNumber= form.regNumber.value;
         const taxIdentificationNumber = form.identificationNumber.value;
         const agency_id = `AG${agencyId}`;
-
-        // Increment agencyId for the next submission
         setAgencyId(agencyId + 1);
         
         const agencyAddress = {
@@ -163,24 +162,6 @@ const AgencyInfo = () => {
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Number of vehicles'
                                     required />
-                                {/* <div className='flex justify-between items-center'>
-                                    <select
-                                        name="gender"
-                                        id="gender"
-                                        className='outline-none w-[45%] rounded py-1 lg:py-2 px-2 text-secondary'
-                                        required>
-                                        <option defaultChecked className='text-gray-400'>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="others">Others</option>
-                                    </select>
-                                    <input
-                                        type="date"
-                                        name="birthDay"
-                                        id="birthDay"
-                                        placeholder='Birth date'
-                                        className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary' />
-                                </div> */}
                                 <h3 className='text-lg font-semibold text-white'>Address:</h3>
                                 <div className='flex justify-between'>
                                     <select name="division" onChange={handleDivisionChange}
