@@ -5,7 +5,7 @@ import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
 import { IoIosPeople } from "react-icons/io";
-// import useDesignation from "../hooks/useDesignation";
+import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
