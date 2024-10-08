@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { locationData } from "../../../public/locationData";
 import { useState } from "react";
 import background from '../../../public/asset/background.jpg'
@@ -13,6 +13,9 @@ const AgencyInfo = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
+    const location = useLocation()
+    const agencyEmail = location.state?.email;
+    // console.log(agencyEmail)
     const navigate = useNavigate();
 
     const handleDivisionChange = (e) => {
@@ -59,7 +62,7 @@ const AgencyInfo = () => {
 
 
         const info = { 
-            agencyName, agencyAddress, businessRegNumber, 
+            agencyName, agencyEmail, agencyAddress, businessRegNumber, 
             taxIdentificationNumber, 
             transportLicenseNumber,
             insuranceLicenseNumber,
@@ -86,7 +89,7 @@ const AgencyInfo = () => {
         },
         onSuccess: () => {
             console.log('data saved successfully')
-            navigate('/join/addCarInfo');
+            navigate('/join/addCarInfo' ,{ state: { agencyEmail } });
             // toast.success(' data added successfully')
             
 
@@ -111,13 +114,21 @@ const AgencyInfo = () => {
                         <form
                             onSubmit={handleAgency}
                             className='font-nunito'>
-                            <div className='flex gap-10'>
+                            <div className='flex gap-5'>
                                 <input
                                     type="text"
                                     name="name"
                                     id="firstName"
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Agency Name'
+                                    required />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    readOnly
+                                    className='outline-none placeholder-gray-900  w-full rounded py-1 lg:py-2 px-2 text-red-600'
+                                    placeholder={agencyEmail}
                                     required />
 
                                 <input
@@ -126,6 +137,7 @@ const AgencyInfo = () => {
                                     id="transportNumber"
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Transport Lincence Number'
+                                    onInput={(e) => e.target.value = e.target.value.toUpperCase()}
                                     required />
 
                             </div>
