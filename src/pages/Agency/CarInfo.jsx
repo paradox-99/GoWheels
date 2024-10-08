@@ -1,12 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const CarInfo = () => {
     const [formCount, setFormCount] = useState(0);
     const [formData, setFormData] = useState([]);
+    const navigate = useNavigate()
     const [additionalInfo, setAdditionalInfo] = useState({
         air_conditioning: true,
         gps: true,
@@ -82,7 +83,7 @@ const CarInfo = () => {
         onSuccess: () => {
             console.log('data saved successfully')
             // toast.success(' data added successfully')
-            // navigate('/join/agencyInfo');
+            navigate('/dashboard/agency-home');
 
 
         }
