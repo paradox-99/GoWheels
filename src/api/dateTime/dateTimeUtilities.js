@@ -39,6 +39,7 @@ export const calculateMinUntilTime = (selectedTimeValue) => {
 
     const minHours = String(fromTimeObj.getHours()).padStart(2, "0");
     const minMinutes = String(fromTimeObj.getMinutes()).padStart(2, "0");
+    
     return `${minHours}:${minMinutes}`;
 };
 
@@ -47,7 +48,9 @@ export const calculateHoursDifference = (fromDate, fromTime, untilDate, untilTim
     const untilDateTime = new Date(`${untilDate}T${untilTime}`);
 
     const timeDiff = (untilDateTime - fromDateTime) / (1000 * 60 * 60);
-    return timeDiff
+    const absoluteTimeDiff = Math.ceil(timeDiff);
+
+    return absoluteTimeDiff
 }
 
 export const calculateTimeDifference = (startTime, endTime) => {

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
 
 
 const PaymentPage = () => {
     const location = useLocation();
     const [totalPayCost, setTotalPayCost] = useState(0);
-
-    const paymentInfo = location.state;
 
     const {
         brand,
@@ -35,32 +34,19 @@ const PaymentPage = () => {
         district,
         upazila,
         area
-    } = paymentInfo || {}
+    } = location.state?.paymentInfo || {};
 
-    const startDate = fromDate;
-    const startTime = formTime;
-    const endDate = toDate;
-    const endTime = toTime;
-
-    const startDateTime = new Date(`${startDate}T${startTime}:00`);
-    const endDateTime = new Date(`${endDate}T${endTime}:00`);
-
-    const timeDifference = endDateTime - startDateTime;
-    const millisecondsInADay = 1000 * 60 * 60 * 24;
-    let totalDays = timeDifference / millisecondsInADay;
-    totalDays = Math.ceil(totalDays);
-
-
+   const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime)
 
     useEffect(() => {
-        const totalCost = totalDays * rental_price;
-        setTotalPayCost(totalCost)
-    }, [rental_price, totalDays])
-    console.log(totalPayCost)
+        const totalCost = totalHours * rental_price / 24;
+        const absoluteTotalCost = Math.ceil(totalCost);
+        setTotalPayCost(absoluteTotalCost)
+    }, [rental_price, totalHours])
 
     return (
         <div>
-            <h1>{brand}</h1>
+            <h1>brand</h1>
             <h1>You have to pay about total {totalPayCost}$</h1>
             <div className="space-x-3">
                 <button className='bg-primary text-white rounded py-1 px-2 lg:px-2 font-semibold'>Back to home</button>
