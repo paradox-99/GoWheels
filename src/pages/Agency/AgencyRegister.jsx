@@ -12,12 +12,15 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const AgencyRegister = () => {
     const { createUser, updateUserProfile } = UseAuth() || {}
     const [selectedDivision, setSelectedDivision] = useState('');
+    const [email, setUserEmail] = useState('')
+    // const [errorMessage, setErrorMessage] = useState(null)
     // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic()
+    // console.log(' use email :' ,email)
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -36,13 +39,13 @@ const AgencyRegister = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async (ownerData) => {
-            const { data } = await axiosPublic .post(`http://localhost:3000/api/usersRoute/ownerInfo`, ownerData)
+            const { data } = await axiosPublic.post(`http://localhost:3000/api/usersRoute/ownerInfo`, ownerData)
             return data
         },
         onSuccess: () => {
             console.log('data saved successfully')
             // toast.success(' data added successfully')
-            navigate('/join/agencyInfo');
+            navigate('/join/agencyInfo', { state: { email } });
 
 
         }
@@ -92,8 +95,9 @@ const AgencyRegister = () => {
         const dateOfBirth = e.target.birthDay.value;
         const userRole = "agency"
         const accountStatus = "not verified"
+        setUserEmail(userEmail)
 
-        const imageFile = form.photo.files[0]; 
+        const imageFile = form.photo.files[0];
         // console.log(imageFile.name)
         const image = await handleImageUpload({ target: { files: [imageFile] } });
 
@@ -107,9 +111,21 @@ const AgencyRegister = () => {
         const ownerInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, userRole, accountStatus };
         console.log(ownerInfo)
 
+        // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
+        // setErrorMessage('');
+
+        // if (password.length < 6) {
+        //     setErrorMessage("Your password should be at least 6 character!")
+        //     return
+        // }
+        // if (!regex.test(password)) {
+        //     setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
+        //     return
+        // }
+
 
         try {
-            const userCreate = await createUser(userEmail,password)
+            const userCreate = await createUser(userEmail, password)
             console.log(userCreate)
 
 
@@ -159,20 +175,25 @@ const AgencyRegister = () => {
 
                         <div className='mt-3 relative space-y-3'>
                             <div className="flex justify-between gap-10 items-center">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
-                                    placeholder='Email'
-                                    required />
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
-                                    placeholder='Password'
-                                    required />
+                                <div className="w-full">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                                        placeholder='Email'
+                                        required />
+                                </div>
+                                <div className="w-full">
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                                        placeholder='Password'
+                                        required />
+                                    {/* {errorMessage && <h1 className='text-red-500 text-xs  p-2 rounded-lg flex items-center'>{errorMessage}</h1>} */}
+                                </div>
                             </div>
                             <div className='space-y-4'>
                                 <input
