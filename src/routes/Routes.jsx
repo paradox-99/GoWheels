@@ -12,7 +12,6 @@ import CarInfo from "../pages/Agency/CarInfo";
 import { SignUpRoutes } from "./SignUpRoutes";
 import ShowBrandCars from "../pages/Filter/ShowBrandCars";
 import BookingInfo from "../pages/bookingInfo/BookingInfo";
-import PaymentPage from "../pages/paymentPage/PaymentPage";
 import { DashboardRoutes } from "./DashboardRoutes";
 
 const router = createBrowserRouter([
@@ -43,10 +42,6 @@ const router = createBrowserRouter([
             {
                 path: "/bookingInfo",
                 element: <BookingInfo></BookingInfo>
-            },
-            {
-                path: '/payment-page',
-                element: <PaymentPage></PaymentPage>
             },
             ...SignUpRoutes,
             {

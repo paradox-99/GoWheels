@@ -10,7 +10,6 @@ import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { GrUserAdmin } from "react-icons/gr";
-import useDesignation from "../hooks/useDesignation";
 
 const Dashboard = () => {
 
