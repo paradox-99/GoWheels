@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { FaPen, FaStar } from 'react-icons/fa'; 
+import useDesignation from '../../hooks/useDesignation';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 const ReviewModal = ({ isOpen, onClose, booking }) => {
+    const { userInfo } = useDesignation();
+    console.log(userInfo);
     const [rating, setRating] = useState(0);  
     const [reviewText, setReviewText] = useState('');  
     const [imageUrl, setImageUrl] = useState('');  
@@ -21,13 +26,33 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
         setImageUrl(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //TODO : Submit the rating, reviewText, and imageUrl to the server 
-        console.log("Review:", reviewText, "Rating:", rating, "Image URL:", imageUrl);
-        onClose(); 
-    };
 
+        const reviewData = {
+            userId: userInfo?._id,
+            carId: booking._id,
+            userName: userInfo?.firstName + " " + userInfo?.lastName,
+            userImage: userInfo?.image,
+            review: reviewText,
+            rating: rating,
+            agencyResponse: "",
+        };
+
+        try {
+            console.log(reviewData);
+            const response = await axios.post("http://localhost:3000/api/feedbackRoute/feedback", reviewData);
+
+            if (response.status === 200) {
+                toast.success("Feedback Placed successfully")
+                onClose();
+            } else {
+                console.error("Error submitting review:", response.data.message);
+            }
+        } catch (error) {
+            console.error("Error submitting review:", error);
+        }
+    };
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-black bg-opacity-50 absolute inset-0"></div>
@@ -151,7 +176,16 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
     if (error) {
         return <p className="text-center text-red-600">{error}</p>;
     }
+    if (bookings.message) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="text-center text-xl text-gray-500">
+                    {bookings.message}
+                </p>
+            </div>
+        );
 
+    }
     return (
         <div className="container mx-auto p-6">
             <h2 className="text-3xl font-semibold mb-6">{heading}</h2>
