@@ -15,7 +15,7 @@ const Navbar = () => {
     const { userInfo } = useDesignation();
 
     const handleScroll = () => {
-        if (window.scrollY > 100) {
+        if (window.scrollY > 50) {
             setScroll(true);
         } else {
             setScroll(false);

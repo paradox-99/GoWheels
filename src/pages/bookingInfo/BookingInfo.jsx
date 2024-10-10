@@ -1,12 +1,12 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import useDesignation from "../../hooks/useDesignation";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import { FaCarSide } from "react-icons/fa";
-import { MdAirlineSeatReclineNormal } from "react-icons/md";
+import { MdAirlineSeatReclineNormal, MdBrowserUpdated } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 import CarData from "../../components/bookingComponent/CarData";
 import AgencyData from "../../components/bookingComponent/AgencyData";
@@ -18,6 +18,7 @@ import loader from '../../../public/logo.gif'
 
 const BookingInfo = () => {
     const location = useLocation();
+    const { id } = useParams()
     const bookingInformation = location.state;
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
@@ -40,7 +41,8 @@ const BookingInfo = () => {
     const division = bookingInformation?.division;
     const district = bookingInformation?.district;
     const upazila = bookingInformation?.upazilla;
-    const area = bookingInformation?.area
+    const area = bookingInformation?.area;
+    const carId = bookingInformation?.data?._id;
 
     const handleChange = (e) => {
         setLoading(true);
@@ -79,15 +81,7 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            carData: {
-                brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date,
-            },
-            userData: {
-                firstName, lastName, userEmail, phone, nid, drivingLicense,
-            },
-            bookingData: {
-                fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, totalPayment,
-            },
+            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, carId
         }
         console.log(paymentInfo)
     }
@@ -127,27 +121,31 @@ const BookingInfo = () => {
                                 className="mt-5">
                                 <div className="flex flex-col items-center">
                                     <p className='text-lg font-semibold font-merriweather text-primary'> Please Select a method</p>
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                            onChange={handleChange}
-                                            type="radio"
-                                            name="dirving-method"
-                                            id="self-driving"
-                                            value="self-driving"
-                                            checked={method === 'self-driving'}
-                                        />
-                                        <label>Self Driving</label><br />
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                            onChange={handleChange}
-                                            type="radio"
-                                            name="dirving-method"
-                                            id="driver"
-                                            value="driver"
-                                            checked={method === 'driver'}
-                                        />
-                                        <label>Need Driver</label><br />
+                                    <div className="flex flex-col">
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                className="appearance-none w-4 h-4 border border-primary rounded-full checked:bg-primary focus:outline-none focus:ring-primary"
+                                                onChange={handleChange}
+                                                type="radio"
+                                                name="dirving-method"
+                                                id="self-driving"
+                                                value="self-driving"
+                                                checked={method === 'self-driving'}
+                                            />
+                                            <label>Self Driving</label><br />
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                className="appearance-none w-4 h-4 border border-primary rounded-full checked:bg-primary focus:outline-none focus:ring-primary"
+                                                onChange={handleChange}
+                                                type="radio"
+                                                name="dirving-method"
+                                                id="driver"
+                                                value="driver"
+                                                checked={method === 'driver'}
+                                            />
+                                            <label className="cursor-pointer">Need Driver</label><br />
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -155,11 +153,15 @@ const BookingInfo = () => {
 
                         {
                             loading && <>
-                                <div className="overlay absolute  right-12">
-                                    <img className="w-40" src={loader} alt="loading spiner" />
+                                <div className="overlay absolute right-28 lg:right-12 top-64 lg:top-0">
+                                    <img className="w-28 lg:w-40" src={loader} alt="loading spiner" />
                                 </div>
                             </>
                         }
+                    </div>
+
+                    <div className="flex justify-center mt-3">
+                        <Link className="bg-primary px-2 py-1 rounded-xl font-nunito font-medium text-white flex items-center gap-2 hover:bg-black duration-1000 text-lg"> <MdBrowserUpdated className="text-xl" /> update booking info</Link>
                     </div>
                 </header>
                 {/* upper section ends */}
