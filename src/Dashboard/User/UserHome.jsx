@@ -1,5 +1,6 @@
-
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -10,17 +11,48 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { Link } from 'react-router-dom';
+import useDesignation from '../../hooks/useDesignation';
+import { TbManualGearboxFilled } from 'react-icons/tb';
+import { PiSeatFill } from 'react-icons/pi';
+import { BsFuelPumpFill } from 'react-icons/bs';
+import { FaCarSide } from 'react-icons/fa';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
-// Register chart components
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const UserHome = () => {
+    const [bookedCars, setBookedCars] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { userInfo } = useDesignation();
+    const userID = userInfo?._id;
+    console.log(userID);
+    useEffect(() => {
+
+        if (userID) {
+            const fetchBookedCars = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:3000/api/bookings/user/${userID}/booked-cars`);
+                    setBookedCars(response.data.bookedCars);
+                    setLoading(false);
+                } catch (error) {
+                    console.error('Error fetching booked cars:', error);
+                    setLoading(false);
+                }
+            };
+
+            fetchBookedCars();
+        }
+
+    }, [userID]);
+
     // Mock data for the graph
     const totalBookings = 12;
     const pendingBookings = 3;
     const confirmedBookings = 8;
 
-    // Line chart data
+
     const data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
@@ -101,15 +133,15 @@ const UserHome = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-r  py-12">
-            <div className=" mb-12">
+        <div className="min-h-screen bg-gradient-to-r p-12">
+            <div className="mb-12">
                 <h1 className="text-4xl animate-fade-in-down">Welcome Back!</h1>
                 <p className="mt-4 text-lg opacity-90">We’re glad to see you again. Let’s get you moving!</p>
             </div>
 
             {/* Line Chart Section */}
             <div className="max-w-6xl mx-auto px-6 mt-16">
-                <div className=" ">
+                <div className="">
                     <h3 className="text-3xl font-bold text-gray-700 mb-6">My Booking Trends</h3>
                     <div className="relative">
                         <Line data={data} options={options} />
@@ -117,6 +149,58 @@ const UserHome = () => {
                 </div>
             </div>
 
+            <div className="mt-16">
+                <h1 className="text-3xl font-bold text-gray-700 mb-6">Booked Cars</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : bookedCars.length === 0 ? (
+                        <p>You have not booked any cars yet.</p>
+                    ) : (
+                        bookedCars.map((car) => (
+                            <div key={car._id} className="bg-white shadow-md group rounded-lg p-4">
+                                <img
+                                    src={car.vehicle_info.photo}
+                                    alt={`${car.vehicle_info.brand} ${car.vehicle_info.model}`}
+                                    className="w-full group-hover:scale-105 duration-500 h-48 object-cover rounded-md mb-4"
+                                />
+                                <h2 className="text-xl font-semibold">
+                                    {car.vehicle_info.brand} {car.vehicle_info.model} ({car.vehicle_info.build_year})
+                                </h2>
+                                <div className="grid grid-cols-2 gap-3  font-medium py-4 ">
+                                    <p className="flex gap-1 lg:gap-4 items-center">
+                                        <FaCarSide className="text-primary" />{" "}
+                                        <span className="pl-1">
+                                            {car.vehicle_info.brand}
+                                        </span>
+                                    </p>
+                                    <p className="flex gap-1 lg:gap-4 items-center">
+                                        <BsFuelPumpFill className="text-primary" />{" "}
+                                        <span className="pl-1">
+                                            {car.vehicle_info.fuel}
+                                        </span>
+                                    </p>
+                                    <p className="flex gap-1 lg:gap-4 items-center">
+                                        <PiSeatFill className="text-primary" />
+                                        <span className="pl-1">
+                                            {car.vehicle_info.seats}
+                                        </span>
+                                    </p>
+                                    <p className="flex gap-1 lg:gap-4 items-center">
+                                        <TbManualGearboxFilled className="text-primary" />
+                                        <span className="pl-1">
+                                            {car.vehicle_info.gear}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div className='flex justify-end hover:translate-x-1 duration-300'>
+                                    <Link className='text-primary flex items-center gap-1 font-semibold px-2 py-1 text-sm' to={`/view-details/${car._id}`}>View Details <MdKeyboardArrowRight className='text-lg mt-[1px]' /></Link>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+            </div>
         </div>
     );
 };
