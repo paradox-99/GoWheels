@@ -27,9 +27,9 @@ const Dashboard = () => {
     admin: [
       { to: "/dashboard/admin-home", label: "Admin Home", icon: <TbLayoutDashboardFilled /> },
       { to: "/dashboard/manage-users", label: "Manage Users", icon: <FaUsers /> },
-      { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
+      // { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
       { to: "/dashboard/manage-agencies", label: "Manage Agencies", icon: <GiTentacleHeart /> },
-      { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
+      // { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
     ],
     user: [
       { to: "/dashboard/user-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
