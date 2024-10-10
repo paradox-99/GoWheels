@@ -103,7 +103,7 @@ const UserHome = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r  py-12">
             <div className=" mb-12">
-                <h1 className="text-4xl animate-fade-in-down">Welcome Back, Munna!</h1>
+                <h1 className="text-4xl animate-fade-in-down">Welcome Back!</h1>
                 <p className="mt-4 text-lg opacity-90">We’re glad to see you again. Let’s get you moving!</p>
             </div>
 
