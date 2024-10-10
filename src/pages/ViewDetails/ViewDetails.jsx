@@ -9,43 +9,36 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import useDesignation from "../../hooks/useDesignation";
 import axios from "axios";
 
 
 const ViewDetails = () => {
 
-    const { userInfo } = useDesignation();
     const { id } = useParams();
     const [relatedData, setRelatedData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     const axiosPublic = useAxiosPublic();
     const location = useLocation();
     const { area, district, division, fromDate, fromTime, untilDate, untilTime, upazilla } = location.state?.carBookingInfo || {};
     const navigate = useNavigate();
 
-    const carId = "66f4ec9b3ba27ae46940f6b0"
-    
-
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/feedbackRoute/feedbacks/${carId}`);
+                const response = await axios.get(`http://localhost:3000/api/feedbackRoute/feedbacks/${id}`);
                 setReviews(response.data);
                 setLoading(false);
-            } catch (err) {
-                setError('Failed to fetch reviews', err);
+            } catch (error) {
+                console.log(error)
                 setLoading(false);
             }
         };
 
         fetchReviews();
-    }, [carId]);
-    console.log(reviews);
+    }, [id]);
     const { data } = useQuery({
         queryKey: ['carData'],
         queryFn: async () => {
@@ -66,7 +59,6 @@ const ViewDetails = () => {
             untilTime,
             upazilla,
             data,
-            userInfo
         }
 
         navigate('/bookingInfo', {state: bookingInformation})

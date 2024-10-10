@@ -5,7 +5,7 @@ import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
 import { IoIosPeople } from "react-icons/io";
-// import useDesignation from "../hooks/useDesignation";
+import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
@@ -16,9 +16,9 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
-  // const {userInfo} = useDesignation();
-  const [userInfo] = useState({ userRole: "admin" })
+  const {userInfo} = useDesignation();
 
+  
   const handleLogout = async () => {
     await logout();
     navigate("/join")
@@ -86,7 +86,7 @@ const Dashboard = () => {
                   key={index}
                   to={item.to}
                   className={({ isActive }) =>
-                    `flex p-2 pl-4 gap-2 items-center rounded-lg transition-colors duration-300 
+                    `flex p-1 pl-4 gap-2 items-center rounded-lg transition-colors duration-300 
                                         ${isActive ? 'bg-gradient-to-r from-[#ff4c30] to-white text-white' : 'text-gray-700'}`
                   }
                 >
@@ -96,8 +96,8 @@ const Dashboard = () => {
               ))}
             </div>
             <div className="mt-5 pl-5 flex flex-col font-nunito">
-              <Link to={"/"} className="flex p-2 items-center text-xl text-red-500 font-semibold"><FaHome />Back to Home</Link>
-              <button onClick={handleLogout} className="flex gap-2 pl-1 items-center text-xl font-semibold">
+              <Link to={"/"} className="flex gap-1 p-2 items-center text-xl  font-semibold"><FaHome />Back to Home</Link>
+              <button onClick={handleLogout} className="flex gap-2 pl-1 text-red-500 items-center text-xl font-semibold">
                 <BiLogOut />Logout
               </button>
             </div>
