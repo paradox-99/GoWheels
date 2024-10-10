@@ -7,7 +7,6 @@ const CommonItems = () => {
         <div className="space-y-4">
             <MenuItem label={'Logout'}  icon={CiLogout}> </MenuItem>
             <MenuItem label={'Back to Home'} address= {'/'}  icon={FaHome }> </MenuItem>
-            
         </div>
     );
 };
