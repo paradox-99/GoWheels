@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import loaderImage from "../../../public/logo.gif"
 
 const OwnerInfo = () => {
   // console.log(email);
@@ -11,8 +12,7 @@ const OwnerInfo = () => {
   // Fetch owner information
   const {
     data: owner,
-    refetch,
-    isLoading,
+    isPending,
     error,
   } = useQuery({
     queryKey: ["owner", user?.email],
@@ -27,24 +27,28 @@ const OwnerInfo = () => {
   });
 
   // Update agency owner info mutation
-  const {mutateAsync} = useMutation({
-      mutationFn: async (updateAgencyOwnerInfo) => {
-          const { data } = await axiosSecure.patch(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updateAgencyOwnerInfo);
-          console.log(data);
-          return data;
-      },
-      onSuccess: () => {
-          queryClient.invalidateQueries(['owner', user?.email]);
-          alert('Owner information updated successfully!');
-      },
-      onError: (error) => {
-          alert(`Failed to update owner information: ${error.message}`);
-      },
+  const { mutateAsync } = useMutation({
+    mutationFn: async (updateAgencyOwnerInfo) => {
+      const { data } = await axiosSecure.patch(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updateAgencyOwnerInfo);
+      console.log(data);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['owner', user?.email]);
+      alert('Owner information updated successfully!');
+    },
+    onError: (error) => {
+      alert(`Failed to update owner information: ${error.message}`);
+    },
   });
 
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isPending) {
+    return <div className="w-full h-screen flex items-center justify-center">
+      <div>
+        <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+      </div>
+    </div>;
   }
   if (error) {
     return <div>Error fetching data: {error.message}</div>;
@@ -60,7 +64,11 @@ const OwnerInfo = () => {
 
   };
   if (!user) {
-    return <div>Loading the data...</div>;
+    return <div className="w-full h-screen flex items-center justify-center">
+      <div>
+        <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+      </div>
+    </div>;
   }
 
 

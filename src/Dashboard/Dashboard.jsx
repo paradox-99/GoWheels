@@ -84,7 +84,7 @@ const Dashboard = () => {
                   key={index}
                   to={item.to}
                   className={({ isActive }) =>
-                    `flex p-2 pl-4 gap-2 items-center rounded-lg transition-colors duration-300 
+                    `flex p-1 pl-4 gap-2 items-center rounded-lg transition-colors duration-300 
                                         ${isActive ? 'bg-gradient-to-r from-[#ff4c30] to-white text-white' : 'text-gray-700'}`
                   }
                 >
@@ -94,8 +94,8 @@ const Dashboard = () => {
               ))}
             </div>
             <div className="mt-5 pl-5 flex flex-col font-nunito">
-              <Link to={"/"} className="flex p-2 items-center text-xl text-red-500 font-semibold"><FaHome />Back to Home</Link>
-              <button onClick={handleLogout} className="flex gap-2 pl-1 items-center text-xl font-semibold">
+              <Link to={"/"} className="flex gap-1 p-2 items-center text-xl  font-semibold"><FaHome />Back to Home</Link>
+              <button onClick={handleLogout} className="flex gap-2 pl-1 text-red-500 items-center text-xl font-semibold">
                 <BiLogOut />Logout
               </button>
             </div>
