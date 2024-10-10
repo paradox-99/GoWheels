@@ -32,8 +32,10 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
         const reviewData = {
             userId: userInfo?._id,
             carId: booking._id,
+            carName: booking?.name,
             userName: userInfo?.firstName + " " + userInfo?.lastName,
             userImage: userInfo?.image,
+            carImage: imageUrl,
             review: reviewText,
             rating: rating,
             agencyResponse: "",
