@@ -1,4 +1,3 @@
-import React from 'react';
 
 const FavouriteCars = () => {
     const cars = [
@@ -85,7 +84,7 @@ const FavouriteCars = () => {
                             <div className=" flex flex-col gap-2 justify-center items-center mt-4">
                                 <div>
                                     <p className="text-lg text-center w-[150px] font-bold">
-                                        Daily rate from <span className="text-2xl">${car.price}</span>
+                                        Daily rate from <span className="text-2xl">৳ {car.price *120}</span>
                                     </p>
                                 </div>
                                 <button className="bg-primary text-sm text-white px-4 py-2 rounded-lg hover:bg-red-500">

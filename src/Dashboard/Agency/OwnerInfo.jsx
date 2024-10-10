@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
-import axios from "axios";
+import loaderImage from "../../../public/logo.gif"
 
 const OwnerInfo = () => {
   // console.log(email);
@@ -12,8 +12,7 @@ const OwnerInfo = () => {
   // Fetch owner information
   const {
     data: owner,
-    refetch,
-    isLoading,
+    isPending,
     error,
   } = useQuery({
     queryKey: ["owner", user?.email],
@@ -28,24 +27,28 @@ const OwnerInfo = () => {
   });
 
   // Update agency owner info mutation
-  const {mutateAsync} = useMutation({
-      mutationFn: async (updateAgencyOwnerInfo) => {
-          const { data } = await axiosSecure.patch(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updateAgencyOwnerInfo);
-          console.log(data);
-          return data;
-      },
-      onSuccess: () => {
-          queryClient.invalidateQueries(['owner', user?.email]);
-          alert('Owner information updated successfully!');
-      },
-      onError: (error) => {
-          alert(`Failed to update owner information: ${error.message}`);
-      },
+  const { mutateAsync } = useMutation({
+    mutationFn: async (updateAgencyOwnerInfo) => {
+      const { data } = await axiosSecure.patch(`/agencyRoute/agency/updateAgencyOwnerInfo/${user?.email}`, updateAgencyOwnerInfo);
+      console.log(data);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['owner', user?.email]);
+      alert('Owner information updated successfully!');
+    },
+    onError: (error) => {
+      alert(`Failed to update owner information: ${error.message}`);
+    },
   });
 
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isPending) {
+    return <div className="w-full h-screen flex items-center justify-center">
+      <div>
+        <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+      </div>
+    </div>;
   }
   if (error) {
     return <div>Error fetching data: {error.message}</div>;
@@ -61,7 +64,11 @@ const OwnerInfo = () => {
 
   };
   if (!user) {
-    return <div>Loading the data...</div>;
+    return <div className="w-full h-screen flex items-center justify-center">
+      <div>
+        <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+      </div>
+    </div>;
   }
 
 
@@ -73,7 +80,7 @@ const OwnerInfo = () => {
 
       <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
+          {/* <div>
             <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
               <div className="text-center">
                 <div className="mb-2">
@@ -95,7 +102,7 @@ const OwnerInfo = () => {
               accept="image/*"
               className="sr-only"
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -238,7 +245,7 @@ const OwnerInfo = () => {
         </div>
 
         {/* password */}
-        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <input
               type="password"
@@ -260,7 +267,7 @@ const OwnerInfo = () => {
               style={{ backgroundColor: "#f6f6f6" }}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* agency information----------- */}
 

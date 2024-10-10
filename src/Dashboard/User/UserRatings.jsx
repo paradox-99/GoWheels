@@ -1,94 +1,137 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { FaStar, FaEdit } from 'react-icons/fa';
-
-//data : todo
-const reviewsData = [
-    {
-        id: 1,
-        car: "Tesla Model S",
-        reviewText: "Amazing experience driving the Tesla. Highly recommend!",
-        rating: 5,
-    },
-    {
-        id: 2,
-        car: "BMW 5 Series",
-        reviewText: "Great ride but the seats were not very comfortable.",
-        rating: 4,
-    },
-    {
-        id: 3,
-        car: "Audi Q5",
-        reviewText: "The car was good, but the fuel efficiency wasn't great.",
-        rating: 3,
-    }
-];
+import useDesignation from '../../hooks/useDesignation';
+import toast from 'react-hot-toast';
 
 const UserRatings = () => {
-    const [reviews, setReviews] = useState(reviewsData);
+    const [reviews, setReviews] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);  
+    const [reload, setReload] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedReview, setSelectedReview] = useState(null);
+    const { userInfo } = useDesignation();
+    const userId = userInfo?._id;
 
-    // State for editing review
+    //  editing review
     const [editReviewText, setEditReviewText] = useState('');
     const [editRating, setEditRating] = useState(0);
 
- 
+    useEffect(() => {
+        const fetchReviews = async () => {
+            setIsLoading(true);  
+            try {
+                const response = await axios.get(`http://localhost:3000/api/feedbackRoute/feedbacks/${userId}?user=true`);
+                setReviews(response.data);
+                setIsLoading(false);  
+            } catch (error) {
+                console.error('Error fetching reviews:', error);
+                setIsLoading(false);  
+            }
+        };
+
+        fetchReviews();
+    }, [userId, reload]);
+
     const handleEditClick = (review) => {
         setSelectedReview(review);
-        setEditReviewText(review.reviewText);
+        setEditReviewText(review.review);
         setEditRating(review.rating);
         setIsModalOpen(true);
     };
 
-    //  text change
     const handleReviewTextChange = (e) => {
         setEditReviewText(e.target.value);
     };
 
-    //  star rating change
     const handleRatingChange = (rating) => {
         setEditRating(rating);
     };
 
-    // Save the edited review
-    const handleSaveReview = () => {
-        const updatedReviews = reviews.map((r) =>
-            r.id === selectedReview.id ? { ...r, reviewText: editReviewText, rating: editRating } : r
-        );
-        setReviews(updatedReviews);
-        setIsModalOpen(false);
+    const handleSaveReview = async () => {
+        try {
+            const updatedReview = {
+                ...selectedReview,
+                review: editReviewText,
+                rating: editRating,
+            };
+
+            const { data } = await axios.put(`http://localhost:3000/api/feedbackRoute/feedback/${selectedReview._id}`, updatedReview);
+
+            if (data.modifiedCount === 1) {
+                setReload(true);
+                toast.success('Feedback updated successfully');
+            }
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error('Error updating review:', error);
+        }
     };
+
+    
+    const ReviewSkeleton = () => (
+        <div className="bg-white p-4 rounded-lg flex justify-between items-center animate-pulse">
+            <div className='flex gap-20 flex-row-reverse'>
+                <div>
+                    <div className="h-6 bg-gray-300 rounded w-40 mb-2"></div>
+                    <div className="h-4 bg-gray-300 rounded w-64 mb-4"></div>
+                    <div className="flex">
+                        {[...Array(5)].map((_, index) => (
+                            <div key={index} className="w-4 h-4 bg-gray-300 rounded mr-1"></div>
+                        ))}
+                    </div>
+                </div>
+                <div className="h-20 w-32 bg-gray-300 rounded-lg"></div>
+            </div>
+            <div className="w-16 h-6 bg-gray-300 rounded"></div>
+        </div>
+    );
 
     return (
         <div className="p-6 max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-6">Your Reviews</h1>
+
             <div className="space-y-4">
-                {reviews.map((review) => (
-                    <div
-                        key={review.id}
-                        className="bg-white p-4 rounded-lg flex justify-between items-center"
-                        style={{ boxShadow: '0 20px 50px #FEF2F2' }} 
-                    >
-                        <div>
-                            <h3 className="text-xl font-semibold">{review.car}</h3>
-                            <p className="text-gray-600">{review.reviewText}</p>
-                            <div className="flex items-center mt-2">
-                                {[...Array(5)].map((_, index) => (
-                                    <FaStar
-                                        key={index}
-                                        className={`mr-1 ${index < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => handleEditClick(review)}
-                            className="flex items-center text-primary hover:underline"
+                {isLoading ? (
+                    <>
+                        <ReviewSkeleton />
+                        <ReviewSkeleton />
+                        <ReviewSkeleton />
+                        <ReviewSkeleton />
+                    </>
+                ) : (
+                    reviews.map((review) => (
+                        <div
+                            key={review._id}
+                            className="bg-white p-4 rounded-lg flex justify-between items-center"
+                            style={{ boxShadow: '0 20px 50px #FEF2F2' }}
                         >
-                            <FaEdit className="mr-1" /> Edit
-                        </button>
-                    </div>
-                ))}
+                            <div className='flex gap-20 flex-row-reverse'>
+                                <div>
+                                    <h3 className="text-xl font-semibold">{review.carName}</h3>
+                                    <p className="text-gray-600">{review.review}</p>
+                                    <div className="flex items-center mt-2">
+                                        {[...Array(5)].map((_, index) => (
+                                            <FaStar
+                                                key={index}
+                                                className={`mr-1 ${index < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <img className='h-20 w-32 rounded-lg' src={review.reviewImage} alt="" />
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => handleEditClick(review)}
+                                className="flex items-center text-primary hover:underline"
+                            >
+                                <FaEdit className="mr-1" /> Edit
+                            </button>
+                        </div>
+                    ))
+                )}
             </div>
 
             {/* Edit Review Modal */}

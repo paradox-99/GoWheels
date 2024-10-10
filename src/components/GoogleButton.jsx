@@ -1,4 +1,3 @@
-import { useState } from "react";
 import UseAuth from "../hooks/UseAuth";
 import { googleLogin } from "../api/utilities";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -51,9 +50,7 @@ const GoogleButton = () => {
     }
     return (
         <>
-            <button
-                onClick={handleGoogleLogin}
-                className='py-1 lg:py-2 border lg:border-secondary rounded w-full flex items-center justify-center gap-2 text-xl font-nunito font-medium text-secondary'>
+            <button onClick={handleGoogleLogin} className='py-1 lg:py-2 px-6 border lg:border-secondary rounded w-fit flex items-center justify-center gap-2 text-xl font-nunito font-medium text-white'>
                 <FcGoogle className='text-3xl text-white font-merriweather' /><span className='font-semibold'> Continue with Google</span>
             </button>
         </>
