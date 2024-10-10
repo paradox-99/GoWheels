@@ -36,6 +36,8 @@ import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
+import PaymentSuccess from "../pages/paymentPage/PaymentSuccess";
+import PaymentFail from "../pages/paymentPage/PaymentFail";
 
 const router = createBrowserRouter([
     {
@@ -85,8 +87,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brand/:brand_name',
-                element: <ShowBrandCars/>
+                element: <ShowBrandCars />
             },
+            {
+                path: "/payment/success/:tranId",
+                element: <PaymentSuccess />
+            },
+            {
+                path: "/payment/fail/:tranId",
+                element: <PaymentFail />
+            }
         ]
     },
     {

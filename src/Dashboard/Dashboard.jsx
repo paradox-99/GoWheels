@@ -1,5 +1,5 @@
 import { FaCar, FaCarSide, FaHistory, FaHome, FaUsers } from "react-icons/fa";
-import { Link, NavLink, Outlet, useNavigate} from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
@@ -10,13 +10,15 @@ import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { GrUserAdmin } from "react-icons/gr";
+import { useState } from "react";
 
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
-  const {userInfo} = useDesignation();
-  
+  // const {userInfo} = useDesignation();
+  const [userInfo] = useState({ userRole: "admin" })
+
   const handleLogout = async () => {
     await logout();
     navigate("/join")
@@ -40,7 +42,8 @@ const Dashboard = () => {
     ],
     agency: [
       { to: "/dashboard/agency-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
-      { to: "/dashboard/agency/owner", label: "Owner Information", icon: <GrUserAdmin />
+      {
+        to: "/dashboard/agency/owner", label: "Owner Information", icon: <GrUserAdmin />
       },
       { to: "/dashboard/agency/add-vehicle-info", label: "Add Vehicle", icon: <FaCarSide /> },
 
@@ -68,12 +71,12 @@ const Dashboard = () => {
                 {userInfo?.image ? (<img
                   src={userInfo?.image}
                   className="size-[150px] object-cover rounded-full border-4 border-primary"
-                  alt={userInfo.firstName}
-                />) : ( <img
+                  alt={userInfo?.firstName}
+                />) : (<img
                   src={userInfo?.image}
                   className="size-[150px] object-cover rounded-full border-4 border-primary"
-                  referrerPolicy="no-referrer" 
-                  alt={userInfo.firstName}
+                  referrerPolicy="no-referrer"
+                  alt={userInfo?.firstName}
                 />)}
               </div>
             </div>

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const PaymentPage = () => {
     const location = useLocation();
     const [totalPayCost, setTotalPayCost] = useState(0);
+    const axiosPublic = useAxiosPublic()
 
     const paymentInfo = location.state;
 
@@ -58,13 +60,27 @@ const PaymentPage = () => {
     }, [rental_price, totalDays])
     console.log(totalPayCost)
 
+
+    console.log(location)
+
+    const handlePaymentSystem = async () => {
+        const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
+        await axiosPublic.post('/payment/order', data)
+            .then(res => {
+                window.location.replace(res.data?.url)
+                console.log(res.data)
+            })
+
+    }
+
+
     return (
         <div>
             <h1>{brand}</h1>
             <h1>You have to pay about total {totalPayCost}$</h1>
             <div className="space-x-3">
                 <button className='bg-primary text-white rounded py-1 px-2 lg:px-2 font-semibold'>Back to home</button>
-                <button className='bg-primary text-white rounded py-1 px-2 lg:px-2 font-semibold'>Proceed to payment</button>
+                <button onClick={handlePaymentSystem} className='bg-primary text-white rounded py-1 px-2 lg:px-2 font-semibold'>payment</button>
             </div>
         </div>
     );
