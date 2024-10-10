@@ -13,6 +13,8 @@ import { SignUpRoutes } from "./SignUpRoutes";
 import ShowBrandCars from "../pages/Filter/ShowBrandCars";
 import BookingInfo from "../pages/bookingInfo/BookingInfo";
 import { DashboardRoutes } from "./DashboardRoutes";
+import PaymentFail from "../pages/paymentPage/PaymentFail";
+import PaymentSuccess from "../pages/paymentPage/PaymentSuccess";
 
 const router = createBrowserRouter([
     {
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/bookingInfo",
-                element: <BookingInfo></BookingInfo>
+                element: <BookingInfo />
             },
             ...SignUpRoutes,
             {
@@ -60,6 +62,14 @@ const router = createBrowserRouter([
                 path: '/brand/:brand_name',
                 element: <ShowBrandCars />
             },
+            {
+                path: "/payment/success/:tranId",
+                element: <PaymentSuccess />
+            },
+            {
+                path: "/payment/fail/:tranId",
+                element: <PaymentFail />
+            }
         ]
     },
     ...DashboardRoutes,

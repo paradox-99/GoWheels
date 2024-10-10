@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import useDesignation from "../../hooks/useDesignation";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -13,12 +13,12 @@ import AgencyData from "../../components/bookingComponent/AgencyData";
 import BookingData from "../../components/bookingComponent/BookingData";
 import UserData from "../../components/bookingComponent/UserData";
 import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import loader from '../../../public/logo.gif'
 
 
 const BookingInfo = () => {
     const location = useLocation();
-    const { id } = useParams()
     const bookingInformation = location.state;
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
@@ -33,6 +33,7 @@ const BookingInfo = () => {
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
     const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {}
+    const axiosPublic = useAxiosPublic()
 
     const fromDate = bookingInformation?.fromDate;
     const toDate = bookingInformation?.untilDate
@@ -74,7 +75,7 @@ const BookingInfo = () => {
         }, 1000)
     }
 
-    const handleConfirmBooking = (e) => {
+    const handleConfirmBooking = async (e) => {
         e.preventDefault()
         if (!method) {
             toast.error("please select a method self driving or need driver")
@@ -83,7 +84,13 @@ const BookingInfo = () => {
         const paymentInfo = {
             brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, carId
         }
-        console.log(paymentInfo)
+
+        const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
+        await axiosPublic.post('/payment/order', data)
+            .then(res => {
+                window.location.replace(res.data?.url)
+                console.log(res.data)
+            })
     }
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-64px)]" >
@@ -270,6 +277,13 @@ const BookingInfo = () => {
                         <p className="font-nunito">cost according to the total hours</p>
                     </div>
                     <h1 className="font-nunito font-medium">{totalPayCost} $</h1>
+                </div>
+                <div className="flex justify-between items-center font-nunito mt-2">
+                    <div>
+                        <h1 className="font-semibold font-nunito">Driving method</h1>
+                        <p className="font-nunito">selected method of driving</p>
+                    </div>
+                    <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
                 </div>
 
                 {
