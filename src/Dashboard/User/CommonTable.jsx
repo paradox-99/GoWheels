@@ -159,18 +159,19 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-red-50 text-gray-500 text-sm leading-normal">
+                            <tr className="bg-primary text-white font-nunito text- leading-normal">
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
                                 <th className="py-3 px-6 text-left">Drop-off Date</th>
                                 <th className="py-3 px-6 text-left">Status</th>
                                 <th className="py-3 px-6 text-left">Drop-off Location</th>
                                 <th className="py-3 px-6 text-left">Price</th>
+                                <th className="py-3 px-6 text-left"></th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-600 text-sm">
+                        <tbody className=" text-sm">
                             {bookings.userBookings.map((booking) => (
-                                <tr key={booking._id} className="border-b border-red-50 hover:bg-red-50">
+                                <tr key={booking._id} className="border-b border-red-50 hover:bg-secondary hover:text-white font-nunito">
                                     <td className="py-3 font-semibold px-6">
                                         <img src={booking.image} className="rounded-md h-16 w-22 object-cover mb-2" alt="" />
                                         {booking.name}
@@ -189,7 +190,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                                         </span>
                                     </td>
                                     <td className="py-3 px-6">{booking.pickupLocation}</td>
-                                    <td className="py-3 px-6 text-gray-600 font-semibold">${booking.price}</td>
+                                    <td className="py-3 px-6 font-semibold">${booking.price}</td>
                                     {/*  Review Button */}
                                     {booking.status === "Completed" && (
                                         <td className="py-3 px-6 text-gray-600 font-semibold">

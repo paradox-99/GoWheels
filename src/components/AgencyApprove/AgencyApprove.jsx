@@ -1,4 +1,3 @@
-import "./agencyApprove.css";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";

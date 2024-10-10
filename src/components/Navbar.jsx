@@ -8,7 +8,7 @@ import { TbMapPinSearch } from "react-icons/tb";
 
 const Navbar = () => {
 
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const [scroll, setScroll] = useState(false);
     const [value, setValue] = useState(false);
     const [value2, setValue2] = useState(false);
@@ -88,7 +88,7 @@ const Navbar = () => {
                                     {
                                         userInfo.userRole === "admin"  && <li className="hover:bg-secondary slate-100 px-4 py-2"><Link to={'/dashboard/admin-home'}>Dashboard</Link></li>
                                     }
-                                    <li className="hover:bg-secondary px-4 py-2 hover:rounded-b"><Link>Logout</Link></li>
+                                    <li className="hover:bg-secondary px-4 py-2 hover:rounded-b"><button onClick={logout}>Logout</button></li>
                                 </ul>
                             </div>
                         </div>
