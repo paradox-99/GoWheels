@@ -123,7 +123,6 @@ const BookingInfo = () => {
                             </div>
                             <div>
                                 <h1 className="text-lg font-bold font-merriweather">{firstName} {lastName}</h1>
-                                <p className="font-nunito font-medium">@username</p>
                             </div>
                         </div>
                     </div>
@@ -139,10 +138,10 @@ const BookingInfo = () => {
                                         <input
                                             onChange={handleChange}
                                             type="radio"
-                                            name="dirving-method"
+                                            name="driving-method"
                                             id="self-driving"
-                                            value="self-driving"
-                                            checked={method === 'self-driving'}
+                                            value="Self-driving"
+                                            checked={method === 'Self-driving'}
                                         />
                                         <label>Self Driving</label><br />
                                     </div>
@@ -150,10 +149,10 @@ const BookingInfo = () => {
                                         <input
                                             onChange={handleChange}
                                             type="radio"
-                                            name="dirving-method"
+                                            name="driving-method"
                                             id="driver"
-                                            value="driver"
-                                            checked={method === 'driver'}
+                                            value="Driver"
+                                            checked={method === 'Driver'}
                                         />
                                         <label>Need Driver</label><br />
                                     </div>
@@ -205,114 +204,97 @@ const BookingInfo = () => {
             </section>
 
             {/* right part */}
-            <section className=" lg:w-[33%] px-7 py-3 shadow-xl rounded-xl " >
+            <section className=" lg:w-[33%] px-7 py-8 shadow-xl rounded-xl " >
                 <div className="flex justify-between items-center border-b border-primary pb-5">
-                    <h1 className="font-nunito font-semibold text-lg">Invoice</h1>
-                    <h1 className="font-nunito font-medium">$ USD</h1>
+                    <h1 className="font-nunito font-extrabold text-lg">Invoice</h1>
+                    <h1 className="font-nunito font-medium">৳ Taka</h1>
                 </div>
-
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">From Date</h1>
-                        <p className="font-nunito">rent starting day</p>
+                        <h1 className="font-bold font-nunito">From Date</h1>
+                        <p className="font-nunito">Rent starting day</p>
                     </div>
                     <h1 className="font-nunito font-medium">{fromDate}</h1>
                 </div>
-
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">From Time</h1>
-                        <p className="font-nunito">rent starting time</p>
+                        <h1 className="font-bold font-nunito">From Time</h1>
+                        <p className="font-nunito">Rent starting time</p>
                     </div>
                     <h1 className="font-nunito font-medium">{formTime}</h1>
                 </div>
-
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">To Date</h1>
-                        <p className="font-nunito">rent finishig date</p>
+                        <h1 className="font-bold font-nunito">To Date</h1>
+                        <p className="font-nunito">Rent finishing date</p>
                     </div>
                     <h1 className="font-nunito font-medium">{toDate}</h1>
                 </div>
-
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">To Time</h1>
-                        <p className="font-nunito">rent finishig time</p>
+                        <h1 className="font-bold font-nunito">To Time</h1>
+                        <p className="font-nunito">Rent finishing time</p>
                     </div>
                     <h1 className="font-nunito font-medium">{toTime}</h1>
                 </div>
-
                 <div className="flex justify-between items-center font-nunito mt-2 border-b border-primary pb-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">Driving method</h1>
-                        <p className="font-nunito">selected method of driving</p>
+                        <h1 className="font-bold font-nunito">Driving method</h1>
+                        <p className="font-nunito">Selected method of driving</p>
                     </div>
                     <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
                 </div>
-
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">Base Price:</h1>
-                        <p className="font-nunito">per day</p>
+                        <h1 className="font-bold font-nunito">Base Price:</h1>
+                        <p className="font-nunito">Per day</p>
                     </div>
-                    <h1 className="font-nunito font-medium">{rental_price} $</h1>
-                </div>
-
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-semibold font-nunito">Total hours</h1>
-                        <p className="font-nunito">total calculated renting hours</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{totalRentHours} $</h1>
-                </div>
-
-
-
-
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-semibold font-nunito">Renting Cost</h1>
-                        <p className="font-nunito">cost according to the total hours</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{totalPayCost} $</h1>
+                    <h1 className="font-nunito font-medium">৳ {rental_price * 120}</h1>
                 </div>
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">Driving method</h1>
-                        <p className="font-nunito">selected method of driving</p>
+                        <h1 className="font-bold font-nunito">Total hours</h1>
+                        <p className="font-nunito">Total hours</p>
+                    </div>
+                    <h1 className="font-nunito font-medium">{totalRentHours}</h1>
+                </div>
+                <div className="flex justify-between items-center font-nunito mt-2">
+                    <div>
+                        <h1 className="font-bold font-nunito">Renting Cost</h1>
+                        <p className="font-nunito">Cost on total hours</p>
+                    </div>
+                    <h1 className="font-nunito font-medium">৳ {totalPayCost * 120}</h1>
+                </div>
+                <div className="flex justify-between items-center font-nunito mt-2">
+                    <div>
+                        <h1 className="font-bold font-nunito">Driving method</h1>
                     </div>
                     <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
                 </div>
-
                 {
                     method === "driver" && <>
                         <div className="flex justify-between items-center font-nunito mt-2">
                             <div>
-                                <h1 className="font-semibold font-nunito">Driver Cost</h1>
-                                <p className="font-nunito">if you select need driver method</p>
+                                <h1 className="font-bold font-nunito">Driver Cost</h1>
+                                <p className="font-nunito">If you select need driver method</p>
                             </div>
-                            <h1 className="font-nunito font-medium"> {drivingCost} $</h1>
+                            <h1 className="font-nunito font-medium">৳ {drivingCost * 120}</h1>
                         </div>
                     </>
                 }
-
                 <div className="flex justify-between items-center font-nunito mt-2 border-b border-primary pb-2">
                     <div>
-                        <h1 className="font-semibold font-nunito">Discount</h1>
-                        <p className="font-nunito">if there is any discount</p>
+                        <h1 className="font-bold font-nunito">Discount</h1>
                     </div>
-                    <h1 className="font-nunito font-medium"> {discount} $</h1>
+                    <h1 className="font-nunito font-medium">৳ {discount * 120}</h1>
                 </div>
-
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
                         <h1 className="font-bold font-nunito text-lg">Total cost</h1>
-                        <p className="font-nunito font-bold">total cost you need to pay</p>
+                        <p className="font-nunito font-medium">Total cost you need to pay</p>
                     </div>
-                    <h1 className="font-nunito font-bold"> {totalPayment} $</h1>
+                    <h1 className="font-nunito font-bold">৳ {totalPayment * 120}</h1>
                 </div>
-
                 <form
                     className="mt-2"
                     onSubmit={handleConfirmBooking}>

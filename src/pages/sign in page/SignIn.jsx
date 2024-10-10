@@ -56,55 +56,48 @@ const SignIn = () => {
         <div>
             {
                 !user ? <>
-                    <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
-                        <div className='text-center mx-auto pt-5'>
+                    <div className='lg:w-[60vw] xl:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto md:px-10 rounded-lg'>
+                        <div className='text-center mx-auto md:pt-5'>
                             <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
-                            <h1 className='text-2xl lg:text-3xl mt-8 font-bold text-[#fdfefe] font-merriweather'>Sign in to your account</h1>
+                            <h1 className='text-2xl lg:text-3xl mt-5 md:mt-8 font-bold text-[#fdfefe] font-merriweather'>Sign in to your account</h1>
                         </div>
                         <section className='mt-3'>
                             <form
                                 onSubmit={handleLogin}
-                                className='font-nunito'>
-                                <div>
+                                className='font-nunito flex justify-center items-center flex-col w-full px-4'>
+                                <div className='w-full md:w-1/2 lg:w-2/3'>
                                     <input
                                         type="email"
                                         name="email"
                                         id="email"
-                                        className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-6 text-secondary' placeholder='Enter your email address'
+                                        className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='Enter your email address'
                                         required />
+
+                                    <div className='mt-3 relative'>
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            name="password"
+                                            id="password"
+                                            className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary' placeholder='Enter your password'
+                                            required />
+                                        <span
+                                            className='absolute top-2 lg:top-3 right-3 text-xl'
+                                            onClick={() => setShowPassword(!showPassword)}>
+                                            {showPassword ? <IoEyeOff></IoEyeOff> : <IoEye></IoEye>}
+                                        </span>
+                                    </div>
                                 </div>
 
-                                <div className='mt-3 relative'>
-                                    <input
-                                        type={showPassword ? "text" : "password"}
-                                        name="password"
-                                        id="password"
-                                        className='border-[1px] border-secondary outline-none w-full rounded py-1 lg:py-2 px-6 text-secondary' placeholder='Enter your password'
-                                        required />
-                                    <span
-                                        className='absolute top-2 lg:top-3 right-3 text-xl'
-                                        onClick={() => setShowPassword(!showPassword)}>
-                                        {showPassword ? <IoEyeOff></IoEyeOff> : <IoEye></IoEye>}
-                                    </span>
-                                </div>
-
-                                <div className='flex justify-between items-center mt-3'>
+                                <div className='flex justify-between items-center mt-3 w-full  md:w-1/2 lg:w-2/3'>
                                     <div>
                                         <div className='space-x-2 flex items-center text-[#fdfefe] '>
-                                            <label
-                                                htmlFor="checkbox">
-                                                Remember me</label>
-                                            <input
-                                                type="checkbox"
-                                                name="yeas"
-                                                id="yes" />
+                                            <label htmlFor="checkbox">Remember me</label>
+                                            <input type="checkbox" name="yeas" id="yes"/>
                                         </div>
-
                                         <div>
                                             <Link className='lg:text-lg text-primary font-nunito font-semibold'>Forgot Password ?</Link>
                                         </div>
                                     </div>
-
                                     <div>
                                         <input
                                             className='bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer text-lg'
@@ -112,7 +105,6 @@ const SignIn = () => {
                                             value="Submit" />
                                     </div>
                                 </div>
-
                             </form>
                         </section>
                         <section className='mt-3 pb-5'>
@@ -120,11 +112,9 @@ const SignIn = () => {
                                 <h1 className='text-lg lg:text-xl font-medium lg:font-semibold'>New to this site ?</h1>
                                 <Link to='/join/signUpOne' className='text-xl lg:text-2xl font-semibold text-primary'>Join Now</Link>
                             </div>
-
-                            <div className=' mt-2'>
+                            <div className='mt-2 flex justify-center items-center'>
                                 <GoogleButton></GoogleButton>
                             </div>
-
                         </section>
                     </div>
                 </> : <>

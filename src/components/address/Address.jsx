@@ -56,9 +56,9 @@ const Address = ({ getAddress }) => {
     }
 
     return (
-        <div className="flex justify-between gap-4 items-center">
+        <div className="flex flex-col md:flex-row justify-between w-full gap-4 items-center">
             {/* Division Selector */}
-                <select name="division" className="outline-none font-nunito w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2" value={selectedDivision} onChange={handleDivisionChange}>
+                <select name="division" className="outline-none font-nunito  w-[280px] md:w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2" value={selectedDivision} onChange={handleDivisionChange}>
                     <option value="">Division</option>
                     {Object.keys(locationData).map((division) => (
                         <option key={division} value={division}>
@@ -68,7 +68,7 @@ const Address = ({ getAddress }) => {
                 </select>
 
                 {/* District Selector */}
-                <select name="district" className="outline-none font-nunito w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2" value={selectedDistrict} onChange={handleDistrictChange} disabled={!selectedDivision}>
+                <select name="district" className="outline-none font-nunito w-[280px] md:w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2" value={selectedDistrict} onChange={handleDistrictChange} disabled={!selectedDivision}>
                     <option value="">District</option>
                     {districts.map((district) => (
                         <option key={district} value={district}>
@@ -79,7 +79,7 @@ const Address = ({ getAddress }) => {
 
                 {/* Upazilla Selector */}
                 {upazillas &&
-                    <select name="upazilla" className="outline-none font-nunito w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2" value={selectedUpazilla} onChange={handleUpazillaChange} disabled={!selectedDistrict || upazillas.length === 0}>
+                    <select name="upazilla" className="outline-none font-nunito w-[280px] md:w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2" value={selectedUpazilla} onChange={handleUpazillaChange} disabled={!selectedDistrict || upazillas.length === 0}>
                         <option value="">Upazilla/City</option>
                         {upazillas.map((upazilla) => (
                             <option key={upazilla} value={upazilla}>
@@ -92,7 +92,7 @@ const Address = ({ getAddress }) => {
                 {/* Key Areas Selector (If there are any city corporations) */}
                 {keyAreas && (
                     <>
-                        <select name="keyArea" id="keyArea" className={`${visible ? "block" : "hidden"} outline-none font-nunito w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2`} onChange={handleSubmit} disabled={!selectedDistrict}>
+                        <select name="keyArea" id="keyArea" className={`${visible ? "block" : "hidden"} outline-none font-nunito w-[280px] md:w-[150px] bg-transparent border-b-primary border-b-2 py-1 lg:py-2`} onChange={handleSubmit} disabled={!selectedDistrict}>
                             <option value="">Area</option>
                             {keyAreas?.map((keyArea) => (
                                 <option key={keyArea} value={keyArea}>
