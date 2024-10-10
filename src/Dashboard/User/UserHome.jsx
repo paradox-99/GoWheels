@@ -150,8 +150,9 @@ const UserHome = () => {
             </div>
 
             <div className="mt-16">
-                <h1 className="text-3xl font-bold text-gray-700 mb-6">Booked Cars</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <h1 className="text-3xl font-bold text-gray-700 mb-6">Cars That You <span className='text-primary'>Booked <br /> Previously</span></h1>
+                <div className='h-[2px] w-12 bg-primary -mt-2'></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
                     {loading ? (
                         <p>Loading...</p>
                     ) : bookedCars.length === 0 ? (
