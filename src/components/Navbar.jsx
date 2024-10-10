@@ -37,9 +37,6 @@ const Navbar = () => {
             !user &&
             <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><NavLink to={'join'}>JOIN</NavLink></li>
         }
-        {/* {
-            user && <li className="bg-primary px-3 lg:px-5 py-1 lg:py-2 text-white lg:text-lg rounded font-semibold text-center lg:ml-7 font-merriweather w-full "><Link to={'/dashboard'}>Dashboard</Link></li>
-        } */}
 
     </>
 
@@ -50,11 +47,11 @@ const Navbar = () => {
                 <Link to={'/'} className="text-2xl font-nunito font-bold">GoWheels</Link>
             </div>
             <div>
-                <Link to={'filter'} className="flex items-center gap-2 text-xl"><TbMapPinSearch />Search</Link>
+                <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><TbMapPinSearch />Search</Link>
             </div>
             <div className="flex items-start">
                 <div className="hidden md:flex md:gap-5">
-                    <ul className="flex gap-8 text-lg font-nunito items-center">
+                    <ul className="flex gap-4 lg:gap-8 text-lg font-nunito items-center">
                         {routes}
                     </ul>
                     {user &&
@@ -63,7 +60,7 @@ const Navbar = () => {
                                 <img src={userInfo?.image} alt="Profile Picture" referrerPolicy="no-referrer" className="w-12 h-12 rounded-full border-[3px] border-primary" />
                             </button>
                             <div className="relative">
-                                <ul className={`bg-primary text-white text-lg rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value ? "-right-64" : "right-0"} duration-500`}>
+                                <ul className={`bg-primary text-white text-lg rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value ? "-right-72" : "right-0"} duration-500`}>
                                     {
                                         userInfo.userRole === "user"  && <li className="hover:bg-secondary slate-100 px-4 py-2 hover:rounded-t"><Link to={'/dashboard/user-profile'}>Profile</Link></li>
                                     }

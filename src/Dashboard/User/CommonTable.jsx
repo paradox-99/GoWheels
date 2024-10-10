@@ -226,7 +226,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                                         </span>
                                     </td>
                                     <td className="py-3 px-6">{booking.pickupLocation}</td>
-                                    <td className="py-3 px-6 font-semibold">${booking.price}</td>
+                                    <td className="py-3 px-6 font-semibold">৳ {booking.price * 120}</td>
                                     {/*  Review Button */}
                                     {booking.status === "Completed" && (
                                         <td className="py-3 px-6 text-gray-600 font-semibold">

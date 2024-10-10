@@ -72,12 +72,10 @@ const PaymentPage = () => {
             })
 
     }
-
-
     return (
         <div>
             <h1>{brand}</h1>
-            <h1>You have to pay about total {totalPayCost}$</h1>
+            <h1>You have to pay total ৳ {totalPayCost * 120}</h1>
             <div className="space-x-3">
                 <button className='bg-primary text-white rounded py-1 px-2 lg:px-2 font-semibold'>Back to home</button>
                 <button onClick={handlePaymentSystem} className='bg-primary text-white rounded py-1 px-2 lg:px-2 font-semibold'>payment</button>

@@ -52,8 +52,8 @@ const AvailableCart = ({ car }) => {
             <div className="text-background">
               <p className="text-xl font-semibold py-1">Daily rate from</p>
               <h2 className="text-4xl font-semibold">
-                <span className="text-primary">$</span>
-                <span>{car.vehicle_info.price}</span>
+                <span className="text-primary">৳ </span>
+                <span>{car.vehicle_info.price * 120}</span>
               </h2>
             </div>
             <div className="py-10">

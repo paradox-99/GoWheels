@@ -140,7 +140,7 @@ const ViewDetails = () => {
     };
 
     return (
-        <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto">
+        <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto lg:px-6">
             {/* Skeleton Loader */}
             {isLoading ? (
                 <div className="animate-pulse flex flex-col md:flex-row gap-8">
@@ -261,7 +261,7 @@ const ViewDetails = () => {
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Deductible: ${data?.vehicle_info.insurance_details.deductible}</span>
+                                <span>Deductible: ৳ {data?.vehicle_info.insurance_details.deductible * 120}</span>
                             </li>
                         </ul>
                     </div>
