@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { locationData } from "../../../public/locationData";
 import { useState } from "react";
 import background from '../../../public/asset/background.jpg'
@@ -6,19 +6,23 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 
 const AgencyInfo = () => {
-    const [agencyId, setAgencyId] = useState(1); // Start from 1
+    const [agencyId, setAgencyId] = useState(1); 
 
     const [selectedDivision, setSelectedDivision] = useState('');
+    // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
+    const location = useLocation()
+    const agencyEmail = location.state?.email;
+    // console.log(agencyEmail)
     const navigate = useNavigate();
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
         setSelectedDivision(division);
-        setSelectedDistrict(''); // Reset district on division change
-        setUpazillas([]); // Reset upazillas on division change
+        setSelectedDistrict(''); 
+        setUpazillas([]); 
         setDistricts(Object.keys(locationData[division] || {}));
     };
 
@@ -46,8 +50,6 @@ const AgencyInfo = () => {
         const businessRegNumber= form.regNumber.value;
         const taxIdentificationNumber = form.identificationNumber.value;
         const agency_id = `AG${agencyId}`;
-
-        // Increment agencyId for the next submission
         setAgencyId(agencyId + 1);
         
         const agencyAddress = {
@@ -60,7 +62,7 @@ const AgencyInfo = () => {
 
 
         const info = { 
-            agencyName, agencyAddress, businessRegNumber, 
+            agencyName, agencyEmail, agencyAddress, businessRegNumber, 
             taxIdentificationNumber, 
             transportLicenseNumber,
             insuranceLicenseNumber,
@@ -87,7 +89,7 @@ const AgencyInfo = () => {
         },
         onSuccess: () => {
             console.log('data saved successfully')
-            navigate('/join/addCarInfo');
+            navigate('/join/addCarInfo' ,{ state: { agencyEmail } });
             // toast.success(' data added successfully')
             
 
@@ -112,13 +114,21 @@ const AgencyInfo = () => {
                         <form
                             onSubmit={handleAgency}
                             className='font-nunito'>
-                            <div className='flex gap-10'>
+                            <div className='flex gap-5'>
                                 <input
                                     type="text"
                                     name="name"
                                     id="firstName"
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Agency Name'
+                                    required />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    readOnly
+                                    className='outline-none placeholder-gray-900  w-full rounded py-1 lg:py-2 px-2 text-red-600'
+                                    placeholder={agencyEmail}
                                     required />
 
                                 <input
@@ -127,6 +137,7 @@ const AgencyInfo = () => {
                                     id="transportNumber"
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Transport Lincence Number'
+                                    onInput={(e) => e.target.value = e.target.value.toUpperCase()}
                                     required />
 
                             </div>
@@ -163,24 +174,6 @@ const AgencyInfo = () => {
                                     className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Number of vehicles'
                                     required />
-                                {/* <div className='flex justify-between items-center'>
-                                    <select
-                                        name="gender"
-                                        id="gender"
-                                        className='outline-none w-[45%] rounded py-1 lg:py-2 px-2 text-secondary'
-                                        required>
-                                        <option defaultChecked className='text-gray-400'>Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="others">Others</option>
-                                    </select>
-                                    <input
-                                        type="date"
-                                        name="birthDay"
-                                        id="birthDay"
-                                        placeholder='Birth date'
-                                        className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary' />
-                                </div> */}
                                 <h3 className='text-lg font-semibold text-white'>Address:</h3>
                                 <div className='flex justify-between'>
                                     <select name="division" onChange={handleDivisionChange}

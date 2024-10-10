@@ -57,13 +57,13 @@ const FeaturedCarts = ({ car, carBookingInfo }) => {
           <div>
             <p className="text-xl font-semibold">Daily rate from</p>
             <h2 className="text-4xl font-semibold">
-              <span className="text-primary">$</span>
-              <span>{car.vehicle_info.rental_price}</span>
+              <span className="text-primary">৳ </span>
+              <span>{car.vehicle_info.rental_price * 120}</span>
             </h2>
           </div>
           <div>
             <Link onClick={handleNext} className="bg-primary hover:bg-transparent hover:border-2 border-primary hover:text-primary duration-500 active:scale-75 shadow-inner shadow-secondary border-2 px-4 py-2 text-background rounded-lg font-nunito font-semibold">
-              View Details
+              Details
             </Link>
           </div>
         </div>

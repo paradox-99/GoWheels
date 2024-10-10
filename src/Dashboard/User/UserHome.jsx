@@ -103,14 +103,14 @@ const UserHome = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r  py-12">
             <div className=" mb-12">
-                <h1 className="text-4xl animate-fade-in-down">Welcome Back, Munna!</h1>
+                <h1 className="text-4xl animate-fade-in-down">Welcome Back!</h1>
                 <p className="mt-4 text-lg opacity-90">We’re glad to see you again. Let’s get you moving!</p>
             </div>
 
             {/* Line Chart Section */}
             <div className="max-w-6xl mx-auto px-6 mt-16">
                 <div className=" ">
-                    <h3 className="text-3xl font-bold text-gray-700 mb-6">Booking Trends</h3>
+                    <h3 className="text-3xl font-bold text-gray-700 mb-6">My Booking Trends</h3>
                     <div className="relative">
                         <Line data={data} options={options} />
                     </div>

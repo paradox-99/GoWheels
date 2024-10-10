@@ -61,7 +61,7 @@ export const DashboardRoutes = [
                 element: <AgencyHome></AgencyHome>
             },
             {
-                path: "/dashboard/agency/owner/:email",
+                path: "/dashboard/agency/owner",
                 element: <OwnerInfo></OwnerInfo>
             },
             {
