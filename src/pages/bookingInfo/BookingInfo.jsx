@@ -13,17 +13,23 @@ import AgencyData from "../../components/bookingComponent/AgencyData";
 import BookingData from "../../components/bookingComponent/BookingData";
 import UserData from "../../components/bookingComponent/UserData";
 import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
+import loader from '../../../public/logo.gif'
 
 
 const BookingInfo = () => {
+    const location = useLocation();
+    const bookingInformation = location.state;
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
+    const [discount, setDiscount] = useState(0);
+    const [drivingCost, setDrivingCost] = useState(0);
+    const [totalPayment, setTotalPayment] = useState(0);
     const [method, setMethod] = useState(null);
     const [totalPayCost, setTotalPayCost] = useState(0);
     const [totalRentHours, setTotalRentHours] = useState(0);
-    const location = useLocation();
     const navigate = useNavigate();
-    const bookingInformation = location.state;
+    const [loading, setLoading] = useState(false);
+
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
     const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {}
 
@@ -37,21 +43,33 @@ const BookingInfo = () => {
     const area = bookingInformation?.area
 
     const handleChange = (e) => {
+        setLoading(true);
         const drivingMethod = e.target.value
+        setMethod(drivingMethod);
         // if(drivingMethod === 'self-driving' && !nid && !drivingLicense) {
         //     navigate()
         // }
         // else if(drivingMethod === "driver" ) {
         //     navigate()
         // }
+        setTimeout(() => {
+            const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime);
+            setTotalRentHours(totalHours)
 
-        const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime);
-        const totalCost = totalHours * rental_price / 24;
-        const absoluteTotalCost = Math.ceil(totalCost);
+            const Cost = totalHours * rental_price / 24;
+            const calculatedCost = Math.ceil(Cost);
+            setTotalPayCost(calculatedCost)
 
-        setTotalRentHours(totalHours)
-        setTotalPayCost(absoluteTotalCost)
-        setMethod(drivingMethod);
+            if (drivingCost > 0) {
+                const absoluteTotalCost = (calculatedCost + drivingCost) - discount;
+                setTotalPayment(absoluteTotalCost)
+            }
+            else {
+                const absoluteTotalCost = calculatedCost - discount;
+                setTotalPayment(absoluteTotalCost)
+            }
+            setLoading(false);
+        }, 1000)
     }
 
     const handleConfirmBooking = (e) => {
@@ -61,20 +79,25 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method
+            carData: {
+                brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date,
+            },
+            userData: {
+                firstName, lastName, userEmail, phone, nid, drivingLicense,
+            },
+            bookingData: {
+                fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, totalPayment,
+            },
         }
-
+        console.log(paymentInfo)
     }
-
-
     return (
-        <div className="flex justify-between min-h-[calc(100vh-64px)]" >
+        <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-64px)]" >
 
-            <section className="w-[65%] shadow-xl rounded-xl px-5 py-3">
-
+            <section className="lg:w-[65%] shadow-xl rounded-xl px-5 py-3">
                 {/* upper section starts */}
                 <header>
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-col lg:flex-row justify-between items-center">
                         <div>
                             <h1 className="text-2xl font-semibold font-merriweather">Your selected car</h1>
                             <div className="flex gap-5 border-b-2 border-primary border-dashed pb-3">
@@ -97,45 +120,56 @@ const BookingInfo = () => {
                         </div>
                     </div>
 
-                    <img className="w-[35%] rounded-xl shadow-xl mt-3" src={photo} alt={brand} />
+                    <div className="flex flex-col lg:flex-row items-center justify-between relative">
+                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={photo} alt={brand} />
+                        <div>
+                            <form
+                                className="mt-5">
+                                <div className="flex flex-col items-center">
+                                    <p className='text-lg font-semibold font-merriweather text-primary'> Please Select a method</p>
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            onChange={handleChange}
+                                            type="radio"
+                                            name="dirving-method"
+                                            id="self-driving"
+                                            value="self-driving"
+                                            checked={method === 'self-driving'}
+                                        />
+                                        <label>Self Driving</label><br />
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            onChange={handleChange}
+                                            type="radio"
+                                            name="dirving-method"
+                                            id="driver"
+                                            value="driver"
+                                            checked={method === 'driver'}
+                                        />
+                                        <label>Need Driver</label><br />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
 
+                        {
+                            loading && <>
+                                <div className="overlay absolute  right-12">
+                                    <img className="w-40" src={loader} alt="loading spiner" />
+                                </div>
+                            </>
+                        }
+                    </div>
                 </header>
                 {/* upper section ends */}
 
 
                 {/* lower section starts */}
                 <main className=" mt-3">
-
-                    <form
-                        className="mt-5">
-                        <div className="flex flex-col items-center">
-                            <p className='text-lg font-semibold font-merriweather text-primary'> Please Select a method</p>
-                            <div className="flex items-center gap-2">
-                                <input
-                                    onChange={handleChange}
-                                    type="radio"
-                                    name="dirving-method"
-                                    id="self-driving"
-                                    value="self-driving"
-                                />
-                                <label>Self Driving</label><br />
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <input
-                                    onChange={handleChange}
-                                    type="radio"
-                                    name="dirving-method"
-                                    id="driver"
-                                    value="driver"
-                                />
-                                <label>Need Driver</label><br />
-                            </div>
-                        </div>
-                    </form>
-
                     <div>
                         <Tabs>
-                            <TabList className={`space-x-3`}>
+                            <TabList className={`lg:space-x-3`}>
                                 <Tab>Car Information</Tab>
                                 <Tab>Agency Information</Tab>
                                 <Tab>Booking Information</Tab>
@@ -158,14 +192,12 @@ const BookingInfo = () => {
                             </div>
                         </Tabs>
                     </div>
-
                 </main>
                 {/* lower section ends */}
-
             </section>
 
             {/* right part */}
-            <section className=" w-[33%] px-7 py-3 shadow-xl rounded-xl " >
+            <section className=" lg:w-[33%] px-7 py-3 shadow-xl rounded-xl " >
                 <div className="flex justify-between items-center border-b border-primary pb-5">
                     <h1 className="font-nunito font-semibold text-lg">Invoice</h1>
                     <h1 className="font-nunito font-medium">$ USD</h1>
@@ -205,6 +237,14 @@ const BookingInfo = () => {
 
                 <div className="flex justify-between items-center font-nunito mt-2 border-b border-primary pb-2">
                     <div>
+                        <h1 className="font-semibold font-nunito">Driving method</h1>
+                        <p className="font-nunito">selected method of driving</p>
+                    </div>
+                    <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
+                </div>
+
+                <div className="flex justify-between items-center font-nunito mt-2">
+                    <div>
                         <h1 className="font-semibold font-nunito">Base Price:</h1>
                         <p className="font-nunito">per day</p>
                     </div>
@@ -219,20 +259,15 @@ const BookingInfo = () => {
                     <h1 className="font-nunito font-medium">{totalRentHours} $</h1>
                 </div>
 
+
+
+
                 <div className="flex justify-between items-center font-nunito mt-2">
                     <div>
                         <h1 className="font-semibold font-nunito">Renting Cost</h1>
                         <p className="font-nunito">cost according to the total hours</p>
                     </div>
                     <h1 className="font-nunito font-medium">{totalPayCost} $</h1>
-                </div>
-
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-semibold font-nunito">Driving method</h1>
-                        <p className="font-nunito">selected method of driving</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{method? method : "not selected"}</h1>
                 </div>
 
                 {
@@ -242,7 +277,7 @@ const BookingInfo = () => {
                                 <h1 className="font-semibold font-nunito">Driver Cost</h1>
                                 <p className="font-nunito">if you select need driver method</p>
                             </div>
-                            <h1 className="font-nunito font-medium"> 0 $</h1>
+                            <h1 className="font-nunito font-medium"> {drivingCost} $</h1>
                         </div>
                     </>
                 }
@@ -252,7 +287,7 @@ const BookingInfo = () => {
                         <h1 className="font-semibold font-nunito">Discount</h1>
                         <p className="font-nunito">if there is any discount</p>
                     </div>
-                    <h1 className="font-nunito font-medium"> 0 $</h1>
+                    <h1 className="font-nunito font-medium"> {discount} $</h1>
                 </div>
 
                 <div className="flex justify-between items-center font-nunito mt-2">
@@ -260,7 +295,7 @@ const BookingInfo = () => {
                         <h1 className="font-bold font-nunito text-lg">Total cost</h1>
                         <p className="font-nunito font-bold">total cost you need to pay</p>
                     </div>
-                    <h1 className="font-nunito font-bold"> {rental_price} $</h1>
+                    <h1 className="font-nunito font-bold"> {totalPayment} $</h1>
                 </div>
 
                 <form
