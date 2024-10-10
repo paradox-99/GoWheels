@@ -39,7 +39,7 @@ const AgencyRegister = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async (ownerData) => {
-            const { data } = await axiosPublic.post(`http://localhost:3000/api/usersRoute/ownerInfo`, ownerData)
+            const { data } = await axiosPublic.post(`https://go-wheels-server.vercel.app/api/usersRoute/ownerInfo`, ownerData)
             return data
         },
         onSuccess: () => {

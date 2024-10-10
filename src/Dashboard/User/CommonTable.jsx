@@ -43,7 +43,7 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
 
         try {
             console.log(reviewData);
-            const response = await axios.post("http://localhost:3000/api/feedbackRoute/feedback", reviewData);
+            const response = await axios.post("https://go-wheels-server.vercel.app/api/feedbackRoute/feedback", reviewData);
 
             if (response.status === 200) {
                 toast.success("Feedback Placed successfully")
