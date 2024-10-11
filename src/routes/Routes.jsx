@@ -36,6 +36,7 @@ import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
+import BookingHistoryForAgency from "../Dashboard/Agency/BookingHistoryForAgency";
 
 const router = createBrowserRouter([
     {
@@ -105,7 +106,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "user-booking-history",
-                element: <BookingHistory></BookingHistory>
+                element: <BookingHistory></BookingHistory>,
             },
             {
                 path: "user-ratings",
@@ -139,7 +140,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/agency/booking-history",
-                element: <BookingHistory></BookingHistory>
+                element: <BookingHistoryForAgency></BookingHistoryForAgency>
             },
             {
                 path: "/dashboard/agency/booking-request",
