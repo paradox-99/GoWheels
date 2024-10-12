@@ -82,6 +82,7 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
+            
             brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, carId
         }
 
