@@ -14,7 +14,7 @@ const BookingHistory = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/bookings/user/${userId}?history=true`);
+                const response = await axios.get(`https://go-wheels-server.vercel.app/api/bookings/user/${userId}?history=true`);
                 setBookings(response.data);
                 setLoading(false);
             } catch (err) {

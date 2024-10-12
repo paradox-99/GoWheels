@@ -62,28 +62,28 @@ const Navbar = () => {
                             <div className="relative">
                                 <ul className={`bg-primary text-white text-lg rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value ? "-right-72" : "right-0"} duration-500`}>
                                     {
-                                        userInfo.userRole === "user"  && <li className="hover:bg-secondary slate-100 px-4 py-2 hover:rounded-t"><Link to={'/dashboard/user-profile'}>Profile</Link></li>
+                                        userInfo.userRole === "user"  && <li className="hover:bg-secondary px-4 py-2 hover:rounded-t"><Link to={'/dashboard/user-profile'}>Profile</Link></li>
                                     }
                                     {
-                                        userInfo.userRole === "agency"  && <li className="hover:bg-secondary slate-100 px-4 py-2 hover:rounded-t"><Link to={'/dashboard/agency/owner'}>Profile</Link></li>
+                                        userInfo.userRole === "agency"  && <li className="hover:bg-secondary px-4 py-2 hover:rounded-t"><Link to={'/dashboard/agency/owner'}>Profile</Link></li>
                                     }
                                     {
-                                        userInfo.userRole === "moderator"  && <li className="hover:bg-secondary slate-100 px-4 py-2 hover:rounded-t"><Link to={'/dashboard/moderator-profile'}>Profile</Link></li>
+                                        userInfo.userRole === "moderator"  && <li className="hover:bg-secondary px-4 py-2 hover:rounded-t"><Link to={'/dashboard/moderator-profile'}>Profile</Link></li>
                                     }
                                     {/* {
                                         userInfo.userRole === "admin"  && <li className="hover:bg-secondary slate-100 px-4 py-2"><Link to={'/dashboard/admin-home'}>Profile</Link></li>
                                     } */}
                                     {
-                                        userInfo.userRole === "user"  && <li className="hover:bg-secondary slate-100 px-4 py-2"><Link to={'/dashboard/user-home'}>Dashboard</Link></li>
+                                        userInfo.userRole === "user"  && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/user-home'}>Dashboard</Link></li>
                                     }
                                     {
-                                        userInfo.userRole === "agency"  && <li className="hover:bg-secondary slate-100 px-4 py-2"><Link to={'/dashboard/agency-home'}>Dashboard</Link></li>
+                                        userInfo.userRole === "agency"  && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/agency-home'}>Dashboard</Link></li>
                                     }
                                     {
-                                        userInfo.userRole === "moderator"  && <li className="hover:bg-secondary slate-100 px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Dashboard</Link></li>
+                                        userInfo.userRole === "moderator"  && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Dashboard</Link></li>
                                     }
                                     {
-                                        userInfo.userRole === "admin"  && <li className="hover:bg-secondary slate-100 px-4 py-2"><Link to={'/dashboard/admin-home'}>Dashboard</Link></li>
+                                        userInfo.userRole === "admin"  && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/admin-home'}>Dashboard</Link></li>
                                     }
                                     <li className="hover:bg-secondary px-4 py-2 hover:rounded-b"><button onClick={logout}>Logout</button></li>
                                 </ul>
@@ -99,7 +99,7 @@ const Navbar = () => {
                         }
                     </div>
                     <div className="relative">
-                        <ul className={`bg-slate-200 rounded w-40 top-5 absolute flex flex-col gap-2 lg:gap-4 font-nunito px-3 ${!value2 ? "-right-60" : "right-0"} duration-500`}>
+                        <ul className={`bg-primary text-white rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value2 ? "-right-60" : "right-0"} duration-500`}>
                             {routes}
                         </ul>
                     </div>

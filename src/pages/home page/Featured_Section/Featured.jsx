@@ -18,8 +18,7 @@ const Featured = () => {
   return (
     <div className="pt-20 lg:pt-32 ">
       <Title title={"Featured Cars"}></Title>
-
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-center justify-items-center">
+      <div className="px-5 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-center justify-items-center">
         {data.map((car) => (
           <FeaturedCarts key={car.id} car={car}></FeaturedCarts>
         ))}

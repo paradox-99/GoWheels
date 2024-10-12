@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:3000/api'
+    baseURL: 'https://go-wheels-server.vercel.app/api'
 })
 
 const useAxiosPublic = () => {
