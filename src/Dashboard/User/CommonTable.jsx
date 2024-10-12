@@ -32,8 +32,10 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
         const reviewData = {
             userId: userInfo?._id,
             carId: booking._id,
+            carName: booking?.name,
             userName: userInfo?.firstName + " " + userInfo?.lastName,
             userImage: userInfo?.image,
+            carImage: imageUrl,
             review: reviewText,
             rating: rating,
             agencyResponse: "",
@@ -41,7 +43,7 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
 
         try {
             console.log(reviewData);
-            const response = await axios.post("http://localhost:3000/api/feedbackRoute/feedback", reviewData);
+            const response = await axios.post("https://go-wheels-server.vercel.app/api/feedbackRoute/feedback", reviewData);
 
             if (response.status === 200) {
                 toast.success("Feedback Placed successfully")
@@ -224,7 +226,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                                         </span>
                                     </td>
                                     <td className="py-3 px-6">{booking.pickupLocation}</td>
-                                    <td className="py-3 px-6 font-semibold">${booking.price}</td>
+                                    <td className="py-3 px-6 font-semibold">৳ {booking.price * 120}</td>
                                     {/*  Review Button */}
                                     {booking.status === "Completed" && (
                                         <td className="py-3 px-6 text-gray-600 font-semibold">

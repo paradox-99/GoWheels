@@ -4,20 +4,24 @@ import { CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
 import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
-import { IoIosPeople } from "react-icons/io";
 import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { GrUserAdmin } from "react-icons/gr";
+import { CgMenu } from "react-icons/cg";
+import { RxCross2 } from "react-icons/rx";
+import { useState } from "react";
+import { array } from "prop-types";
 
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const { logout } = UseAuth();
-  const {userInfo} = useDesignation();
+  const { userInfo } = useDesignation();
+  const [value, setValue] = useState(false);
 
-  
+
   const handleLogout = async () => {
     await logout();
     navigate("/join")
@@ -27,9 +31,9 @@ const Dashboard = () => {
     admin: [
       { to: "/dashboard/admin-home", label: "Admin Home", icon: <TbLayoutDashboardFilled /> },
       { to: "/dashboard/manage-users", label: "Manage Users", icon: <FaUsers /> },
-      { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
+      // { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
       { to: "/dashboard/manage-agencies", label: "Manage Agencies", icon: <GiTentacleHeart /> },
-      { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
+      // { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
     ],
     user: [
       { to: "/dashboard/user-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
@@ -51,7 +55,7 @@ const Dashboard = () => {
       { to: "/dashboard/agency/booking-history", label: "Booking History", icon: <FaHistory /> },
       { to: "/dashboard/agency/booking-request", label: "Booking Request", icon: <MdOutlineBook /> },
       { to: "/dashboard/agency/active-booking", label: "Active Booking", icon: <GiRadioactive /> },
-      { to: "/dashboard/agency/customer-management", label: "Customer Management", icon: <IoIosPeople /> },
+      // { to: "/dashboard/agency/customer-management", label: "Customer Management", icon: <IoIosPeople /> },
       { to: "/dashboard/agency/review-from-customers", label: "Review & Feedback", icon: <MdOutlineRateReview /> },
     ],
     moderator: [
@@ -62,10 +66,9 @@ const Dashboard = () => {
 
   return (
     <div className="flex relative">
-      <div className="w-[20%] fixed left-0">
+      <div className="w-[20%] fixed left-0 hidden lg:block">
         <div className="bg-primary min-h-screen font-nunito">
           <ul className="lg:static bg-white p-5 min-h-screen w-[95%] max-w-[300px] flex flex-col justify-between">
-
             <div>
               <div className="flex justify-between items-center">
                 <div className="px-6">
@@ -83,7 +86,7 @@ const Dashboard = () => {
               </div>
 
               <div className="px-2 space-y-2 pt-8 pb-4">
-                {menuItems[userInfo?.userRole]?.map((item, index) => (
+                {menuItems["agency"]?.map((item, index) => (
                   <NavLink
                     key={index}
                     to={item.to}
@@ -97,6 +100,9 @@ const Dashboard = () => {
                   </NavLink>
                 ))}
               </div>
+              <div>
+
+              </div>
             </div>
 
             <div className="pl-5 flex flex-col font-nunito">
@@ -109,7 +115,40 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <div className="w-[80%] h-screen absolute right-0">
+      <div className="lg:hidden fixed top-0 z-10 bg-secondary w-full h-10 flex justify-between items-center px-4">
+        <div className="">
+          <div onClick={() => setValue(!value)} className="text-white">
+            {
+              value ? <RxCross2></RxCross2> : <CgMenu></CgMenu>
+            }
+          </div>
+          <div className="relative">
+            <ul className={`rounded w-48 z-10 bg-secondary absolute flex flex-col font-nunito mt-4 ${!value ? "-left-60" : "left-0"} duration-500`}>
+              {menuItems["user"]?.map((item, index) => (
+                <NavLink
+                  key={index}
+                  to={item.to}
+                  onClick={() => setValue(!value)}
+                  className={({ isActive }) =>
+                    `flex p-1 pl-4 gap-2 items-center transition-colors duration-300 
+                                        ${isActive ? 'text-white bg-primary' : 'text-white'} ${(index === 0 && "rounded-t") || (index === array.length+1 && "rounded-b")}`
+                  }
+                >
+                  <div>{item.icon}</div>
+                  {item.label}
+                </NavLink>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <h3 className="text-white max-[400px]:text-sm">
+          {userInfo?.firstName || "Radwanul Islam"} {userInfo?.lastName || "Nayeem"}
+        </h3>
+        <div>
+          <button onClick={logout} className="text-primary font-bold">Logout</button>
+        </div>
+      </div>
+      <div className="w-full lg:w-[80%] mt-14 lg:mt-0 h-screen absolute right-0">
         <Outlet />
       </div>
     </div>

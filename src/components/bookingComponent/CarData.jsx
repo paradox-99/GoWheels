@@ -37,7 +37,7 @@ const CarData = ({ brand, model, build_year, fuel, gear, mileage, photo, seats, 
 
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><FaTachometerAlt className="text-xl text-primary" /> Mileage: {mileage}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day {rental_price} $</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day ৳ {rental_price * 120}</h1>
                 </div>
 
                 {/* <div className="space-y-1">
@@ -47,7 +47,7 @@ const CarData = ({ brand, model, build_year, fuel, gear, mileage, photo, seats, 
 
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><FaTachometerAlt className="text-xl text-primary" /> Mileage: {mileage}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day {rental_price} $</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day ৳ {rental_price * 120}</h1>
                 </div> */}
 
             </div>
