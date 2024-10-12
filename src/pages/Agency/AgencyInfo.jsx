@@ -4,9 +4,10 @@ import { useState } from "react";
 import background from '../../../public/asset/background.jpg'
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
+import { generateAgencyId } from "../../components/agencyIdGenerator";
 
 const AgencyInfo = () => {
-    const [agencyId, setAgencyId] = useState(1); 
+    const [agencyId, setAgencyId] = useState(1);
 
     const [selectedDivision, setSelectedDivision] = useState('');
     // eslint-disable-next-line no-unused-vars
@@ -21,8 +22,8 @@ const AgencyInfo = () => {
     const handleDivisionChange = (e) => {
         const division = e.target.value;
         setSelectedDivision(division);
-        setSelectedDistrict(''); 
-        setUpazillas([]); 
+        setSelectedDistrict('');
+        setUpazillas([]);
         setDistricts(Object.keys(locationData[division] || {}));
     };
 
@@ -32,46 +33,41 @@ const AgencyInfo = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-
-   
-    
     // let agencyId = 1;
     const handleAgency = async (e) => {
         e.preventDefault()
         const form = e.target;
         const agencyName = form.name.value;
         const transportLicenseNumber = form.transportNumber.value;
-        const insuranceLicenseNumber = form.insuranceLicenceNumber.value; 
+        const insuranceLicenseNumber = form.insuranceLicenceNumber.value;
         const numberOfVehicles = parseInt(form.numberOfVehicles.value);
         const division = form.division.value;
         const district = form.district.value;
         const upazilla = form.upazilla.value;
         const area = form.localAddress.value;
-        const businessRegNumber= form.regNumber.value;
+        const businessRegNumber = form.regNumber.value;
         const taxIdentificationNumber = form.identificationNumber.value;
-        const agency_id = `AG${agencyId}`;
+        const agency_id = generateAgencyId();
         setAgencyId(agencyId + 1);
-        
+
         const agencyAddress = {
             division,
             district,
             upazilla,
             area
         }
-
-
-
-        const info = { 
-            agencyName, agencyEmail, agencyAddress, businessRegNumber, 
-            taxIdentificationNumber, 
+        const info = {
+            agencyName, agencyEmail, agencyAddress, businessRegNumber,
+            taxIdentificationNumber,
             transportLicenseNumber,
             insuranceLicenseNumber,
-            numberOfVehicles, agency_id };
+            numberOfVehicles, agency_id
+        };
 
         console.log(info)
         try {
             await mutateAsync(info)
-           
+
 
         }
         catch (err) {
@@ -89,9 +85,9 @@ const AgencyInfo = () => {
         },
         onSuccess: () => {
             console.log('data saved successfully')
-            navigate('/join/addCarInfo' ,{ state: { agencyEmail } });
+            navigate('/join/addCarInfo', { state: { agencyEmail } });
             // toast.success(' data added successfully')
-            
+
 
         }
 

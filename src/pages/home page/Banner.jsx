@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <main className="dark:bg-gray-800 bg-white relative overflow-hidden container mx-auto lg:px-20 lg:py-8">
+    <main className="dark:bg-gray-800 bg-white relative overflow-hidden container mx-auto lg:px-20 lg:py-8 mt-5 xl:mt-0">
       <div className="bg-white dark:bg-gray-800 flex flex-col sm:flex-row relative items-center overflow-hidden">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row relative py-10 lg:py-16">
           <div className="w-full sm:w-2/3 lg:w-2/5 flex flex-col relative">
