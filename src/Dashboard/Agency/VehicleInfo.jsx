@@ -8,12 +8,14 @@ const VehicleInfo = () => {
   const { user } = useContext(AuthContext);
 
   const { data: vehicles, refetch, isLoading, error } = useQuery({
-    queryKey: ["vehicles", user?.email],
+    queryKey: ["vehicles", user?.userEmail],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/agencyRoute/agency/vehicleInfo/${user?.email}`
+        `/agencyRoute/agency/vehicleInfo/${user?.userEmail}`
       );
+      console.log(data);
       return data;
+      
     },
   });
 
@@ -34,6 +36,7 @@ const VehicleInfo = () => {
           className="block w-full px-4 py-2 text-center"
         >
           Manage Your All <b>Rental Cars</b>.
+          {vehicles?.length}
         </a>
       </div>
 

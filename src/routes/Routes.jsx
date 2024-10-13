@@ -37,6 +37,9 @@ import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 import BookingHistoryForAgency from "../Dashboard/Agency/BookingHistoryForAgency";
+import { DashboardRoutes } from "./DashboardRoutes";
+import PaymentFail from "../pages/paymentPage/PaymentFail";
+import PaymentSuccess from "../pages/paymentPage/PaymentSuccess";
 
 const router = createBrowserRouter([
     {
@@ -65,11 +68,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/bookingInfo",
-                element: <BookingInfo></BookingInfo>
-            },
-            {
-                path: '/payment-page',
-                element: <PaymentPage></PaymentPage>
+                element: <BookingInfo />
             },
             ...SignUpRoutes,
             {
@@ -86,8 +85,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brand/:brand_name',
-                element: <ShowBrandCars/>
+                element: <ShowBrandCars />
             },
+            {
+                path: "/payment/success/:tranId",
+                element: <PaymentSuccess />
+            },
+            {
+                path: "/payment/fail/:tranId",
+                element: <PaymentFail />
+            }
         ]
     },
     {
@@ -196,6 +203,7 @@ const router = createBrowserRouter([
             },
         ],
     },
+    ...DashboardRoutes,
 ],
 )
 

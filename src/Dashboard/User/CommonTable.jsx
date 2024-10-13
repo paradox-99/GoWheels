@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { FaPen, FaStar } from 'react-icons/fa'; 
+import useDesignation from '../../hooks/useDesignation';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 const ReviewModal = ({ isOpen, onClose, booking }) => {
+    const { userInfo } = useDesignation();
+    console.log(userInfo);
     const [rating, setRating] = useState(0);  
     const [reviewText, setReviewText] = useState('');  
     const [imageUrl, setImageUrl] = useState('');  
@@ -21,13 +26,35 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
         setImageUrl(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //TODO : Submit the rating, reviewText, and imageUrl to the server 
-        console.log("Review:", reviewText, "Rating:", rating, "Image URL:", imageUrl);
-        onClose(); 
-    };
 
+        const reviewData = {
+            userId: userInfo?._id,
+            carId: booking._id,
+            carName: booking?.name,
+            userName: userInfo?.firstName + " " + userInfo?.lastName,
+            userImage: userInfo?.image,
+            carImage: imageUrl,
+            review: reviewText,
+            rating: rating,
+            agencyResponse: "",
+        };
+
+        try {
+            console.log(reviewData);
+            const response = await axios.post("http://localhost:3000/api/feedbackRoute/feedback", reviewData);
+
+            if (response.status === 200) {
+                toast.success("Feedback Placed successfully")
+                onClose();
+            } else {
+                console.error("Error submitting review:", response.data.message);
+            }
+        } catch (error) {
+            console.error("Error submitting review:", error);
+        }
+    };
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-black bg-opacity-50 absolute inset-0"></div>
@@ -151,7 +178,16 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
     if (error) {
         return <p className="text-center text-red-600">{error}</p>;
     }
+    if (bookings.message) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="text-center text-xl text-gray-500">
+                    {bookings.message}
+                </p>
+            </div>
+        );
 
+    }
     return (
         <div className="container mx-auto p-6">
             <h2 className="text-3xl font-semibold mb-6">{heading}</h2>
@@ -159,18 +195,19 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-red-50 text-gray-500 text-sm leading-normal">
+                            <tr className="bg-primary text-white font-nunito text- leading-normal">
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
                                 <th className="py-3 px-6 text-left">Drop-off Date</th>
                                 <th className="py-3 px-6 text-left">Status</th>
                                 <th className="py-3 px-6 text-left">Drop-off Location</th>
                                 <th className="py-3 px-6 text-left">Price</th>
+                                <th className="py-3 px-6 text-left"></th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-600 text-sm">
+                        <tbody className=" text-sm">
                             {bookings.userBookings.map((booking) => (
-                                <tr key={booking._id} className="border-b border-red-50 hover:bg-red-50">
+                                <tr key={booking._id} className="border-b border-red-50 hover:bg-secondary hover:text-white font-nunito">
                                     <td className="py-3 font-semibold px-6">
                                         <img src={booking.image} className="rounded-md h-16 w-22 object-cover mb-2" alt="" />
                                         {booking.name}
@@ -189,7 +226,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                                         </span>
                                     </td>
                                     <td className="py-3 px-6">{booking.pickupLocation}</td>
-                                    <td className="py-3 px-6 text-gray-600 font-semibold">${booking.price}</td>
+                                    <td className="py-3 px-6 font-semibold">৳ {booking.price * 120}</td>
                                     {/*  Review Button */}
                                     {booking.status === "Completed" && (
                                         <td className="py-3 px-6 text-gray-600 font-semibold">

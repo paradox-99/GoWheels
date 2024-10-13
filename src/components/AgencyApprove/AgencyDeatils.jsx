@@ -29,7 +29,7 @@ const AgencyDeatils = () => {
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
-          title: `verify and role modified successfull`,
+          title: `verify and role modified successful`,
           text: "Your file has been update.",
           icon: "success",
         });
