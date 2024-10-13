@@ -28,7 +28,7 @@ const ViewDetails = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/feedbackRoute/feedbacks/${id}`);
+                const response = await axios.get(`https://go-wheels-server.vercel.app/api/feedbackRoute/feedbacks/${id}`);
                 setReviews(response.data);
                 setLoading(false);
             } catch (error) {
@@ -151,7 +151,7 @@ const ViewDetails = () => {
     };
 
     return (
-        <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto">
+        <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto lg:px-6">
             {/* Skeleton Loader */}
             {isLoading ? (
                 <div className="animate-pulse flex flex-col md:flex-row gap-8">
@@ -272,7 +272,7 @@ const ViewDetails = () => {
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Deductible: ${data?.vehicle_info.insurance_details.deductible}</span>
+                                <span>Deductible: ৳ {data?.vehicle_info.insurance_details.deductible * 120}</span>
                             </li>
                         </ul>
                     </div>

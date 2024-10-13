@@ -43,7 +43,7 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
 
         try {
             console.log(reviewData);
-            const response = await axios.post("http://localhost:3000/api/feedbackRoute/feedback", reviewData);
+            const response = await axios.post("https://go-wheels-server.vercel.app/api/feedbackRoute/feedback", reviewData);
 
             if (response.status === 200) {
                 toast.success("Feedback Placed successfully")
@@ -193,16 +193,17 @@ const CommonTable = ({ bookings, loading, error }) => {
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-red-50 text-gray-500 text-sm leading-normal">
+                            <tr className="bg-primary text-white font-nunito text- leading-normal">
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
                                 <th className="py-3 px-6 text-left">Drop-off Date</th>
                                 <th className="py-3 px-6 text-left">Status</th>
                                 <th className="py-3 px-6 text-left">Drop-off Location</th>
                                 <th className="py-3 px-6 text-left">Price</th>
+                                <th className="py-3 px-6 text-left"></th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-600 text-sm">
+                        <tbody className=" text-sm">
                             {bookings.userBookings.map((booking) => (
                                 <tr key={booking._id} className="border-b odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-red-50">
                                     <td className="py-3 font-semibold px-6">
@@ -223,7 +224,7 @@ const CommonTable = ({ bookings, loading, error }) => {
                                         </span>
                                     </td>
                                     <td className="py-3 px-6">{booking.pickupLocation}</td>
-                                    <td className="py-3 px-6 text-gray-600 font-semibold">${booking.price}</td>
+                                    <td className="py-3 px-6 font-semibold">৳ {booking.price * 120}</td>
                                     {/*  Review Button */}
                                     {booking.status === "Completed" && (
                                         <td className="py-3 px-6 text-gray-600 font-semibold">
