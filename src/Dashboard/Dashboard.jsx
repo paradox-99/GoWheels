@@ -2,7 +2,7 @@ import { FaCar, FaCarSide, FaHistory, FaHome, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate} from "react-router-dom";
 import { CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
-import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
+import { MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
 import { IoIosPeople } from "react-icons/io";
 import useDesignation from "../hooks/useDesignation";
@@ -35,7 +35,6 @@ const Dashboard = () => {
       { to: "/dashboard/user-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
       { to: "/dashboard/user-profile", label: "My Profile", icon: <CiUser /> },
       { to: "/dashboard/user-bookings", label: "Bookings", icon: <RiListOrdered /> },
-      { to: "/dashboard/user-booking-history", label: "Booking History", icon: <MdManageHistory /> },
       { to: "/dashboard/user-ratings", label: "Reviews", icon: <CiStar /> },
       { to: "/dashboard/user-favourite", label: "Favourite Cars", icon: <CiHeart /> },
     ],
@@ -93,9 +92,9 @@ const Dashboard = () => {
                 </NavLink>
               ))}
             </div>
-            <div className="mt-5 pl-5 flex flex-col font-nunito">
-              <Link to={"/"} className="flex gap-1 p-2 items-center text-xl  font-semibold"><FaHome />Back to Home</Link>
-              <button onClick={handleLogout} className="flex gap-2 pl-1 text-red-500 items-center text-xl font-semibold">
+            <div className="absolute bottom-12 pl-5 flex flex-col font-nunito">
+              <Link to={"/"} className="flex gap-1 p-2 items-center  "><FaHome />Back to Home</Link>
+              <button onClick={handleLogout} className="flex gap-2 pl-1 text-red-500 items-center ">
                 <BiLogOut />Logout
               </button>
             </div>

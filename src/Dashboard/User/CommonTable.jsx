@@ -102,7 +102,7 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
                     {/* Submit Button */}
                     <div className="flex justify-end gap-4">
                         <button type="button" onClick={onClose} className="bg-gray-500 text-white py-1 px-4 rounded-md">Cancel</button>
-                        <button type="submit" className="bg-blue-500 text-white py-1 px-4 rounded-md">Submit</button>
+                        <button type="submit" className="bg-primary text-white py-1 px-4 rounded-md">Submit</button>
                     </div>
                 </form>
             </div>
@@ -110,7 +110,7 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
     );
 };
 
-const CommonTable = ({ bookings, heading, loading, error }) => {
+const CommonTable = ({ bookings, loading, error }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedBooking, setSelectedBooking] = useState(null);
 
@@ -126,7 +126,6 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
     if (loading) {
         return (
             <div className="container mx-auto p-6">
-                <h2 className="text-3xl font-semibold mb-6">{heading}</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
@@ -143,7 +142,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                         </thead>
                         <tbody className="text-gray-600 text-sm">
                             {Array(5).fill("").map((_, index) => (
-                                <tr key={index} className="border-b border-gray-200 animate-pulse">
+                                <tr key={index} className="border-b  odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-red-50 animate-pulse">
                                     <td className="py-3 px-6">
                                         <div className="w-24 h-12 bg-gray-300 rounded-md"></div>
                                         <div className="h-4 bg-gray-300 rounded mt-2"></div>
@@ -180,7 +179,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
     }
     if (bookings.message) {
         return (
-            <div className="flex items-center justify-center h-screen">
+            <div className="flex items-center justify-center h-[400px]">
                 <p className="text-center text-xl text-gray-500">
                     {bookings.message}
                 </p>
@@ -190,7 +189,6 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
     }
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-3xl font-semibold mb-6">{heading}</h2>
             {bookings?.userBookings.length > 0 ? (
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
@@ -206,7 +204,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                         </thead>
                         <tbody className="text-gray-600 text-sm">
                             {bookings.userBookings.map((booking) => (
-                                <tr key={booking._id} className="border-b border-red-50 hover:bg-red-50">
+                                <tr key={booking._id} className="border-b odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-red-50">
                                     <td className="py-3 font-semibold px-6">
                                         <img src={booking.image} className="rounded-md h-16 w-22 object-cover mb-2" alt="" />
                                         {booking.name}
@@ -230,7 +228,7 @@ const CommonTable = ({ bookings, heading, loading, error }) => {
                                     {booking.status === "Completed" && (
                                         <td className="py-3 px-6 text-gray-600 font-semibold">
                                             <button
-                                                className="flex items-center gap-1 text-blue-500 hover:underline"
+                                                className="flex items-center gap-1 text-red-400 px-2 py-1 border rounded-lg "
                                                 onClick={() => handleAddReviewClick(booking)}
                                             >
                                                 <FaPen className="inline-block" /> Add Review
