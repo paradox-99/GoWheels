@@ -6,10 +6,9 @@ import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
-import useSignUp from '../../hooks/useSignUp';
 
 const SignUpPartThree = () => {
-
+    const { user } = UseAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null)
@@ -17,7 +16,6 @@ const SignUpPartThree = () => {
     const { setUser, updateUserProfile, createUser } = UseAuth();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
-    const { setSignUpStep, signUpStep } = useSignUp();
     const [loading, setLoading] = useState(false);
 
     const {
@@ -25,6 +23,7 @@ const SignUpPartThree = () => {
         lastName,
         email,
         phone,
+        nid,
         gender,
         division,
         district,
@@ -34,12 +33,10 @@ const SignUpPartThree = () => {
     } = location.state?.info || {};
 
     useEffect(() => {
-        if (signUpStep < 3) {
+        if ((user && !loading) || (!email && !phone)) {
             navigate('/join');
         }
-    }, [navigate, signUpStep]);
-
-    console.log(firstName, lastName, email, phone, gender, division, district, upazilla)
+    }, [email, loading, navigate, phone, user])
 
     const handleJoin = async (e) => {
         e.preventDefault()
@@ -57,6 +54,7 @@ const SignUpPartThree = () => {
             lastName,
             userEmail,
             phone,
+            nid,
             gender,
             dateOfBirth,
             userAddress,
@@ -99,7 +97,6 @@ const SignUpPartThree = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                setSignUpStep(4);
                 navigate('/join/signUpFour', { state: { userInfo } });
             }
         }

@@ -6,11 +6,12 @@ const Root = () => {
 
     const location = useLocation()
     const noFooter = location.pathname.includes('signin') || location.pathname.includes('register') || location.pathname.includes('join')
+    const hideNavbar = location.pathname === '/join/signUpFour' || location.pathname === '/join/signUpFive' || location.pathname === '/join/login-Info';
 
     return (
         <div>
             <Navbar></Navbar>
-            <div className={`pt-14 lg:pt-20 ${noFooter || 'max-w-7xl mx-auto noFooter'}`}>
+            <div className={`${hideNavbar ? 'pt-0' : 'pt-16 lg:pt-20'} ${noFooter || 'max-w-7xl mx-auto noFooter'}`}>
                 <Outlet></Outlet>
             </div>
             {
