@@ -38,6 +38,8 @@ const BookingInfo = () => {
     const upazila = bookingInformation?.upazilla;
     const area = bookingInformation?.area
 
+    console.log(bookingInformation?.carId)
+
     const handleChange = (e) => {
         const drivingMethod = e.target.value
         // if(drivingMethod === 'self-driving' && !nid && !drivingLicense) {
@@ -56,6 +58,8 @@ const BookingInfo = () => {
         setMethod(drivingMethod);
     }
 
+    console.log(method)
+
     const handleConfirmBooking = async (e) => {
         e.preventDefault()
         if (!method) {
@@ -63,11 +67,13 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method
+            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, method, totalRentHours: 5
         }
 
-        const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
-        await axiosPublic.post('/payment/order', data)
+
+        // const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
+
+        await axiosPublic.post('/payment/order', paymentInfo)
             .then(res => {
                 window.location.replace(res.data?.url)
                 console.log(res.data)
