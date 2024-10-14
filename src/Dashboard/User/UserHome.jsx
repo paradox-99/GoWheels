@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import {
@@ -27,7 +27,7 @@ const UserHome = () => {
     const [loading, setLoading] = useState(true);
     const { userInfo } = useDesignation();
     const userID = userInfo?._id;
-    console.log(userID);
+
     useEffect(() => {
 
         if (userID) {
@@ -155,7 +155,7 @@ const UserHome = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
                     {loading ? (
                         <p>Loading...</p>
-                    ) : bookedCars.length === 0 ? (
+                    ) : bookedCars?.length < 1 ? (
                         <p>You have not booked any cars yet.</p>
                     ) : (
                         bookedCars.map((car) => (

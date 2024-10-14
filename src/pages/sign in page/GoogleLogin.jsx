@@ -77,20 +77,45 @@ const GoogleLogin = () => {
             return
         }
 
-        const userInfo = {
-            firstName,
-            lastName,
-            userEmail,
-            phone,
-            nid,
-            gender,
-            dateOfBirth,
-            userAddress,
-            localAddress,
-            image,
-        }
-
         try {
+
+            const { data: checkingData } = await axiosPublic.get(`/usersRoute/check-user`, {
+                params: {
+                    phone,
+                    nid
+                }
+            });  
+            
+            if (checkingData.phoneExists && checkingData.nidExists) {
+                toast.error('This phone number and NID are already used');
+                return;
+            }
+    
+            else if (checkingData.phoneExists) {
+                toast.error('This phone number is already used');
+                return;
+            }
+    
+           else if (checkingData.nidExists) {
+                toast.error('This NID number is already used');
+                return;
+            }
+    
+
+            const userInfo = {
+                firstName,
+                lastName,
+                userEmail,
+                phone,
+                nid,
+                gender,
+                dateOfBirth,
+                userAddress,
+                localAddress,
+                image,
+            }
+
+
             setLoader(true)
             await updateUserProfile(fullName, image);
             setUser({ ...user, displayName: fullName, photoURL: image });

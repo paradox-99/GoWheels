@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { locationData } from '../../../public/locationData.js'
 import UseAuth from '../../hooks/UseAuth.jsx';
 import loaderEliment from '../../../public/logo.gif';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../hooks/useAxiosPublic.jsx';
 
 const SignupPartTwo = () => {
 
@@ -11,6 +12,7 @@ const SignupPartTwo = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const { user, loader } = UseAuth() || {};
     const location = useLocation();
@@ -36,8 +38,7 @@ const SignupPartTwo = () => {
         }
     }, [navigate, previousPath, user]);
 
-
-    const handleJoin = (e) => {
+    const handleJoin = async (e) => {
         e.preventDefault()
         const form = e.target;
         const firstName = form.firstName.value;
@@ -54,7 +55,7 @@ const SignupPartTwo = () => {
 
         const phoneRegex = /^\+?[0-9]{13}$/;
         const nidRegex = /^\+?[0-9]{8,12}$/;
-        
+
         if (!phoneRegex.test(phone)) {
             toast.error('please enter a valid phone number')
             return
@@ -65,20 +66,49 @@ const SignupPartTwo = () => {
             return
         }
 
-        const info = {
-            firstName,
-            lastName,
-            email,
-            phone,
-            nid,
-            gender,
-            division,
-            district,
-            upazilla,
-            localAddress,
-            dateOfBirth,
-        };
-        navigate('/join/signUpThree', { state: { info } });
+        try {
+            
+            const { data } = await axiosPublic.get(`/usersRoute/check-user`, {
+                params: {
+                    phone,
+                    nid
+                }
+            });  
+            
+            if (data.phoneExists && data.nidExists) {
+                toast.error('This phone number and NID are already used');
+                return;
+            }
+    
+            else if (data.phoneExists) {
+                toast.error('This phone number is already used');
+                return;
+            }
+    
+           else if (data.nidExists) {
+                toast.error('This NID number is already used');
+                return;
+            }
+    
+            const info = {
+                firstName,
+                lastName,
+                email,
+                phone,
+                nid,
+                gender,
+                division,
+                district,
+                upazilla,
+                localAddress,
+                dateOfBirth,
+            };
+            navigate('/join/signUpThree', { state: { info } });
+    
+        } catch (error) {
+            console.error('Error checking user existence', error);
+            toast.error('Error checking user existence, please try again later.');
+        }
     }
 
     if (loader) {
