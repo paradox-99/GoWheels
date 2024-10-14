@@ -28,7 +28,7 @@ const ViewDetails = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/feedbackRoute/feedbacks/${id}`);
+                const response = await axios.get(`https://go-wheels-server.vercel.app/api/feedbackRoute/feedbacks/${id}`);
                 setReviews(response.data);
                 setLoading(false);
             } catch (error) {
@@ -142,7 +142,7 @@ const ViewDetails = () => {
     };
 
     return (
-        <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto">
+        <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto lg:px-6">
             {/* Skeleton Loader */}
             {isLoading ? (
                 <div className="animate-pulse flex flex-col md:flex-row gap-8">
@@ -263,7 +263,7 @@ const ViewDetails = () => {
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Deductible: ${data?.vehicle_info.insurance_details.deductible}</span>
+                                <span>Deductible: ৳ {data?.vehicle_info.insurance_details.deductible * 120}</span>
                             </li>
                         </ul>
                     </div>
@@ -333,8 +333,8 @@ const ViewDetails = () => {
                                         <div className='mt-4 w-3/4 h-8 bg-gray-100 rounded-md'></div>
                                     </div>
                                 ))
-                            ) : (
-                                // Actual reviews
+                            ) : (reviews.length===0? ( <p>No Reviews</p>) :
+                                
                                 reviews?.map((review, index) => (
                                     <div key={index} className='p-6 bg-white'>
                                         <div className="flex justify-between">
@@ -356,7 +356,7 @@ const ViewDetails = () => {
                                                     <svg
                                                         key={i}
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        className={`w-4 h-4 ${i < review.ratings ? 'text-yellow-400' : 'text-gray-300'}`}
+                                                        className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
                                                         fill="currentColor"
                                                         viewBox="0 0 20 20"
                                                     >
@@ -378,13 +378,13 @@ const ViewDetails = () => {
                                             </div>
                                         )}
 
-                                        {review.agencyResponse && (
+                                        
                                             <div className='mt-4 bg-gray-100 p-3 rounded-md shadow-inner'>
                                                 <p className='text-xs text-gray-600 italic'>
-                                                    <span className='font-semibold text-primary'>Agency Response:</span> {review.agencyResponse}
+                                                    <span className='font-semibold text-primary'>Agency Response:</span> {review.agencyResponse? review.agencyResponse : "No Response"}
                                                 </p>
                                             </div>
-                                        )}
+                                    
                                     </div>
                                 ))
                             )}

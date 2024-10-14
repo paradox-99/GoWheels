@@ -2,6 +2,7 @@ import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 import AdminHome from "../Dashboard/Admin/AdminHome";
 import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
+import ManageAgencyDetails from "../Dashboard/Admin/ManageAgencyDetails";
 import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
 import ManageUsers from "../Dashboard/Admin/ManageUsers";
 import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
@@ -113,6 +114,10 @@ export const DashboardRoutes = [
             {
                 path: 'manage-agencies',
                 element: <ManageAgencies></ManageAgencies>
+            },
+            {
+                path: "manage-agencies/agencyDetails/:id",
+                element: <ManageAgencyDetails />,
             },
 
             // MODERATOR
