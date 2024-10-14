@@ -86,11 +86,8 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, method, totalRentHours: 5 
+            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, totalRentHours: 5 
         }
-
-
-        // const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
 
         await axiosPublic.post('/payment/order', paymentInfo)
             .then(res => {

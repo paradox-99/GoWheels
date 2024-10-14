@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import UseAuth from "./UseAuth";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://go-wheels-server.vercel.app/api'
+    baseURL: 'http://localhost:3000/api'
 })
 
 const useAxiosSecure = () => {
