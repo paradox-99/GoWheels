@@ -29,8 +29,8 @@ const SignupPartTwo = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-    useEffect( () => {
-        if(signUpStep < 2 ) {
+    useEffect(() => {
+        if (signUpStep < 2) {
             navigate('/join');
         }
     }, [navigate, signUpStep]);

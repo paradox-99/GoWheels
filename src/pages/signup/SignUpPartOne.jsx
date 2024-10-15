@@ -6,6 +6,7 @@ import GoogleButton from '../../components/GoogleButton';
 import useSignUp from '../../hooks/useSignUp';
 import UseAuth from '../../hooks/UseAuth';
 
+
 const SignUpPartOne = () => {
     const navigate = useNavigate();
     const { setSignUpStep } = useSignUp();
@@ -34,7 +35,7 @@ const SignUpPartOne = () => {
                         </div>
 
                         <section className='mt-5 pb-5'>
-                            <div className=' mt-2'>
+                            <div className='mt-2'>
                                 <button onClick={handleNextStep} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
                                     <HiOutlineMail className='text-3xl text-white' /> Continue with Email
                                 </button>
@@ -42,7 +43,7 @@ const SignUpPartOne = () => {
                             <div className=' mt-2'>
                                 <GoogleButton></GoogleButton>
                             </div>
-                            <div className=' mt-2'>
+                            <div className='mt-2'>
                                 <Link to={'/join/agencyRegister'} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
                                     <FaRegHandshake className='text-3xl text-white' /> Register as a agency
                                 </Link>

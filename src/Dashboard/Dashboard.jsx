@@ -20,6 +20,7 @@ const Dashboard = () => {
   const { logout } = UseAuth();
   const { userInfo } = useDesignation();
   const [value, setValue] = useState(false);
+  console.log(userInfo)
 
 
   const handleLogout = async () => {
@@ -29,10 +30,10 @@ const Dashboard = () => {
 
   const menuItems = {
     admin: [
-      { to: "/dashboard/admin-home", label: "Admin Home", icon: <TbLayoutDashboardFilled /> },
-      { to: "/dashboard/manage-users", label: "Manage Users", icon: <FaUsers /> },
-      // { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
-      { to: "/dashboard/manage-agencies", label: "Manage Agencies", icon: <GiTentacleHeart /> },
+      { to: "/dashboard/admin-home", label: "Home", icon: <TbLayoutDashboardFilled /> },
+      { to: "/dashboard/manage-users", label: " Users", icon: <FaUsers /> },
+      { to: "/dashboard/manage-moderators", label: " Moderators", icon: <GiTentacleHeart /> },
+      { to: "/dashboard/manage-agencies", label: " Agencies", icon: <GiTentacleHeart /> },
       // { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
     ],
     user: [
@@ -86,7 +87,7 @@ const Dashboard = () => {
               </div>
 
               <div className="px-2 space-y-2 pt-8 pb-4">
-                {menuItems["agency"]?.map((item, index) => (
+                {menuItems[userInfo.userRole]?.map((item, index) => (
                   <NavLink
                     key={index}
                     to={item.to}
@@ -124,7 +125,7 @@ const Dashboard = () => {
           </div>
           <div className="relative">
             <ul className={`rounded w-48 z-10 bg-secondary absolute flex flex-col font-nunito mt-4 ${!value ? "-left-60" : "left-0"} duration-500`}>
-              {menuItems["user"]?.map((item, index) => (
+              {menuItems[userInfo.userRole]?.map((item, index) => (
                 <NavLink
                   key={index}
                   to={item.to}
