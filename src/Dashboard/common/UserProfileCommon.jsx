@@ -1,19 +1,57 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
-import loaderImage from "../../../public/logo.gif"
+import loaderImage from "../../../public/logo.gif";
+import { locationData } from "../../../public/locationData.js";
+
 const UserProfileCommon = () => {
-
-
-     // console.log(email);
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); // Get user info from AuthContext
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
-  // Fetch users information
+
+  // State variables for division, district, and dropdown data
+  const [selectedDivision, setSelectedDivision] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [districts, setDistricts] = useState([]);
+  const [upazillas, setUpazillas] = useState([]);
+
+  // Function to handle division change
+  const handleDivisionChange = (e) => {
+    const division = e.target.value;
+    setSelectedDivision(division);
+    setSelectedDistrict(""); // Reset district when division changes
+    setUpazillas([]); // Reset upazillas when division changes
+
+    // Populate districts for the selected division
+    if (locationData[division]) {
+      setDistricts(Object.keys(locationData[division]));
+    } else {
+      setDistricts([]); // Clear districts if no division selected
+    }
+  };
+
+  // Function to handle district change
+  const handleDistrictChange = (e) => {
+    const district = e.target.value;
+    setSelectedDistrict(district);
+
+    // Populate upazillas for the selected district
+    if (
+      locationData[selectedDivision] &&
+      locationData[selectedDivision][district]
+    ) {
+      setUpazillas(locationData[selectedDivision][district]);
+    } else {
+      setUpazillas([]); // Clear upazillas if no district selected
+    }
+  };
+
+  // --------------------------------------
+  // Fetch users information from the backend
   const {
     data: users,
-    isPending,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["users", user?.email],
@@ -21,65 +59,87 @@ const UserProfileCommon = () => {
       const { data } = await axiosSecure.get(
         `/agencyRoute/user/${user?.email}`
       );
-      console.log(data);
       return data;
     },
-    enabled: !!user?.email,
+    enabled: !!user?.email, // Only fetch if user email exists
   });
 
-  // Update agency users info mutation
+  // Pre-select division and district from fetched user data (if available)
+  useEffect(() => {
+    if (users?.userAddress?.division) {
+      setSelectedDivision(users.userAddress.division);
+      setDistricts(Object.keys(locationData[users.userAddress.division] || {}));
+    }
+
+    if (users?.userAddress?.district) {
+      setSelectedDistrict(users.userAddress.district);
+      setUpazillas(
+        locationData[users.userAddress.division]?.[
+          users.userAddress.district
+        ] || []
+      );
+    }
+  }, [users?.userAddress, locationData]); // Add locationData dependency here
+
+  // Update agency user info mutation
   const { mutateAsync } = useMutation({
     mutationFn: async (updateUserInfo) => {
-      const { data } = await axiosSecure.patch(`/agencyRoute/updateUserInfo/${user?.email}`, updateUserInfo);
-      console.log(data);
+      const { data } = await axiosSecure.patch(
+        `/agencyRoute/updateUserInfo/${user?.email}`,
+        updateUserInfo
+      );
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['users', user?.email]);
-      alert('users information updated successfully!');
+      queryClient.invalidateQueries(["users", user?.email]);
+      alert("User information updated successfully!");
     },
     onError: (error) => {
-      alert(`Failed to update users information: ${error.message}`);
+      alert(`Failed to update user information: ${error.message}`);
     },
   });
 
-
-  if (isPending) {
-    return <div className="w-full h-screen flex items-center justify-center">
-      <div>
-        <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+  if (isLoading) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <div>
+          <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+        </div>
       </div>
-    </div>;
+    );
   }
+
   if (error) {
     return <div>Error fetching data: {error.message}</div>;
   }
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const updatedusersData = Object.fromEntries(formData.entries());
+    const updatedUserData = Object.fromEntries(formData.entries());
 
-    await mutateAsync(updatedusersData);
-    // const { data } = await axiosSecure.put(`/agencyRoute/agency/updateUserInfo/${user?.email}`, updatedusersData);
-
+    await mutateAsync(updatedUserData);
   };
+
   if (!user) {
-    return <div className="w-full h-screen flex items-center justify-center">
-      <div>
-        <img src={loaderImage} alt="Loading..." className="w-[150px]" />
-      </div>
-    </div>;
-  }
     return (
-        <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold text-black mb-6">
-          Update users Information
-        </h1>
-  
-        <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
-          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* <div>
+      <div className="w-full h-screen flex items-center justify-center">
+        <div>
+          <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold text-black mb-6">
+        Update users Information
+      </h1>
+
+      <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
+        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* <div>
               <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
                 <div className="text-center">
                   <div className="mb-2">
@@ -102,149 +162,221 @@ const UserProfileCommon = () => {
                 className="sr-only"
               />
             </div> */}
-          </div>
-  
-          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First name"
-                defaultValue={users?.firstName}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Last Name"
-                defaultValue={users?.lastName}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
-          </div>
-  
-          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <input
-                type="text"
-                id="phone"
-                name="phone"
-                placeholder="phone"
-                defaultValue={users?.phone || ""}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
-  
-            <div>
-              <input
-                type="text"
-                id="nid"
-                name="nid"
-                placeholder="Nid"
-                defaultValue={users?.nid || ""} // Use nid directly
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
-          </div>
-  
-          <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <input
-                type="text"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                placeholder="Date Of Birth"
-                defaultValue={users?.dateOfBirth || ""}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
-  
-            <div>
-              <input
-                type="text"
-                id="accountStatus"
-                name="accountStatus"
-                placeholder="Account status"
-                defaultValue={users?.accountStatus || ""} // Use nid directly
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-                disabled
-              />
-            </div>
-          </div>
-  
-          <div className="p-2">
+        </div>
+
+        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
             <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              defaultValue={users?.userEmail}
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="First name"
+              defaultValue={users?.firstName}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
           </div>
-  
-          {/* address */}
-          <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="font-bold" htmlFor="">
-                District
-              </label>
-  
-              <input
-                type="text"
-                id="district"
-                name="district"
-                placeholder="district"
-                defaultValue={users?.userAddress?.district || ""}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
-  
-            <div>
-              <label className="font-bold" htmlFor="">
-                Division
-              </label>
-              <input
-                type="text"
-                id="division"
-                name="division"
-                placeholder="division"
-                defaultValue={users?.userAddress?.division || ""}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
-            <div>
-              <label className="font-bold" htmlFor="">
-                Upazilla
-              </label>
-  
-              <input
-                type="text"
-                id="upazilla"
-                name="upazilla"
-                placeholder="upazilla"
-                defaultValue={users?.userAddress?.upazilla || ""}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                style={{ backgroundColor: "#f6f6f6" }}
-              />
-            </div>
+          <div>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+              defaultValue={users?.lastName}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
           </div>
-  
-          {/* password */}
-          {/* <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+        </div>
+
+        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="phone"
+              defaultValue={users?.phone || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+
+          <div>
+            <input
+              type="text"
+              id="nid"
+              name="nid"
+              placeholder="Nid"
+              defaultValue={users?.nid || ""} // Use nid directly
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+        </div>
+
+        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <input
+              type="text"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              placeholder="Date Of Birth"
+              defaultValue={users?.dateOfBirth || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+
+          <div>
+            <input
+              type="text"
+              id="accountStatus"
+              name="accountStatus"
+              placeholder="Account status"
+              defaultValue={users?.accountStatus || ""} // Use nid directly
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+              disabled
+            />
+          </div>
+        </div>
+
+        <div className="p-2">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            defaultValue={users?.userEmail}
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+            style={{ backgroundColor: "#f6f6f6" }}
+          />
+        </div>
+
+        {/* address */}
+        {/* <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="font-bold" htmlFor="">
+              District
+            </label>
+
+            <input
+              type="text"
+              id="district"
+              name="district"
+              placeholder="district"
+              defaultValue={users?.userAddress?.district || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+
+          <div>
+            <label className="font-bold" htmlFor="">
+              Division
+            </label>
+            <input
+              type="text"
+              id="division"
+              name="division"
+              placeholder="division"
+              defaultValue={users?.userAddress?.division || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+          <div>
+            <label className="font-bold" htmlFor="">
+              Upazilla
+            </label>
+
+            <input
+              type="text"
+              id="upazilla"
+              name="upazilla"
+              placeholder="upazilla"
+              defaultValue={users?.userAddress?.upazilla || ""}
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+              style={{ backgroundColor: "#f6f6f6" }}
+            />
+          </div>
+        </div> */}
+
+        {/* --------------------------- */}
+        {/* Address fields */}
+        <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="font-bold" htmlFor="division">
+              Division
+            </label>
+            <select
+              name="division"
+              onChange={handleDivisionChange}
+              id="division"
+              className="outline-none w-[30%] rounded py-1 lg:py-2 px-2 text-secondary"
+              value={selectedDivision} // Use 'value' instead of 'defaultValue'
+              required
+            >
+              <option className="text-gray-400">Division</option>
+              {Object.keys(locationData).map((division) => (
+                <option key={division} value={division}>
+                  {division}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="font-bold" htmlFor="district">
+              District
+            </label>
+            {districts && (
+              <select
+                name="district"
+                onChange={handleDistrictChange}
+                id="district"
+                className="outline-none w-[33%] rounded py-1 lg:py-2 px-2 text-secondary"
+                value={selectedDistrict} // Use 'value' instead of 'defaultValue'
+                required
+              >
+                <option className="text-gray-400">District</option>
+                {districts.map((district) => (
+                  <option key={district}>{district}</option>
+                ))}
+              </select>
+            )}
+          </div>
+
+          <div>
+            <label className="font-bold" htmlFor="upazilla">
+              Upazilla
+            </label>
+            {upazillas && (
+              <select
+                name="upazilla"
+                id="upazilla"
+                className="outline-none w-[33%] rounded py-1 lg:py-2 px-2 text-secondary"
+                value={users?.userAddress?.upazilla || ""} // Use 'value' instead of 'defaultValue'
+                required
+              >
+                <option value="" disabled>
+                  Upazilla
+                </option>
+                {upazillas.map((upazilla) => (
+                  <option key={upazilla} value={upazilla}>
+                    {upazilla}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+        </div>
+
+        {/* ---------------------------------------------------- */}
+
+        {/* password */}
+        {/* <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <input
                 type="password"
@@ -267,20 +399,20 @@ const UserProfileCommon = () => {
               />
             </div>
           </div> */}
-  
-          {/* agency information----------- */}
-  
-          <div className="col-span-full mt-6 p-2">
-            <button
-              type="submit"
-              className="block w-full bg-[#ff4c30] hover:bg-[#161616] text-white font-bold py-3 px-4 rounded-full"
-            >
-              Update User Information
-            </button>
-          </div>
-        </form>
-      </div>
-    );
+
+        {/* agency information----------- */}
+
+        <div className="col-span-full mt-6 p-2">
+          <button
+            type="submit"
+            className="block w-full bg-[#ff4c30] hover:bg-[#161616] text-white font-bold py-3 px-4 rounded-full"
+          >
+            Update User Information
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default UserProfileCommon;
