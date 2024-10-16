@@ -3,6 +3,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { FaRegHandshake } from 'react-icons/fa';
 import loaderEliment from '../../../public/logo.gif';
 import GoogleButton from '../../components/GoogleButton';
+import { GiSteeringWheel } from "react-icons/gi";
 import UseAuth from '../../hooks/UseAuth';
 import useDesignation from '../../hooks/useDesignation';
 import { useEffect } from 'react';
