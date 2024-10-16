@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { locationData } from '../../../public/locationData.js'
 import UseAuth from '../../hooks/UseAuth.jsx';
 import loaderEliment from '../../../public/logo.gif';
-import useSignUp from '../../hooks/useSignUp.jsx';
+import toast from 'react-hot-toast';
+import useAxiosPublic from '../../hooks/useAxiosPublic.jsx';
+import { calculateAge } from '../../api/utilities/index.js';
 
 const SignupPartTwo = () => {
 
@@ -11,9 +13,18 @@ const SignupPartTwo = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
-    const { loader } = UseAuth() || {};
-    const { setSignUpStep, signUpStep } = useSignUp();
+    const { user, loader } = UseAuth() || {};
+    const location = useLocation();
+    const previousPath = location.state?.from;
+    const ageRef = useRef();
+
+    useEffect(() => {
+        if (user || !previousPath) {
+            navigate('/join');
+        }
+    }, [navigate, previousPath, user]);
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -29,40 +40,85 @@ const SignupPartTwo = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-    useEffect( () => {
-        if(signUpStep < 2 ) {
-            navigate('/join');
-        }
-    }, [navigate, signUpStep]);
-
-    const handleJoin = (e) => {
+    const handleJoin = async (e) => {
         e.preventDefault()
         const form = e.target;
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
         const email = form.email.value;
         const phone = form.phone.value;
+        const nid = form.nationalId.value
         const gender = form.gender.value;
         const division = form.division.value;
         const district = form.district.value;
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
+        const dobValue = ageRef.current.value;
 
-        const info = {
-            firstName,
-            lastName,
-            email,
-            phone,
-            gender,
-            division,
-            district,
-            upazilla,
-            localAddress,
-            dateOfBirth,
-        };
-        setSignUpStep(3);
-        navigate('/join/signUpThree', { state: { info } });
+        const phoneRegex = /^\+?[0-9]{13}$/;
+        const nidRegex = /^\+?[0-9]{8,12}$/;
+
+        if (!phoneRegex.test(phone)) {
+            toast.error('please enter a valid phone number')
+            return
+        }
+
+        if (!nidRegex.test(nid)) {
+            toast.error('please enter a valid nid number')
+            return
+        }
+
+        const age = calculateAge(dobValue);
+
+        if (age < 18) {
+            toast.error('your age is under 18, you are not permited to register here')
+            return
+        }
+
+        try {
+
+            const { data } = await axiosPublic.get(`/usersRoute/check-user`, {
+                params: {
+                    phone,
+                    nid
+                }
+            });
+
+            if (data.phoneExists && data.nidExists) {
+                toast.error('This phone number and NID are already used');
+                return;
+            }
+
+            else if (data.phoneExists) {
+                toast.error('This phone number is already used');
+                return;
+            }
+
+            else if (data.nidExists) {
+                toast.error('This NID number is already used');
+                return;
+            }
+
+            const info = {
+                firstName,
+                lastName,
+                email,
+                phone,
+                nid,
+                gender,
+                division,
+                district,
+                upazilla,
+                localAddress,
+                dateOfBirth,
+            };
+            navigate('/join/signUpThree', { state: { info } });
+
+        } catch (error) {
+            console.error('Error checking user existence', error);
+            toast.error('Error checking user existence, please try again later.');
+        }
     }
 
     if (loader) {
@@ -74,9 +130,9 @@ const SignupPartTwo = () => {
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
             <div className='text-center mx-auto pt-5'>
-                <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather mb-10'>GoWheels</h1>
+                <h1 className='text-2xl lg:text-4xl font-bold text-primary font-merriweather mb-5'>GoWheels</h1>
             </div>
-            <section className='mt-3'>
+            <section>
                 <form
                     onSubmit={handleJoin}
                     className='font-nunito'>
@@ -106,11 +162,19 @@ const SignupPartTwo = () => {
                             placeholder='Email'
                             required />
                         <input
-                            type="number"
+                            type="text"
                             name="phone"
                             id="phone"
                             className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
                             placeholder='Phone number'
+                            defaultValue="+880"
+                            required />
+                        <input
+                            type="text"
+                            name="nationalId"
+                            id="nationalId"
+                            className='outline-none w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                            placeholder='your NID number'
                             required />
                         <div className='flex justify-between items-center'>
                             <select
@@ -128,9 +192,11 @@ const SignupPartTwo = () => {
                                 name="birthDay"
                                 id="birthDay"
                                 placeholder='Birth date'
-                                className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary' />
+                                ref={ageRef}
+                                className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary'
+                            />
                         </div>
-                        <h3 className='text-lg font-semibold text-white'>Address:</h3>
+                        <h3 className=' font-semibold text-secondary '>Address:</h3>
                         <div className='flex justify-between'>
                             <select name="division" onChange={handleDivisionChange}
                                 id="division"

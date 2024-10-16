@@ -82,7 +82,8 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, carId
+            
+            userEmail, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, carId
         }
 
         const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
@@ -93,7 +94,7 @@ const BookingInfo = () => {
             })
     }
     return (
-        <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-64px)]" >
+        <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
 
             <section className="lg:w-[65%] shadow-xl rounded-xl px-5 py-3">
                 {/* upper section starts */}
