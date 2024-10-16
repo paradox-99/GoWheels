@@ -191,11 +191,12 @@ const DriverSignUp = () => {
                                         </div>
                                         <div className='space-y-4'>
                                             <input
-                                                type="number"
+                                                type="text"
                                                 name="phone"
                                                 id="phone"
                                                 className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                                 placeholder='Phone number'
+                                                defaultValue="+880"
                                                 required />
                                             <input
                                                 type="text"

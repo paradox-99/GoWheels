@@ -14,7 +14,7 @@ const DriverInfo = () => {
     const image = location.state?.image;
     const firstName = location.state?.firstName;
     const lastName = location.state?.lastName;
-    // const [errorMessage, setErrorMessage] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null)
     console.log(driverEmail, image, firstName, lastName)
     // const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
@@ -33,17 +33,17 @@ const DriverInfo = () => {
         const driverData = { driverEmail, drivingLicenceNumber , licenceExpireDate , yearOfExperience};
 
 
-        // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
-        // setErrorMessage('');
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
+        setErrorMessage('');
 
-        // if (password.length < 6) {
-        //     setErrorMessage("Your password should be at least 6 character!")
-        //     return
-        // }
-        // if (!regex.test(password)) {
-        //     setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
-        //     return
-        // }
+        if (password.length < 6) {
+            setErrorMessage("Your password should be at least 6 character!")
+            return
+        }
+        if (!regex.test(password)) {
+            setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
+            return
+        }
 
         
 
@@ -171,7 +171,7 @@ const DriverInfo = () => {
                                             onClick={() => setShowPassword(!showPassword)}>
                                             {showPassword ? <IoEyeOff></IoEyeOff> : <IoEye></IoEye>}
                                         </span>
-                                        {/* {errorMessage && <h1 className='text-red-500 text-xs  p-2 rounded-lg flex items-center'>{errorMessage}</h1>}  */}
+                                        {errorMessage && <h1 className='text-red-500 text-xs  p-2 rounded-lg flex items-center'>{errorMessage}</h1>} 
                                     </div>
 
 

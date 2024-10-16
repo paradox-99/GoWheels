@@ -6,6 +6,7 @@ import GoogleButton from '../../components/GoogleButton';
 import UseAuth from '../../hooks/UseAuth';
 import useDesignation from '../../hooks/useDesignation';
 import { useEffect } from 'react';
+import { GiSteeringWheel } from 'react-icons/gi';
 
 const SignUpPartOne = () => {
     const navigate = useNavigate();
