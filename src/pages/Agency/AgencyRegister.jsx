@@ -93,6 +93,7 @@ const AgencyRegister = () => {
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
+        const createdAt = new Date()
         const userRole = "agency"
         const accountStatus = "not verified"
         setUserEmail(userEmail)
@@ -108,7 +109,7 @@ const AgencyRegister = () => {
             localAddress
         }
 
-        const ownerInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, userRole, accountStatus };
+        const ownerInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, userRole, accountStatus, createdAt };
         console.log(ownerInfo)
 
         // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;

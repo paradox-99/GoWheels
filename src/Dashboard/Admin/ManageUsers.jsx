@@ -130,7 +130,7 @@ const ManageUsers = () => {
                                         <tr className="sticky top-0 z-10 bg-slate-50 text-gray-700">
                                             <th className="py-2">No.</th>
                                             <th>Name</th>
-                                            <th>Phone</th>
+                                            <th>Role</th>
                                             <th>Email</th>
                                             <th>Show Details</th>
                                         </tr>
