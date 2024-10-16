@@ -5,7 +5,7 @@ const Background = () => {
     const location = useLocation();
 
     return ( 
-            <div style={{ backgroundImage: `url(${background})` }} className={`h-screen xl:h-[89vh] bg-center bg-cover bg-no-repeat pt-10 ${(location.pathname === '/join/signUpFour' || location.pathname === '/join/signUpFive' || location.pathname === '/join/login-Info') && 'min-h-screen'}`}>
+            <div style={{ backgroundImage: `url(${background})` }} className={`h-screen xl:h-[89vh] bg-center bg-cover bg-no-repeat pt-10 ${(location.pathname === '/join/signUpFour' || location.pathname === '/join/signUpFive' || location.pathname === '/join/login-Info' || location.pathname === '/join/otpRoute') && 'min-h-screen'}`}>
                 <Outlet></Outlet>
             </div>
     );

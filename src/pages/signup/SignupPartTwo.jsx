@@ -5,6 +5,7 @@ import UseAuth from '../../hooks/UseAuth.jsx';
 import loaderEliment from '../../../public/logo.gif';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../hooks/useAxiosPublic.jsx';
+import { calculateAge } from '../../api/utilities/index.js';
 
 const SignupPartTwo = () => {
 
@@ -17,6 +18,13 @@ const SignupPartTwo = () => {
     const { user, loader } = UseAuth() || {};
     const location = useLocation();
     const previousPath = location.state?.from;
+    const ageRef = useRef();
+
+    useEffect(() => {
+        if (user || !previousPath) {
+            navigate('/join');
+        }
+    }, [navigate, previousPath, user]);
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -32,12 +40,6 @@ const SignupPartTwo = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-    useEffect(() => {
-        if (user || !previousPath) {
-            navigate('/join');
-        }
-    }, [navigate, previousPath, user]);
-
     const handleJoin = async (e) => {
         e.preventDefault()
         const form = e.target;
@@ -52,6 +54,7 @@ const SignupPartTwo = () => {
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
+        const dobValue = ageRef.current.value;
 
         const phoneRegex = /^\+?[0-9]{13}$/;
         const nidRegex = /^\+?[0-9]{8,12}$/;
@@ -66,30 +69,37 @@ const SignupPartTwo = () => {
             return
         }
 
+        const age = calculateAge(dobValue);
+
+        if (age < 18) {
+            toast.error('your age is under 18, you are not permited to register here')
+            return
+        }
+
         try {
-            
+
             const { data } = await axiosPublic.get(`/usersRoute/check-user`, {
                 params: {
                     phone,
                     nid
                 }
-            });  
-            
+            });
+
             if (data.phoneExists && data.nidExists) {
                 toast.error('This phone number and NID are already used');
                 return;
             }
-    
+
             else if (data.phoneExists) {
                 toast.error('This phone number is already used');
                 return;
             }
-    
-           else if (data.nidExists) {
+
+            else if (data.nidExists) {
                 toast.error('This NID number is already used');
                 return;
             }
-    
+
             const info = {
                 firstName,
                 lastName,
@@ -104,7 +114,7 @@ const SignupPartTwo = () => {
                 dateOfBirth,
             };
             navigate('/join/signUpThree', { state: { info } });
-    
+
         } catch (error) {
             console.error('Error checking user existence', error);
             toast.error('Error checking user existence, please try again later.');
@@ -182,7 +192,9 @@ const SignupPartTwo = () => {
                                 name="birthDay"
                                 id="birthDay"
                                 placeholder='Birth date'
-                                className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary' />
+                                ref={ageRef}
+                                className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary'
+                            />
                         </div>
                         <h3 className=' font-semibold text-secondary '>Address:</h3>
                         <div className='flex justify-between'>

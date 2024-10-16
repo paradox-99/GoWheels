@@ -6,7 +6,7 @@ const Root = () => {
 
     const location = useLocation()
     const noFooter = location.pathname.includes('signin') || location.pathname.includes('register') || location.pathname.includes('join')
-    const hideNavbar = location.pathname === '/join/signUpFour' || location.pathname === '/join/signUpFive' || location.pathname === '/join/login-Info';
+    const hideNavbar = location.pathname === '/join/signUpFour' || location.pathname === '/join/signUpFive' || location.pathname === '/join/login-Info' || location.pathname === '/join/otpRoute';
 
     return (
         <div>

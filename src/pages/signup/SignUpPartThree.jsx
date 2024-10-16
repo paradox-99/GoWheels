@@ -97,7 +97,12 @@ const SignUpPartThree = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/join/signUpFour', { state: { userInfo } });
+                navigate('/join/otpRoute', {
+                    state: {
+                        userInfo,
+                        from: '/join/signUpThree',
+                    }
+                });
             }
         }
         catch (error) {

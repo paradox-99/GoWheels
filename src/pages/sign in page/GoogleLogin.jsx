@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { locationData } from '../../../public/locationData';
 import UseAuth from "../../hooks/UseAuth";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import loaderEliment from '../../../public/logo.gif';
 import useDesignation from "../../hooks/useDesignation";
 import toast from "react-hot-toast";
+import { calculateAge } from "../../api/utilities";
 
 const GoogleLogin = () => {
 
@@ -15,6 +16,7 @@ const GoogleLogin = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
+    const ageRef = useRef();
     const navigate = useNavigate();
     const location = useLocation();
     const { user, setUser, updateUserProfile, loader, setLoader } = UseAuth() || {};
@@ -63,6 +65,7 @@ const GoogleLogin = () => {
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
         const fullName = `${firstName} ${lastName}`;
+        const dobValue = ageRef.current.value;
 
         const phoneRegex = /^\+?[0-9]{13}$/;
         const nidRegex = /^\+?[0-9]{8,12}$/;
@@ -74,6 +77,13 @@ const GoogleLogin = () => {
 
         if (!nidRegex.test(nid)) {
             toast.error('please enter a valid nid number')
+            return
+        }
+
+        const age = calculateAge(dobValue);
+
+        if (age < 18) {
+            toast.error('your age is under 18, you are not permited to register here')
             return
         }
 
@@ -223,6 +233,7 @@ const GoogleLogin = () => {
                                 name="birthDay"
                                 id="birthDay"
                                 placeholder='Birth date'
+                                ref={ageRef}
                                 className='w-[45%] outline-none rounded py-1 lg:py-2 px-2 text-secondary' />
                         </div>
                         <h3 className='text-lg font-semibold text-white'>Address:</h3>

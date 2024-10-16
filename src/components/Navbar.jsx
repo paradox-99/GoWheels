@@ -17,7 +17,7 @@ const Navbar = () => {
     const { userInfo } = useDesignation();
     const navigate = useNavigate();
     const location = useLocation();
-    const hideNavbar = location.pathname === '/join/signUpFour' || location.pathname === '/join/signUpFive' || location.pathname === '/join/login-Info';
+    const hideNavbar = location.pathname === '/join/signUpFour' || location.pathname === '/join/signUpFive' || location.pathname === '/join/login-Info' || location.pathname === '/join/otpRoute';
 
     const handleScroll = () => {
         if (window.scrollY > 50) {
