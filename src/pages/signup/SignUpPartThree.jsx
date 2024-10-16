@@ -88,6 +88,7 @@ const SignUpPartThree = () => {
             setUser(result.user)
             await updateUserProfile(fullName, image);
             const { data } = await axiosPublic.post('/usersRoute/user', userInfo);
+            console.log(data)
 
             if (result.user && data.insertedId) {
                 Swal.fire({

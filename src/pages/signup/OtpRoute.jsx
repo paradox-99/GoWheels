@@ -27,6 +27,7 @@ const OtpRoute = () => {
             if (data.modifiedCount) {
                 toast.success('otp sent successfully');
             }
+
         }
         catch (error) {
             console.log(error)
@@ -53,7 +54,23 @@ const OtpRoute = () => {
 
         try {
             const { data } = await axiosPublic.post(`/otpRoutes/verifyOTP`, matchOtp);
+
             console.log(data)
+            if (data.message) {
+
+                const { data } = await axiosPublic.patch(`/usersRoute/userStatus/${userInfo?.userEmail}`, { accountStatus: "verified" });
+                console.log(data)
+                if (data.modifiedCount) {
+                    toast.success("otp matched successfully")
+                    navigate('/join/signUpFour', {
+                        state: {
+                            userInfo,
+                        }
+                    })
+                }
+
+            }
+
         }
         catch (error) {
             console.log(error);
