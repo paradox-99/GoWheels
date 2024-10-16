@@ -2,34 +2,43 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic.jsx";
 import FeaturedCarts from "../../components/cart/FeaturedCarts.jsx";
+import loaderImage from "/logo.gif"
 
 const ShowBrandCars = () => {
 
-    const {brand_name} = useParams();
+    const { brand_name } = useParams();
     const axiosPublic = useAxiosPublic()
 
-    const { isPending, data: cars} = useQuery({
+    const { isPending, data: cars } = useQuery({
         queryKey: ['carsData'],
-        queryFn: async() => {
+        queryFn: async () => {
             const datas = await axiosPublic.get(`/carsRoute/brand/${brand_name}`);
             console.log(datas.data);
             return datas.data;
         }
     })
 
-    if(isPending){
-        return <div>Loading...</div>;
+    if (isPending) {
+        return <div className="w-full h-screen flex items-center justify-center">
+        <div>
+          <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+        </div>
+      </div>;
     }
-    
+
 
     return (
-        <div className="grid grid-cols-3 gap-10 mt-10">
-            {
-                cars?.map((car) => (<FeaturedCarts 
-                    key={car._id}
-                    car={car}
-                ></FeaturedCarts>))
-            }
+        <div className="px-4 md:px-10">
+
+            <h1 className="text-center">{brand_name} cars</h1>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 justify-items-center">
+                {
+                    cars?.map((car) => (<FeaturedCarts
+                        key={car._id}
+                        car={car}
+                    ></FeaturedCarts>))
+                }
+            </div>
         </div>
     );
 };

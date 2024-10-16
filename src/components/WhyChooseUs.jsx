@@ -15,7 +15,7 @@ const WhyChooseUs = () => {
         <div className="max-w-6xl mx-auto mt-20 lg:mt-32 px-6 pb-10">
             <BasicHeading title="FEATURES" heading={"Why Choose Us"} desc="Choose us for affordable rates, diverse vehicle options, excellent service, flexible rentals, and a seamless booking experience."></BasicHeading>
 
-            <div className="mt-12 flex flex-col lg:flex-row gap-6 items-center">
+            <div className="flex flex-col lg:flex-row gap-6 items-center">
                 {/* part 1 */}
                 <div className="space-y-6">
                     {/* Flexible Rentals */}

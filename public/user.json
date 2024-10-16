@@ -1,0 +1,165 @@
+[
+    {
+      "_id": "6703def86c9ba7998f7df234",
+      "firstName": "Abul",
+      "lastName": "Bashar",
+      "userEmail": "absbashar04@gmail.com",
+      "phone": "1651616545",
+      "gender": "male",
+      "dateOfBirth": "2000-11-19",
+      "createdAt": "2024-01-12T12:34:56Z",
+      "lastLogin": "2024-03-15T08:45:32Z",
+      "userRole": "user",
+      "accountStatus": "not verified"
+    },
+    {
+      "_id": "6703def86c9ba7998f7df235",
+      "firstName": "Karim",
+      "lastName": "Ali",
+      "userEmail": "karimali@gmail.com",
+      "phone": "1651616546",
+      "gender": "male",
+      "dateOfBirth": "1990-05-22",
+      "createdAt": "2024-01-18T14:34:56Z",
+      "lastLogin": "2024-02-10T11:30:45Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    },
+    {
+      "_id": "6703def86c9ba7998f7df236",
+      "firstName": "Fatema",
+      "lastName": "Begum",
+      "userEmail": "fatema@gmail.com",
+      "phone": "1651616547",
+      "gender": "female",
+      "dateOfBirth": "1995-07-30",
+      "createdAt": "2024-02-05T09:20:30Z",
+      "lastLogin": "2024-04-22T10:40:12Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    },
+    {
+      "_id": "6703def86c9ba7998f7df237",
+      "firstName": "Salma",
+      "lastName": "Khan",
+      "userEmail": "salmakhan@gmail.com",
+      "phone": "1651616548",
+      "gender": "female",
+      "dateOfBirth": "1988-03-15",
+      "createdAt": "2024-03-12T17:50:56Z",
+      "lastLogin": "2024-03-30T14:20:10Z",
+      "userRole": "admin",
+      "accountStatus": "verified"
+    },
+    {
+      "_id": "6703def86c9ba7998f7df238",
+      "firstName": "Rakib",
+      "lastName": "Hossain",
+      "userEmail": "rakibhossain@gmail.com",
+      "phone": "1651616549",
+      "gender": "male",
+      "dateOfBirth": "1982-09-21",
+      "createdAt": "2024-04-01T12:12:12Z",
+      "lastLogin": "2024-04-18T16:40:32Z",
+      "userRole": "user",
+      "accountStatus": "not verified"
+    },
+    {
+      "_id": "6703def86c9ba7998f7df239",
+      "firstName": "Mahmud",
+      "lastName": "Islam",
+      "userEmail": "mahmudislam@gmail.com",
+      "phone": "1651616550",
+      "gender": "male",
+      "dateOfBirth": "1993-12-11",
+      "createdAt": "2024-01-15T10:45:50Z",
+      "lastLogin": "2024-05-10T09:15:22Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    }
+    ,
+    {
+      "_id": "6703def86c9ba7998f7df239",
+      "firstName": "Mahmud",
+      "lastName": "Islam",
+      "userEmail": "mahmudislam@gmail.com",
+      "phone": "1651616550",
+      "gender": "male",
+      "dateOfBirth": "1993-12-11",
+      "createdAt": "2024-06-15T10:45:50Z",
+      "lastLogin": "2024-05-10T09:15:22Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    }
+    ,
+    {
+      "_id": "6703def86c9ba7998f7df239",
+      "firstName": "Mahmud",
+      "lastName": "Islam",
+      "userEmail": "mahmudislam@gmail.com",
+      "phone": "1651616550",
+      "gender": "male",
+      "dateOfBirth": "1993-12-11",
+      "createdAt": "2024-05-15T10:45:50Z",
+      "lastLogin": "2024-05-10T09:15:22Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    }
+    ,
+    {
+      "_id": "6703def86c9ba7998f7df239",
+      "firstName": "Mahmud",
+      "lastName": "Islam",
+      "userEmail": "mahmudislam@gmail.com",
+      "phone": "1651616550",
+      "gender": "male",
+      "dateOfBirth": "1993-12-11",
+      "createdAt": "2024-05-15T10:45:50Z",
+      "lastLogin": "2024-05-10T09:15:22Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    }
+    ,
+    {
+      "_id": "6703def86c9ba7998f7df239",
+      "firstName": "Mahmud",
+      "lastName": "Islam",
+      "userEmail": "mahmudislam@gmail.com",
+      "phone": "1651616550",
+      "gender": "male",
+      "dateOfBirth": "1993-12-11",
+      "createdAt": "2024-05-15T10:45:50Z",
+      "lastLogin": "2024-05-10T09:15:22Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    }
+    ,
+    {
+      "_id": "6703def86c9ba7998f7df239",
+      "firstName": "Mahmud",
+      "lastName": "Islam",
+      "userEmail": "mahmudislam@gmail.com",
+      "phone": "1651616550",
+      "gender": "male",
+      "dateOfBirth": "1993-12-11",
+      "createdAt": "2024-05-15T10:45:50Z",
+      "lastLogin": "2024-05-10T09:15:22Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    }
+    ,
+    {
+      "_id": "6703def86c9ba7998f7df239",
+      "firstName": "Mahmud",
+      "lastName": "Islam",
+      "userEmail": "mahmudislam@gmail.com",
+      "phone": "1651616550",
+      "gender": "male",
+      "dateOfBirth": "1993-12-11",
+      "createdAt": "2024-05-15T10:45:50Z",
+      "lastLogin": "2024-05-10T09:15:22Z",
+      "userRole": "user",
+      "accountStatus": "verified"
+    }
+  ]
+  

@@ -71,7 +71,7 @@ const CarInfo = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async (carData) => {
-            const { data } = await axios.post(`http://localhost:3000/api/carsRoute/vehilesInfo`, carData)
+            const { data } = await axios.post(`https://go-wheels-server.vercel.app/api/carsRoute/vehilesInfo`, carData)
             return data
         },
         onSuccess: () => {

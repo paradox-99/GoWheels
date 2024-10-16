@@ -40,6 +40,8 @@ import BookingHistoryForAgency from "../Dashboard/Agency/BookingHistoryForAgency
 import { DashboardRoutes } from "./DashboardRoutes";
 import PaymentFail from "../pages/paymentPage/PaymentFail";
 import PaymentSuccess from "../pages/paymentPage/PaymentSuccess";
+import DriverSignUp from "../pages/DriverPages/DriverSignUp";
+import DriverInfo from "../pages/DriverPages/DriverInfo";
 
 const router = createBrowserRouter([
     {
@@ -94,6 +96,15 @@ const router = createBrowserRouter([
             {
                 path: "/payment/fail/:tranId",
                 element: <PaymentFail />
+            },
+            {
+                path:'/join/driverSignUp',
+                element:<DriverSignUp></DriverSignUp>
+            },
+            {
+                path:'/join/driverInfo',
+                element:<DriverInfo></DriverInfo>
+
             }
         ]
     },

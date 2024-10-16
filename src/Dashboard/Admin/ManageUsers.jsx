@@ -1,25 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import BasicHeading from "../../components/BasicHeading";
 import { useState } from "react";
 import UserDetailsModal from "./UserDetailsModal";
+import UseAuth from "../../hooks/UseAuth";
+import { FaSearch } from "react-icons/fa";
 
 
 const ManageUsers = () => {
-
+    const { user } = UseAuth();
+    // console.log(user.email)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const axiosPublic = useAxiosPublic();
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const { data: allUsers = [] , refetch } = useQuery({
+    const { data: allUsers = [], refetch } = useQuery({
         queryKey: ["/usersRoute/users"],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/usersRoute/users`);
+            const res = await axiosPublic.get(`/usersRoute/users`, {
+                params: { search: searchTerm }
+            });
             return res.data;
         },
     });
 
-    console.log(allUsers);
+    // console.log(allUsers);
     const openModal = (user) => {
         setSelectedUser(user);
         setIsModalOpen(true);
@@ -30,32 +37,37 @@ const ManageUsers = () => {
         setSelectedUser(null);
     };
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        refetch(); // Refetch the data whenever the search term changes
+    };
+
     // pagination
-    const [currentPage, setCurrentPage] = useState(1);
-    const [usersPerPage] = useState(6); 
-    const indexOfLastUser = currentPage * usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = allUsers.slice(indexOfFirstUser, indexOfLastUser);
-    const totalPages = Math.ceil(allUsers.length / usersPerPage);
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
-    const renderPagination = () => {
-        return (
-            <div className="flex justify-center mt-4">
-                {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                        key={index + 1}
-                        onClick={() => handlePageChange(index + 1)}
-                        className={`mx-1 px-3 py-1 border rounded ${currentPage === index + 1 ? 'bg-[#fb664f] text-white' : ''}`}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
-            </div>
-        );
-    };
-     // pagination
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [usersPerPage] = useState(6);
+    // const indexOfLastUser = currentPage * usersPerPage;
+    // const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    // const currentUsers = allUsers.slice(indexOfFirstUser, indexOfLastUser);
+    // const totalPages = Math.ceil(allUsers.length / usersPerPage);
+    // const handlePageChange = (pageNumber) => {
+    //     setCurrentPage(pageNumber);
+    // };
+    // const renderPagination = () => {
+    //     return (
+    //         <div className="flex justify-center mt-4">
+    //             {Array.from({ length: totalPages }, (_, index) => (
+    //                 <button
+    //                     key={index + 1}
+    //                     onClick={() => handlePageChange(index + 1)}
+    //                     className={`mx-1 px-3 py-1 border rounded ${currentPage === index + 1 ? 'bg-[#fb664f] text-white' : ''}`}
+    //                 >
+    //                     {index + 1}
+    //                 </button>
+    //             ))}
+    //         </div>
+    //     );
+    // };
+    // pagination
 
 
     return (
@@ -90,49 +102,93 @@ const ManageUsers = () => {
                 </table>
             </section> */}
 
-            <div className="max-w-6xl mx-auto mt-5 lg:mt-32 px-6">
+            <div className=" mt-5  px-6">
                 <BasicHeading
                     title="Users Information"
                     heading={"All users are here"}
-                    desc="Below is a list of all registered users in the system.Here you can find a summary of user accounts along with their roles and activity status.Click on a user card and see details"
                 ></BasicHeading>{" "}
-                <div className="max-w-screen-xl mx-auto lg:p-16">
-                    <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
-                        {
-                            currentUsers.map((user) => (
-                               
-                                // eslint-disable-next-line react/jsx-key
-                                <div  onClick={() => openModal(user)} className="hover:bg-[#fb664f] hover:text-white transition duration-300 max-w-sm rounded-3xl overflow-hidden shadow-lg">
-                                    <div className="p-8">
-                                        <div className="flex items-center justify-between">
 
-                                            <div className="flex items-center gap-2">
-                                                <img
-                                                    src={user.image}
-                                                    className="rounded-full h-12 w-12 mb-4"
-                                                    alt="Profile"
-                                                />
-                                                <h1 className="font-bold">{user.firstName} {user.lastName}</h1>
-                                            </div>
-                                        </div>
-                                        <p>Email: {user.userEmail}</p>
-                                        <p className="my-2 text-sm">
-                                            Phone: {user.phone}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))
-                        }
+                <div className="mt-4 relative text-center flex justify-center items-center">
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        placeholder="Search by users name"
+                        className="shadow shadow-slate-600 py-4 w-[40%] px-4 rounded"
+
+                    />
+                    <div className="px-8 py-3 absolute ml-[33%] rounded-lg  bg-primary text-white">
+                        <FaSearch className=""></FaSearch>
                     </div>
-                    {renderPagination()}
+                </div>
+                <div className=" text-gray-700 mt-16">
+                    <div className="relative flex flex-col w-full  mx-auto h-full overflow-hidden text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+                        <div className="relative max-h-[600px] overflow-auto">
+                            <div className="min-w-ful">
+                                <table className="table w-full py-5 whitespace-nowrap">
+                                    <thead className="bg-slate-50">
+                                        <tr className="sticky top-0 z-10 bg-slate-50 text-gray-700">
+                                            <th className="py-2">No.</th>
+                                            <th>Name</th>
+                                            <th>Role</th>
+                                            <th>Email</th>
+                                            <th>Show Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-center text-gray-700 w-full">
+                                        {allUsers.map((userData, index) => (
+                                            <tr className="border" key={userData._id}>
+                                                <th>
+                                                    <label>{index + 1}.</label>
+                                                </th>
+                                                <td>
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="text-center w-full">
+                                                            <h3 className="text-gray-700">
+                                                                {userData.firstName} {userData.lastName}
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p className={`${userData.userRole === 'admin'
+                                                        ? 'text-red-500'
+                                                        : userData.userRole === 'agency'
+                                                            ? 'text-blue-500'
+                                                            : userData.userRole === 'moderator'
+                                                                ? 'text-yellow-500'
+                                                                : 'text-green-500'
+                                                        } font-semibold`}>
+                                                        {userData.userRole}
+                                                        {user && user.email === userData.userEmail ? ' (you)' : ''}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>{userData.userEmail}</p>
+                                                </td>
+                                                <th className="py-4">
+                                                    <Link
+                                                        onClick={() => openModal(userData)}
+                                                        className="border-primary border p-3 text-xs rounded-lg"
+                                                    >
+                                                        Details
+                                                    </Link>
+                                                </th>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {/* {renderPagination()} */}
                     {/* Modal for displaying user details */}
                     <UserDetailsModal
                         isOpen={isModalOpen}
                         closeModal={closeModal}
                         user={selectedUser}
-                        refetch= {refetch}
+                        refetch={refetch}
                     />
-
                 </div>
             </div>
         </div>
