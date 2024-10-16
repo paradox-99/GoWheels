@@ -1,12 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import loaderImage from "../../../public/logo.gif";
 import { locationData } from "../../../public/locationData.js";
 
+import { FiUpload } from "react-icons/fi";
+import { imageUpload } from "../../api/utilities/index.js";
+
 const UserProfileCommon = () => {
-  const { user } = useContext(AuthContext); // Get user info from AuthContext
+  const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
 
@@ -16,18 +19,28 @@ const UserProfileCommon = () => {
   const [districts, setDistricts] = useState([]);
   const [upazillas, setUpazillas] = useState([]);
 
+  //  -------------------------image
+  const [imageText, setImageText] = useState("image name.png");
+  const [imagePreview, setImagePreview] = useState(null);
+  const inputRef = useRef();
+  const [dragActive, setDragActive] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+
+  console.log(imagePreview);
+
+  // ------------------------------------
+
   // Function to handle division change
   const handleDivisionChange = (e) => {
     const division = e.target.value;
     setSelectedDivision(division);
-    setSelectedDistrict(""); // Reset district when division changes
-    setUpazillas([]); // Reset upazillas when division changes
+    setSelectedDistrict("");
+    setUpazillas([]);
 
-    // Populate districts for the selected division
     if (locationData[division]) {
       setDistricts(Object.keys(locationData[division]));
     } else {
-      setDistricts([]); // Clear districts if no division selected
+      setDistricts([]);
     }
   };
 
@@ -43,7 +56,7 @@ const UserProfileCommon = () => {
     ) {
       setUpazillas(locationData[selectedDivision][district]);
     } else {
-      setUpazillas([]); // Clear upazillas if no district selected
+      setUpazillas([]);
     }
   };
 
@@ -61,7 +74,7 @@ const UserProfileCommon = () => {
       );
       return data;
     },
-    enabled: !!user?.email, // Only fetch if user email exists
+    enabled: !!user?.email,
   });
 
   // Pre-select division and district from fetched user data (if available)
@@ -79,7 +92,7 @@ const UserProfileCommon = () => {
         ] || []
       );
     }
-  }, [users?.userAddress, locationData]); // Add locationData dependency here
+  }, [users?.userAddress, locationData]);
 
   // Update agency user info mutation
   const { mutateAsync } = useMutation({
@@ -113,13 +126,67 @@ const UserProfileCommon = () => {
     return <div>Error fetching data: {error.message}</div>;
   }
 
+  //   ------------------------image
+  const handleImage = (image) => {
+    setImagePreview(URL.createObjectURL(image));
+    setImageText(image.name);
+    setImageFile(image);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    const droppedFile = e.dataTransfer.files[0];
+    setImageText(droppedFile.name);
+    setImagePreview(URL.createObjectURL(droppedFile));
+    setImageFile(droppedFile);
+  };
+
+  // ------------------------------
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const updatedUserData = Object.fromEntries(formData.entries());
 
-    await mutateAsync(updatedUserData);
+    const formData = new FormData(e.target);
+    const image = imageFile;
+
+    // if (!image) {
+    //   alert("Please select an image.");
+    //   return;
+    // }
+
+    try {
+      const uploadedImage = await imageUpload(image);
+      console.log(uploadedImage);
+      //   const imageUrl = uploadedImage.url;
+
+      // Append image URL to form data
+      formData.append("image", uploadedImage);
+
+      // Send the updated user data to the backend
+      const updatedUserData = Object.fromEntries(formData.entries());
+      await mutateAsync(updatedUserData);
+    console.log(updatedUserData);
+
+      alert("User updated successfully!");
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      alert("Failed to update user information: " + error.message);
+    }
   };
 
   if (!user) {
@@ -145,7 +212,7 @@ const UserProfileCommon = () => {
                   <div className="mb-2">
                     <button
                       type="button"
-                      className="bg-[#ff4c30] hover:bg-[#161616] text-white rounded-full py-2 px-4"
+                    //   className="bg-[#ff4c30] hover:bg-[#161616] text-white rounded-full py-2 px-4"
                     >
                       Select from the computer
                     </button>
@@ -161,7 +228,58 @@ const UserProfileCommon = () => {
                 accept="image/*"
                 className="sr-only"
               />
-            </div> */}
+            </div>  */}
+
+          {/* ----------------------image */}
+          <div className="mt-3 mx-auto">
+            <div className="flex flex-col items-center justify-center ">
+              <div
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onDragLeave={handleDragLeave}
+                style={{
+                  backgroundImage: `url(${imagePreview})`,
+                }}
+                className="border-dashed border-2 border-primary w-36 h-36 bg-no-repeat bg-center bg-cover px-5 pb-3 lg:flex flex-col items-center justify-center mt-2  "
+              >
+                <FiUpload className="text-7xl text-primary" />
+                <div className="text-center">
+                  {imagePreview ? "" : <h1>Drag and Drop</h1>}
+                </div>
+              </div>
+              {imagePreview && (
+                <div className="mt-2">
+                  <h1>
+                    {imageText.length > 15
+                      ? imageText.split(".")[0].slice(0, 15) +
+                        "..." +
+                        imageText.split(".")[1]
+                      : imageText}
+                  </h1>
+                </div>
+              )}
+              <div className="lg:mt-3">
+                <input
+                  onChange={(e) => handleImage(e.target.files[0])}
+                  type="file"
+                  name="image"
+                  id="image"
+                  hidden
+                  accept="image/*"
+                  ref={inputRef}
+                />
+                <button
+                  onClick={() => inputRef.current.click()}
+                  type="button"
+                  className="bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary"
+                >
+                  Browse from your device
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* ----------------------- */}
         </div>
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -208,7 +326,7 @@ const UserProfileCommon = () => {
               id="nid"
               name="nid"
               placeholder="Nid"
-              defaultValue={users?.nid || ""} // Use nid directly
+              defaultValue={users?.nid || ""}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
             />
@@ -234,7 +352,7 @@ const UserProfileCommon = () => {
               id="accountStatus"
               name="accountStatus"
               placeholder="Account status"
-              defaultValue={users?.accountStatus || ""} // Use nid directly
+              defaultValue={users?.accountStatus || ""}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
               style={{ backgroundColor: "#f6f6f6" }}
               disabled
@@ -254,55 +372,6 @@ const UserProfileCommon = () => {
           />
         </div>
 
-        {/* address */}
-        {/* <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <label className="font-bold" htmlFor="">
-              District
-            </label>
-
-            <input
-              type="text"
-              id="district"
-              name="district"
-              placeholder="district"
-              defaultValue={users?.userAddress?.district || ""}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-              style={{ backgroundColor: "#f6f6f6" }}
-            />
-          </div>
-
-          <div>
-            <label className="font-bold" htmlFor="">
-              Division
-            </label>
-            <input
-              type="text"
-              id="division"
-              name="division"
-              placeholder="division"
-              defaultValue={users?.userAddress?.division || ""}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-              style={{ backgroundColor: "#f6f6f6" }}
-            />
-          </div>
-          <div>
-            <label className="font-bold" htmlFor="">
-              Upazilla
-            </label>
-
-            <input
-              type="text"
-              id="upazilla"
-              name="upazilla"
-              placeholder="upazilla"
-              defaultValue={users?.userAddress?.upazilla || ""}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-              style={{ backgroundColor: "#f6f6f6" }}
-            />
-          </div>
-        </div> */}
-
         {/* --------------------------- */}
         {/* Address fields */}
         <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -315,7 +384,7 @@ const UserProfileCommon = () => {
               onChange={handleDivisionChange}
               id="division"
               className="outline-none w-[30%] rounded py-1 lg:py-2 px-2 text-secondary"
-              value={selectedDivision} // Use 'value' instead of 'defaultValue'
+              value={selectedDivision}
               required
             >
               <option className="text-gray-400">Division</option>
@@ -357,7 +426,7 @@ const UserProfileCommon = () => {
                 name="upazilla"
                 id="upazilla"
                 className="outline-none w-[33%] rounded py-1 lg:py-2 px-2 text-secondary"
-                value={users?.userAddress?.upazilla || ""} // Use 'value' instead of 'defaultValue'
+                value={users?.userAddress?.upazilla || ""}
                 required
               >
                 <option value="" disabled>
