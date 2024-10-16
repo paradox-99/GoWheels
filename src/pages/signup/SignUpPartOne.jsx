@@ -3,26 +3,33 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { FaRegHandshake } from 'react-icons/fa';
 import loaderEliment from '../../../public/logo.gif';
 import GoogleButton from '../../components/GoogleButton';
-import useSignUp from '../../hooks/useSignUp';
 import UseAuth from '../../hooks/UseAuth';
-import { GiSteeringWheel } from 'react-icons/gi';
-
+import useDesignation from '../../hooks/useDesignation';
+import { useEffect } from 'react';
 
 const SignUpPartOne = () => {
     const navigate = useNavigate();
-    const { setSignUpStep } = useSignUp();
-    const { user, loader, } = UseAuth();
+  const {user, loader,} = UseAuth();
+  const { userInfo } = useDesignation() || {};
+
+  useEffect(() => {
+    if ((user && loader) || (user && userInfo.nid)) {
+        navigate('/');
+    }
+}, [loader, navigate, user, userInfo.nid]);
+
 
     const handleNextStep = (e) => {
         e.preventDefault();
-        setSignUpStep(2);
-        navigate('/join/signUpTwo');
+        navigate('/join/signUpTwo', {state: {from: '/join/signUpTwo'}});
     }
 
     if (loader) {
-        return <div className='flex justify-center'>
-            <img src={loaderEliment} alt="" />
-        </div>
+        return (
+            <div className='flex justify-center'>
+                <img className='mx-auto' src={loaderEliment} alt="loading" />
+            </div>
+        );
     }
 
     return (
