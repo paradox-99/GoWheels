@@ -180,7 +180,7 @@ const UserProfileCommon = () => {
       // Send the updated user data to the backend
       const updatedUserData = Object.fromEntries(formData.entries());
       await mutateAsync(updatedUserData);
-    console.log(updatedUserData);
+      console.log(updatedUserData);
 
       alert("User updated successfully!");
     } catch (error) {
@@ -206,32 +206,61 @@ const UserProfileCommon = () => {
 
       <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* <div>
-              <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
-                <div className="text-center">
-                  <div className="mb-2">
-                    <button
-                      type="button"
-                    //   className="bg-[#ff4c30] hover:bg-[#161616] text-white rounded-full py-2 px-4"
-                    >
-                      Select from the computer
-                    </button>
-                  </div>
-                  <p className="text-gray-500">or drag photo here</p>
-                  <p className="text-gray-500 text-sm mt-1">PNG, JPG, SVG</p>
+          <div>
+            <label
+              className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50"
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              onDragLeave={handleDragLeave}
+              style={{
+                backgroundImage: `url(${imagePreview})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="text-center">
+                <div className="mb-2">
+                  <button
+                    type="button"
+                    onClick={() => inputRef.current.click()}
+                    className="bg-[#ff4c30] hover:bg-[#161616] text-white rounded-full py-2 px-4"
+                  >
+                    Select from the computer
+                  </button>
                 </div>
-              </label>
-              <input
-                id="avatar"
-                name="avatar"
-                type="file"
-                accept="image/*"
-                className="sr-only"
-              />
-            </div>  */}
+                <p className="text-gray-500">
+                  {imagePreview ? "" : "Drag and Drop"}
+                  or drag photo here
+                </p>
+                <p className="text-gray-500 text-sm mt-1">PNG, JPG, SVG</p>
+              </div>
+
+              {imagePreview && (
+                <div className="mt-2">
+                  <h1>
+                    {imageText.length > 15
+                      ? imageText.split(".")[0].slice(0, 15) +
+                        "..." +
+                        imageText.split(".")[1]
+                      : imageText}
+                  </h1>
+                </div>
+              )}
+            </label>
+
+            <input
+              onChange={(e) => handleImage(e.target.files[0])}
+              type="file"
+              name="image"
+              id="image"
+              hidden
+              accept="image/*"
+              ref={inputRef}
+            />
+          </div>
 
           {/* ----------------------image */}
-          <div className="mt-3 mx-auto">
+          {/* <div className="mt-3 mx-auto">
             <div className="flex flex-col items-center justify-center ">
               <div
                 onDragOver={handleDragOver}
@@ -277,7 +306,7 @@ const UserProfileCommon = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* ----------------------- */}
         </div>
