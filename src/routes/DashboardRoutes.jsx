@@ -10,6 +10,7 @@ import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
+import BookingHistory from "../Dashboard/Agency/BookingHistory";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
@@ -17,7 +18,6 @@ import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
 import Dashboard from "../Dashboard/Dashboard";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
-import BookingHistory from "../Dashboard/User/BookingHistory";
 import Bookings from "../Dashboard/User/Bookings";
 import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import UserHome from "../Dashboard/User/UserHome";
@@ -41,10 +41,6 @@ export const DashboardRoutes = [
             {
                 path: "user-bookings",
                 element: <Bookings></Bookings>
-            },
-            {
-                path: "user-booking-history",
-                element: <BookingHistory></BookingHistory>
             },
             {
                 path: "user-ratings",

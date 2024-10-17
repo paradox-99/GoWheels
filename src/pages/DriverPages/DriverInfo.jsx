@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import loaderEliment from '../../../public/logo.gif';
 import { useState } from "react";
 // import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,17 +9,25 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import backgroundImage from '../../../public/asset/drive.avif'
 
 const DriverInfo = () => {
+    // const {loader,} = UseAuth();
+
     const location = useLocation()
     const axiosPublic = useAxiosPublic()
-    const driverEmail = location.state?.email;
-    const image = location.state?.image;
-    const firstName = location.state?.firstName;
-    const lastName = location.state?.lastName;
-    // const [errorMessage, setErrorMessage] = useState(null)
-    console.log(driverEmail, image, firstName, lastName)
-    // const navigate = useNavigate();
+    // const driverEmail = location.state?.email;
+    // const image = location.state?.image;
+    // const firstName = location.state?.firstName;
+    // const lastName = location.state?.lastName;
+    const [errorMessage, setErrorMessage] = useState(null)
+    // console.log(driverEmail, image, firstName, lastName)
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const { createUser, updateUserProfile } = UseAuth() || {}
+    const {
+        firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress
+    } = location.state?.info || {};
+
+    // console.log(firstName,
+    //     firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress)
 
 
     const handleDriver = async (e) => {
@@ -30,22 +39,36 @@ const DriverInfo = () => {
         const licenceExpireDate = form.expireDate.value;
         const yearOfExperience = parseInt(form.experience.value);
 
-        const driverData = { driverEmail, drivingLicenceNumber , licenceExpireDate , yearOfExperience};
+        const driverData = { driverEmail, drivingLicenceNumber, licenceExpireDate, yearOfExperience };
+
+        const userAddress = { district, division, upazilla }
+        const userInfo = {
+            firstName,
+            lastName,
+            userEmail,
+            phone,
+            nid,
+            gender,
+            dateOfBirth,
+            userAddress,
+            localAddress,
+            image,
+        }
 
 
-        // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
-        // setErrorMessage('');
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
+        setErrorMessage('');
 
-        // if (password.length < 6) {
-        //     setErrorMessage("Your password should be at least 6 character!")
-        //     return
-        // }
-        // if (!regex.test(password)) {
-        //     setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
-        //     return
-        // }
+        if (password.length < 6) {
+            setErrorMessage("Your password should be at least 6 character!")
+            return
+        }
+        if (!regex.test(password)) {
+            setErrorMessage('Password must contain at least one capital letter, one small letter, one number and one special character')
+            return
+        }
 
-        
+
 
         try {
 
@@ -59,6 +82,9 @@ const DriverInfo = () => {
 
 
             await mutateAsync(driverData)
+            await saveUserData(userInfo)
+            navigate('/join/driverOtp', { state: { userInfo } } );
+
 
 
         }
@@ -77,7 +103,7 @@ const DriverInfo = () => {
         },
         onSuccess: () => {
             console.log('data saved successfully')
-            // navigate('/dashboard/agency/add-vehicle-info', );
+            
             // toast.success(' data added successfully')
 
         }
@@ -85,7 +111,31 @@ const DriverInfo = () => {
     })
 
 
-    // style={{ backgroundImage: `url(${background})` }}
+    const { mutateAsync: saveUserData } = useMutation({
+        mutationFn: async (driverUser) => {
+            const { data } = await axiosPublic.post(`/usersRoute/driverInfo`, driverUser)
+            return data;
+        },
+        onSuccess: () => {
+            console.log('data saved successfully')
+            // toast.success(' data added successfully')
+            // navigate('/join/driverInfo', { state: { email, image, firstName, lastName } });
+
+
+        }
+
+    })
+
+
+
+    // if (loader) {
+    //     return (
+    //         <div className='flex justify-center'>
+    //             <img className='mx-auto' src={loaderEliment} alt="loading" />
+    //         </div>
+    //     );
+    // }
+
 
 
 
@@ -94,7 +144,7 @@ const DriverInfo = () => {
             <div>
                 <h1 className='text-3xl lg:text-3xl text-center mt-10 font-bold  font-merriweather mb-10'>Driver Information</h1>
                 <div className="h-[89vh] flex flex-col-reverse lg:flex-row gap-44 justify-center bg-center bg-cover bg-no-repeat pt-10">
-                    <div className='lg:w-[30vw]  bg-transparent   px-10 rounded-lg'>
+                    <div className='lg:w-[30vw] h-[44vh]  lg:bg-[#1f202033] mx-auto   bg-transparent   px-10 rounded-lg'>
                         <div className='text-center mx-auto '>
                         </div>
                         <div className='text-center mx-auto pt-5' >
@@ -104,9 +154,6 @@ const DriverInfo = () => {
                             <form
                                 onSubmit={handleDriver}
                                 className='font-nunito'>
-
-
-
                                 <div className='mt-3 relative space-y-3'>
 
                                     <div className='flex gap-5'>
@@ -131,7 +178,7 @@ const DriverInfo = () => {
                                                 />
                                                 <label
                                                     htmlFor="expireDate"
-                                                    className="absolute left-2 text-sm -top-3 text-gray-500 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary"
+                                                    className="absolute left-2 text-sm -top-3 text-gray-500 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-red-600"
                                                 >
                                                     Licence Expire Date
                                                 </label>
@@ -151,27 +198,32 @@ const DriverInfo = () => {
                                     </div>
                                     <div className='flex relative gap-5'>
 
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            id="email"
-                                            readOnly
-                                            className='outline-none border placeholder-gray-900  w-full rounded py-1 lg:py-2 px-2 '
-                                            value={driverEmail} 
-                                            required />
-                                        <input
-                                            type={showPassword ? "text" : "password"}
-                                            name="password"
-                                            id="password"
-                                            className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
-                                            placeholder='Password'
-                                            required />
-                                        <span
-                                            className='absolute top-2 lg:top-3 right-3 text-xl'
-                                            onClick={() => setShowPassword(!showPassword)}>
-                                            {showPassword ? <IoEyeOff></IoEyeOff> : <IoEye></IoEye>}
-                                        </span>
-                                        {/* {errorMessage && <h1 className='text-red-500 text-xs  p-2 rounded-lg flex items-center'>{errorMessage}</h1>}  */}
+                                        <div className="w-full">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                id="email"
+                                                readOnly
+                                                className='outline-none border placeholder-gray-900  w-full rounded py-1 lg:py-2 px-2 '
+                                                value={userEmail}
+                                                required />
+
+                                        </div>
+                                        <div className="w-full">
+                                            <input
+                                                type={showPassword ? "text" : "password"}
+                                                name="password"
+                                                id="password"
+                                                className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                                                placeholder='Password'
+                                                required />
+                                            <span
+                                                className='absolute top-2 lg:top-3 right-3 text-xl'
+                                                onClick={() => setShowPassword(!showPassword)}>
+                                                {showPassword ? <IoEyeOff></IoEyeOff> : <IoEye></IoEye>}
+                                            </span>
+                                            {errorMessage && <h1 className='text-red-500 text-xs  p-2 rounded-lg flex items-center'>{errorMessage}</h1>}
+                                        </div>
                                     </div>
 
 
