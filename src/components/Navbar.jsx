@@ -27,8 +27,6 @@ const Navbar = () => {
         }
     }
 
-    console.log(userInfo.image)
-
     const handleLogout = async () => {
         try {
             await logout()

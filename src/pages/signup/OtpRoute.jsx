@@ -13,7 +13,7 @@ const OtpRoute = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if ((!user && !loader) && !from) {
+        if ((!user && !loader) && (from !== '/join/login-Info' || from !== '/join/signUpThree')) {
             navigate('/join');
         }
     }, [from, loader, navigate, user])
@@ -36,11 +36,18 @@ const OtpRoute = () => {
 
     const handleskip = (e) => {
         e.preventDefault();
-        navigate('/join/signUpFour', {
-            state: {
-                userInfo,
-            }
-        })
+
+        if (from === '/join/signUpThree') {
+            navigate('/join/signUpFour', {
+                state: {
+                    userInfo,
+                }
+            })
+        }
+        else {
+            toast.success("otp matched successfully")
+            navigate('/');
+        }
     }
 
     const handleSubmit = async (e) => {
@@ -61,12 +68,19 @@ const OtpRoute = () => {
                 const { data } = await axiosPublic.patch(`/usersRoute/userStatus/${userInfo?.userEmail}`);
                 console.log(data)
                 if (data.modifiedCount) {
-                    toast.success("otp matched successfully")
-                    navigate('/join/signUpFour', {
-                        state: {
-                            userInfo,
-                        }
-                    })
+
+                    if (from === '/join/signUpThree') {
+                        toast.success("otp matched successfully")
+                        navigate('/join/signUpFour', {
+                            state: {
+                                userInfo,
+                            }
+                        })
+                    }
+                    else {
+                        toast.success("otp matched successfully")
+                        navigate('/');
+                    }
                 }
 
             }
