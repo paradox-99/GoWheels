@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 
 const ModeratorProfile = () => {
   return (
-    <div>
+    <div className="px-10 py-5">
       <div className="flex justify-start items-center gap-10">
         <figure className="w-32 h-32">
           <img
             src="https://i.ibb.co.com/1865M2m/1000026021-01.jpg"
             alt=""
-            className="w-full h-full rounded-full border-4 border-primary"
+            className="size-36 object-cover rounded-full border-4 border-primary"
           />
         </figure>
-        <div className="text-xl">
+        <div className="text-xl hidden lg:block">
           <h3>Moderator Name</h3>
           <h3 className="text-secondary text-base font-bold">Moderator</h3>
         </div>
