@@ -67,7 +67,7 @@ const Dashboard = () => {
     driver: [
       { to: "/dashboard/user-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
       { to: "/dashboard/driver-profile", label: "Driver Profile", icon: <GiTentacleHeart /> },
-      { to: "/dashboard/driver-booking", label: "Driver Booking", icon: <GiTentacleHeart /> },
+      { to: "/dashboard/driver-booking", label: "Driver Booking", icon: <GiTentacleHeart /> }, 
       { to: "/dashboard/user-bookings", label: "Bookings", icon: <RiListOrdered /> },
       { to: "/dashboard/user-booking-history", label: "Booking History", icon: <MdManageHistory /> },
       { to: "/dashboard/user-ratings", label: "Reviews", icon: <CiStar /> },
