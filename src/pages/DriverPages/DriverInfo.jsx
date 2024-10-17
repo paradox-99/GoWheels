@@ -9,19 +9,25 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import backgroundImage from '../../../public/asset/drive.avif'
 
 const DriverInfo = () => {
-    const {loader,} = UseAuth();
-    
+    // const {loader,} = UseAuth();
+
     const location = useLocation()
     const axiosPublic = useAxiosPublic()
-    const driverEmail = location.state?.email;
-    const image = location.state?.image;
-    const firstName = location.state?.firstName;
-    const lastName = location.state?.lastName;
+    // const driverEmail = location.state?.email;
+    // const image = location.state?.image;
+    // const firstName = location.state?.firstName;
+    // const lastName = location.state?.lastName;
     const [errorMessage, setErrorMessage] = useState(null)
-    console.log(driverEmail, image, firstName, lastName)
-    // const navigate = useNavigate();
+    // console.log(driverEmail, image, firstName, lastName)
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const { createUser, updateUserProfile } = UseAuth() || {}
+    const {
+        firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress
+    } = location.state?.info || {};
+
+    // console.log(firstName,
+    //     firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress)
 
 
     const handleDriver = async (e) => {
@@ -34,6 +40,20 @@ const DriverInfo = () => {
         const yearOfExperience = parseInt(form.experience.value);
 
         const driverData = { driverEmail, drivingLicenceNumber, licenceExpireDate, yearOfExperience };
+
+        const userAddress = { district, division, upazilla }
+        const userInfo = {
+            firstName,
+            lastName,
+            userEmail,
+            phone,
+            nid,
+            gender,
+            dateOfBirth,
+            userAddress,
+            localAddress,
+            image,
+        }
 
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -62,6 +82,9 @@ const DriverInfo = () => {
 
 
             await mutateAsync(driverData)
+            await saveUserData(userInfo)
+            navigate('/join/driverOtp', { state: { userInfo } } );
+
 
 
         }
@@ -80,7 +103,7 @@ const DriverInfo = () => {
         },
         onSuccess: () => {
             console.log('data saved successfully')
-            // navigate('/dashboard/agency/add-vehicle-info', );
+            
             // toast.success(' data added successfully')
 
         }
@@ -88,14 +111,31 @@ const DriverInfo = () => {
     })
 
 
-    if (loader) {
-        return (
-            <div className='flex justify-center'>
-                <img className='mx-auto' src={loaderEliment} alt="loading" />
-            </div>
-        );
-    }
-   
+    const { mutateAsync: saveUserData } = useMutation({
+        mutationFn: async (driverUser) => {
+            const { data } = await axiosPublic.post(`/usersRoute/driverInfo`, driverUser)
+            return data;
+        },
+        onSuccess: () => {
+            console.log('data saved successfully')
+            // toast.success(' data added successfully')
+            // navigate('/join/driverInfo', { state: { email, image, firstName, lastName } });
+
+
+        }
+
+    })
+
+
+
+    // if (loader) {
+    //     return (
+    //         <div className='flex justify-center'>
+    //             <img className='mx-auto' src={loaderEliment} alt="loading" />
+    //         </div>
+    //     );
+    // }
+
 
 
 
@@ -165,7 +205,7 @@ const DriverInfo = () => {
                                                 id="email"
                                                 readOnly
                                                 className='outline-none border placeholder-gray-900  w-full rounded py-1 lg:py-2 px-2 '
-                                                value={driverEmail}
+                                                value={userEmail}
                                                 required />
 
                                         </div>

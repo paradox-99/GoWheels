@@ -13,17 +13,11 @@ const DriverSignUp = () => {
 
     // const [showPassword, setShowPassword] = useState(false);
     const [selectedDivision, setSelectedDivision] = useState('');
-    const [email, setUserEmail] = useState('')
-    const [image, setUserImage] = useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-
     // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
-    const axiosPublic = useAxiosPublic()
     // console.log(' use email :' ,email)
     
 
@@ -41,21 +35,6 @@ const DriverSignUp = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-
-    const { mutateAsync } = useMutation({
-        mutationFn: async (ownerData) => {
-            const { data } = await axiosPublic.post(`/usersRoute/driverInfo`, ownerData)
-            return data;
-        },
-        onSuccess: () => {
-            console.log('data saved successfully')
-            // toast.success(' data added successfully')
-            navigate('/join/driverInfo', { state: { email, image, firstName, lastName } });
-
-
-        }
-
-    })
 
     const handleImageUpload = async (e) => {
         const imageFile = e.target.files[0];
@@ -97,27 +76,17 @@ const DriverSignUp = () => {
         const userRole = "driver"
         const accountStatus = "not verified"
         const createdAt = new Date()
-        setUserEmail(userEmail)
-        setFirstName(firstName)
-        setLastName(lastName)
+        
 
         const imageFile = form.photo.files[0];
         // console.log(imageFile.name)
         const image = await handleImageUpload({ target: { files: [imageFile] } });
-        setUserImage(image)
-
-        const userAddress = {
-            division,
-            district,
-            upazilla,
-            localAddress
-        }
-
-        const ownerInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, userRole, accountStatus, createdAt };
+        const info = { firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division,upazilla, localAddress };
 
         try {
 
-            await mutateAsync(ownerInfo)
+            // await mutateAsync(info)
+            navigate('/join/driverInfo', { state: { info } });
 
         } catch (error) {
             console.log(error)
