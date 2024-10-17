@@ -92,7 +92,7 @@ const DriverBooking = () => {
                                     </td>
                                     <td>
                                         <p>from: 29th june 2024, <br /> To: 2 july, 2024</p>
-                                    </td>
+                                    </td> 
                                     <td>
                                         <p>from: Dhaka <br /> to: Rangpur</p>
                                     </td>
