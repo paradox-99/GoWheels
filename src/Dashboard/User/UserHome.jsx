@@ -137,7 +137,7 @@ console.log(activeBookings);
                 <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
                     {loading ? (
                         <p>Loading...</p>
-                    ) : bookedCars.length === 0 ? (
+                    ) : bookedCars?.length < 1 ? (
                         <p>You have not booked any cars yet.</p>
                     ) : (
                         bookedCars.map((car) => (

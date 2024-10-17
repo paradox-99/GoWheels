@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { imageUpload } from "../../api/utilities";
 import loaderElement from '../../../public/logo.gif';
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import useSignUp from "../../hooks/useSignUp";
+import useDesignation from "../../hooks/useDesignation";
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
@@ -17,18 +17,17 @@ const SignUpPartFour = () => {
     const [imageFile, setImageFile] = useState(null);
     const navigate = useNavigate();
     const { user, setUser, loader, setLoader, updateUserProfile } = UseAuth() || {};
+    const { userInfo } = useDesignation();
     const location = useLocation();
     const { firstName, lastName } = location.state?.userInfo || {};
     const axiosPublic = useAxiosPublic();
-    const { setSignUpStep, signUpStep } = useSignUp();
-
     const { displayName } = user || {};
 
     useEffect(() => {
-        if (signUpStep < 4) {
+        if ((!user && !loader) || userInfo.image || userInfo.circleImage) {
             navigate('/join');
         }
-    }, [navigate, signUpStep]);
+    }, [loader, navigate, user, userInfo.circleImage, userInfo.image])
 
     const handleImage = (image) => {
         setImagePreview(URL.createObjectURL(image));
@@ -81,8 +80,12 @@ const SignUpPartFour = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    setSignUpStep(5)
-                    navigate('/join/signUpFive', { state: { userImage } });
+                    navigate('/join/signUpFive', {
+                        state: {
+                            userImage,
+                            from: '/join/signUpFour',
+                        }
+                    });
                 }
             }
         } catch (error) {

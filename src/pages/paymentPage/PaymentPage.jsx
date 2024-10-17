@@ -63,15 +63,17 @@ const PaymentPage = () => {
 
     console.log(location)
 
-    const handlePaymentSystem = async () => {
-        const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
-        await axiosPublic.post('/payment/order', data)
-            .then(res => {
-                window.location.replace(res.data?.url)
-                console.log(res.data)
-            })
+    // const handlePaymentSystem = async () => {
+    //     const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
+    //     await axiosPublic.post('/payment/order', data)
+    //         .then(res => {
+    //             window.location.replace(res.data?.url)
+    //             console.log(res.data)
+    //         })
 
-    }
+    // }
+
+
     return (
         <div>
             <h1>{brand}</h1>

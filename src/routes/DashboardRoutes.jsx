@@ -1,3 +1,4 @@
+import { element } from "prop-types";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 import AdminHome from "../Dashboard/Admin/AdminHome";
@@ -22,6 +23,8 @@ import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import UserHome from "../Dashboard/User/UserHome";
 import UserProfile from "../Dashboard/User/UserProfile";
 import UserRatings from "../Dashboard/User/UserRatings";
+import DriverProfile from "../Dashboard/Driver/DriverProfile";
+import DriverBooking from "../Dashboard/Driver/DriverBooking";
 
 
 export const DashboardRoutes = [
@@ -131,6 +134,17 @@ export const DashboardRoutes = [
                 path: "approve-agency/agencyDetails/:id",
                 element: <AgencyDeatils />,
             },
+
+
+            // Driver 
+            {
+                path: "driver-profile",
+                element: <DriverProfile />
+            },
+            {
+                path: "driver-booking",
+                element: <DriverBooking />
+            }
         ],
     },
 ]

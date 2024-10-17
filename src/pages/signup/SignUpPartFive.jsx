@@ -1,35 +1,32 @@
 import UseAuth from "../../hooks/UseAuth";
 import Avatar from "react-avatar-edit";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../api/utilities";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import loaderEliment from '../../../public/logo.gif';
-import useSignUp from "../../hooks/useSignUp";
+import useDesignation from "../../hooks/useDesignation";
 
 const SignUpPartFive = () => {
 
     const { user, loader, setLoader } = UseAuth() || {};
+    const { userInfo } = useDesignation();
     const { displayName } = user || {};
     const [preview, setPreview] = useState(null);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
-    const { signUpStep } = useSignUp();
     const location = useLocation();
-
-    const userImage = location.state?.userImage;
+    const { userImage, from } = location.state || {};
+ 
     useEffect(() => {
-        if (signUpStep < 5) {
+        if ((!user && !loader) || !from) {
             navigate('/join');
         }
-    }, [navigate, signUpStep]);
-
-    useEffect(() => {
-        if (!userImage) {
-            navigate('/join/signUpFour');
+        else if ((userInfo.image && userInfo.circleImage) ){
+            navigate('/')
         }
-    }, [navigate, userImage]);
+    }, [from, loader, navigate, user, userInfo.circleImage, userInfo.image])
 
     const onClose = () => {
         setPreview(userImage);
@@ -50,6 +47,8 @@ const SignUpPartFive = () => {
         }
         return new File([u8arr], filename, { type: mime });
     };
+
+
     const handlesubmit = async (e) => {
         e.preventDefault();
         const email = user?.email;
@@ -102,21 +101,12 @@ const SignUpPartFive = () => {
                             height={300}
                             onCrop={onCrop}
                             onClose={onClose}
-                            src={userImage}
+                            src={user?.photoURL}
                         />
                     </>}
                 </div>
 
-                <div className="flex justify-between lg:mt-5 mt-10">
-                    <div>
-                        <Link
-                            type="button"
-                            className='bg-primary px-3 py-1 rounded-xl text-white font-semibold cursor-pointer'
-                            to="/join/signUpFour"
-                        >
-                            Back
-                        </Link>
-                    </div>
+                <div className="flex justify-center lg:mt-5 mt-10">
                     <div>
                         <button
                             type="submit"

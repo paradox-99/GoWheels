@@ -45,6 +45,8 @@ const BookingInfo = () => {
     const area = bookingInformation?.area;
     const carId = bookingInformation?.data?._id;
 
+    console.log(bookingInformation?.carId)
+
     const handleChange = (e) => {
         setLoading(true);
         const drivingMethod = e.target.value
@@ -75,6 +77,8 @@ const BookingInfo = () => {
         }, 1000)
     }
 
+    console.log(method)
+
     const handleConfirmBooking = async (e) => {
         e.preventDefault()
         if (!method) {
@@ -82,18 +86,17 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, discount, totalRentHours, drivingCost, carId
+            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, totalRentHours: 5 
         }
 
-        const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
-        await axiosPublic.post('/payment/order', data)
+        await axiosPublic.post('/payment/order', paymentInfo)
             .then(res => {
                 window.location.replace(res.data?.url)
                 console.log(res.data)
             })
     }
     return (
-        <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-64px)]" >
+        <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
 
             <section className="lg:w-[65%] shadow-xl rounded-xl px-5 py-3">
                 {/* upper section starts */}

@@ -2,7 +2,7 @@ import { FaCar, FaCarSide, FaHistory, FaHome, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { CiUser, CiStar, CiHeart } from 'react-icons/ci';
 import { GiRadioactive, GiTentacleHeart } from "react-icons/gi";
-import { MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
+import { MdManageHistory, MdOutlineBook, MdOutlineRateReview } from "react-icons/md";
 import { RiListOrdered } from "react-icons/ri";
 import useDesignation from "../hooks/useDesignation";
 import UseAuth from "../hooks/UseAuth";
@@ -20,6 +20,9 @@ const Dashboard = () => {
   const { logout } = UseAuth();
   const { userInfo } = useDesignation();
   const [value, setValue] = useState(false);
+  console.log(userInfo)
+
+  console.log(userInfo)
 
 
   const handleLogout = async () => {
@@ -29,10 +32,10 @@ const Dashboard = () => {
 
   const menuItems = {
     admin: [
-      { to: "/dashboard/admin-home", label: "Admin Home", icon: <TbLayoutDashboardFilled /> },
-      { to: "/dashboard/manage-users", label: "Manage Users", icon: <FaUsers /> },
-      // { to: "/dashboard/manage-moderators", label: "Manage Moderators", icon: <GiTentacleHeart /> },
-      { to: "/dashboard/manage-agencies", label: "Manage Agencies", icon: <GiTentacleHeart /> },
+      { to: "/dashboard/admin-home", label: "Home", icon: <TbLayoutDashboardFilled /> },
+      { to: "/dashboard/manage-users", label: " Users", icon: <FaUsers /> },
+      { to: "/dashboard/manage-moderators", label: " Moderators", icon: <GiTentacleHeart /> },
+      { to: "/dashboard/manage-agencies", label: " Agencies", icon: <GiTentacleHeart /> },
       // { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
     ],
     user: [
@@ -60,6 +63,15 @@ const Dashboard = () => {
     moderator: [
       { to: "/dashboard/moderator-profile", label: "Moderator", icon: <GiTentacleHeart /> },
       { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
+    ],
+    driver: [
+      { to: "/dashboard/user-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
+      { to: "/dashboard/driver-profile", label: "Driver Profile", icon: <GiTentacleHeart /> },
+      { to: "/dashboard/driver-booking", label: "Driver Booking", icon: <GiTentacleHeart /> }, 
+      { to: "/dashboard/user-bookings", label: "Bookings", icon: <RiListOrdered /> },
+      { to: "/dashboard/user-booking-history", label: "Booking History", icon: <MdManageHistory /> },
+      { to: "/dashboard/user-ratings", label: "Reviews", icon: <CiStar /> },
+      { to: "/dashboard/user-favourite", label: "Favourite Cars", icon: <CiHeart /> },
     ],
   };
 

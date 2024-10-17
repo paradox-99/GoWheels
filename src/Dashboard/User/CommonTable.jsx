@@ -129,7 +129,7 @@ const CommonTable = ({ bookings, loading, error }) => {
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-gray-200 text-gray-500 text-sm leading-normal">
+                            <tr className="bg-primary text-white text-sm leading-normal">
                                 {/* Table headings */}
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
