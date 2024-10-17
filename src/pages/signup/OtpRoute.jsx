@@ -58,7 +58,7 @@ const OtpRoute = () => {
             console.log(data)
             if (data.message) {
 
-                const { data } = await axiosPublic.patch(`/usersRoute/userStatus/${userInfo?.userEmail}`, { accountStatus: "verified" });
+                const { data } = await axiosPublic.patch(`/usersRoute/userStatus/${userInfo?.userEmail}`);
                 console.log(data)
                 if (data.modifiedCount) {
                     toast.success("otp matched successfully")
