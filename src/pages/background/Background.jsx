@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import background from '../../../public/asset/background.jpg';
+import background from '../../../public/asset/top_ph002.png';
 
 const Background = () => {
     const location = useLocation();

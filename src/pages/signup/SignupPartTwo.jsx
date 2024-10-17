@@ -117,7 +117,7 @@ const SignupPartTwo = () => {
 
         } catch (error) {
             console.error('Error checking user existence', error);
-            toast.error('Error checking user existence, please try again later.');
+            // toast.error('Error checking user existence, please try again later.');
         }
     }
 

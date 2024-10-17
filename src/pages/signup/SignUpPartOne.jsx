@@ -7,6 +7,7 @@ import { GiSteeringWheel } from "react-icons/gi";
 import UseAuth from '../../hooks/UseAuth';
 import useDesignation from '../../hooks/useDesignation';
 import { useEffect } from 'react';
+// import { GiSteeringWheel } from 'react-icons/gi';
 
 const SignUpPartOne = () => {
     const navigate = useNavigate();
@@ -69,7 +70,7 @@ const SignUpPartOne = () => {
                     </div>
                 </> : <>
                     <div className='flex justify-center'>
-                        <img src={loaderEliment} alt="" />
+                        <img src={loaderEliment} alt="" /> 
                     </div>
                 </>
             }
