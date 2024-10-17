@@ -24,7 +24,7 @@ const GoogleLogin = () => {
     const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        if ((!user && !loader )|| userInfo.nid) {
+        if ((!user && !loader) || userInfo.nid) {
             navigate('/join');
         }
     }, [loader, navigate, user, userInfo.nid]);
@@ -69,7 +69,7 @@ const GoogleLogin = () => {
 
         const phoneRegex = /^\+?[0-9]{13}$/;
         const nidRegex = /^\+?[0-9]{8,12}$/;
-        
+
         if (!phoneRegex.test(phone)) {
             toast.error('please enter a valid phone number')
             return
@@ -94,23 +94,23 @@ const GoogleLogin = () => {
                     phone,
                     nid
                 }
-            });  
-            
+            });
+
             if (checkingData.phoneExists && checkingData.nidExists) {
                 toast.error('This phone number and NID are already used');
                 return;
             }
-    
+
             else if (checkingData.phoneExists) {
                 toast.error('This phone number is already used');
                 return;
             }
-    
-           else if (checkingData.nidExists) {
+
+            else if (checkingData.nidExists) {
                 toast.error('This NID number is already used');
                 return;
             }
-    
+
 
             const userInfo = {
                 firstName,
@@ -140,7 +140,12 @@ const GoogleLogin = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/')
+                navigate('/join/otpRoute', {
+                    state: {
+                        userInfo,
+                        from: '/join/login-Info',
+                    }
+                });
             }
         }
         catch (error) {
@@ -155,7 +160,7 @@ const GoogleLogin = () => {
         }
     }
 
-    
+
     if (loader) {
         return (
             <div className='flex justify-center'>

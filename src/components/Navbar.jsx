@@ -93,27 +93,24 @@ const Navbar = () => {
                     {user &&
                         <div>
 
-                            {
-                                userInfo?.circleImage ? <>
-                                    <button onClick={() => setValue(!value)}>
-                                        <img
-                                            src={userInfo.circleImage}
-                                            alt="Profile Picture"
-                                            className="w-12 h-12 rounded-full border-[3px] border-primary"
-                                        />
-                                    </button>
-                                </> : userInfo?.image ? <>
-                                    <button onClick={() => setValue(!value)}>
-                                        <img
-                                            src={userInfo.image}
-                                            alt="Profile Picture"
-                                            className="w-12 h-12 rounded-full border-[3px] border-primary"
-                                        />
-                                    </button>
-                                </> : <button onClick={() => setValue(!value)}>
+                            <button onClick={() => setValue(!value)}>
+                                {userInfo.circleImage ? (
+                                    <img
+                                        src={userInfo.circleImage}
+                                        alt="Profile Picture"
+                                        className="w-12 h-12 rounded-full border-[3px] border-primary"
+                                    />
+                                ) : userInfo?.image ? (
+                                    <img
+                                        src={userInfo?.image}
+                                        alt="Profile Picture"
+                                        referrerPolicy="no-referrer"
+                                        className="w-12 h-12 rounded-full border-[3px] border-primary"
+                                    />
+                                ) : (
                                     <CgProfile className="w-12 h-12 rounded-full text-primary" />
-                                </button>
-                            }
+                                )}
+                            </button>
 
                             <div className="relative">
                                 <ul className={`bg-primary text-white text-lg rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value ? "-right-72" : "right-0"} duration-500`}>

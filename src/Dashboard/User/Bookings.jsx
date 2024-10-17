@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import CommonTable from './CommonTable';
 import axios from 'axios';
@@ -6,31 +5,61 @@ import useDesignation from '../../hooks/useDesignation';
 
 const Bookings = () => {
     const { userInfo } = useDesignation();
-    // const userId = "66f4cf5a3ba27ae4690cc441"
-    const userId = userInfo?._id
+    const userId = userInfo?._id;
+
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [activeTab, setActiveTab] = useState('Active'); 
 
-    console.log(bookings);
+  
     useEffect(() => {
-        const fetchBookings = async () => {
-            try {
-                const response = await axios.get(`https://go-wheels-server.vercel.app/api/bookings/user/${userId}`); 
-                setBookings(response.data);
-                setLoading(false);
-            } catch (err) {
-                setError('Failed to fetch bookings', err);
-                setLoading(false);
-            }
-        };
+        if (userId) {
+            setLoading(true);
+            const fetchBookings = async () => {
+                try {
+                    let url = `http://localhost:3000/api/bookings/user/${userId}`;
+                    if (activeTab === 'Completed') {
+                        url += '?history=true';
+                    }
+                    const response = await axios.get(url);
+                    setBookings(response.data);
+                    setLoading(false);
+                } catch (err) {
+                    setError('Failed to fetch bookings');
+                    setLoading(false);
+                    console.log(err);
+                }
+            };
 
-        fetchBookings();
-    }, [userId]);
-console.log(bookings);
+            fetchBookings();
+        }
+    }, [userId, activeTab]);
+
     return (
-        <div>
-            <CommonTable bookings={bookings} heading={"My Bookings"} loading={loading} error={error}></CommonTable>
+        <div className='p-12'>
+            <h2 className="text-3xl font-semibold mb-5">My Bookings</h2>
+            <p className='mt-6 w-full lg:w-[600px]'>You can view your active bookings and completed booking history here. You can also add reviews for cars you have booked, once their status is marked as completed</p>
+            <div className='relative  z-[2]  flex gap-6 border border-gray-500 mx-auto rounded-full w-[270px] py-2 justify-center mt-12 mb-8'>
+                <div
+                    className={`absolute w-[120px] h-[40px] bg-primary rounded-full transition-all duration-300 ease-in-out ${activeTab === 'Active' ? 'left-2' : 'left-[52%]'}`}
+                ></div>
+
+                <button
+                    className={`px-10  py-2 rounded-full z-10 ${activeTab === 'Active' ? 'text-white' : 'text-gray-400'}`}
+                    onClick={() => setActiveTab('Active')}
+                >
+                    Active
+                </button>
+                <button
+                    className={`px-3 mr-[16px] py-2 rounded-full z-10 ${activeTab === 'Completed' ? 'text-white' : 'text-gray-400'}`}
+                    onClick={() => setActiveTab('Completed')}
+                >
+                    Completed
+                </button>
+            </div>
+
+            <CommonTable bookings={bookings}  loading={loading} error={error} />
         </div>
     );
 };
