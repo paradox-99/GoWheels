@@ -66,7 +66,7 @@ const Dashboard = () => {
   return (
     <div className="flex relative">
       <div className="w-[20%] fixed left-0 hidden lg:block">
-        <div className="bg-primary min-h-screen font-nunito">
+        <div className="bg-red-50 min-h-screen font-nunito">
           <ul className="lg:static bg-white p-5 min-h-screen w-[95%] max-w-[300px]">
             <div className="flex justify-between items-center">
               <div className="px-6">

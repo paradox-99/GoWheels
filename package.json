@@ -12,11 +12,6 @@
   "dependencies": {
     "@tanstack/react-query": "^5.59.0",
     "axios": "^1.7.7",
-<<<<<<< HEAD
-=======
-    "chart.js": "^4.4.4",
-    "daisyui": "^4.12.13",
->>>>>>> 40bf332096fe5c3e027685f7624b6ed61bfa9235
     "firebase": "^10.13.2",
     "gowheels": "file:",
     "install": "^0.13.0",
