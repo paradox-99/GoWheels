@@ -45,8 +45,6 @@ const BookingInfo = () => {
     const area = bookingInformation?.area;
     const carId = bookingInformation?.data?._id;
 
-    console.log(bookingInformation?.carId)
-
     const handleChange = (e) => {
         setLoading(true);
         const drivingMethod = e.target.value
@@ -265,14 +263,8 @@ const BookingInfo = () => {
                     </div>
                     <h1 className="font-nunito font-medium">৳ {totalPayCost * 120}</h1>
                 </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Driving method</h1>
-                    </div>
-                    <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
-                </div>
                 {
-                    method === "driver" && <>
+                    method === "Driver" && <>
                         <div className="flex justify-between items-center font-nunito mt-2">
                             <div>
                                 <h1 className="font-bold font-nunito">Driver Cost</h1>

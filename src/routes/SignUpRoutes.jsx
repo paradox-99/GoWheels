@@ -6,7 +6,6 @@ import SignUpPartOne from "../pages/signup/SignUpPartOne";
 import SignUpPartThree from "../pages/signup/SignUpPartThree";
 import SignupPartTwo from "../pages/signup/SignupPartTwo";
 import GoogleLogin from "../pages/sign in page/GoogleLogin";
-import { element } from "prop-types";
 import OtpRoute from "../pages/signup/OtpRoute";
 
 
