@@ -84,6 +84,17 @@ const ViewDetails = () => {
         // window.scrollTo(0, 0);
         return () => clearTimeout(timer);
     }, [id]);
+    const handleAddToFavorites = (carId) => {
+        const existingFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        if (!existingFavorites.includes(carId)) {
+            existingFavorites.push(carId);
+            localStorage.setItem('favorites', JSON.stringify(existingFavorites));
+            toast.success("Added to Favorites");
+        } else {
+            toast("Already in Favorites");
+        }
+    };
 
     const settings = {
         dots: true,
@@ -162,11 +173,11 @@ const ViewDetails = () => {
                                 className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button bg-primary text-white hover:text-black px-4 duration-700 md:py-3">
                                 Rent Now
                             </button>
-                            <button
-                                onClick={() => toast("added to Favorites")}
-                                className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
-                                Add to Favorites
-                            </button>
+                                <button
+                                    onClick={() => handleAddToFavorites(id)}
+                                    className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
+                                    Add to Favorites
+                                </button>
                         </div>
                     </div>
 
