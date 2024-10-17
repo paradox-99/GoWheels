@@ -22,6 +22,8 @@ const Dashboard = () => {
   const [value, setValue] = useState(false);
   console.log(userInfo)
 
+  console.log(userInfo)
+
 
   const handleLogout = async () => {
     await logout();
@@ -62,6 +64,15 @@ const Dashboard = () => {
     moderator: [
       { to: "/dashboard/moderator-profile", label: "Moderator", icon: <GiTentacleHeart /> },
       { to: "/dashboard/approve-agency", label: "Approve Agency", icon: <GiTentacleHeart /> },
+    ],
+    driver: [
+      { to: "/dashboard/user-home", label: "Dashboard", icon: <TbLayoutDashboardFilled /> },
+      { to: "/dashboard/driver-profile", label: "Driver Profile", icon: <GiTentacleHeart /> },
+      { to: "/dashboard/driver-booking", label: "Driver Booking", icon: <GiTentacleHeart /> }, 
+      { to: "/dashboard/user-bookings", label: "Bookings", icon: <RiListOrdered /> },
+      { to: "/dashboard/user-booking-history", label: "Booking History", icon: <MdManageHistory /> },
+      { to: "/dashboard/user-ratings", label: "Reviews", icon: <CiStar /> },
+      { to: "/dashboard/user-favourite", label: "Favourite Cars", icon: <CiHeart /> },
     ],
   };
 
@@ -132,7 +143,7 @@ const Dashboard = () => {
                   onClick={() => setValue(!value)}
                   className={({ isActive }) =>
                     `flex p-1 pl-4 gap-2 items-center transition-colors duration-300 
-                                        ${isActive ? 'text-white bg-primary' : 'text-white'} ${(index === 0 && "rounded-t") || (index === array.length+1 && "rounded-b")}`
+                                        ${isActive ? 'text-white bg-primary' : 'text-white'} ${(index === 0 && "rounded-t") || (index === array.length + 1 && "rounded-b")}`
                   }
                 >
                   <div>{item.icon}</div>
