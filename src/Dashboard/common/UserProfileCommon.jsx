@@ -18,8 +18,7 @@ const UserProfileCommon = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [districts, setDistricts] = useState([]);
   const [upazillas, setUpazillas] = useState([]);
-
-  //  -------------------------image
+  //  -------------------------image upload
   const [imageText, setImageText] = useState("image name.png");
   const [imagePreview, setImagePreview] = useState(null);
   const inputRef = useRef();
