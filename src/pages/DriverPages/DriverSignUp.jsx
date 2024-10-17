@@ -1,5 +1,6 @@
 
 import backgroundImage from '../../../public/asset/drive.avif'
+
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -24,6 +25,7 @@ const DriverSignUp = () => {
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic()
     // console.log(' use email :' ,email)
+    
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -78,9 +80,6 @@ const DriverSignUp = () => {
         }
     };
 
-
-
-
     const handleJoin = async (e) => {
         e.preventDefault()
         const form = e.target;
@@ -127,7 +126,7 @@ const DriverSignUp = () => {
 
     }
 
-    // style={{ backgroundImage: `url(${background})` }}
+   
     return (
         <div >
             <div style={{ backgroundImage: `url(${backgroundImage})` }} className='h-screen min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
