@@ -15,6 +15,7 @@ import UserData from "../../components/bookingComponent/UserData";
 import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import loader from '../../../public/logo.gif'
+import DriverList from "../../components/driverList/DriverList";
 
 
 const BookingInfo = () => {
@@ -30,6 +31,7 @@ const BookingInfo = () => {
     const [totalRentHours, setTotalRentHours] = useState(0);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [isModalVisible, setModalVisible] = useState(false);
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
     const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {}
@@ -45,18 +47,15 @@ const BookingInfo = () => {
     const area = bookingInformation?.area;
     const carId = bookingInformation?.data?._id;
 
-    console.log(bookingInformation?.carId)
-
     const handleChange = (e) => {
         setLoading(true);
         const drivingMethod = e.target.value
+
+        if (drivingMethod === 'driver') {
+            setModalVisible(true);
+        }
         setMethod(drivingMethod);
-        // if(drivingMethod === 'self-driving' && !nid && !drivingLicense) {
-        //     navigate()
-        // }
-        // else if(drivingMethod === "driver" ) {
-        //     navigate()
-        // }
+
         setTimeout(() => {
             const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime);
             setTotalRentHours(totalHours)
@@ -77,8 +76,6 @@ const BookingInfo = () => {
         }, 1000)
     }
 
-    console.log(method)
-
     const handleConfirmBooking = async (e) => {
         e.preventDefault()
         if (!method) {
@@ -86,7 +83,7 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, totalRentHours: 5 
+            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, totalRentHours: 5
         }
 
         await axiosPublic.post('/payment/order', paymentInfo)
@@ -125,6 +122,7 @@ const BookingInfo = () => {
 
                     <div className="flex flex-col lg:flex-row items-center justify-between relative">
                         <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={photo} alt={brand} />
+
                         <div>
                             <form
                                 className="mt-5">
@@ -147,14 +145,30 @@ const BookingInfo = () => {
                                             type="radio"
                                             name="driving-method"
                                             id="driver"
-                                            value="Driver"
-                                            checked={method === 'Driver'}
+                                            value="driver"
+                                            checked={method === 'driver'}
                                         />
                                         <label>Need Driver</label><br />
                                     </div>
                                 </div>
                             </form>
                         </div>
+
+                        {isModalVisible && (
+                            <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-10">
+                                <div className="bg-white p-6 rounded-lg shadow-lg">
+                                    <h2 className="text-2xl font-bold">Driver Selection</h2>
+                                    <p>You have selected the <span className="text-lg font-semibold">Need Driver</span> option. Please proceed.</p>
+
+                                    <DriverList role = {'driver'}></DriverList>
+                                    <button
+                                        className="mt-4 bg-primary text-white p-2 rounded"
+                                        onClick={() => setModalVisible(false)}>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        )}
 
                         {
                             loading && <>
@@ -264,12 +278,6 @@ const BookingInfo = () => {
                         <p className="font-nunito">Cost on total hours</p>
                     </div>
                     <h1 className="font-nunito font-medium">৳ {totalPayCost * 120}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Driving method</h1>
-                    </div>
-                    <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
                 </div>
                 {
                     method === "driver" && <>

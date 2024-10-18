@@ -98,7 +98,7 @@ const DriverSignUp = () => {
    
     return (
         <div >
-            <div style={{ backgroundImage: `url(${backgroundImage})` }} className='h-screen min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
+            <div style={{ backgroundImage: `url(${backgroundImage})` }} className=' min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
                 <div className='text-center mx-auto '>
                     <h1 className="text-3xl lg:text-3xl font-bold  font-merriweather mb-10">Please Register as a driver</h1>
                 </div>

@@ -1,16 +1,14 @@
-import { element } from "prop-types";
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 import AdminHome from "../Dashboard/Admin/AdminHome";
 import ManageAgencies from "../Dashboard/Admin/ManageAgencies";
-import ManageAgencyDetails from "../Dashboard/Admin/ManageAgencyDetails";
 import ManageModaretors from "../Dashboard/Admin/ManageModaretors";
 import ManageUsers from "../Dashboard/Admin/ManageUsers";
 import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
-// import BookingHistory from "../Dashboard/Agency/BookingHistory";
+import BookingHistoryForAgency from "../Dashboard/Agency/BookingHistoryForAgency";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
@@ -18,6 +16,7 @@ import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
 import Dashboard from "../Dashboard/Dashboard";
 import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
+import BookingHistory from "../Dashboard/User/BookingHistory";
 import Bookings from "../Dashboard/User/Bookings";
 import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import UserHome from "../Dashboard/User/UserHome";
@@ -25,7 +24,7 @@ import UserProfile from "../Dashboard/User/UserProfile";
 import UserRatings from "../Dashboard/User/UserRatings";
 import DriverProfile from "../Dashboard/Driver/DriverProfile";
 import DriverBooking from "../Dashboard/Driver/DriverBooking";
-import BookingHistoryForAgency from "../Dashboard/Agency/BookingHistoryForAgency";
+import Notifications from "../Dashboard/User/Notifications";
 
 
 export const DashboardRoutes = [
@@ -44,6 +43,10 @@ export const DashboardRoutes = [
                 element: <Bookings></Bookings>
             },
             {
+                path: "user-booking-history",
+                element: <BookingHistory></BookingHistory>,
+            },
+            {
                 path: "user-ratings",
                 element: <UserRatings></UserRatings>
             },
@@ -55,7 +58,10 @@ export const DashboardRoutes = [
                 path: "user-profile",
                 element: <UserProfile></UserProfile>
             },
-
+            { 
+                path: "notifications",
+                element:<Notifications></Notifications>
+            },
             // AGENCY ---------------
             {
                 path: "agency-home",
@@ -97,7 +103,6 @@ export const DashboardRoutes = [
                 path: "/dashboard/agency/customer-management",
                 element: <CustomerManagement></CustomerManagement>
             },
-
             // admin routes
             {
                 path: "admin-home",
@@ -115,16 +120,21 @@ export const DashboardRoutes = [
                 path: 'manage-agencies',
                 element: <ManageAgencies></ManageAgencies>
             },
-            {
-                path: "manage-agencies/agencyDetails/:id",
-                element: <ManageAgencyDetails />,
-            },
 
             // MODERATOR
-            // Moderator
             {
                 path: "moderator-profile",
                 element: <ModeratorProfile />,
+            },
+
+            // driver
+            {
+                path: 'driver-profile',
+                element: <DriverProfile></DriverProfile>
+            },
+            {
+                path: 'driver-booking',
+                element: <DriverBooking></DriverBooking>
             },
             // Approve Agency
             {
@@ -135,17 +145,6 @@ export const DashboardRoutes = [
                 path: "approve-agency/agencyDetails/:id",
                 element: <AgencyDeatils />,
             },
-
-
-            // Driver 
-            {
-                path: "driver-profile",
-                element: <DriverProfile />
-            },
-            {
-                path: "driver-booking",
-                element: <DriverBooking />
-            }
         ],
     },
 ]

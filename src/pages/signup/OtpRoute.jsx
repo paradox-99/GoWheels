@@ -38,6 +38,7 @@ const OtpRoute = () => {
         e.preventDefault();
 
         if (from === '/join/signUpThree') {
+            toast.success("otp matched successfully")
             navigate('/join/signUpFour', {
                 state: {
                     userInfo,
@@ -114,7 +115,7 @@ const OtpRoute = () => {
                 </div>
                 <div className="flex flex-col-reverse lg:flex-row gap-5 lg:gap-0 justify-between mt-10">
                     <button
-                        // onClick={handleskip}
+                        onClick={handleskip}
                         type="button"
                         className="bg-primary text-white rounded py-1 px-2 font-semibold"> skip
                     </button>
