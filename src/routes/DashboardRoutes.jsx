@@ -22,7 +22,9 @@ import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import UserHome from "../Dashboard/User/UserHome";
 import UserProfile from "../Dashboard/User/UserProfile";
 import UserRatings from "../Dashboard/User/UserRatings";
-
+import DriverProfile from "../Dashboard/Driver/DriverProfile";
+import DriverBooking from "../Dashboard/Driver/DriverBooking";
+import Notifications from "../Dashboard/User/Notifications";
 
 
 export const DashboardRoutes = [
@@ -56,7 +58,10 @@ export const DashboardRoutes = [
                 path: "user-profile",
                 element: <UserProfile></UserProfile>
             },
-
+            { 
+                path: "notifications",
+                element:<Notifications></Notifications>
+            },
             // AGENCY ---------------
             {
                 path: "agency-home",
@@ -120,6 +125,16 @@ export const DashboardRoutes = [
             {
                 path: "moderator-profile",
                 element: <ModeratorProfile />,
+            },
+
+            // driver
+            {
+                path: 'driver-profile',
+                element: <DriverProfile></DriverProfile>
+            },
+            {
+                path: 'driver-booking',
+                element: <DriverBooking></DriverBooking>
             },
             // Approve Agency
             {

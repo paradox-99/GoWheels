@@ -33,6 +33,8 @@
     "react-vertical-timeline-component": "^3.6.0",
     "recharts": "^2.13.0",
     "slick-carousel": "^1.8.1",
+    "socket.io": "^4.8.0",
+    "socket.io-client": "^4.8.0",
     "sort-by": "^0.0.2",
     "sweetalert2": "^11.14.1"
   },
