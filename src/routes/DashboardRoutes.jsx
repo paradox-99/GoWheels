@@ -10,7 +10,7 @@ import ActiveBooking from "../Dashboard/Agency/ActiveBooking";
 import AddVehicleInfo from "../Dashboard/Agency/AddVehicleInfo";
 import AgencyHome from "../Dashboard/Agency/AgencyHome";
 import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
-import BookingHistory from "../Dashboard/Agency/BookingHistory";
+// import BookingHistory from "../Dashboard/Agency/BookingHistory";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
@@ -25,6 +25,7 @@ import UserProfile from "../Dashboard/User/UserProfile";
 import UserRatings from "../Dashboard/User/UserRatings";
 import DriverProfile from "../Dashboard/Driver/DriverProfile";
 import DriverBooking from "../Dashboard/Driver/DriverBooking";
+import BookingHistoryForAgency from "../Dashboard/Agency/BookingHistoryForAgency";
 
 
 export const DashboardRoutes = [
@@ -74,7 +75,7 @@ export const DashboardRoutes = [
             },
             {
                 path: "/dashboard/agency/booking-history",
-                element: <BookingHistory></BookingHistory>
+                element: <BookingHistoryForAgency></BookingHistoryForAgency>
             },
             {
                 path: "/dashboard/agency/booking-request",
