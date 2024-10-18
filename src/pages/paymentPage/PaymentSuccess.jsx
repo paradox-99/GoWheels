@@ -3,6 +3,8 @@ import success from "/paymentsuccess.png"
 
 const PaymentSuccess = () => {
     const { tranId } = useParams()
+
+    
     return (
         <div className="flex justify-center items-center">
             {/* <h1>Payment Success : {tranId}</h1> */}
