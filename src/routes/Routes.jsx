@@ -43,6 +43,7 @@ import PaymentSuccess from "../pages/paymentPage/PaymentSuccess";
 import DriverSignUp from "../pages/DriverPages/DriverSignUp";
 import DriverInfo from "../pages/DriverPages/DriverInfo";
 import DriverOTP from "../pages/DriverPages/DriverOTP";
+import Notifications from "../Dashboard/User/Notifications";
 
 const router = createBrowserRouter([
     {
@@ -142,6 +143,10 @@ const router = createBrowserRouter([
             {
                 path: "user-profile",
                 element: <UserProfile></UserProfile>
+            },
+            { 
+                path: "notifications",
+                element:<Notifications></Notifications>
             },
 
             // AGENCY ---------------
