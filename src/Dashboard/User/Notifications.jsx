@@ -1,11 +1,11 @@
-
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import { v4 as uuidv4 } from 'uuid'; 
 
-const socket = io('http://localhost:3000');
+const socket = io("http://localhost:3000"); 
 
 const Notifications = () => {
-    const [notification, setNotification] = useState('');
+    const [notifications, setNotifications] = useState([]);
 
     useEffect(() => {
         socket.on('connect_error', (err) => {
@@ -13,7 +13,13 @@ const Notifications = () => {
         });
 
         socket.on('payment-success', (data) => {
-            setNotification(data.message);
+            const newNotification = { id: uuidv4(), message: data.message };
+            setNotifications((prev) => [...prev, newNotification]);
+
+            // Auto-dismiss after 5 seconds
+            setTimeout(() => {
+                setNotifications((prev) => prev.filter(n => n.id !== newNotification.id));
+            }, 5000);
         });
 
         return () => {
@@ -23,11 +29,11 @@ const Notifications = () => {
 
     return (
         <div>
-            {notification && (
-                <div className="notification">
-                    <p>{notification}</p>
+            {notifications.map((note) => (
+                <div key={note.id} className="notification">
+                    <p>{note.message}</p>
                 </div>
-            )}
+            ))}
         </div>
     );
 };
