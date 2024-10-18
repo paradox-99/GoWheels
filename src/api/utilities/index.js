@@ -21,3 +21,19 @@ export const googleLogin = async (loginWithGoogle) => {
         throw error;
     }
 };
+
+
+export const calculateAge = (date) => {
+
+        const inputDate = new Date(date);
+        const today = new Date();
+
+        let calculatedAge = today.getFullYear() - inputDate.getFullYear();
+        const monthDifference = today.getMonth() - inputDate.getMonth();
+
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < inputDate.getDate())) {
+            calculatedAge--;
+        }
+
+        return calculatedAge
+    }

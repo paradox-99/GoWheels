@@ -15,6 +15,9 @@ import BookingInfo from "../pages/bookingInfo/BookingInfo";
 import { DashboardRoutes } from "./DashboardRoutes";
 import PaymentFail from "../pages/paymentPage/PaymentFail";
 import PaymentSuccess from "../pages/paymentPage/PaymentSuccess";
+import DriverSignUp from "../pages/DriverPages/DriverSignUp";
+import DriverInfo from "../pages/DriverPages/DriverInfo";
+import DriverOTP from "../pages/DriverPages/DriverOTP";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +72,19 @@ const router = createBrowserRouter([
             {
                 path: "/payment/fail/:tranId",
                 element: <PaymentFail />
+            },
+            {
+                path:'/join/driverSignUp',
+                element:<DriverSignUp></DriverSignUp>
+            },
+            {
+                path:'/join/driverInfo',
+                element:<DriverInfo></DriverInfo>
+
+            },
+            {
+                path:'/join/driverOtp',
+                element:<DriverOTP></DriverOTP>
             }
         ]
     },

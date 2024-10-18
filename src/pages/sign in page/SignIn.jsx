@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
@@ -8,10 +8,16 @@ import GoogleButton from '../../components/GoogleButton';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { userLogin, setUser, user } = UseAuth();
+    const { userLogin, setUser, user} = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (user && loading) {
+            navigate('/');
+        }
+    }, [loading, navigate, user,]);
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -43,6 +49,7 @@ const SignIn = () => {
             });
         }
     }
+
 
     if (loading) {
         return (
@@ -92,7 +99,7 @@ const SignIn = () => {
                                     <div>
                                         <div className='space-x-2 flex items-center text-[#fdfefe] '>
                                             <label htmlFor="checkbox">Remember me</label>
-                                            <input type="checkbox" name="yeas" id="yes"/>
+                                            <input type="checkbox" name="yeas" id="yes" />
                                         </div>
                                         <div>
                                             <Link className='lg:text-lg text-primary font-nunito font-semibold'>Forgot Password ?</Link>
@@ -119,9 +126,7 @@ const SignIn = () => {
                     </div>
                 </> : <>
                     <div className='flex flex-col justify-center items-center'>
-                        <h1 className='text-primary font-bold font-merriweather text-2xl '>Loading......... back to home</h1>
                         <img className='mx-auto' src={loaderEliment} alt="loading" />
-                        <Link to='/' className='bg-primary text-white rounded py-1 px-2 lg:px-4 font-semibold text-lg lg:text-xl'>Back to home</Link>
                     </div>
                 </>
             }

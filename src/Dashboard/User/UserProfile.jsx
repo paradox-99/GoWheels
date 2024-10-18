@@ -27,6 +27,10 @@ const UserProfile = () => {
         setIsModalOpen(false);
     };
 
+
+
+    
+
     return (
         <div style={{ boxShadow: '0 10px 50px 50px #FEF2F2' }} className="p-12 max-w-4xl mx-auto">
             <div>
