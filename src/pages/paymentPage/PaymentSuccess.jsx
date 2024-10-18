@@ -1,11 +1,34 @@
 import { Link, useParams } from "react-router-dom";
 import success from "/paymentsuccess.png"
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useEffect, useState } from "react";
 
 const PaymentSuccess = () => {
-    const { tranId } = useParams()
+    const { tranId } = useParams();
 
+
+    const axiosPublic = useAxiosPublic();
+    console.log(tranId);
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
     
-    return (
+    useEffect(() => {
+        const updateUser = async () => {
+            try {
+                const response = await axiosPublic.post(`payment/success/${tranId}`);
+                setData(response.data);
+                console.log(response.data);
+            } catch (err) {
+                setError(err);
+                console.error(err);
+            }
+        };
+
+        if (tranId) {
+            updateUser();
+        }
+    }, [tranId, axiosPublic]);
+        return (
         <div className="flex justify-center items-center">
             {/* <h1>Payment Success : {tranId}</h1> */}
             <div className="max-w-screen-sm pb-8 border border-gray-300 flex justify-start items-center flex-col px-10">
