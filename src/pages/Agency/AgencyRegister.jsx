@@ -68,14 +68,14 @@ const AgencyRegister = () => {
         formData.append("image", imageFile);
 
         try {
-            const response = await axios.post("https://api.imgbb.com/1/upload?key=0873ad3ca7a49d847f0ce5628d0e79ee",
+            const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
                 formData
             );
 
             const imageUrl = response.data.data.display_url;
             console.log("Image uploaded:", imageUrl);
 
-            const urlSegment = imageUrl.split('/').slice(-2).join('/'); // Example: last two segments of the URL
+            const urlSegment = imageUrl.split('/').slice(-2).join('/'); 
             setImageLabel(urlSegment);
             return imageUrl;
         } catch (error) {
@@ -84,9 +84,7 @@ const AgencyRegister = () => {
     };
 
 
-
-
-    const handleJoin = async (e) => {
+    const handleJoin = async (e) => { 
         e.preventDefault()
         setLoading(true)
         const form = e.target;

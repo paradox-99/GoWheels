@@ -1,5 +1,5 @@
 
-const BookingHistory = () => {
+const BookingHistoryForAgency = () => {
     return (
         <div>
         <div className=" mx-auto">
@@ -16,7 +16,7 @@ const BookingHistory = () => {
           <div className="w-full flex justify-between items-center mb-3 mt-1 pl-3">
             <div>
               <h3 className="text-lg font-semibold text-slate-800">
-                Overview of the Booking Cars
+                Overview of the Booking Cars History
               </h3>
              
             </div>
@@ -52,27 +52,37 @@ const BookingHistory = () => {
                 <tr>
                   <th className="p-4 border-b border-slate-200 bg-slate-50">
                     <p className="text-sm font-normal leading-none text-slate-500">
-                      License Number
+                      Car Name
                     </p>
                   </th>
                   <th className="p-4 border-b border-slate-200 bg-slate-50">
                     <p className="text-sm font-normal leading-none text-slate-500">
-                      Customer Name
+                    Booking Date 
                     </p>
                   </th>
                   <th className="p-4 border-b border-slate-200 bg-slate-50">
                     <p className="text-sm font-normal leading-none text-slate-500">
-                      Booking Date & Time
+                    Pickup Date 
                     </p>
                   </th>
                   <th className="p-4 border-b border-slate-200 bg-slate-50">
                     <p className="text-sm font-normal leading-none text-slate-500">
-                      Return Date & Time
+                    Dropoff Date
                     </p>
                   </th>
                   <th className="p-4 border-b border-slate-200 bg-slate-50">
                     <p className="text-sm font-normal leading-none text-slate-500">
-                      Rental Amount
+                    Pickup Location 
+                    </p>
+                  </th>
+                  <th className="p-4 border-b border-slate-200 bg-slate-50">
+                    <p className="text-sm font-normal leading-none text-slate-500">
+                    Dropoff Location 
+                    </p>
+                  </th>
+                  <th className="p-4 border-b border-slate-200 bg-slate-50">
+                    <p className="text-sm font-normal leading-none text-slate-500">
+                    Price 
                     </p>
                   </th>
                 </tr>
@@ -81,20 +91,26 @@ const BookingHistory = () => {
                 <tr className="hover:bg-slate-50 border-b border-slate-200">
                   <td className="p-4 py-5">
                     <p className="block font-semibold text-sm text-slate-800">
-                      L998979978
+                    name
                     </p>
                   </td>
                   <td className="p-4 py-5">
-                    <p className="text-sm text-slate-500">farzana</p>
+                    <p className="text-sm text-slate-500">bookingDate</p>
                   </td>
                   <td className="p-4 py-5">
-                    <p className="text-sm text-slate-500">29th April, 2024</p>
+                    <p className="text-sm text-slate-500">pickupDate</p>
                   </td>
                   <td className="p-4 py-5">
-                    <p className="text-sm text-slate-500">28th September, 2024</p>
+                    <p className="text-sm text-slate-500">dropoffDate</p>
                   </td>
                   <td className="p-4 py-5">
-                    <p className="text-sm text-slate-500">1500</p>
+                    <p className="text-sm text-slate-500">pickupLocation</p>
+                  </td>
+                  <td className="p-4 py-5">
+                    <p className="text-sm text-slate-500">dropoffLocation</p>
+                  </td>
+                  <td className="p-4 py-5">
+                    <p className="text-sm text-slate-500">price</p>
                   </td>
                 </tr>
                
@@ -129,4 +145,4 @@ const BookingHistory = () => {
     );
 };
 
-export default BookingHistory;
+export default BookingHistoryForAgency;
