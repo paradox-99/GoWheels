@@ -1,25 +1,23 @@
 
 import backgroundImage from '../../../public/asset/drive.avif'
-
-import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { locationData } from "../../../public/locationData";
 // import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const DriverSignUp = () => {
-
     // const [showPassword, setShowPassword] = useState(false);
     const [selectedDivision, setSelectedDivision] = useState('');
     // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
+    const [imageLabel, setImageLabel] = useState("Upload your photo");
     const navigate = useNavigate();
+
     // console.log(' use email :' ,email)
-    
+
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -47,12 +45,16 @@ const DriverSignUp = () => {
         formData.append("image", imageFile);
 
         try {
-            const response = await axios.post("https://api.imgbb.com/1/upload?key=0873ad3ca7a49d847f0ce5628d0e79ee",
+            const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
                 formData
             );
 
             const imageUrl = response.data.data.display_url;
             console.log("Image uploaded:", imageUrl);
+
+            const urlSegment = imageUrl.split('/').slice(-2).join('/'); // Example: last two segments of the URL
+            setImageLabel(urlSegment);
+
             return imageUrl;
         } catch (error) {
             console.error("Image upload failed:", error);
@@ -76,12 +78,12 @@ const DriverSignUp = () => {
         const userRole = "driver"
         const accountStatus = "not verified"
         const createdAt = new Date()
-        
+
 
         const imageFile = form.photo.files[0];
         // console.log(imageFile.name)
         const image = await handleImageUpload({ target: { files: [imageFile] } });
-        const info = { firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division,upazilla, localAddress };
+        const info = { firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress };
 
         try {
 
@@ -95,7 +97,7 @@ const DriverSignUp = () => {
 
     }
 
-   
+
     return (
         <div >
             <div style={{ backgroundImage: `url(${backgroundImage})` }} className='h-screen min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
@@ -255,7 +257,7 @@ const DriverSignUp = () => {
                                                 htmlFor="photo-upload"
                                                 className="border-2 border-dashed border-white p-2 w-full  outline-none rounded py-1 lg:py-2 px-2 text-white flex items-center justify-center cursor-pointer"
                                             >
-                                                Upload your photo
+                                                 {imageLabel}
                                             </label>
                                         </div>
                                     </div>
