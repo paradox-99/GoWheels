@@ -1,15 +1,16 @@
 
 import backgroundImage from '../../../public/asset/drive.avif'
-
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { locationData } from "../../../public/locationData";
+import { imageUpload } from '../../api/utilities';
 // import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const DriverSignUp = () => {
+    const [imageText, setImageText] = useState('image name.png');
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
+    const [photoURL, setPhotoURL] = useState(null);
 
     // const [showPassword, setShowPassword] = useState(false);
     const [selectedDivision, setSelectedDivision] = useState('');
@@ -18,8 +19,7 @@ const DriverSignUp = () => {
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
-    // console.log(' use email :' ,email)
-    
+
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -36,26 +36,19 @@ const DriverSignUp = () => {
     };
 
 
-    const handleImageUpload = async (e) => {
-        const imageFile = e.target.files[0];
-        if (!imageFile) {
-            console.error("No file selected");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("image", imageFile);
+    const handleImageUpload = async (image) => {
+        setImagePreview(URL.createObjectURL(image));
+        setImageText(image.name);
+        setImageFile(image);
+      
 
         try {
-            const response = await axios.post("https://api.imgbb.com/1/upload?key=0873ad3ca7a49d847f0ce5628d0e79ee",
-                formData
-            );
-
-            const imageUrl = response.data.data.display_url;
-            console.log("Image uploaded:", imageUrl);
-            return imageUrl;
-        } catch (error) {
-            console.error("Image upload failed:", error);
+            const photo = await imageUpload(imageFile);
+            setPhotoURL(photo)
+            console.log(photo)
+        }
+        catch (error) {
+            console.log(error)
         }
     };
 
@@ -76,16 +69,12 @@ const DriverSignUp = () => {
         const userRole = "driver"
         const accountStatus = "not verified"
         const createdAt = new Date()
-        
+        const image = photoURL
+        console.log(image)
 
-        const imageFile = form.photo.files[0];
-        // console.log(imageFile.name)
-        const image = await handleImageUpload({ target: { files: [imageFile] } });
-        const info = { firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division,upazilla, localAddress };
+        const info = { firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress };
 
         try {
-
-            // await mutateAsync(info)
             navigate('/join/driverInfo', { state: { info } });
 
         } catch (error) {
@@ -95,7 +84,7 @@ const DriverSignUp = () => {
 
     }
 
-   
+
     return (
         <div >
             <div style={{ backgroundImage: `url(${backgroundImage})` }} className=' min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
@@ -248,14 +237,18 @@ const DriverSignUp = () => {
                                                 name="photo"
                                                 accept="image/*"
                                                 id="photo-upload"
-                                                onChange={(e) => handleImageUpload(e)}
+                                                onChange={(e) => handleImageUpload(e.target.files[0])}
                                                 className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                                             />
                                             <label
                                                 htmlFor="photo-upload"
                                                 className="border-2 border-dashed border-white p-2 w-full  outline-none rounded py-1 lg:py-2 px-2 text-white flex items-center justify-center cursor-pointer"
                                             >
-                                                Upload your photo
+                                                {
+                                                    imagePreview ? (<div className="mt-2">
+                                                        <h1>{imageText.length > 15 ? imageText.split('.')[0].slice(0, 15) + '...' + imageText.split('.')[1] : imageText}</h1>
+                                                    </div>) : 'Upload your photo'
+                                                }
                                             </label>
                                         </div>
                                     </div>

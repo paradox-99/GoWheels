@@ -25,48 +25,46 @@ const UserHome = () => {
     const [completed, setCompleted] = useState(0);
     const [cancelled, setCancelled] = useState(0);
 
-    useEffect(() => {
-        if (userId) {
-            const fetchBookedCars = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:3000/api/bookings/user/${userId}/booked-cars`);
-                    const cars = response.data.bookedCars;
-                    setBookedCars(cars);
+    // useEffect(() => {
+    //     if (userId) {
+    //         const fetchBookedCars = async () => {
+    //             try {
+    //                 const response = await axios.get(`http://localhost:3000/api/bookings/user/${userId}/booked-cars`);
+    //                 const cars = response.data.bookedCars;
+    //                 setBookedCars(cars);
 
-                    const activeResponse = await axios.get(`http://localhost:3000/api/bookings/user/670768680fc10c9627cccae9`);
-                    setActiveBookings(activeResponse?.data.userBookings.length || 0);
-                    const completedResponse = await axios.get(`http://localhost:3000/api/bookings/user/670768680fc10c9627cccae9?history=true`);
+    //                 const activeResponse = await axios.get(`http://localhost:3000/api/bookings/user/670768680fc10c9627cccae9`);
+    //                 setActiveBookings(activeResponse?.data.userBookings.length || 0);
+    //                 const completedResponse = await axios.get(`http://localhost:3000/api/bookings/user/670768680fc10c9627cccae9?history=true`);
 
-                    const activePaidAmount = activeResponse?.data.userBookings.reduce((acc, car) => acc + car.price, 0);
-                    const completedPaidAmount = completedResponse?.data.userBookings.reduce((acc, car) => acc + car.price, 0);
-                    const totalPaidAmount = activePaidAmount + completedPaidAmount;
-                    // console.log(totalPaidAmount);
-                    setActivePaid(activePaidAmount)
-                    setCompletedPaid(completedPaidAmount)
-                    setTotalPaid(totalPaidAmount)
-                    const pending = activeResponse?.data.userBookings.filter(car => car.status === 'Pending').length;
-                    // console.log(pending);
-                    setPending(pending)
-                    const confirmed = activeResponse?.data.userBookings.filter(car => car.status === 'Confirmed').length;
-                    console.log(confirmed);
-                    setConfirm(confirmed)
+    //                 const activePaidAmount = activeResponse?.data.userBookings.reduce((acc, car) => acc + car.price, 0);
+    //                 const completedPaidAmount = completedResponse?.data.userBookings.reduce((acc, car) => acc + car.price, 0);
+    //                 const totalPaidAmount = activePaidAmount + completedPaidAmount;
+    //                 // console.log(totalPaidAmount);
+    //                 setActivePaid(activePaidAmount)
+    //                 setCompletedPaid(completedPaidAmount)
+    //                 setTotalPaid(totalPaidAmount)
+    //                 const pending = activeResponse?.data.userBookings.filter(car => car.status === 'Pending').length;
+    //                 // console.log(pending);
+    //                 setPending(pending)
+    //                 const confirmed = activeResponse?.data.userBookings.filter(car => car.status === 'Confirmed').length;
+    //                 console.log(confirmed);
+    //                 setConfirm(confirmed)
 
-                    const completed = completedResponse?.data.userBookings.filter(car => car.status === 'Completed').length;
-                    setCompleted(completed)
-                    const cancelled = completedResponse?.data.userBookings.filter(car => car.status === 'Cancelled').length;
-                    setCancelled(cancelled)
-                    setLoading(false);
-                } catch (error) {
-                    console.error('Error fetching booked cars:', error);
-                    setLoading(false);
-                }
-            };
+    //                 const completed = completedResponse?.data.userBookings.filter(car => car.status === 'Completed').length;
+    //                 setCompleted(completed)
+    //                 const cancelled = completedResponse?.data.userBookings.filter(car => car.status === 'Cancelled').length;
+    //                 setCancelled(cancelled)
+    //                 setLoading(false);
+    //             } catch (error) {
+    //                 console.error('Error fetching booked cars:', error);
+    //                 setLoading(false);
+    //             }
+    //         };
 
-            fetchBookedCars();
-        }
-    }, [userId]);
-    
-console.log(activeBookings);
+    //         fetchBookedCars();
+    //     }
+    // }, [userId]);
     return (
         <div className="min-h-screen !font-sans bg-gradient-to-r p-12">
             <div className="mb-12">
@@ -134,7 +132,7 @@ console.log(activeBookings);
                     Cars That You <span className='text-primary'>Booked <br /> Recently</span>
                 </h1>
                 <div className='h-[2px] w-12 bg-primary -mt-2'></div>
-                <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
                     {loading ? (
                         <p>Loading...</p>
                     ) : bookedCars?.length < 1 ? (
@@ -184,7 +182,7 @@ console.log(activeBookings);
                             </div>
                         ))
                     )}
-                </div>
+                </div> */}
             </div>
         </div>
     );
