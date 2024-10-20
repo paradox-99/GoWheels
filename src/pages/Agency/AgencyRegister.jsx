@@ -3,13 +3,16 @@ import { locationData } from "../../../public/locationData";
 import { useState } from "react";
 import image from '../../../public/asset/agency-image2.jpg'
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import UseAuth from "../../hooks/UseAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { imageUpload } from "../../api/utilities";
 
 
 
 const AgencyRegister = () => {
+    const [imageText, setImageText] = useState('image name.png');
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
     const { createUser, updateUserProfile } = UseAuth() || {}
     const [selectedDivision, setSelectedDivision] = useState('');
     const [email, setUserEmail] = useState('')
@@ -39,7 +42,7 @@ const AgencyRegister = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async (ownerData) => {
-            const { data } = await axiosPublic.post(`https://go-wheels-server.vercel.app/api/usersRoute/ownerInfo`, ownerData)
+            const { data } = await axiosPublic.post(`/usersRoute/ownerInfo`, ownerData)
             return data
         },
         onSuccess: () => {
@@ -52,27 +55,10 @@ const AgencyRegister = () => {
 
     })
 
-    const handleImageUpload = async (e) => {
-        const imageFile = e.target.files[0];
-        if (!imageFile) {
-            console.error("No file selected");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("image", imageFile);
-
-        try {
-            const response = await axios.post("https://api.imgbb.com/1/upload?key=0873ad3ca7a49d847f0ce5628d0e79ee",
-                formData
-            );
-
-            const imageUrl = response.data.data.display_url;
-            console.log("Image uploaded:", imageUrl);
-            return imageUrl;
-        } catch (error) {
-            console.error("Image upload failed:", error);
-        }
+    const handleImageUpload = (image) => {
+        setImagePreview(URL.createObjectURL(image));
+        setImageText(image.name);
+        setImageFile(image);
     };
 
 
@@ -97,20 +83,12 @@ const AgencyRegister = () => {
         const userRole = "agency"
         const accountStatus = "not verified"
         setUserEmail(userEmail)
-
-        const imageFile = form.photo.files[0];
-        // console.log(imageFile.name)
-        const image = await handleImageUpload({ target: { files: [imageFile] } });
-
         const userAddress = {
             division,
             district,
             upazilla,
             localAddress
         }
-
-        const ownerInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, userRole, accountStatus, createdAt };
-        console.log(ownerInfo)
 
         // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         // setErrorMessage('');
@@ -126,6 +104,25 @@ const AgencyRegister = () => {
 
 
         try {
+
+            const image = await imageUpload(imageFile);
+            console.log(image)
+
+            const ownerInfo = {
+                firstName,
+                lastName,
+                userEmail,
+                phone,
+                gender,
+                image,
+                userAddress,
+                dateOfBirth,
+                nid,
+                userRole,
+                accountStatus,
+                createdAt
+            };
+
             const userCreate = await createUser(userEmail, password)
             console.log(userCreate)
 
@@ -287,19 +284,25 @@ const AgencyRegister = () => {
                                             name="photo"
                                             accept="image/*"
                                             id="photo-upload"
-                                            onChange={(e) => handleImageUpload(e)}
+                                            onChange={(e) => handleImageUpload(e.target.files[0])}
                                             className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                                         />
                                         <label
                                             htmlFor="photo-upload"
                                             className="border-2 border-dashed border-primary p-2 w-full  outline-none rounded py-1 lg:py-2 px-2  flex items-center justify-center cursor-pointer"
                                         >
-                                            Upload your photo
+                                            {
+                                                imagePreview ? (<div className="mt-2">
+                                                    <h1>{imageText.length > 15 ? imageText.split('.')[0].slice(0, 15) + '...' + imageText.split('.')[1] : imageText}</h1>
+                                                </div>) : 'Upload your photo'
+                                            }
+
                                         </label>
+
                                     </div>
                                 </div>
                                 {/* to={'/join/signUpPartOne'} */}
-                                
+
                                 <div className='pb-10 mt-5 flex justify-between'>
                                     <Link to={'/join/signUpOne'}>
                                         <button className="relative inline-block px-4 py-2 font-medium group">
