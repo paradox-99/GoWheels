@@ -1,6 +1,5 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import useDesignation from "../../hooks/useDesignation";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -13,9 +12,9 @@ import AgencyData from "../../components/bookingComponent/AgencyData";
 import BookingData from "../../components/bookingComponent/BookingData";
 import UserData from "../../components/bookingComponent/UserData";
 import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import loader from '../../../public/logo.gif'
 import DriverList from "../../components/driverList/DriverList";
+import PaymentData from "../../components/paymentData/PaymentData";
 
 
 const BookingInfo = () => {
@@ -29,13 +28,11 @@ const BookingInfo = () => {
     const [method, setMethod] = useState(null);
     const [totalPayCost, setTotalPayCost] = useState(0);
     const [totalRentHours, setTotalRentHours] = useState(0);
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
-    const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {}
-    const axiosPublic = useAxiosPublic()
+    const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {};
 
     const fromDate = bookingInformation?.fromDate;
     const toDate = bookingInformation?.untilDate
@@ -74,23 +71,6 @@ const BookingInfo = () => {
             }
             setLoading(false);
         }, 1000)
-    }
-
-    const handleConfirmBooking = async (e) => {
-        e.preventDefault()
-        if (!method) {
-            toast.error("please select a method self driving or need driver")
-            return
-        }
-        const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, totalRentHours: 5
-        }
-
-        await axiosPublic.post('/payment/order', paymentInfo)
-            .then(res => {
-                window.location.replace(res.data?.url)
-                console.log(res.data)
-            })
     }
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
@@ -160,7 +140,7 @@ const BookingInfo = () => {
                                     <h2 className="text-2xl font-bold">Driver Selection</h2>
                                     <p>You have selected the <span className="text-lg font-semibold">Need Driver</span> option. Please proceed.</p>
 
-                                    <DriverList role = {'driver'}></DriverList>
+                                    <DriverList role={'driver'}></DriverList>
                                     <button
                                         className="mt-4 bg-primary text-white p-2 rounded"
                                         onClick={() => setModalVisible(false)}>
@@ -219,96 +199,8 @@ const BookingInfo = () => {
 
             {/* right part */}
             <section className=" lg:w-[33%] px-7 py-8 shadow-xl rounded-xl " >
-                <div className="flex justify-between items-center border-b border-primary pb-5">
-                    <h1 className="font-nunito font-extrabold text-lg">Invoice</h1>
-                    <h1 className="font-nunito font-medium">৳ Taka</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">From Date</h1>
-                        <p className="font-nunito">Rent starting day</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{fromDate}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">From Time</h1>
-                        <p className="font-nunito">Rent starting time</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{formTime}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">To Date</h1>
-                        <p className="font-nunito">Rent finishing date</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{toDate}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">To Time</h1>
-                        <p className="font-nunito">Rent finishing time</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{toTime}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2 border-b border-primary pb-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Driving method</h1>
-                        <p className="font-nunito">Selected method of driving</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Base Price:</h1>
-                        <p className="font-nunito">Per day</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">৳ {rental_price * 120}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Total hours</h1>
-                        <p className="font-nunito">Total hours</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{totalRentHours}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Renting Cost</h1>
-                        <p className="font-nunito">Cost on total hours</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">৳ {totalPayCost * 120}</h1>
-                </div>
-                {
-                    method === "driver" && <>
-                        <div className="flex justify-between items-center font-nunito mt-2">
-                            <div>
-                                <h1 className="font-bold font-nunito">Driver Cost</h1>
-                                <p className="font-nunito">If you select need driver method</p>
-                            </div>
-                            <h1 className="font-nunito font-medium">৳ {drivingCost * 120}</h1>
-                        </div>
-                    </>
-                }
-                <div className="flex justify-between items-center font-nunito mt-2 border-b border-primary pb-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Discount</h1>
-                    </div>
-                    <h1 className="font-nunito font-medium">৳ {discount * 120}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito text-lg">Total cost</h1>
-                        <p className="font-nunito font-medium">Total cost you need to pay</p>
-                    </div>
-                    <h1 className="font-nunito font-bold">৳ {totalPayment * 120}</h1>
-                </div>
-                <form
-                    className="mt-2"
-                    onSubmit={handleConfirmBooking}>
-                    <button type="submit" className="bg-primary rounded-xl py-1 w-full text-white font-medium font-nunito hover:bg-black duration-500">Confirm booking</button>
-                </form>
 
+            <PaymentData  userEmail ={userEmail} division ={division} district ={district} upazila ={upazila} area ={area} fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} method={method} rental_price={rental_price} totalRentHours={totalRentHours} totalPayCost={totalPayCost} drivingCost={drivingCost} discount={discount} totalPayment={totalPayment} carId={carId}></PaymentData>
             </section >
 
         </div >

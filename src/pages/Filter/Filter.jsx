@@ -133,7 +133,10 @@ const Filter = () => {
       area
     };
 
+   
+
     const { data } = await axiosPublic.get('/bookings/getSearchData', { params: filterData })
+    console.log(data)
     setSearchResult(data)
     setCarBookingInfo(filterData)
   };
