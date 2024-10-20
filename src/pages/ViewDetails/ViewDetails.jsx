@@ -64,8 +64,6 @@ const ViewDetails = () => {
 
         navigate('/bookingInfo', { state: bookingInformation })
     }
-
-    console.log(id)
     useEffect(() => {
         fetch("../../../public/featuredAndAvailable.json")
             .then((res) => {
