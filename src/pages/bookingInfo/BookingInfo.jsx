@@ -16,6 +16,7 @@ import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import loader from '../../../public/logo.gif'
 import DriverList from "../../components/driverList/DriverList";
+import { Result } from "postcss";
 
 
 const BookingInfo = () => {
@@ -83,14 +84,16 @@ const BookingInfo = () => {
             return
         }
         const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, totalRentHours: 5
+            userEmail, carId, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, totalRentHours, drivingCost, discount, 
         }
 
-        await axiosPublic.post('/payment/order', paymentInfo)
-            .then(res => {
-                window.location.replace(res.data?.url)
-                console.log(res.data)
-            })
+        const { response } = axiosPublic.get(`/payment/booking`);
+
+        // await axiosPublic.post('/payment/order', paymentInfo)
+        //     .then(res => {
+        //         window.location.replace(res.data?.url)
+        //         console.log(res.data)
+        //     })
     }
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
@@ -160,7 +163,7 @@ const BookingInfo = () => {
                                     <h2 className="text-2xl font-bold">Driver Selection</h2>
                                     <p>You have selected the <span className="text-lg font-semibold">Need Driver</span> option. Please proceed.</p>
 
-                                    <DriverList role = {'driver'}></DriverList>
+                                    <DriverList role={'driver'}></DriverList>
                                     <button
                                         className="mt-4 bg-primary text-white p-2 rounded"
                                         onClick={() => setModalVisible(false)}>

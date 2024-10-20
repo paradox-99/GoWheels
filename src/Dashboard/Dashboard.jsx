@@ -24,9 +24,6 @@ const Dashboard = () => {
   const { logout } = UseAuth();
   const { userInfo } = useDesignation();
   const [value, setValue] = useState(false);
-  console.log(userInfo);
-
-  console.log(userInfo);
 
   const handleLogout = async () => {
     await logout();
