@@ -10,6 +10,7 @@ import { calculateAge } from '../../api/utilities/index.js';
 const SignupPartTwo = () => {
 
     const [selectedDivision, setSelectedDivision] = useState('');
+      // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);

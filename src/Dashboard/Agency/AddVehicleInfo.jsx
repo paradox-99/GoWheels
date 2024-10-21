@@ -2,10 +2,27 @@ import { useMutation } from "@tanstack/react-query";
 import useDesignation from "../../hooks/useDesignation";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
+
+// image
+import { imageUpload } from "../../api/utilities/index.js";
+import { useRef, useState } from "react";
+import toast from "react-hot-toast";
+
+
 const AddVehicleInfo = () => {
   const { userInfo } = useDesignation();
-  console.log(userInfo);
   const axiosSecure = useAxiosSecure();
+
+
+  //  -------------------------image upload
+  const [imageText, setImageText] = useState("image name.png");
+  const [imagePreview, setImagePreview] = useState(null);
+  const inputRef = useRef();
+  const [dragActive, setDragActive] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+
+  console.log(imagePreview);
+  // --------------------
 
   // TANSTACK QUERY FOR SAVING THE DATA TO DB
   const { mutateAsync } = useMutation({
@@ -18,17 +35,51 @@ const AddVehicleInfo = () => {
     },
     onSuccess: () => {
       console.log("Vehicle data saved");
-      alert("Vehicle created successfully");
+      // alert("Vehicle created successfully");
       // toast('Vehicle added successfully');
     },
   });
 
+
+   //   ------------------------image
+   const handleImage = (image) => {
+    setImagePreview(URL.createObjectURL(image));
+    setImageText(image.name);
+    setImageFile(image);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    const droppedFile = e.dataTransfer.files[0];
+    setImageText(droppedFile.name);
+    setImagePreview(URL.createObjectURL(droppedFile));
+    setImageFile(droppedFile);
+  };
+
+  // ------------------------------
+
   // HANDLE FORM SUBMISSION
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const form = e.target;
     const licenseNumber = form.licenseNumber.value;
+    const image = imageFile;
+  
     const seat = form.seat.value;
     const mileage = form.mileage.value;
     const gear = form.gear.value;
@@ -45,35 +96,47 @@ const AddVehicleInfo = () => {
     const airConditioning = form.airConditioning.value;
     const gps = form.gps.value;
     const bluetooth = form.bluetooth.value;
-
-    const addVehicleData = {
-      licenseNumber,
-      seat,
-      mileage,
-      gear,
-      fuel,
-      rentalPrice,
-      brand,
-      model,
-      buildYear,
-      expireDate,
-      fitnessCertificate,
-      insuranceNumber,
-      insurancePeriod,
-      insuranceDetails,
-      additionalInfo: {
-        airConditioning,
-        gps,
-        bluetooth,
-      },
-      agencyInfo: {
-        email: userInfo?.userEmail,
-        agencyId: userInfo?.agency_id,
-      },
-    };
-
-    await mutateAsync(addVehicleData); // Call mutateAsync after building the data
+  
+    try {
+      const uploadedImage = await imageUpload(image);
+  
+      const addVehicleData = {
+        licenseNumber,
+        image: uploadedImage, 
+        seat,
+        mileage,
+        gear,
+        fuel,
+        rentalPrice,
+        brand,
+        model,
+        buildYear,
+        expireDate,
+        fitnessCertificate,
+        insuranceNumber,
+        insurancePeriod,
+        insuranceDetails,
+        additionalInfo: {
+          airConditioning,
+          gps,
+          bluetooth,
+        },
+        agencyInfo: {
+          email: userInfo?.userEmail,
+          agencyId: userInfo?.agency_id,
+        },
+      };
+  
+      await mutateAsync(addVehicleData); 
+      toast("Vehicle created successfully!");
+  
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      toast("Failed to upload image or add vehicle: " + error.message);
+    }
   };
+  
+  
 
   return (
     <div className="container mx-auto p-4">
@@ -94,28 +157,57 @@ const AddVehicleInfo = () => {
         </div>
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
+        <div>
+            <label
+              className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50"
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              onDragLeave={handleDragLeave}
+              style={{
+                backgroundImage: `url(${imagePreview})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
               <div className="text-center">
                 <div className="mb-2">
                   <button
                     type="button"
+                    onClick={() => inputRef.current.click()}
                     className="bg-[#ff4c30] hover:bg-[#161616] text-white rounded-full py-2 px-4"
                   >
-                    Select your car photo from the computer
+                    Select from the computer
                   </button>
                 </div>
-                <p className="text-gray-500">or drag photo here</p>
+                <p className="text-gray-500">
+                  {imagePreview ? "" : "Drag and Drop"}
+                  or drag photo here
+                </p>
                 <p className="text-gray-500 text-sm mt-1">PNG, JPG, SVG</p>
               </div>
-              <input
-                id="avatar"
-                name="avatar"
-                type="file"
-                accept="image/*"
-                className="sr-only"
-              />
+
+              {imagePreview && (
+                <div className="mt-2">
+                  <h1>
+                    {imageText.length > 15
+                      ? imageText.split(".")[0].slice(0, 15) +
+                        "..." +
+                        imageText.split(".")[1]
+                      : imageText}
+                  </h1>
+                </div>
+              )}
             </label>
+
+            <input
+              onChange={(e) => handleImage(e.target.files[0])}
+              type="file"
+              name="image"
+              id="image"
+              hidden
+              accept="image/*"
+              ref={inputRef}
+            />
           </div>
         </div>
 

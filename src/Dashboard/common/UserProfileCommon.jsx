@@ -5,7 +5,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import loaderImage from "../../../public/logo.gif";
 import { locationData } from "../../../public/locationData.js";
 
-import { FiUpload } from "react-icons/fi";
+// import { FiUpload } from "react-icons/fi";
 import { imageUpload } from "../../api/utilities/index.js";
 
 const UserProfileCommon = () => {
@@ -205,6 +205,7 @@ const UserProfileCommon = () => {
 
       <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* IMAGE--------------------- */}
           <div>
             <label
               className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50"
@@ -257,57 +258,9 @@ const UserProfileCommon = () => {
               ref={inputRef}
             />
           </div>
+          {/* -------------------- */}
 
-          {/* ----------------------image */}
-          {/* <div className="mt-3 mx-auto">
-            <div className="flex flex-col items-center justify-center ">
-              <div
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
-                onDragLeave={handleDragLeave}
-                style={{
-                  backgroundImage: `url(${imagePreview})`,
-                }}
-                className="border-dashed border-2 border-primary w-36 h-36 bg-no-repeat bg-center bg-cover px-5 pb-3 lg:flex flex-col items-center justify-center mt-2  "
-              >
-                <FiUpload className="text-7xl text-primary" />
-                <div className="text-center">
-                  {imagePreview ? "" : <h1>Drag and Drop</h1>}
-                </div>
-              </div>
-              {imagePreview && (
-                <div className="mt-2">
-                  <h1>
-                    {imageText.length > 15
-                      ? imageText.split(".")[0].slice(0, 15) +
-                        "..." +
-                        imageText.split(".")[1]
-                      : imageText}
-                  </h1>
-                </div>
-              )}
-              <div className="lg:mt-3">
-                <input
-                  onChange={(e) => handleImage(e.target.files[0])}
-                  type="file"
-                  name="image"
-                  id="image"
-                  hidden
-                  accept="image/*"
-                  ref={inputRef}
-                />
-                <button
-                  onClick={() => inputRef.current.click()}
-                  type="button"
-                  className="bg-primary px-3 py-1 rounded text-white font-semibold cursor-pointer hover:bg-[#fdfefe] duration-500 hover:text-secondary"
-                >
-                  Browse from your device
-                </button>
-              </div>
-            </div>
-          </div> */}
-
-          {/* ----------------------- */}
+       
         </div>
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">

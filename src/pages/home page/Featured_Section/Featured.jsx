@@ -15,8 +15,6 @@ const Featured = () => {
     },
   });
 
-  console.log(cars)
-
   return (
     <div className="pt-20 lg:pt-32 ">
       <Title title={"Featured Cars"}></Title>
