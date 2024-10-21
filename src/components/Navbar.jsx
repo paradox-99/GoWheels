@@ -5,6 +5,8 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
 import { TbMapPinSearch } from "react-icons/tb";
+import { IoMdSearch } from "react-icons/io";
+
 import Swal from "sweetalert2";
 import loaderEliment from '../../public/logo.gif';
 import toast from "react-hot-toast"
@@ -68,19 +70,19 @@ const Navbar = () => {
         <>
             <li><NavLink
                 className={({ isActive }) =>
-                isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
-            }
+                    isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
+                }
                 to={'/'}>Home</NavLink></li>
             <li><NavLink
                 className={({ isActive }) =>
-                isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
-            }
+                    isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
+                }
                 to={'about'}>About</NavLink></li>
             <li><NavLink
                 className={({ isActive }) =>
-                isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
-            } to={'contact'}>Support</NavLink></li>
-          
+                    isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
+                } to={'contact'}>Support</NavLink></li>
+
         </>
     );
 
@@ -98,7 +100,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-start">
                     <div className="hidden md:flex md:gap-5">
-                        <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><TbMapPinSearch />Search</Link>
+                        <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><IoMdSearch />Search</Link>
                         {!user && (
                             <li className="bg-primary px-2 text-sm lg:px-5 py-1 lg:py-2 text-white  rounded  text-center lg:ml-7 font-merriweather w-full ">
                                 <NavLink
@@ -125,16 +127,17 @@ const Navbar = () => {
                                         <CgProfile className="size-8 text-primary" />
                                     )}
                                 </button>
-                                <div className="relative">
-                                    <ul className={`bg-primary text-white text-lg rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value ? "-right-72" : "right-0"} duration-500`}>
-                                        {userInfo.userRole === "user" && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/user-profile'}>Profile</Link></li>}
-                                        {userInfo.userRole === "agency" && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/agency/owner'}>Profile</Link></li>}
-                                        {userInfo.userRole === "moderator" && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Profile</Link></li>}
-                                        {userInfo.userRole === "user" && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/user-home'}>Dashboard</Link></li>}
-                                        {userInfo.userRole === "agency" && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/agency-home'}>Dashboard</Link></li>}
-                                        {userInfo.userRole === "moderator" && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Dashboard</Link></li>}
-                                        {userInfo.userRole === "admin" && <li className="hover:bg-secondary px-4 py-2"><Link to={'/dashboard/admin-home'}>Dashboard</Link></li>}
-                                        <li className="hover:bg-secondary px-4 py-2"><button onClick={handleLogout}>Logout</button></li>
+                                <div 
+                                    className={`absolute rounded-md bg-white  transition-all  duration-[.35s] font-light left-12 top-[70%] group-hover:scale-y-100 translate-y-0 "scale-y-0 -translate-y-[115px]"}`}>
+                                    <ul className={`w-[210px] px-4 pt-8 pb-4`}>
+                                        {userInfo.userRole === "user" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/user-profile'}>Profile</Link></li>}
+                                        {userInfo.userRole === "agency" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/agency/owner'}>Profile</Link></li>}
+                                        {userInfo.userRole === "moderator" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Profile</Link></li>}
+                                        {userInfo.userRole === "user" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/user-home'}>Dashboard</Link></li>}
+                                        {userInfo.userRole === "agency" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/agency-home'}>Dashboard</Link></li>}
+                                        {userInfo.userRole === "moderator" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Dashboard</Link></li>}
+                                        {userInfo.userRole === "admin" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/admin-home'}>Dashboard</Link></li>}
+                                        <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </div>
                             </div>
