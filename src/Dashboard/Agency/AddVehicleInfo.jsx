@@ -79,7 +79,6 @@ const AddVehicleInfo = () => {
     const form = e.target;
     const licenseNumber = form.licenseNumber.value;
     const image = imageFile;
-  
     const seat = form.seat.value;
     const mileage = form.mileage.value;
     const gear = form.gear.value;

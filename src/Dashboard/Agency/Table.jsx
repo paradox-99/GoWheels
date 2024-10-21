@@ -27,9 +27,7 @@ const Table = ({ dataToDisplay }) => {
                         <th className="p-4 border-b border-slate-200 bg-slate-50">
                             <p className="text-[#ff4c30] font-extrabold">Details</p>
                         </th>
-                        <th className="p-4 border-b border-slate-200 bg-slate-50">
-                            <p className="text-[#ff4c30] font-extrabold">Details</p>
-                        </th>
+                      
                     </tr>
                 </thead>
                 <tbody>
