@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Table = ({ dataToDisplay }) => {
     // Check if dataToDisplay is empty to prevent accessing undefined properties
     if (!dataToDisplay || dataToDisplay.length === 0) {
@@ -49,7 +51,9 @@ const Table = ({ dataToDisplay }) => {
                                 <p className="text-slate-500">{vehicle.buildYear}</p>
                             </td>
                             <td className="p-4 py-5">
-                                <button className="text-slate-500">View Details</button>
+                               <NavLink>
+                               <button className="text-slate-500">View Details</button>
+                               </NavLink>
                             </td>
                         </tr>
                     ))}
