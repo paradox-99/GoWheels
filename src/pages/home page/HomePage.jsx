@@ -10,7 +10,8 @@ import CustomerTestimonial from "./CustomerTestimonial";
 const HomePage = () => {
     return (
         <div>
-            <Banner></Banner>
+            {/* <Banner></Banner> */}
+            <div className="bg-[#F8F8F8] "><Banner></Banner></div>
             <Featured></Featured>
             {/* <Available></Available> */}
             <HowItWorks></HowItWorks>

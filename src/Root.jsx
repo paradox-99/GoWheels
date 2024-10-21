@@ -11,7 +11,7 @@ const Root = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className={`${hideNavbar ? 'pt-0' : 'pt-16 lg:pt-20'} ${noFooter || 'max-w-7xl mx-auto noFooter'}`}>
+            <div className={`${hideNavbar ? 'pt-0' : 'pt-16 lg:pt-20'} ${noFooter || ' mx-auto noFooter'}`}>
                 <Outlet></Outlet>
             </div>
             {
