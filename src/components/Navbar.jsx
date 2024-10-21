@@ -108,7 +108,7 @@ const Navbar = () => {
                             </li>
                         )}
                         {user && (
-                            <div>
+                            <div className="group">
                                 <button onClick={() => setValue(!value)}>
                                     {userInfo.circleImage ? (
                                         <img
@@ -128,16 +128,16 @@ const Navbar = () => {
                                     )}
                                 </button>
                                 <div 
-                                    className={`absolute rounded-md bg-white  transition-all  duration-[.35s] font-light left-12 top-[70%] group-hover:scale-y-100 translate-y-0 "scale-y-0 -translate-y-[115px]"}`}>
-                                    <ul className={`w-[210px] px-4 pt-8 pb-4`}>
-                                        {userInfo.userRole === "user" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/user-profile'}>Profile</Link></li>}
-                                        {userInfo.userRole === "agency" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/agency/owner'}>Profile</Link></li>}
-                                        {userInfo.userRole === "moderator" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Profile</Link></li>}
-                                        {userInfo.userRole === "user" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/user-home'}>Dashboard</Link></li>}
-                                        {userInfo.userRole === "agency" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/agency-home'}>Dashboard</Link></li>}
-                                        {userInfo.userRole === "moderator" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Dashboard</Link></li>}
-                                        {userInfo.userRole === "admin" && <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><Link to={'/dashboard/admin-home'}>Dashboard</Link></li>}
-                                        <li className="hover:text-primary duration-200 hover:translate-x-[1px]  px-4 py-2"><button onClick={handleLogout}>Logout</button></li>
+                                    className={`absolute rounded-md bg-white transition-all  duration-[.35s] right-0 text-base text-secondary font-medium top-[60px] group-hover:scale-y-100 group-hover:translate-y-0 scale-y-0 -translate-y-[80px]`}>
+                                    <ul className={`w-[210px] px-4 pt-4 pb-4`}>
+                                        {userInfo.userRole === "user" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/user-profile'}>Profile</Link></li>}
+                                        {userInfo.userRole === "agency" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/agency/owner'}>Profile</Link></li>}
+                                        {userInfo.userRole === "moderator" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Profile</Link></li>}
+                                        {userInfo.userRole === "user" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/user-home'}>Dashboard</Link></li>}
+                                        {userInfo.userRole === "agency" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/agency-home'}>Dashboard</Link></li>}
+                                        {userInfo.userRole === "moderator" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/moderator-profile'}>Dashboard</Link></li>}
+                                        {userInfo.userRole === "admin" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/admin-home'}>Dashboard</Link></li>}
+                                        <li className="hover:text-primary duration-200  px-4 py-2"><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </div>
                             </div>
