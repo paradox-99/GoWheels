@@ -80,12 +80,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                 isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
             } to={'contact'}>Support</NavLink></li>
-            {!user && (
-                <li className="bg-primary px-2 text-sm lg:px-5 py-1 lg:py-2 text-white  rounded  text-center lg:ml-7 font-merriweather w-full ">
-                    <NavLink 
-                    to={'join'}>JOIN</NavLink>
-                </li>
-            )}
+          
         </>
     );
 
@@ -104,6 +99,12 @@ const Navbar = () => {
                 <div className="flex items-start">
                     <div className="hidden md:flex md:gap-5">
                         <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><TbMapPinSearch />Search</Link>
+                        {!user && (
+                            <li className="bg-primary px-2 text-sm lg:px-5 py-1 lg:py-2 text-white  rounded  text-center lg:ml-7 font-merriweather w-full ">
+                                <NavLink
+                                    to={'join'}>JOIN</NavLink>
+                            </li>
+                        )}
                         {user && (
                             <div>
                                 <button onClick={() => setValue(!value)}>
