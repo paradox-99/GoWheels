@@ -3,12 +3,6 @@ import { useState, useEffect } from "react";
 import HandleSearch from "./HandleSearch";
 const Banner = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  // const images = [
-  //   "https://demo.xpeedstudio.com/carrental/onepage/wp-content/uploads/sites/6/2020/07/car21.png",
-  //   "https://demo.xpeedstudio.com/carrental/home-v4/wp-content/uploads/sites/5/2020/06/banner_car.png",
-  //   "https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/07/car.png",
-  //   "https://demo.xpeedstudio.com/carrental/home-v3/wp-content/uploads/sites/3/2020/07/car11.png"
-  // ];
   const images = [
     "/image3.png",
     "/image4.png",
@@ -26,7 +20,7 @@ const Banner = () => {
   }, [images.length]);
 
   return (
-    <main style={{backgroundSize:"600px"}} className="bg-[#F8F8F8] bg-[url('/banner_image.png')]  bg-no-repeat bg-[right_top]  -mt-10 lg:px-20 lg:py-8">
+    <main style={{ backgroundSize: "600px" }} className="bg-[#F8F8F8] bg-[url('/banner_image.png')]  bg-no-repeat md:bg-[right_top]  -mt-10 lg:px-20 lg:py-8">
       {/* <div className="absolute top-0 z-[1] right-0">
         <img src="/banner_image.png" className="w-[600px]" alt="" />
       </div> */}
@@ -65,7 +59,7 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="-mt-12 mx-auto z-[2] w-[1200px] border border-gray-300 p-10">
+      <div className="-mt-12 mx-auto z-[2] lg:w-[1200px] border border-gray-300 p-10">
         <HandleSearch />
       </div>
     </main>
