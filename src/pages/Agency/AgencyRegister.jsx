@@ -8,9 +8,7 @@ import UseAuth from "../../hooks/UseAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import loaderEliment from '../../../public/logo.gif';
-
-
-
+import { Helmet } from "react-helmet-async";
 
 const AgencyRegister = () => {
     const { createUser, updateUserProfile } = UseAuth() || {}
@@ -41,7 +39,6 @@ const AgencyRegister = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-
     const { mutateAsync } = useMutation({
         mutationFn: async (ownerData) => {
             const { data } = await axiosPublic.post(`/usersRoute/ownerInfo`, ownerData)
@@ -50,11 +47,7 @@ const AgencyRegister = () => {
         onSuccess: () => {
             console.log('data saved successfully')
             // toast.success(' data added successfully')
-
-
-
         }
-
     })
 
     const handleImageUpload = async (e) => {
@@ -63,10 +56,8 @@ const AgencyRegister = () => {
             console.error("No file selected");
             return;
         }
-
         const formData = new FormData();
         formData.append("image", imageFile);
-
         try {
             const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
                 formData
@@ -75,7 +66,7 @@ const AgencyRegister = () => {
             const imageUrl = response.data.data.display_url;
             console.log("Image uploaded:", imageUrl);
 
-            const urlSegment = imageUrl.split('/').slice(-2).join('/'); 
+            const urlSegment = imageUrl.split('/').slice(-2).join('/');
             setImageLabel(urlSegment);
             return imageUrl;
         } catch (error) {
@@ -84,7 +75,7 @@ const AgencyRegister = () => {
     };
 
 
-    const handleJoin = async (e) => { 
+    const handleJoin = async (e) => {
         e.preventDefault()
         setLoading(true)
         const form = e.target;
@@ -150,6 +141,9 @@ const AgencyRegister = () => {
     // style={{ backgroundImage: `url(${background})` }}
     return (
         <div>
+            <Helmet>
+                <title>Register || Agency</title>
+            </Helmet>
             <div className='text-center mx-auto pt-5'>
                 <h1 className="text-3xl lg:text-3xl font-bold  font-merriweather mb-10">Owner Information</h1>
             </div>

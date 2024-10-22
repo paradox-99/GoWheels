@@ -8,6 +8,7 @@ import { imageUpload } from "../../api/utilities";
 import loaderElement from '../../../public/logo.gif';
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useDesignation from "../../hooks/useDesignation";
+import { Helmet } from "react-helmet-async";
 
 const SignUpPartFour = () => {
     const [imageText, setImageText] = useState('image name.png');
@@ -108,6 +109,9 @@ const SignUpPartFour = () => {
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
+            <Helmet>
+                <title>Upload Image || Sign Up</title>
+            </Helmet>
             <div className='text-center mx-auto'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>Hi! {displayName}</h1>
             </div>

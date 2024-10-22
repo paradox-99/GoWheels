@@ -7,6 +7,7 @@ import { locationData } from "../../../public/locationData.js";
 
 import { FiUpload } from "react-icons/fi";
 import { imageUpload } from "../../api/utilities/index.js";
+import { Helmet } from "react-helmet-async";
 
 const UserProfileCommon = () => {
   const { user } = useContext(AuthContext);
@@ -199,6 +200,9 @@ const UserProfileCommon = () => {
   }
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>{users?.firstName} {users?.lastName} || Profile</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-black mb-6">
         Update users Information
       </h1>

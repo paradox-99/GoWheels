@@ -1,7 +1,11 @@
+import { Helmet } from "react-helmet-async";
 
 const ActiveBooking = () => {
     return (
         <div className=" mx-auto">
+          <Helmet>
+            <title>Active Bookings</title>
+          </Helmet>
           <div className="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px]">
             <a
               target="_blank"

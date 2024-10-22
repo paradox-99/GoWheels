@@ -7,7 +7,7 @@ const VehicleInfo = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
 
-  const { data: vehicles, refetch, isLoading, error } = useQuery({
+  const { data: vehicles, isLoading, error } = useQuery({
     queryKey: ["vehicles", user?.userEmail],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -15,7 +15,7 @@ const VehicleInfo = () => {
       );
       console.log(data);
       return data;
-      
+
     },
   });
 
@@ -30,11 +30,7 @@ const VehicleInfo = () => {
   return (
     <div className="mx-auto">
       <div className="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px]">
-        <a
-          target="_blank"
-          href=""
-          className="block w-full px-4 py-2 text-center"
-        >
+        <a target="_blank" href="" className="block w-full px-4 py-2 text-center">
           Manage Your All <b>Rental Cars</b>.
           {vehicles?.length}
         </a>
@@ -60,12 +56,12 @@ const VehicleInfo = () => {
               </th>
               <th className="p-4 border-b border-slate-200 bg-slate-50">
                 <p className="text-[#ff4c30] font-extrabold">
-                Rental Price
+                  Rental Price
                 </p>
               </th>
               <th className="p-4 border-b border-slate-200 bg-slate-50">
                 <p className=" text-[#ff4c30] font-extrabold">
-                Model                </p>
+                  Model                </p>
               </th>
               <th className="p-4 border-b border-slate-200 bg-slate-50">
                 <p className=" text-[#ff4c30] font-extrabold">Build Year </p>
@@ -76,7 +72,7 @@ const VehicleInfo = () => {
             </tr>
           </thead>
           <tbody>
-            {vehicles?.map((vehicle, index) => (
+            {vehicles?.map((vehicle) => (
               <tr
                 key={vehicle.licenseNumber}
                 className="hover:bg-slate-50 border-b border-slate-200 bg-transparent"

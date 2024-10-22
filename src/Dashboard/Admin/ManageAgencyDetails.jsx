@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageAgencyDetails = ({ isOpen, closeModal, agency, refetch }) => {
     const axiosSecure = useAxiosSecure();
@@ -59,6 +60,9 @@ const ManageAgencyDetails = ({ isOpen, closeModal, agency, refetch }) => {
 
     return (
         <div className="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50" onClick={closeModal}>
+            <Helmet>
+                <title>{agency?.agencyName} || Details</title>
+            </Helmet>
             <div className="lg:max-w-[50%] rounded-md p-10 w-full bg-white" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center justify-between relative">
                     <h1 className="text-xl font-bold text-black mb-6">Agency Details</h1>

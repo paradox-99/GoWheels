@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import useOtpTimer from "../../hooks/useOtpTimer";
+import { Helmet } from "react-helmet-async";
 
 
 const OtpRoute = () => {
@@ -111,6 +112,9 @@ const OtpRoute = () => {
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
+            <Helmet>
+                <title>Verify OTP</title>
+            </Helmet>
             <form onSubmit={handleSubmit}>
                 {
                     timer > 0 ? <h1>Your OTP expired in {timer} seconds</h1> : <h1>{message}</h1>

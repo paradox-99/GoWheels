@@ -5,6 +5,7 @@ import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
 import GoogleButton from '../../components/GoogleButton';
+import { Helmet } from 'react-helmet-async';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -61,6 +62,9 @@ const SignIn = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Sign In</title>
+            </Helmet>
             {
                 !user ? <>
                     <div className='lg:w-[60vw] xl:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto md:px-10 rounded-lg'>
