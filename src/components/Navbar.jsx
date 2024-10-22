@@ -14,6 +14,7 @@ const Navbar = () => {
     const { user, logout, loader } = useAuth();
     const [previousScrollY, setPreviousScrollY] = useState(0);
     const [showNavbar, setShowNavbar] = useState(true);
+    const [shadow, setShadow] = useState(false);
     const [value, setValue] = useState(false);
     const [value2, setValue2] = useState(false);
     const { userInfo } = useDesignation();
@@ -23,7 +24,12 @@ const Navbar = () => {
 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
-
+        console.log(currentScrollY);
+        if (currentScrollY > 50) {
+            setShadow(true)
+        } else {
+            setShadow(false)
+        }
         if (currentScrollY > previousScrollY && currentScrollY > 50) {
             setShowNavbar(false);
         } else if (currentScrollY < previousScrollY || currentScrollY < 50) {
@@ -87,8 +93,8 @@ const Navbar = () => {
     );
 
     return (
-        <div className={`font-medium bg-white text-black fixed z-10 w-screen transition-transform duration-200 ${showNavbar ? 'translate-y-0' : '-translate-y-full'} `}>
-            <div className="flex justify-between items-center py-2 px-2 md:px-10 lg:px-16 xl:px-28">
+        <div className={`font-medium bg-white text-black fixed z-10 w-screen transition-transform duration-200 ${showNavbar ? `translate-y-0 ${shadow ? "shadow-xl" : "bg-[#F8F8F8]"} ` : '-translate-y-full'} `}>
+            <div className="flex justify-between items-center py-3 px-2 md:px-10 lg:px-16 xl:px-28">
                 <div className="flex gap-1 items-center">
                     <figure><img src="/logo.gif" alt="logo" className="w-10 md:w-12" /></figure>
                     <Link to={'/'} className="text-2xl font-nunito font-bold">GoWheels</Link>
@@ -127,7 +133,7 @@ const Navbar = () => {
                                         <CgProfile className="size-8 text-primary" />
                                     )}
                                 </button>
-                                <div 
+                                <div
                                     className={`absolute rounded-md bg-white transition-all  duration-[.35s] right-0 text-base text-secondary font-medium top-[60px] group-hover:scale-y-100 group-hover:translate-y-0 scale-y-0 -translate-y-[80px]`}>
                                     <ul className={`w-[210px] px-4 pt-4 pb-4`}>
                                         {userInfo.userRole === "user" && <li className="hover:text-primary duration-200  px-4 py-2"><Link to={'/dashboard/user-profile'}>Profile</Link></li>}
