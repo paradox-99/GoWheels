@@ -11,20 +11,18 @@ import AgencyStaffManagement from "../Dashboard/Agency/AgencyStaffManagement";
 import BookingHistoryForAgency from "../Dashboard/Agency/BookingHistoryForAgency";
 import BookingRequest from "../Dashboard/Agency/BookingRequest";
 import CustomerManagement from "../Dashboard/Agency/CustomerManagement";
-import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import ReviewFromCustomer from "../Dashboard/Agency/ReviewFromCustomer";
 import VehicleInfo from "../Dashboard/Agency/VehicleInfo";
 import Dashboard from "../Dashboard/Dashboard";
-import ModeratorProfile from "../Dashboard/Moderator/ModeratorProfile";
 import BookingHistory from "../Dashboard/User/BookingHistory";
 import Bookings from "../Dashboard/User/Bookings";
 import FavouriteCars from "../Dashboard/User/FavouriteCars";
 import UserHome from "../Dashboard/User/UserHome";
-import UserProfile from "../Dashboard/User/UserProfile";
 import UserRatings from "../Dashboard/User/UserRatings";
 import DriverProfile from "../Dashboard/Driver/DriverProfile";
 import DriverBooking from "../Dashboard/Driver/DriverBooking";
 import Notifications from "../Dashboard/User/Notifications";
+import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 
 
 export const DashboardRoutes = [
@@ -32,11 +30,14 @@ export const DashboardRoutes = [
         path: "dashboard",
         element: <Dashboard></Dashboard>,
         children: [
-
             // user routes
             {
                 path: "user-home",
                 element: <UserHome></UserHome>
+            },
+            {
+                path: "profile",
+                element: <OwnerInfo></OwnerInfo>
             },
             {
                 path: "user-bookings",
@@ -54,10 +55,6 @@ export const DashboardRoutes = [
                 path: "user-favourite",
                 element: <FavouriteCars></FavouriteCars>
             },
-            {
-                path: "user-profile",
-                element: <UserProfile></UserProfile>
-            },
             { 
                 path: "notifications",
                 element:<Notifications></Notifications>
@@ -66,10 +63,6 @@ export const DashboardRoutes = [
             {
                 path: "agency-home",
                 element: <AgencyHome></AgencyHome>
-            },
-            {
-                path: "/dashboard/agency/owner",
-                element: <OwnerInfo></OwnerInfo>
             },
             {
                 path: "/dashboard/agency/add-vehicle-info",
@@ -123,8 +116,12 @@ export const DashboardRoutes = [
 
             // MODERATOR
             {
-                path: "moderator-profile",
-                element: <ModeratorProfile />,
+                path: "approve-agency",
+                element: <AgencyApprove />,
+            },
+            {
+                path: "approve-agency/agencyDetails/:id",
+                element: <AgencyDeatils />,
             },
 
             // driver
@@ -136,15 +133,7 @@ export const DashboardRoutes = [
                 path: 'driver-booking',
                 element: <DriverBooking></DriverBooking>
             },
-            // Approve Agency
-            {
-                path: "approve-agency",
-                element: <AgencyApprove />,
-            },
-            {
-                path: "approve-agency/agencyDetails/:id",
-                element: <AgencyDeatils />,
-            },
+            
         ],
     },
 ]

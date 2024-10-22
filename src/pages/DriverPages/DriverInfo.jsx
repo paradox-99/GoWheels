@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import loaderEliment from '../../../public/logo.gif';
+// import loaderEliment from '../../../public/logo.gif';
 import { useState } from "react";
 // import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -14,21 +14,14 @@ const DriverInfo = () => {
 
     const location = useLocation()
     const axiosPublic = useAxiosPublic()
-    // const driverEmail = location.state?.email;
-    // const image = location.state?.image;
-    // const firstName = location.state?.firstName;
-    // const lastName = location.state?.lastName;
     const [errorMessage, setErrorMessage] = useState(null)
-    // console.log(driverEmail, image, firstName, lastName)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const { createUser, updateUserProfile } = UseAuth() || {}
     const {
-        firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress
+        firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, district, division, upazilla, localAddress
     } = location.state?.info || {};
 
-    // console.log(firstName,
-    //     firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress)
 
 
     const handleDriver = async (e) => {

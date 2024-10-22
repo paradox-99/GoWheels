@@ -12,6 +12,7 @@ const DriverSignUp = () => {
     const [imagePreview, setImagePreview] = useState(null);
     const [imageFile, setImageFile] = useState(null);
     const [photoURL, setPhotoURL] = useState(null);
+    console.log(photoURL)
 
     // const [showPassword, setShowPassword] = useState(false);
     const [selectedDivision, setSelectedDivision] = useState('');
@@ -240,6 +241,7 @@ const DriverSignUp = () => {
                                                 name="photo"
                                                 accept="image/*"
                                                 id="photo-upload"
+                                                
                                                 onChange={(e) => handleImageUpload(e.target.files[0])}
                                                 className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                                             />
