@@ -10,6 +10,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { AiOutlineDollarCircle } from 'react-icons/ai';
 import { FaCarAlt } from 'react-icons/fa';
+import CommonCarCard from './CommonCarCard';
 
 const UserHome = () => {
     const [bookedCars, setBookedCars] = useState([]);
@@ -65,10 +66,11 @@ const UserHome = () => {
             fetchBookedCars();
         }
     }, [userId]);
+    console.log(bookedCars);
     return (
         <div className="min-h-screen !font-sans bg-gradient-to-r p-12">
             <div className="mb-12">
-                <h1 className="text-4xl animate-fade-in-down">Welcome Back, { userInfo.lastName}!</h1>
+                <h1 className="text-4xl animate-fade-in-down">Welcome Back, {userInfo.lastName}!</h1>
                 <p className="mt-4 text-lg opacity-90">We’re glad to see you again. Let’s get you moving!</p>
             </div>
 
@@ -96,13 +98,13 @@ const UserHome = () => {
                         <p className="text-2xl mt-6 pb-6 font-bold">Ongoing: {activeBookings}</p>
                         <div className='flex gap-4 items-center'>
                             <div className='flex items-center gap-2'>
-                                <div  className="bg-yellow-400 size-2 rounded-full" />
+                                <div className="bg-yellow-400 size-2 rounded-full" />
                                 <p>Pending ({pending})</p>
                             </div>
                             <div className='flex items-center gap-2'>
                                 <div className="bg-green-400 size-2 rounded-full" />
                                 <p>Active ({confirm})</p>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,13 +115,13 @@ const UserHome = () => {
                         <p className="text-2xl mt-6 pb-6 font-bold">Completed: {activeBookings}</p>
                         <div className='flex gap-4 items-center'>
                             <div className='flex items-center gap-2'>
-                                <div  className="bg-blue-500 size-2 rounded-full" />
+                                <div className="bg-blue-500 size-2 rounded-full" />
                                 <p>Succeeded ({completed})</p>
                             </div>
                             <div className='flex items-center gap-2'>
                                 <div className="bg-green-400 size-2 rounded-full" />
                                 <p>Cancelled ({cancelled})</p>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -132,57 +134,17 @@ const UserHome = () => {
                     Cars That You <span className='text-primary'>Booked <br /> Recently</span>
                 </h1>
                 <div className='h-[2px] w-12 bg-primary -mt-2'></div>
-                {/* <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
                     {loading ? (
                         <p>Loading...</p>
                     ) : bookedCars?.length < 1 ? (
                         <p>You have not booked any cars yet.</p>
                     ) : (
                         bookedCars.map((car) => (
-                            <div key={car._id} className="bg-white shadow-md group rounded-lg p-4">
-                                <img
-                                    src={car.vehicle_info.photo}
-                                    alt={`${car.vehicle_info.brand} ${car.vehicle_info.model}`}
-                                    className="w-full group-hover:scale-105 duration-500 h-48 object-cover rounded-md mb-4"
-                                />
-                                <h2 className="text-xl font-semibold">
-                                    {car.vehicle_info.brand} {car.vehicle_info.model} ({car.vehicle_info.build_year})
-                                </h2>
-                                <div className="grid grid-cols-2 gap-3  font-medium py-4 ">
-                                    <p className="flex gap-1 lg:gap-4 items-center">
-                                        <FaCarSide className="text-primary" />{" "}
-                                        <span className="pl-1">
-                                            {car.vehicle_info.brand}
-                                        </span>
-                                    </p>
-                                    <p className="flex gap-1 lg:gap-4 items-center">
-                                        <BsFuelPumpFill className="text-primary" />{" "}
-                                        <span className="pl-1">
-                                            {car.vehicle_info.fuel}
-                                        </span>
-                                    </p>
-                                    <p className="flex gap-1 lg:gap-4 items-center">
-                                        <PiSeatFill className="text-primary" />
-                                        <span className="pl-1">
-                                            {car.vehicle_info.seats}
-                                        </span>
-                                    </p>
-                                    <p className="flex gap-1 lg:gap-4 items-center">
-                                        <TbManualGearboxFilled className="text-primary" />
-                                        <span className="pl-1">
-                                            {car.vehicle_info.gear}
-                                        </span>
-                                    </p>
-                                </div>
-                                <div className='flex justify-end hover:translate-x-1 duration-300'>
-                                    <Link className='text-primary flex items-center gap-1 font-semibold px-2 py-1 text-sm' to={`/view-details/${car._id}`}>
-                                        View Details <MdKeyboardArrowRight className='text-lg mt-[1px]' />
-                                    </Link>
-                                </div>
-                            </div>
+                            <CommonCarCard key={car._id} car={car}></CommonCarCard>
                         ))
                     )}
-                </div> */}
+                </div>
             </div>
         </div>
     );
