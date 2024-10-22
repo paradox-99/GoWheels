@@ -134,7 +134,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Gear"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.gear}
 
                       />
                     </div>
@@ -147,7 +147,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Fuel"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.fuel}
 
                       />
                     </div>
@@ -162,7 +162,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Rental Price"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.rentalPrice}
 
                       />
                     </div>
@@ -175,7 +175,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Transmission"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.transmission}
 
                       />
                     </div>
@@ -189,7 +189,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Brand"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.brand}
 
                       />
                     </div>
@@ -202,7 +202,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Model"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.model}
 
                       />
                     </div>
@@ -216,7 +216,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Build Year"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.buildYear}
 
                       />
                     </div>
@@ -229,7 +229,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Expire Date"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.expireDate}
 
                       />
                     </div>
@@ -243,7 +243,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Fitness Certificate"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.fitnessCertificate}
 
                       />
                     </div>
@@ -256,7 +256,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Issuing Authority"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.issuingAuthority}
 
                       />
                     </div>
@@ -271,7 +271,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Insurance Number"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.insuranceNumber}
 
                       />
                     </div>
@@ -284,7 +284,7 @@ const AgencyVehicleDetails = () => {
                         placeholder="Insurance Period"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
+                        defaultValue={vehicle.insurancePeriod}
 
                       />
                     </div>
@@ -308,7 +308,7 @@ const AgencyVehicleDetails = () => {
                             placeholder="Air Conditioning"
                             className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                             style={{ backgroundColor: "#f6f6f6" }}
-                            defaultValue={vehicle.mileage}
+                            defaultValue={vehicle.additionalInfo.airConditioning}
 
                           />
                         </div>
@@ -320,7 +320,7 @@ const AgencyVehicleDetails = () => {
                             placeholder="Gps"
                             className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                             style={{ backgroundColor: "#f6f6f6" }}
-                            defaultValue={vehicle.mileage}
+                            defaultValue={vehicle.additionalInfo.gps}
 
                           />
                         </div>
@@ -332,7 +332,7 @@ const AgencyVehicleDetails = () => {
                             placeholder="Bluetooth"
                             className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                             style={{ backgroundColor: "#f6f6f6" }}
-                            defaultValue={vehicle.mileage}
+                            defaultValue={vehicle.additionalInfo.bluetooth}
 
                           />
                         </div>
@@ -346,7 +346,7 @@ const AgencyVehicleDetails = () => {
                       placeholder="Insurance Details"
                       className="text-lg font-bold block w-full h-48 rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
                       style={{ backgroundColor: "#f6f6f6" }} 
-                      defaultValue={vehicle.mileage}
+                      defaultValue={vehicle.insuranceDetails}
 
                     ></textarea>
                   </div>
@@ -354,7 +354,7 @@ const AgencyVehicleDetails = () => {
                   {/* [[[[[[[[[[[[[]]]]]]]]]]]]] */}
                   <div className="w-full rounded-lg bg-blue-500 mt-4 text-white text-lg font-semibold">
                     <button type="submit" className="w-full p-4">
-                      Submit
+                      Update Vehicle Information
                     </button>
                   </div>
                 </form>
