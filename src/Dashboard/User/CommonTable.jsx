@@ -125,11 +125,11 @@ const CommonTable = ({ bookings, loading, error }) => {
     };
     if (loading) {
         return (
-            <div className="container mx-auto p-6">
+            <div className="container mx-auto">
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-primary text-white text-sm leading-normal">
+                            <tr className="bg-gray-100 text-gray-500 text-sm leading-normal">
                                 {/* Table headings */}
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
@@ -142,7 +142,7 @@ const CommonTable = ({ bookings, loading, error }) => {
                         </thead>
                         <tbody className="text-gray-600 text-sm">
                             {Array(5).fill("").map((_, index) => (
-                                <tr key={index} className="border-b  odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-red-50 animate-pulse">
+                                <tr key={index} className="border-b  odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-gray-100 animate-pulse">
                                     <td className="py-3 px-6">
                                         <div className="w-24 h-12 bg-gray-300 rounded-md"></div>
                                         <div className="h-4 bg-gray-300 rounded mt-2"></div>
@@ -188,12 +188,12 @@ const CommonTable = ({ bookings, loading, error }) => {
 
     }
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto">
             {bookings?.userBookings.length > 0 ? (
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-primary text-white font-nunito text- leading-normal">
+                            <tr className="bg-gray-100 text-gray-700 font-nunito text- leading-normal">
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
                                 <th className="py-3 px-6 text-left">Drop-off Date</th>
@@ -205,7 +205,7 @@ const CommonTable = ({ bookings, loading, error }) => {
                         </thead>
                         <tbody className=" text-sm">
                             {bookings.userBookings.map((booking) => (
-                                <tr key={booking._id} className="border-b odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-red-50">
+                                <tr key={booking._id} className="border-b odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-gray-100">
                                     <td className="py-3 font-semibold px-6">
                                         <img src={booking.image} className="rounded-md h-16 w-22 object-cover mb-2" alt="" />
                                         {booking.name}

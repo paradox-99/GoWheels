@@ -11,6 +11,7 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 import { AiOutlineDollarCircle } from 'react-icons/ai';
 import { FaCarAlt } from 'react-icons/fa';
 import CommonCarCard from './CommonCarCard';
+import SkeletonLoader from './SkeletonLoader ';
 
 const UserHome = () => {
     const [bookedCars, setBookedCars] = useState([]);
@@ -136,15 +137,18 @@ const UserHome = () => {
                 <div className='h-[2px] w-12 bg-primary -mt-2'></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
                     {loading ? (
-                        <p>Loading...</p>
+                        Array.from({ length: 3 }).map((_, index) => (
+                            <SkeletonLoader key={index} />
+                        ))
                     ) : bookedCars?.length < 1 ? (
                         <p>You have not booked any cars yet.</p>
                     ) : (
                         bookedCars.map((car) => (
-                            <CommonCarCard key={car._id} car={car}></CommonCarCard>
+                            <CommonCarCard key={car._id} car={car} />
                         ))
                     )}
                 </div>
+
             </div>
         </div>
     );
