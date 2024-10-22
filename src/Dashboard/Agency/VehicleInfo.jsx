@@ -14,7 +14,7 @@ const VehicleInfo = () => {
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/agencyRoute/agency/vehicleInfo/${user?.userEmail}`);
       console.log(data);
-      return data; // Return the data to be used for pagination
+      return data; 
     },
   });
 
