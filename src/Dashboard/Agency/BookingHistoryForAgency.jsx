@@ -15,7 +15,7 @@ const BookingHistoryForAgency = () => {
     queryKey: ['bookings', agencyId],
     enabled: !!agencyId,  // Only run query when agencyId is available
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/bookings/bookings/${agencyId}`);
+      const { data } = await axiosSecure.get(`userBookingRoutes/bookings/bookings/${agencyId}`);
       console.log(data);
       
       return data;
