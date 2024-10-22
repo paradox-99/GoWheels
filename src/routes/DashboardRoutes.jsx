@@ -23,6 +23,7 @@ import DriverProfile from "../Dashboard/Driver/DriverProfile";
 import DriverBooking from "../Dashboard/Driver/DriverBooking";
 import Notifications from "../Dashboard/User/Notifications";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
+import AgencyVehicleDetails from "../components/AgencyVehicleDetails/AgencyVehicleDetails";
 
 
 export const DashboardRoutes = [
@@ -76,10 +77,10 @@ export const DashboardRoutes = [
                 path: "/dashboard/agency/booking-history",
                 element: <BookingHistoryForAgency></BookingHistoryForAgency>
             },
-            // {
-            //     path: "/dashboard/agency/booking-request",
-            //     element: <BookingRequest></BookingRequest>
-            // },
+            {
+                path: "/dashboard/agency/vehicle-details/:id",
+                element: <AgencyVehicleDetails></AgencyVehicleDetails>
+            },
             {
                 path: "/dashboard/agency/active-booking",
                 element: <ActiveBooking></ActiveBooking>

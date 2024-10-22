@@ -2,17 +2,14 @@ import { useMutation } from "@tanstack/react-query";
 import useDesignation from "../../hooks/useDesignation";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-
 // image
 import { imageUpload } from "../../api/utilities/index.js";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 
-
 const AddVehicleInfo = () => {
   const { userInfo } = useDesignation();
   const axiosSecure = useAxiosSecure();
-
 
   //  -------------------------image upload
   const [imageText, setImageText] = useState("image name.png");
@@ -40,9 +37,8 @@ const AddVehicleInfo = () => {
     },
   });
 
-
-   //   ------------------------image
-   const handleImage = (image) => {
+  //   ------------------------image
+  const handleImage = (image) => {
     setImagePreview(URL.createObjectURL(image));
     setImageText(image.name);
     setImageFile(image);
@@ -75,7 +71,7 @@ const AddVehicleInfo = () => {
   // HANDLE FORM SUBMISSION
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const form = e.target;
     const licenseNumber = form.licenseNumber.value;
     const image = imageFile;
@@ -95,13 +91,13 @@ const AddVehicleInfo = () => {
     const airConditioning = form.airConditioning.value;
     const gps = form.gps.value;
     const bluetooth = form.bluetooth.value;
-  
+
     try {
       const uploadedImage = await imageUpload(image);
-  
+
       const addVehicleData = {
         licenseNumber,
-        image: uploadedImage, 
+        image: uploadedImage,
         seat,
         mileage,
         gear,
@@ -125,17 +121,14 @@ const AddVehicleInfo = () => {
           agencyId: userInfo?.agency_id,
         },
       };
-  
-      await mutateAsync(addVehicleData); 
+
+      await mutateAsync(addVehicleData);
       toast("Vehicle created successfully!");
-  
     } catch (error) {
       console.error("Image upload failed:", error);
       toast("Failed to upload image or add vehicle: " + error.message);
     }
   };
-  
-  
 
   return (
     <div className="container mx-auto p-4">
@@ -155,8 +148,9 @@ const AddVehicleInfo = () => {
           />
         </div>
 
+        {/* image */}
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
+          <div>
             <label
               className="w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50"
               onDragOver={handleDragOver}
@@ -209,6 +203,7 @@ const AddVehicleInfo = () => {
             />
           </div>
         </div>
+        {/* ---- */}
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -384,38 +379,38 @@ const AddVehicleInfo = () => {
                 Additional Information
               </h2>
             </div>
-              <div className="p-2 mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <input
-                    type="text"
-                    id="airConditioning"
-                    name="airConditioning"
-                    placeholder="Air Conditioning"
-                    className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                    style={{ backgroundColor: "#f6f6f6" }}
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    id="gps"
-                    name="gps"
-                    placeholder="Gps"
-                    className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                    style={{ backgroundColor: "#f6f6f6" }}
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    id="bluetooth"
-                    name="bluetooth"
-                    placeholder="Bluetooth"
-                    className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
-                    style={{ backgroundColor: "#f6f6f6" }}
-                  />
-                </div>
+            <div className="p-2 mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <input
+                  type="text"
+                  id="airConditioning"
+                  name="airConditioning"
+                  placeholder="Air Conditioning"
+                  className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                  style={{ backgroundColor: "#f6f6f6" }}
+                />
               </div>
+              <div>
+                <input
+                  type="text"
+                  id="gps"
+                  name="gps"
+                  placeholder="Gps"
+                  className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                  style={{ backgroundColor: "#f6f6f6" }}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="bluetooth"
+                  name="bluetooth"
+                  placeholder="Bluetooth"
+                  className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
+                  style={{ backgroundColor: "#f6f6f6" }}
+                />
+              </div>
+            </div>
           </div>
           {/* ------------------------------------ */}
           <textarea

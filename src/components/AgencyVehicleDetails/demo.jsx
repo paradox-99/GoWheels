@@ -50,6 +50,22 @@ const AgencyVehicleDetails = () => {
 
   return (
     <div className="lg:flex border">
+      {/* IMAGE */}
+      {/* <section className="bg-zinc-50  px-[6rem] lf:w-2/5 overflow-hidden">
+        <div className=" mx-auto h-svh flex flex-col justify-center">
+          <div className="flex flex-col sm:flex-row mx-auto">
+            <a href="#_">
+              <img
+                src="https://images.unsplash.com/photo-1522775417749-29284fb89f43?q=80&h=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                className="rounded-xl -rotate-12 hover:rotate-0 duration-500 hover:-translate-y-12 h-48 w-48 object-cover hover:scale-150 transform origin-bottom" // Adjusted size
+                alt="#_"
+              />
+            </a>
+          </div>
+        </div>
+      </section> */}
+      {/* ------------ */}
+
       {/* INFORMATION */}
       <section className="w-full my-auto dark:bg-gray-900">
         <div className="lg:w-[100%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
@@ -95,6 +111,49 @@ const AgencyVehicleDetails = () => {
                   <h2 className="text-center mt-1 font-semibold dark:text-gray-300">
                     Upload Vehicle Image
                   </h2>
+                  {/* <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+   <div className="w-full  mb-4 mt-6">
+     <label className="mb-2 dark:text-gray-300">
+       Seat Name
+     </label>
+     <input
+       type="text"
+       id="licenseNumber"
+       name="licenseNumber"
+       placeholder="License Number"
+       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+       placeholder="First Name"
+     />
+   </div>
+   <div className="w-full  mb-4 lg:mt-6">
+     <label className=" dark:text-gray-300">Last Name</label>
+     <input
+       type="text"
+       className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+       placeholder="Last Name"
+     />
+   </div>
+ </div>
+
+ <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+   <div className="w-full">
+     <h3 className="dark:text-gray-300 mb-2">Sex</h3>
+     <select className="w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2 dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800">
+       <option disabled value="">
+         Select Sex
+       </option>
+       <option value="Male">Male</option>
+       <option value="Female">Female</option>
+     </select>
+   </div>
+   <div className="w-full">
+     <h3 className="dark:text-gray-300 mb-2">Date Of Birth</h3>
+     <input
+       type="date"
+       className="text-grey p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+     />
+   </div>
+ </div> */}
 
                   {/* previous----------- */}
                   {/* -------------------------update */}
@@ -107,7 +166,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Seat"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.seat}
                       />
                     </div>
 
@@ -119,8 +177,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Mileage"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
                   </div>
@@ -134,8 +190,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Gear"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
 
@@ -147,8 +201,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Fuel"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
                   </div>
@@ -162,8 +214,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Rental Price"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
 
@@ -175,8 +225,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Transmission"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
                   </div>
@@ -189,8 +237,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Brand"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
 
@@ -202,8 +248,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Model"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
                   </div>
@@ -216,8 +260,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Build Year"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
 
@@ -229,8 +271,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Expire Date"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
                   </div>
@@ -243,8 +283,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Fitness Certificate"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
 
@@ -256,8 +294,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Issuing Authority"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
                   </div>
@@ -271,8 +307,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Insurance Number"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
 
@@ -284,8 +318,6 @@ const AgencyVehicleDetails = () => {
                         placeholder="Insurance Period"
                         className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                         style={{ backgroundColor: "#f6f6f6" }}
-                        defaultValue={vehicle.mileage}
-
                       />
                     </div>
                   </div>
@@ -308,8 +340,6 @@ const AgencyVehicleDetails = () => {
                             placeholder="Air Conditioning"
                             className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                             style={{ backgroundColor: "#f6f6f6" }}
-                            defaultValue={vehicle.mileage}
-
                           />
                         </div>
                         <div>
@@ -320,8 +350,6 @@ const AgencyVehicleDetails = () => {
                             placeholder="Gps"
                             className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                             style={{ backgroundColor: "#f6f6f6" }}
-                            defaultValue={vehicle.mileage}
-
                           />
                         </div>
                         <div>
@@ -332,8 +360,6 @@ const AgencyVehicleDetails = () => {
                             placeholder="Bluetooth"
                             className="text-lg font-bold block w-full rounded-md border-gray-300 shadow-sm focus:border-[#161616] focus:ring-[#161616] focus:ring-opacity-50 p-2"
                             style={{ backgroundColor: "#f6f6f6" }}
-                            defaultValue={vehicle.mileage}
-
                           />
                         </div>
                       </div>
@@ -345,9 +371,7 @@ const AgencyVehicleDetails = () => {
                       rows="3"
                       placeholder="Insurance Details"
                       className="text-lg font-bold block w-full h-48 rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
-                      style={{ backgroundColor: "#f6f6f6" }} 
-                      defaultValue={vehicle.mileage}
-
+                      style={{ backgroundColor: "#f6f6f6" }} // Corrected
                     ></textarea>
                   </div>
                   {/* --------- */}
