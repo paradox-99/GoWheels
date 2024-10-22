@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CgMenu, CgProfile } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
-import { TbMapPinSearch } from "react-icons/tb";
 import { IoMdSearch } from "react-icons/io";
 
 import Swal from "sweetalert2";
@@ -24,7 +23,6 @@ const Navbar = () => {
 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
-        console.log(currentScrollY);
         if (currentScrollY > 50) {
             setShadow(true)
         } else {
@@ -109,8 +107,7 @@ const Navbar = () => {
                         <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><IoMdSearch />Search</Link>
                         {!user && (
                             <li className="bg-primary px-2 text-sm lg:px-5 py-1 lg:py-2 text-white  rounded  text-center lg:ml-7 font-merriweather w-full ">
-                                <NavLink
-                                    to={'join'}>JOIN</NavLink>
+                                <NavLink to={'join'}>JOIN</NavLink>
                             </li>
                         )}
                         {user && (
@@ -148,21 +145,17 @@ const Navbar = () => {
                                 </div>
                             </div>
                         )}
-                <div className="flex md:hidden">
-                    <div onClick={() => setValue2(!value2)}>
-                        {
-                            value2 ? <RxCross2></RxCross2> : <CgMenu></CgMenu>
-                        }
-                    </div>
-
-                    <div className="flex md:hidden">
-                        <div onClick={() => setValue2(!value2)}>
-                            {value2 ? <RxCross2 /> : <CgMenu />}
-                        </div>
-                        <div className="relative">
-                            <ul className={`bg-primary text-white rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value2 ? "-right-60" : "right-0"} duration-500`}>
-                                {routes}
-                            </ul>
+                        <div className="flex md:hidden">
+                            <div onClick={() => setValue2(!value2)}>
+                                {
+                                    value2 ? <RxCross2></RxCross2> : <CgMenu></CgMenu>
+                                }
+                            </div>
+                            <div className="relative">
+                                <ul className={`bg-primary text-white rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value2 ? "-right-60" : "right-0"} duration-500`}>
+                                    {routes}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
