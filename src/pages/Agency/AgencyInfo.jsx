@@ -6,6 +6,7 @@ import image from '../../../public/asset/agency-image2.jpg'
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { generateAgencyId } from "../../components/agencyIdGenerator";
+import { Helmet } from "react-helmet-async";
 
 const AgencyInfo = () => {
     const [agencyId, setAgencyId] = useState(1);
@@ -99,6 +100,9 @@ const AgencyInfo = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Register || Agency</title>
+            </Helmet>
             <h1 className='text-3xl lg:text-3xl text-center mt-10 font-bold  font-merriweather mb-10'>Agency Information</h1>
             <div className="h-[89vh] flex flex-col-reverse lg:flex-row gap-44 justify-center bg-center bg-cover bg-no-repeat pt-10">
                 <div className='lg:w-[30vw]  bg-transparent   px-10 rounded-lg'>

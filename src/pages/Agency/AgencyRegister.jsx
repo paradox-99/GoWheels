@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import UseAuth from "../../hooks/UseAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { imageUpload } from "../../api/utilities";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -142,6 +143,9 @@ const AgencyRegister = () => {
     // style={{ backgroundImage: `url(${background})` }}
     return (
         <div>
+            <Helmet>
+                <title>Register || Agency</title>
+            </Helmet>
             <div className='text-center mx-auto pt-5'>
                 <h1 className="text-3xl lg:text-3xl font-bold  font-merriweather mb-10">Owner Information</h1>
             </div>

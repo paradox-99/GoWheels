@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import CommonTable from './CommonTable';
 import axios from 'axios';
 import useDesignation from '../../hooks/useDesignation';
+import { Helmet } from 'react-helmet-async';
 
 const BookingHistory = () => {
     const { userInfo } = useDesignation();
@@ -29,6 +30,9 @@ const BookingHistory = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Booking History</title>
+            </Helmet>
             <CommonTable bookings={bookings} heading={"Booking History"} loading={loading} error={error}></CommonTable>
         </div>
     );

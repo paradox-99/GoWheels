@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { io } from 'socket.io-client';
 import { v4 as uuidv4 } from 'uuid'; 
 
@@ -32,6 +33,9 @@ const Notifications = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Notifications</title>
+            </Helmet>
             {notifications.map((note) => (
                 <div key={note.id} className="notification">
                     <p>{note.message}</p>

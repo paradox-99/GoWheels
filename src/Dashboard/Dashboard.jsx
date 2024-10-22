@@ -196,11 +196,10 @@ const Dashboard = () => {
                   to={item.to}
                   className={({ isActive }) =>
                     `flex p-1 pl-4 gap-2 items-center rounded-lg transition-colors duration-300 
-                  ${
-                    isActive
+                  ${isActive
                       ? "bg-gradient-to-r from-[#ff4c30] to-white text-white"
                       : "text-gray-700"
-                  }`
+                    }`
                   }
                 >
                   <div>{item.icon}</div>

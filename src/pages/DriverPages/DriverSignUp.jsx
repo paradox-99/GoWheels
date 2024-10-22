@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { locationData } from "../../../public/locationData";
 import { imageUpload } from '../../api/utilities';
+import { Helmet } from 'react-helmet-async';
 // import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const DriverSignUp = () => {
@@ -84,9 +85,11 @@ const DriverSignUp = () => {
 
     }
 
-
     return (
         <div >
+            <Helmet>
+                <title>Register || Driver</title>
+            </Helmet>
             <div style={{ backgroundImage: `url(${backgroundImage})` }} className=' min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
                 <div className='text-center mx-auto '>
                     <h1 className="text-3xl lg:text-3xl font-bold  font-merriweather mb-10">Please Register as a driver</h1>

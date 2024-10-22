@@ -1,17 +1,15 @@
 import { FaDollarSign, FaRegHandshake, FaUsers } from 'react-icons/fa';
-
-
-import image from '../../../public/asset/admin.jpg'
 import { LiaCarSideSolid } from 'react-icons/lia';
 import UserActivityChart from './AdminComponent/UserActivityChart';
 import TotalInfoChart from './AdminComponent/TotalnfoChart';
+import { Helmet } from 'react-helmet-async';
 
 const AdminHome = () => {
-
-
-
     return (
         <div className=" lg:px-20 mt-20">
+            <Helmet>
+                <title>Dashboard || Admin</title>
+            </Helmet>
             <section className='grid lg:px-10 lg:grid-cols-4 lg:gap-10 '>
                 {/* total users */}
                 <div className='p-2 rounded-lg shadow-lg shadow-slate-400 px-10 py-5'>
