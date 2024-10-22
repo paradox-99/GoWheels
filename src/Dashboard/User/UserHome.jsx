@@ -11,6 +11,7 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 import { AiOutlineDollarCircle } from 'react-icons/ai';
 import { FaCarAlt } from 'react-icons/fa';
 import CommonCarCard from './CommonCarCard';
+import { Helmet } from 'react-helmet-async';
 
 const UserHome = () => {
     const [bookedCars, setBookedCars] = useState([]);
@@ -69,6 +70,9 @@ const UserHome = () => {
     console.log(bookedCars);
     return (
         <div className="min-h-screen !font-sans bg-gradient-to-r p-12">
+            <Helmet>
+                <title>Dashboard</title>
+            </Helmet>
             <div className="mb-12">
                 <h1 className="text-4xl animate-fade-in-down">Welcome Back, {userInfo.lastName}!</h1>
                 <p className="mt-4 text-lg opacity-90">We’re glad to see you again. Let’s get you moving!</p>

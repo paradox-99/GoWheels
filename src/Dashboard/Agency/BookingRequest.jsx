@@ -1,7 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 const BookingRequest = () => {
   return (
     <div className="dark:bg-slate-800 grid grid-cols-1 md:grid-cols-3 gap-6 justify-center p-6">
-
+      <Helmet>
+        <title>Booking Request</title>
+      </Helmet>
       <div className=" dark:bg-gray-700 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
         <div className="flex items-center  gap-4">
           <img
@@ -90,7 +94,7 @@ const BookingRequest = () => {
           </div>
         </div>
       </div>
-     
+
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { GiSteeringWheel } from "react-icons/gi";
 import UseAuth from '../../hooks/UseAuth';
 import useDesignation from '../../hooks/useDesignation';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 // import { GiSteeringWheel } from 'react-icons/gi';
 
 const SignUpPartOne = () => {
@@ -36,6 +37,9 @@ const SignUpPartOne = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Sign Up</title>
+            </Helmet>
             {
                 !user ? <>
                     <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>

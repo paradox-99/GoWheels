@@ -6,12 +6,11 @@ import TotalInfoChart from './AdminComponent/TotalnfoChart';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useEffect, useState } from 'react';
 import BookingChart from './AdminComponent/BookingChart';
+import { Helmet } from 'react-helmet-async';
 
 const AdminHome = () => {
     const [showModal, setShowModal] = useState(false);
     const [currentFeedback, setCurrentFeedback] = useState(''); 
-   
-
     const [totalInfo, setTotalInfo] = useState({});
     const axiosPublic = useAxiosPublic();
     const [reviews, setReviews] = useState([]);
@@ -57,6 +56,9 @@ const AdminHome = () => {
 
     return (
         <div className=" lg:px-20 mt-20 p-5">
+            <Helmet>
+                <title>Dashboard || Admin</title>
+            </Helmet>
             <section className='grid lg:px-10 lg:grid-cols-4 lg:gap-10 '>
                 {/* total users */}
                 <div className='p-2 rounded-lg shadow-lg shadow-slate-400 px-10 py-5'>

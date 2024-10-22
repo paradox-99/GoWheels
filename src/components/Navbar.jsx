@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CgMenu, CgProfile } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -148,6 +148,11 @@ const Navbar = () => {
                                 </div>
                             </div>
                         )}
+                <div className="flex md:hidden">
+                    <div onClick={() => setValue2(!value2)}>
+                        {
+                            value2 ? <RxCross2></RxCross2> : <CgMenu></CgMenu>
+                        }
                     </div>
 
                     <div className="flex md:hidden">
