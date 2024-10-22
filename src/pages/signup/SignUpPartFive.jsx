@@ -7,6 +7,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import loaderEliment from '../../../public/logo.gif';
 import useDesignation from "../../hooks/useDesignation";
+import { Helmet } from "react-helmet-async";
 
 const SignUpPartFive = () => {
 
@@ -87,6 +88,9 @@ const SignUpPartFive = () => {
     }
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
+            <Helmet>
+                <title>Crop Image || Sign Up</title>
+            </Helmet>
             <div className='text-center mx-auto'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>
                     {displayName}

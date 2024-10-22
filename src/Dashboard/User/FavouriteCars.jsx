@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
+import { Helmet } from 'react-helmet-async';
 
 const FavouriteCars = () => {
     const [cars, setCars] = useState([]);
@@ -66,9 +67,10 @@ const FavouriteCars = () => {
 
     return (
         <div className="container mx-auto p-6 relative">
+            <Helmet>
+                <title>Favorite Cars</title>
+            </Helmet>
             <h2 className="text-3xl font-semibold mb-6">Favourite Cars</h2>
-
-        
             <button
                 onClick={clearAllFavorites}
                 className="absolute top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700"

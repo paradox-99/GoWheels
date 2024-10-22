@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 
+import HandleSearch from "./HandleSearch";
 const Banner = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  // const images = [
+  //   "https://demo.xpeedstudio.com/carrental/onepage/wp-content/uploads/sites/6/2020/07/car21.png",
+  //   "https://demo.xpeedstudio.com/carrental/home-v4/wp-content/uploads/sites/5/2020/06/banner_car.png",
+  //   "https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/07/car.png",
+  //   "https://demo.xpeedstudio.com/carrental/home-v3/wp-content/uploads/sites/3/2020/07/car11.png"
+  // ];
   const images = [
-    "https://demo.xpeedstudio.com/carrental/onepage/wp-content/uploads/sites/6/2020/07/car21.png",
-    "https://demo.xpeedstudio.com/carrental/home-v4/wp-content/uploads/sites/5/2020/06/banner_car.png",
-    "https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/07/car.png",
-    "https://demo.xpeedstudio.com/carrental/home-v3/wp-content/uploads/sites/3/2020/07/car11.png"
+    "/image3.png",
+    "/image4.png",
+    "/image5.png",
+    "/image6.png",
   ];
 
 
@@ -19,10 +26,13 @@ const Banner = () => {
   }, [images.length]);
 
   return (
-    <main className="bg-[#F8F8F8] h-[600px] relative overflow-hidden container mx-auto -mt-2 lg:px-6 lg:py-8">
-      <div className="flex flex-col sm:flex-row relative items-center overflow-hidden">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row relative py-10 lg:py-16">
-          <div className="w-full sm:w-2/3 lg:w-2/5 flex flex-col relative">
+    <main style={{backgroundSize:"600px"}} className="bg-[#F8F8F8] bg-[url('/banner_image.png')]  bg-no-repeat bg-[right_top]  -mt-10 lg:px-20 lg:py-8">
+      {/* <div className="absolute top-0 z-[1] right-0">
+        <img src="/banner_image.png" className="w-[600px]" alt="" />
+      </div> */}
+      <div className="flex z-[2] flex-col h-[600px]  sm:flex-row  items-center ">
+        <div className="  z-[2]  mx-auto px-4 flex flex-col sm:flex-row  py-10 lg:py-16">
+          <div className="w-full sm:w-2/3 lg:w-2/5 flex flex-col ">
             <span className="font-sans w-[60px] font-medium bg-primary h-1 mb-5 text-2xl"></span>
             <h1 className="font-extrabold text-6xl sm:text-7xl leading-none text-gray-800">
               Book Your <span className="text-primary">Ride</span> Today
@@ -45,7 +55,7 @@ const Banner = () => {
               </a>
             </div>
           </div>
-          <div className="w-full sm:w-1/3 lg:w-3/5 mt-8 sm:mt-0 relative">
+          <div className="w-full sm:w-1/3 lg:w-3/5 mt-8 sm:mt-0 ">
             <img
               src={images[currentImage]}
               className="m-auto w-[700px] transition-opacity duration-1000 ease-in-out"
@@ -53,6 +63,10 @@ const Banner = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div className="-mt-12 mx-auto z-[2] w-[1200px] border border-gray-300 p-10">
+        <HandleSearch />
       </div>
     </main>
   );

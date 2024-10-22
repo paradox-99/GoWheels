@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic.jsx";
 import FeaturedCarts from "../../components/cart/FeaturedCarts.jsx";
 import loaderImage from "/logo.gif"
+import { Helmet } from "react-helmet-async";
 
 const ShowBrandCars = () => {
 
@@ -29,7 +30,9 @@ const ShowBrandCars = () => {
 
     return (
         <div className="px-4 md:px-10">
-
+            <Helmet>
+                <title>{brand_name} Cars</title>
+            </Helmet>
             <h1 className="text-center">{brand_name} cars</h1>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 justify-items-center">
                 {

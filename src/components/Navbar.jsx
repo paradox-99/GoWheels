@@ -64,13 +64,13 @@ const Navbar = () => {
 
     if (hideNavbar || (hideNavbar && loader)) return null;
 
-    if (!user && loader) {
-        return (
-            <div className='absolute right-[40%] top-[16px] lg:top-[-24px]'>
-                <img className='mx-auto w-16 lg:w-32' src={loaderEliment} alt="" />
-            </div>
-        );
-    }
+    // if (!user && loader) {
+    //     return (
+    //         <div className='absolute right-[40%] top-[16px] lg:top-[-24px]'>
+    //             <img className='mx-auto w-16 lg:w-32' src={loaderEliment} alt="" />
+    //         </div>
+    //     );
+    // }
 
     const routes = (
         <>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import UserDetailsModal from "./UserDetailsModal";
 import UseAuth from "../../hooks/UseAuth";
 import { FaSearch } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageUsers = () => {
@@ -72,6 +73,9 @@ const ManageUsers = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Users Information</title>
+            </Helmet>
             {/* <section>
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead className="bg-gray-50 dark:bg-gray-800">
