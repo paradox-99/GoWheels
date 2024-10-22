@@ -15,7 +15,7 @@ const BookingHistoryForAgency = () => {
     queryKey: ['bookings', agencyId],
     enabled: !!agencyId,  // Only run query when agencyId is available
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`userBookingRoutes/bookings/bookings/${agencyId}`);
+      const { data } = await axiosSecure.get(`/bookings/bookings/${agencyId}`);
       console.log(data);
       
       return data;
@@ -42,7 +42,7 @@ const BookingHistoryForAgency = () => {
             ))}
           </tr>
         </thead>
-        {/* <tbody>
+        <tbody>
           {bookings.map((booking) => (
             <tr key={booking._id} className="hover:bg-slate-50 border-b border-slate-200">
               <td className="p-4 py-5">
@@ -68,7 +68,7 @@ const BookingHistoryForAgency = () => {
               </td>
             </tr>
           ))}
-        </tbody> */}
+        </tbody>
       </table>
     </div>
   );
