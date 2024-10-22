@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { BsFuelPumpFill } from 'react-icons/bs';
-import { FaCarSide, FaTimes } from 'react-icons/fa';
+import { FaCarSide,  } from 'react-icons/fa';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { PiSeatFill } from 'react-icons/pi';
 import { TbManualGearboxFilled } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { RxCross2 } from 'react-icons/rx';
 
 const CommonCarCard = ({ car }) => {
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
-    const [showModal, setShowModal] = useState(false); // Modal control
+    const [showModal, setShowModal] = useState(false); 
     const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
@@ -69,10 +70,10 @@ const CommonCarCard = ({ car }) => {
                     >
                         <div className=' relative bg-gray-50 rounded-lg shadow-xl max-h-[90vh] w-full sm:max-w-4xl sm:w-full overflow-auto'>
                             <button
-                                className="absolute top-6 right-6 text-primary hover:text-red-400"
+                                className="absolute top-3 right-3 text-primary hover:text-red-400"
                                 onClick={() => setShowModal(false)}
                             >
-                                <FaTimes size={24} />
+                                <RxCross2 size={24} />
                             </button>
                             <div className='m-6'>
                                 <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8'>
