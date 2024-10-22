@@ -1,24 +1,53 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
+// import { useContext } from "react";
+// import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import loaderImage from "../../../public/logo.gif";
+import { useParams } from "react-router-dom";
 
 const AgencyVehicleDetails = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
+//   const { user } = useContext(AuthContext);
+  const { id } = useParams(); 
 
-  // ---- QUERY TO FETCH DATA ----
-  const { data: vehicles = [] } = useQuery({
-    queryKey: ["vehicles", user?.userEmail],
+ // ---- QUERY TO FETCH DATA ----
+ const { data: vehicle, error, isLoading } = useQuery({
+    queryKey: ["vehicles", id], // Use id in the queryKey
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/agencyRoute/agency/vehicleInfo/${user?.userEmail}`
+        `/agencyRoute/agency/vehicle-details/${id}`
       );
       console.log(data);
-      return data; // Return the data to be used for pagination
+      return data; // Return the vehicle data
     },
   });
+
+  // Handle loading state
+  if (isLoading) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <img src={loaderImage} alt="Loading..." className="w-[150px]" />
+      </div>
+    );
+  }
+
+  // Handle error state
+  if (error) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <p>Error fetching vehicle details: {error.message}</p>
+      </div>
+    );
+  }
+
+  // Check if vehicle data is available
+  if (!vehicle) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <p>No vehicle data available.</p>
+      </div>
+    );
+  }
 
   //   HANDLE SUBMIT
   const handleSubmit = async (e) => {
@@ -38,7 +67,7 @@ const AgencyVehicleDetails = () => {
       alert("Failed to update vehicle information: " + error.message);
     }
   };
-  if (!vehicles) {
+  if (!vehicle) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
         <div>
@@ -61,7 +90,6 @@ const AgencyVehicleDetails = () => {
 
               {/* FORM--------------------------------- */}
 
-              {vehicles.map((vehicle, index) => (
                 <form key={vehicle.licenseNumber} onSubmit={handleSubmit}>
                   <div className="w-full rounded-sm bg-[url('https://images.unsplash.com/photo-1449844908441-8829872d2607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxob21lfGVufDB8MHx8fDE3MTA0MDE1NDZ8MA&ixlib=rb-4.0.3&q=80&w=1080')] bg-cover bg-center bg-no-repeat items-center">
                     <div className="mx-auto flex justify-center h-[20rem]  bg-no-repeat"></div>
@@ -69,7 +97,7 @@ const AgencyVehicleDetails = () => {
                       <input
                         type="file"
                         name="profile"
-                        id={`upload_cover_${index}`}
+                        id="upload_cover"
                         hidden
                         required
                       />
@@ -358,7 +386,6 @@ const AgencyVehicleDetails = () => {
                     </button>
                   </div>
                 </form>
-              ))}
 
               {/* --------------------------- */}
             </div>

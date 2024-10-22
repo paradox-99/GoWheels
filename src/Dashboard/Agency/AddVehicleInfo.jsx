@@ -80,11 +80,13 @@ const AddVehicleInfo = () => {
     const gear = form.gear.value;
     const fuel = form.fuel.value;
     const rentalPrice = form.rentalPrice.value;
+    const transmission = form.transmission.value;
     const brand = form.brand.value;
     const model = form.model.value;
     const buildYear = form.buildYear.value;
     const expireDate = form.expireDate.value;
     const fitnessCertificate = form.fitnessCertificate.value;
+    const issuingAuthority = form.issuingAuthority.value;
     const insuranceNumber = form.insuranceNumber.value;
     const insurancePeriod = form.insurancePeriod.value;
     const insuranceDetails = form.insuranceDetails.value;
@@ -103,11 +105,13 @@ const AddVehicleInfo = () => {
         gear,
         fuel,
         rentalPrice,
+        transmission,
         brand,
         model,
         buildYear,
         expireDate,
         fitnessCertificate,
+        issuingAuthority,
         insuranceNumber,
         insurancePeriod,
         insuranceDetails,
