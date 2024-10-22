@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { FaEdit } from "react-icons/fa";
+import  { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { FaEdit } from 'react-icons/fa';
 
-const driverData = {
-    name: "Masum Billah",
-    email: "masumbillah@gmail.com",
+// Mock user data
+const mockUserData = {
+    name: "John Doe",
+    email: "john.doe@example.com",
     zilla: "Dhaka",
     upozilla: "Dhanmondi",
     district: "Dhaka",
-    licence: "DL-1234567890-2024",
     profileImage: "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=", // Placeholder image URL
 };
 
-const DriverProfile = () => {
+const UserProfile = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedField, setSelectedField] = useState('');
     const [editValue, setEditValue] = useState('');
@@ -27,11 +27,11 @@ const DriverProfile = () => {
         console.log(`Updated ${selectedField}: ${editValue}`);
         setIsModalOpen(false);
     };
- 
+
     return (
         <div style={{ boxShadow: '0 10px 50px 50px #FEF2F2' }} className="p-12 max-w-4xl mx-auto">
             <Helmet>
-                <title>{driverData.name} || Profile</title>
+                <title>{mockUserData.name} Profile</title>
             </Helmet>
             <div>
                 <h1 className='text-4xl font-semibold'>Profile </h1>
@@ -40,15 +40,15 @@ const DriverProfile = () => {
             <hr />
             <div className="flex pt-10 pb-4 items-center space-x-6 mb-8">
                 <img
-                    src={driverData.profileImage}
+                    src={mockUserData.profileImage}
                     alt="User"
                     className="w-40 h-40 rounded-full object-cover"
                 />
                 <div className="flex items-center space-x-4">
-                    <h1 className="text-4xl font-bold">{driverData.name}</h1>
+                    <h1 className="text-4xl font-bold">{mockUserData.name}</h1>
                     <FaEdit
                         className="text-primary cursor-pointer"
-                        onClick={() => handleEditClick('name', driverData.name)}
+                        onClick={() => handleEditClick('name', mockUserData.name)}
                     />
                 </div>
             </div>
@@ -57,54 +57,44 @@ const DriverProfile = () => {
                 <div className="flex gap-12 py-4 border-y items-center">
                     <div>
                         <span className="block text-sm text-primary font-medium ">Email</span>
-                        <span className="text-lg ">{driverData.email}</span>
+                        <span className="text-lg ">{mockUserData.email}</span>
                     </div>
                     <FaEdit
                         className="text-primary cursor-pointer"
-                        onClick={() => handleEditClick('email', driverData.email)}
-                    />
-                </div>
-                <div className="flex gap-12 py-4 border-y items-center">
-                    <div>
-                        <span className="block text-sm text-primary font-medium ">Licence</span>
-                        <span className="text-lg ">{driverData.licence}</span>
-                    </div>
-                    <FaEdit
-                        className="text-primary cursor-pointer"
-                        onClick={() => handleEditClick('email', driverData.email)}
+                        onClick={() => handleEditClick('email', mockUserData.email)}
                     />
                 </div>
 
                 <div className="flex gap-12  pt-2 pb-4 border-b  items-center">
                     <div>
                         <span className="block text-sm text-primary font-medium ">Zilla</span>
-                        <span className="text-lg ">{driverData.zilla}</span>
+                        <span className="text-lg ">{mockUserData.zilla}</span>
                     </div>
                     <FaEdit
                         className="text-primary cursor-pointer"
-                        onClick={() => handleEditClick('zilla', driverData.zilla)}
+                        onClick={() => handleEditClick('zilla', mockUserData.zilla)}
                     />
                 </div>
 
                 <div className="flex gap-12  pb-4 pt-2 border-b  items-center">
                     <div>
                         <span className="block text-sm text-primary font-medium ">Upozilla</span>
-                        <span className="text-lg ">{driverData.upozilla}</span>
+                        <span className="text-lg ">{mockUserData.upozilla}</span>
                     </div>
                     <FaEdit
                         className="text-primary  cursor-pointer"
-                        onClick={() => handleEditClick('upozilla', driverData.upozilla)}
+                        onClick={() => handleEditClick('upozilla', mockUserData.upozilla)}
                     />
                 </div>
 
                 <div className="flex gap-12 pt-2 pb-4 border-b  items-center">
                     <div>
                         <span className="block text-sm text-primary font-medium ">District</span>
-                        <span className="text-lg ">{driverData.district}</span>
+                        <span className="text-lg ">{mockUserData.district}</span>
                     </div>
                     <FaEdit
                         className="text-primary cursor-pointer"
-                        onClick={() => handleEditClick('district', driverData.district)}
+                        onClick={() => handleEditClick('district', mockUserData.district)}
                     />
                 </div>
             </div>
@@ -141,4 +131,4 @@ const DriverProfile = () => {
     );
 };
 
-export default DriverProfile;
+export default UserProfile;
