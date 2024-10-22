@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import CommonTable from './CommonTable';
 import axios from 'axios';
 import useDesignation from '../../hooks/useDesignation';
+import { Helmet } from 'react-helmet-async';
 
 const Bookings = () => {
     const { userInfo } = useDesignation();
@@ -38,6 +39,9 @@ const Bookings = () => {
 
     return (
         <div className='p-12'>
+            <Helmet>
+                <title>Active Bookings</title>
+            </Helmet>
             <h2 className="text-3xl font-semibold mb-5">My Bookings</h2>
             <p className='mt-6 w-full lg:w-[600px]'>You can view your active bookings and completed booking history here. You can also add reviews for cars you have booked, once their status is marked as completed</p>
             <div className='relative  z-[2]  flex gap-6 border border-gray-500 mx-auto rounded-full w-[270px] py-2 justify-center mt-12 mb-8'>

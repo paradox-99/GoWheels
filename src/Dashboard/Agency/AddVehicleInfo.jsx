@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import useDesignation from "../../hooks/useDesignation";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 // image
 import { imageUpload } from "../../api/utilities/index.js";
@@ -136,6 +137,9 @@ const AddVehicleInfo = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>Vehicle Registration</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-[black] mb-6">
         Add Vehicle Information
       </h1>

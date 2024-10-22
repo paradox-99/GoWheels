@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure"; 
 import useAgencyData from "../../hooks/UseAgencyData";
 
 const BookingHistoryForAgency = () => {
@@ -8,21 +8,19 @@ const BookingHistoryForAgency = () => {
   const agencyId = agencyData?.agency_id;
   console.log(agencyId);
 
-  // ---- QUERY TO FETCH BOOKING DATA BY AGENCY_ID ----
-  const {
-    data: bookings = [],
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["bookings", agencyId],
-    enabled: !!agencyId, // Only run query when agencyId is available
-    queryFn: async () => {
-      const data = await axiosSecure.get(`/bookings/bookings/${agencyId}`);
 
+  
+  // ---- QUERY TO FETCH BOOKING DATA BY AGENCY_ID ----
+  const { data: bookings = [], isLoading, error } = useQuery({
+    queryKey: ['bookings', agencyId],
+    enabled: !!agencyId,  // Only run query when agencyId is available
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/bookings/bookings/${agencyId}`);
+      console.log(data);
+      
       return data;
     },
   });
-  console.log(bookings);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching booking history: {error.message}</div>;
@@ -37,22 +35,9 @@ const BookingHistoryForAgency = () => {
       <table className="w-full text-left table-auto min-w-max">
         <thead>
           <tr>
-            {[
-              "Car Name",
-              "Booking Date",
-              "Pickup Date",
-              "Dropoff Date",
-              "Pickup Location",
-              "Dropoff Location",
-              "Price",
-            ].map((header) => (
-              <th
-                key={header}
-                className="p-4 border-b border-slate-200 bg-slate-50"
-              >
-                <p className="text-sm font-normal leading-none text-slate-500">
-                  {header}
-                </p>
+            {["Car Name", "Booking Date", "Pickup Date", "Dropoff Date", "Pickup Location", "Dropoff Location", "Price"].map((header) => (
+              <th key={header} className="p-4 border-b border-slate-200 bg-slate-50">
+                <p className="text-sm font-normal leading-none text-slate-500">{header}</p>
               </th>
             ))}
           </tr>
