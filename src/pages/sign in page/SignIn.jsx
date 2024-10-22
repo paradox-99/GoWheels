@@ -5,6 +5,7 @@ import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
 import GoogleButton from '../../components/GoogleButton';
+import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 
 const SignIn = () => {
@@ -30,13 +31,7 @@ const SignIn = () => {
             setLoading(true)
             const result = await userLogin(email, password);
             setUser(result.user)
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Login successfully!",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            toast.success("successfully logged in")
             navigate(location?.state ? location.state : '/')
         }
         catch (error) {
