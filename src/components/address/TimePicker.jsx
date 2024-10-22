@@ -8,7 +8,7 @@ import { fromJSON } from 'postcss';
 import { ThemeProvider } from '@mui/material';
 import { customTheme2 } from '../theme/Theme';
 
-const TimePicker = () => {
+const TimePicker = ({getTime}) => {
 
   const [fromDate, setFromDate] = useState();
   const [fromTime, setFromTime] = useState();
@@ -34,12 +34,14 @@ const TimePicker = () => {
   }
 
   const submit = () => {
-    if (fromDate && fromJSON && untilDate && untilTime)
-      console.log(fromDate, fromTime, untilDate, untilTime);
+    if (fromDate && fromJSON && untilDate && untilTime){
+      const time = {fromDate, fromTime, untilDate, untilTime};
+      getTime(time);
+    }
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-3">
+    <div className="flex flex-col md:flex-row gap-3 justify-between items-center">
       <ThemeProvider theme={customTheme2}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <DemoContainer components={['DateTimePicker']}>
