@@ -28,7 +28,7 @@ const ViewDetails = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await axios.get(`https://go-wheels-server.vercel.app/api/feedbackRoute/feedbacks/${id}`);
+                const response = await axiosPublic.get(`/feedbackRoute/feedbacks/${id}`);
                 setReviews(response.data);
                 setLoading(false);
             } catch (error) {
