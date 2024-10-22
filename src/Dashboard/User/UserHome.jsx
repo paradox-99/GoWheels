@@ -120,7 +120,7 @@ const UserHome = () => {
                                 <p>Succeeded ({completed})</p>
                             </div>
                             <div className='flex items-center gap-2'>
-                                <div className="bg-green-400 size-2 rounded-full" />
+                                <div className="bg-red-400 size-2 rounded-full" />
                                 <p>Cancelled ({cancelled})</p>
                             </div>
                         </div>
