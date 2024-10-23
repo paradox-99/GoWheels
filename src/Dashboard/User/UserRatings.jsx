@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FaStar, FaEdit } from 'react-icons/fa';
 import useDesignation from '../../hooks/useDesignation';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const UserRatings = () => {
     const [reviews, setReviews] = useState([]);
@@ -71,6 +72,9 @@ const UserRatings = () => {
     
     const ReviewSkeleton = () => (
         <div className="bg-white p-4 rounded-lg flex justify-between items-center animate-pulse">
+            <Helmet>
+                <title>Reviews & Ratings</title>
+            </Helmet>
             <div className='flex gap-20 flex-row-reverse'>
                 <div>
                     <div className="h-6 bg-gray-300 rounded w-40 mb-2"></div>

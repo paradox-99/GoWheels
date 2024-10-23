@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import loaderEliment from '../../../public/logo.gif';
+// import loaderEliment from '../../../public/logo.gif';
 import { useState } from "react";
 // import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -7,27 +7,21 @@ import UseAuth from "../../hooks/UseAuth";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import backgroundImage from '../../../public/asset/drive.avif'
+import { Helmet } from "react-helmet-async";
 
 const DriverInfo = () => {
     // const {loader,} = UseAuth();
 
     const location = useLocation()
     const axiosPublic = useAxiosPublic()
-    // const driverEmail = location.state?.email;
-    // const image = location.state?.image;
-    // const firstName = location.state?.firstName;
-    // const lastName = location.state?.lastName;
     const [errorMessage, setErrorMessage] = useState(null)
-    // console.log(driverEmail, image, firstName, lastName)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const { createUser, updateUserProfile } = UseAuth() || {}
     const {
-        firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress
+        firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, district, division, upazilla, localAddress
     } = location.state?.info || {};
 
-    // console.log(firstName,
-    //     firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress)
 
 
     const handleDriver = async (e) => {
@@ -141,6 +135,9 @@ const DriverInfo = () => {
 
     return (
         <div style={{ backgroundImage: `url(${backgroundImage})` }} className='h-screen min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
+            <Helmet>
+                <title>Register || Driver Information</title>
+            </Helmet>
             <div>
                 <h1 className='text-3xl lg:text-3xl text-center mt-10 font-bold  font-merriweather mb-10'>Driver Information</h1>
                 <div className="h-[89vh] flex flex-col-reverse lg:flex-row gap-44 justify-center bg-center bg-cover bg-no-repeat pt-10">

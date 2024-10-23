@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 const ViewDetails = () => {
@@ -28,7 +29,7 @@ const ViewDetails = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await axios.get(`https://go-wheels-server.vercel.app/api/feedbackRoute/feedbacks/${id}`);
+                const response = await axiosPublic.get(`/feedbackRoute/feedbacks/${id}`);
                 setReviews(response.data);
                 setLoading(false);
             } catch (error) {
@@ -152,6 +153,9 @@ const ViewDetails = () => {
 
     return (
         <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto lg:px-6">
+            <Helmet>
+                <title>{data?.vehicle_info.name || "Details"}</title>
+            </Helmet>
             {/* Skeleton Loader */}
             {isLoading ? (
                 <div className="animate-pulse flex flex-col md:flex-row gap-8">

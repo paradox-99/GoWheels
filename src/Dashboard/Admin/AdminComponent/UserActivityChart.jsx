@@ -51,7 +51,7 @@ const UserRegistrationChart = () => {
     }, []);
 
     return (
-        <div className='w-[40%] mt-10'>
+        <div className=' mt-10'>
             <ResponsiveContainer height={400}>
                 <BarChart data={data}>
                     <XAxis dataKey="month" />

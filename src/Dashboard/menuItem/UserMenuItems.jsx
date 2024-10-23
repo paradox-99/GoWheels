@@ -11,7 +11,7 @@ const UserMenuItems = () => {
             <MenuItem label={"Bookings "} address={'/dashboard/user-bookings'} icon={RiListOrdered}></MenuItem>
             <MenuItem label={"Reviews "} address={'/dashboard/user-ratings'} icon={CiStar}></MenuItem>
             <MenuItem label={"Favourite Cars "} address={'/dashboard/user-favourite'} icon={CiHeart}></MenuItem>
-            <MenuItem label={"notifications "} address={'/dashboard/notifications'} icon={MdOutlineNotificationsActive}></MenuItem>
+            <MenuItem label={"Notifications "} address={'/dashboard/notifications'} icon={MdOutlineNotificationsActive}></MenuItem>
         </div>
     );
 };

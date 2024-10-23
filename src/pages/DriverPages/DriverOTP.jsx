@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import UseAuth from "../../hooks/UseAuth";
 import backgroundImage from '../../../public/asset/drive.avif'
+import { Helmet } from "react-helmet-async";
 
 const DriverOTP = () => {
 
@@ -75,10 +76,11 @@ const DriverOTP = () => {
         }
     }
 
-
-
     return (
         <div style={{ backgroundImage: `url(${backgroundImage})` }} className='h-screen min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10' >
+            <Helmet>
+                <title>Verify OTP</title>
+            </Helmet>
             <div className='lg:w-[40vw] bg-transparent lg:bg-[#22232333] mx-auto px-10 rounded-lg py-5'>
                 <form onSubmit={handleSubmit}>
                     <h1 className="text-center mb-4 text-white">Please check your Email</h1>
