@@ -7,10 +7,11 @@ import UseAuth from "../../hooks/UseAuth";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import backgroundImage from '../../../public/asset/drive.avif'
+import { imageUpload } from "../../api/utilities";
 
 const DriverInfo = () => {
     // const {loader,} = UseAuth();
-
+    // const [photoURL, setPhotoURL] = useState(null);
     const location = useLocation()
     const axiosPublic = useAxiosPublic()
     const [errorMessage, setErrorMessage] = useState(null)
@@ -18,9 +19,10 @@ const DriverInfo = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { createUser, updateUserProfile } = UseAuth() || {}
     const {
-        firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, district, division, upazilla, localAddress
+        firstName, lastName, userEmail, phone, gender, photo, dateOfBirth, nid, district, division, upazilla, localAddress
     } = location.state?.info || {};
 
+    console.log(photo)
 
 
     const handleDriver = async (e) => {
@@ -45,8 +47,9 @@ const DriverInfo = () => {
             dateOfBirth,
             userAddress,
             localAddress,
-            image,
+            
         }
+
 
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -65,6 +68,10 @@ const DriverInfo = () => {
 
         try {
 
+            const image = await imageUpload(photo);
+            console.log(image)
+
+
             const userCreate = await createUser(driverEmail, password)
             console.log(userCreate)
 
@@ -76,7 +83,7 @@ const DriverInfo = () => {
 
             await mutateAsync(driverData)
             await saveUserData(userInfo)
-            navigate('/join/driverOtp', { state: { userInfo } } );
+            navigate('/join/driverOtp', { state: { userInfo } });
 
 
 
@@ -96,7 +103,7 @@ const DriverInfo = () => {
         },
         onSuccess: () => {
             console.log('data saved successfully')
-            
+
             // toast.success(' data added successfully')
 
         }
@@ -112,7 +119,7 @@ const DriverInfo = () => {
         onSuccess: () => {
             console.log('data saved successfully')
             // toast.success(' data added successfully')
-            // navigate('/join/driverInfo', { state: { email, image, firstName, lastName } });
+            navigate('/join/driverInfo', { });
 
 
         }

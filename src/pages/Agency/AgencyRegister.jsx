@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Link, useNavigate } from "react-router-dom";
 import { locationData } from "../../../public/locationData";
 import { useState } from "react";
@@ -340,7 +341,7 @@ const AgencyRegister = () => {
                     <div className="lg:w-[30vw] h-[350px]  p-5">
                         <img className="lg:w-[30vw] h-[350px]" src={image} alt="" />
                         <div>
-                            <p className="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem laboriosam beatae sit et repellat aliquam, labore officiis dolores architecto itaque fugiat est blanditiis hic! Quae quidem tenetur hic mollitia nemo....</p>
+                            <p className="mt-3">Welcome to GoWheel, your trusted partner in car rentals! We offer a wide range of vehicles to suit your travel needs, whether you're planning a weekend getaway or a business trip. Our commitment to quality and customer satisfaction ensures a smooth and enjoyable experience.....</p>
                             <p className="mt-5 font-bold">If you agree with these terms and condition then you can register and start traveling with us</p>
                         </div>
                     </div>

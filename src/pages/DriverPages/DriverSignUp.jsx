@@ -10,8 +10,8 @@ const DriverSignUp = () => {
     const [imageText, setImageText] = useState('image name.png');
     const [imagePreview, setImagePreview] = useState(null);
     const [imageFile, setImageFile] = useState(null);
-    const [photoURL, setPhotoURL] = useState(null);
-    console.log(photoURL)
+   
+    // console.log(imageText)
 
     // const [showPassword, setShowPassword] = useState(false);
     const [selectedDivision, setSelectedDivision] = useState('');
@@ -43,14 +43,14 @@ const DriverSignUp = () => {
         setImageFile(image);
       
 
-        try {
-            const photo = await imageUpload(imageFile);
-            setPhotoURL(photo)
-            console.log(photo)
-        }
-        catch (error) {
-            console.log(error)
-        }
+        // try {
+        //     const photo = await imageUpload(imageFile);
+        //     setPhotoURL(photo)
+        //     console.log(photo)
+        // }
+        // catch (error) {
+        //     console.log(error)
+        // }
     };
 
     const handleJoin = async (e) => {
@@ -70,10 +70,10 @@ const DriverSignUp = () => {
         const userRole = "driver"
         const accountStatus = "not verified"
         const createdAt = new Date()
-        const image = photoURL
-        console.log(image)
+        const photo = imageFile
+        console.log(photo)
 
-        const info = { firstName, lastName, userEmail, phone, gender, image, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress };
+        const info = { firstName, lastName, userEmail, phone, gender, photo, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress };
 
         try {
             navigate('/join/driverInfo', { state: { info } });

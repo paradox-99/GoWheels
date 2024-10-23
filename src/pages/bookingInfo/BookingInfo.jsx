@@ -30,6 +30,11 @@ const BookingInfo = () => {
     const [totalRentHours, setTotalRentHours] = useState(0);
     const [loading, setLoading] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
+    const [showDriverMessage, setShowDriverMessage] = useState(false);
+    const {driverInfo, age} = location.state || {}; 
+
+    // console.log(driverInfo)
+
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
     const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {};
@@ -44,13 +49,20 @@ const BookingInfo = () => {
     const area = bookingInformation?.area;
     const carId = bookingInformation?.data?._id;
 
+    // console.log('testing data', fromDate, toDate,district, division)
+
+
+
     const handleChange = (e) => {
         setLoading(true);
         const drivingMethod = e.target.value
 
-        if (drivingMethod === 'driver') {
-            setModalVisible(true);
+        // this is for get driver button
+        if (e.target.value === 'driver') {
+            setShowDriverMessage((prev) => !prev);
         }
+
+
         setMethod(drivingMethod);
 
         setTimeout(() => {
@@ -72,6 +84,9 @@ const BookingInfo = () => {
             setLoading(false);
         }, 1000)
     }
+
+
+
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
 
@@ -119,16 +134,26 @@ const BookingInfo = () => {
                                         />
                                         <label>Self Driving</label><br />
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                            onChange={handleChange}
-                                            type="radio"
-                                            name="driving-method"
-                                            id="driver"
-                                            value="driver"
-                                            checked={method === 'driver'}
-                                        />
-                                        <label>Need Driver</label><br />
+                                    <div className="flex flex-col items-start gap-2">
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                onChange={handleChange}
+                                                type="radio"
+                                                name="driving-method"
+                                                id="driver"
+                                                value="driver"
+                                            />
+                                            <label htmlFor="driver">Need Driver</label>
+                                        </div>
+
+                                        {/* Conditionally render the Get Your Driver message */}
+                                        {showDriverMessage && (
+                                            <div className="mt-2">
+                                                <Link to={'/driverList'}>
+                                                    <button className="border-primary border p-1 text-xs rounded-md">Get your driver</button>
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </form>
@@ -175,6 +200,7 @@ const BookingInfo = () => {
                                 <Tab>Agency Information</Tab>
                                 <Tab>Booking Information</Tab>
                                 <Tab>User Information</Tab>
+                                <Tab>Driver Info</Tab>
                             </TabList>
 
                             <div className="mt-5">
@@ -190,6 +216,15 @@ const BookingInfo = () => {
                                 <TabPanel className={`lg:ml-[510px]`}>
                                     <UserData firstName={firstName} lastName={lastName} userEmail={userEmail} phone={phone} gender={gender} nid={nid} drivingLicense={drivingLicense} ></UserData>
                                 </TabPanel>
+                                <TabPanel className={`lg:ml-[510px]`}>
+                                    <p><span className="font-bold">Driver Name</span>: {driverInfo?.firstName} {driverInfo?.lastName} </p>
+                                    <p><span className="font-bold">Gender</span>: {driverInfo?.gender}</p>
+                                    <p><span className="font-bold">Age</span>: {age}</p>
+                                    <p><span className="font-bold">Email</span>: {driverInfo?.userEmail}</p>
+                                    <span className="font-bold"><h1>phone: {driverInfo?.phone}</h1></span>
+
+                                    <p className=" font-bold"><span className="font-bold">Address</span>:  {driverInfo?.userAddress.division} <span className="text-black">,</span> {driverInfo?.userAddress.district} <span className="text-black"></span>,{driverInfo?.userAddress.upazilla}</p>
+                                </TabPanel>
                             </div>
                         </Tabs>
                     </div>
@@ -200,7 +235,7 @@ const BookingInfo = () => {
             {/* right part */}
             <section className=" lg:w-[33%] px-7 py-8 shadow-xl rounded-xl " >
 
-            <PaymentData  userEmail ={userEmail} division ={division} district ={district} upazila ={upazila} area ={area} fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} method={method} rental_price={rental_price} totalRentHours={totalRentHours} totalPayCost={totalPayCost} drivingCost={drivingCost} discount={discount} totalPayment={totalPayment} carId={carId}></PaymentData>
+                <PaymentData userEmail={userEmail} division={division} district={district} upazila={upazila} area={area} fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} method={method} rental_price={rental_price} totalRentHours={totalRentHours} totalPayCost={totalPayCost} drivingCost={drivingCost} discount={discount} totalPayment={totalPayment} carId={carId}></PaymentData>
             </section >
 
         </div >
