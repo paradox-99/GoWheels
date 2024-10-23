@@ -40,14 +40,15 @@ const ViewDetails = () => {
 
         fetchReviews();
     }, [id]);
-    const { data } = useQuery({
-        queryKey: ['carData'],
-        queryFn: async () => {
-            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`)
-            return response.data;
-        }
-    })
 
+    const { data, refetch } = useQuery({
+        queryKey: ['carData', id], 
+        queryFn: async () => {
+            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`);
+            return response.data;
+        },
+        enabled: !!id, 
+    });
     const handleRent = (e) => {
         e.preventDefault();
         const bookingInformation = {
@@ -80,7 +81,7 @@ const ViewDetails = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 50);
-        // window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
         return () => clearTimeout(timer);
     }, [id]);
     const handleAddToFavorites = (carId) => {
@@ -154,7 +155,7 @@ const ViewDetails = () => {
     return (
         <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto lg:px-6">
             <Helmet>
-                <title>{data?.vehicle_info.name || "Details"}</title>
+                <title>{data?.brand + " " + data?.model + " " + (data?.buildYear) || "Details"}</title>
             </Helmet>
             {/* Skeleton Loader */}
             {isLoading ? (
@@ -167,7 +168,7 @@ const ViewDetails = () => {
                     {/* Image Section */}
                     <div className="mx-auto lg:w-[580px] px-6 md:px-6 lg:px-0 flex-grow">
                         <div className="image-container">
-                            <img className="lg:w-[580px]" src={data?.vehicle_info.photo} alt={data?.vehicle_info.name} />
+                            <img className="lg:w-[580px]" src={data?.image} alt={data?.brand} />
                         </div>
                         <div className="flex flex-row-reverse mt-12 relative">
                             <button
@@ -185,38 +186,38 @@ const ViewDetails = () => {
 
                     {/* Details Section */}
                     <div className="p-6 lg:mt-0 lg:w-1/2">
-                        <h2 className="text-4xl mb-4 font-bold text-secondary font-nunito text-heading">{data?.vehicle_info.brand}<span className="ml-3">{data?.vehicle_info.model}</span></h2>
+                        <h2 className="text-4xl mb-4 font-bold text-secondary font-nunito text-heading">{data?.brand}<span className="ml-3">{data?.model}</span></h2>
                         <div className="flex gap-6">
-                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{data?.vehicle_info.brand}</h3>
-                            <p className="dark:text-heading2">Model: <span className="bg-[#FFEEE9] px-1 rounded-md text-black">{data?.vehicle_info.model}</span></p>
+                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{data?.brand}</h3>
+                            <p className="dark:text-heading2">Model: <span className="bg-[#FFEEE9] px-1 rounded-md text-black">{data?.model}</span></p>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-heading">
                             <div className="flex flex-col py-2 px-10 items-center border border-gray-300 rounded-md">
                                 <FcDepartment className="text-4xl" />
                                 <span className="font-light mt-2">Build:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.build_year}</span>
+                                    <span className="text-lg font-semibold font-secondary">{data?.buildYear}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcPieChart className="text-4xl" />
                                 <span className="font-light mt-2">Fuel:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.fuel}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.fuel}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcOrgUnit className="text-4xl" />
                                 <span className="font-light mt-2">Seats:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.seats}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.seat}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcHeatMap className="text-4xl" />
                                 <span className="font-light mt-2">Transmission:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.transmission_type}</span>
+                                    <span className="text-lg font-semibold font-secondary">{data?.transmission}</span>
                             </div>
                         </div>
 
                         {/* About Section */}
                         <div>
                             <p className="text-xl mt-6">About</p>
-                            <p className="mt-4 text-[16px] font-secondary !leading-[26px] text-Description dark:text-Description2">{data?.vehicle_info.about}</p>
+                            <p className="mt-4 text-[16px] font-secondary !leading-[26px] text-Description dark:text-Description2">{data?.about}</p>
                         </div>
                     </div>
                 </div>
@@ -234,19 +235,19 @@ const ViewDetails = () => {
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>License Number: {data?.vehicle_info.license_number}</span>
+                                <span>License Number: {data?.licenseNumber}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Expire Date: {data?.vehicle_info.expire_date}</span>
+                                <span>Expire Date: {data?.expireDate}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Fitness Certificate: {data?.vehicle_info.fitness_certificate}</span>
+                                <span>Fitness Certificate: {data?.fitnessCertificate}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Issuing Authority: {data?.vehicle_info.issuing_authority}</span>
+                                <span>Issuing Authority: {data?.issuingAuthority}</span>
                             </li>
                         </ul>
                     </div>
@@ -260,23 +261,23 @@ const ViewDetails = () => {
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Insurance Number: {data?.vehicle_info.insurance_number}</span>
+                                <span>Insurance Number: {data?.insuranceNumber}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Period: {data?.vehicle_info.insurance_coverage_period}</span>
+                                <span>Coverage Period: {data?.insurancePeriod}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Provider: {data?.vehicle_info.insurance_details.provider}</span>
+                                <span>Provider: {data?.issuingAuthority}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Type: {data?.vehicle_info.insurance_details.coverage_type}</span>
+                                <span>Coverage Type: {""}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Deductible: ৳ {data?.vehicle_info.insurance_details.deductible * 120}</span>
+                                <span>Deductible: ৳ {data?.rentalPrice * 120}</span>
                             </li>
                         </ul>
                     </div>
@@ -288,18 +289,21 @@ const ViewDetails = () => {
                             Additional Features
                         </h2>
                         <ul className="list-none ml-4 mt-4">
-                            {
-                                data && <>
-                                    {Object.entries(add_features).map(([feature, value]) => (
+                            {data && data.additionalInfo && (
+                                <>
+                                    {Object.entries(data.additionalInfo).map(([feature, value]) => (
                                         <li key={feature} className="mb-2 flex items-center gap-2">
                                             <FaCheckCircle className={`${value ? 'text-green-500' : 'text-gray-500'}`} />
-                                            <span>{feature.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}: {value ? 'Available' : 'Not Available'}</span>
+                                            <span>
+                                                {feature.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}: <span className="text-gray-800">{value ? ' Available' : ' Not Available'}</span>
+                                                
+                                            </span>
                                         </li>
                                     ))}
                                 </>
-                            }
-
+                            )}
                         </ul>
+
                     </div>
                 </div>
 
@@ -416,7 +420,7 @@ const ViewDetails = () => {
                                 relatedData?.map((car, index) => {
                                     return (
                                         <div key={index} className='relative '>
-                                            <Link to={`/view-details`}>
+                                            <Link to={`/view-details/${car.id}`}>
                                                 <div className='h-[290px]'>
                                                     <span className='absolute text-white text-[12px] left-[15px] top-3'><span>{car.vehicle_info.brand}</span> Car </span>
                                                     <img className='h-[250px] w-[150px] md:w-[180px] object-cover' src={car.vehicle_info.photo} alt={`Profile Photo of ${car.vehicle_info.name}`} />
