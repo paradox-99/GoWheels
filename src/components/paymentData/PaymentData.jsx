@@ -2,21 +2,57 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
-const PaymentData = ( userEmail, division, district, upazila, area, fromDate, formTime, toDate, toTime, method, rental_price, totalRentHours, totalPayCost,  drivingCost,  discount,  totalPayment, carId) => {
+const PaymentData = ({ paymentInfo }) => {
+
+    console.log(paymentInfo)
+    const {
+        agencyEmail,
+        agency_id,
+        carID,
+        discount,
+        drivingCost,
+        initailDate,
+        initalTime,
+        method,
+        toDate,
+        toTime,
+        totalPayCost,
+        totalPayment,
+        totalRentHours,
+        userEmail,
+        rentalPrice,
+        division,
+        district,
+        upazilla,
+        area
+
+    } = paymentInfo
 
     const axiosPublic = useAxiosPublic();
 
     const handleConfirmBooking = async (e) => {
         e.preventDefault()
-        if (!method) {
+        if (!paymentInfo?.method) {
             toast.error("please select a method self driving or need driver")
             return
         }
-        const paymentInfo = {
-            userEmail, carId, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, totalRentHours, drivingCost, discount, 
+
+        const paymentData = {
+            agencyEmail,
+            agency_id,
+            carID,
+            userEmail,
+            discount,
+            drivingCost,
+            method,
+            totalRentHours,
+            division,
+            district,
+            upazilla,
+            area
         }
 
-        await axiosPublic.post('/payment/order', paymentInfo)
+        await axiosPublic.post('/payment/order', paymentData)
             .then(res => {
                 window.location.replace(res.data?.url)
                 console.log(res.data)
@@ -33,14 +69,14 @@ const PaymentData = ( userEmail, division, district, upazila, area, fromDate, fo
                     <h1 className="font-bold font-nunito">From Date</h1>
                     <p className="font-nunito">Rent starting day</p>
                 </div>
-                <h1 className="font-nunito font-medium">{fromDate}</h1>
+                <h1 className="font-nunito font-medium">{initailDate}</h1>
             </div>
             <div className="flex justify-between items-center font-nunito mt-2">
                 <div>
                     <h1 className="font-bold font-nunito">From Time</h1>
                     <p className="font-nunito">Rent starting time</p>
                 </div>
-                <h1 className="font-nunito font-medium">{formTime}</h1>
+                <h1 className="font-nunito font-medium">{initalTime}</h1>
             </div>
             <div className="flex justify-between items-center font-nunito mt-2">
                 <div>
@@ -68,7 +104,7 @@ const PaymentData = ( userEmail, division, district, upazila, area, fromDate, fo
                     <h1 className="font-bold font-nunito">Base Price:</h1>
                     <p className="font-nunito">Per day</p>
                 </div>
-                <h1 className="font-nunito font-medium">৳ {rental_price * 120}</h1>
+                <h1 className="font-nunito font-medium">৳ {rentalPrice}</h1>
             </div>
             <div className="flex justify-between items-center font-nunito mt-2">
                 <div>
@@ -82,7 +118,7 @@ const PaymentData = ( userEmail, division, district, upazila, area, fromDate, fo
                     <h1 className="font-bold font-nunito">Renting Cost</h1>
                     <p className="font-nunito">Cost on total hours</p>
                 </div>
-                <h1 className="font-nunito font-medium">৳ {totalPayCost * 120}</h1>
+                <h1 className="font-nunito font-medium">৳ {totalPayCost}</h1>
             </div>
             {
                 method === "driver" && <>
@@ -91,7 +127,7 @@ const PaymentData = ( userEmail, division, district, upazila, area, fromDate, fo
                             <h1 className="font-bold font-nunito">Driver Cost</h1>
                             <p className="font-nunito">If you select need driver method</p>
                         </div>
-                        <h1 className="font-nunito font-medium">৳ {drivingCost * 120}</h1>
+                        <h1 className="font-nunito font-medium">৳ {drivingCost}</h1>
                     </div>
                 </>
             }
@@ -99,14 +135,14 @@ const PaymentData = ( userEmail, division, district, upazila, area, fromDate, fo
                 <div>
                     <h1 className="font-bold font-nunito">Discount</h1>
                 </div>
-                <h1 className="font-nunito font-medium">৳ {discount * 120}</h1>
+                <h1 className="font-nunito font-medium">৳ {discount}</h1>
             </div>
             <div className="flex justify-between items-center font-nunito mt-2">
                 <div>
                     <h1 className="font-bold font-nunito text-lg">Total cost</h1>
                     <p className="font-nunito font-medium">Total cost you need to pay</p>
                 </div>
-                <h1 className="font-nunito font-bold">৳ {totalPayment * 120}</h1>
+                <h1 className="font-nunito font-bold">৳ {totalPayment}</h1>
             </div>
             <form
                 className="mt-2"
@@ -114,6 +150,7 @@ const PaymentData = ( userEmail, division, district, upazila, area, fromDate, fo
                 <button type="submit" className="bg-primary rounded-xl py-1 w-full text-white font-medium font-nunito hover:bg-black duration-500">Confirm booking</button>
             </form>
         </div>
+
     );
 };
 

@@ -20,7 +20,7 @@ import { Helmet } from "react-helmet-async";
 
 const BookingInfo = () => {
     const location = useLocation();
-    const bookingInformation = location.state;
+
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
     const [discount, setDiscount] = useState(0);
@@ -33,17 +33,34 @@ const BookingInfo = () => {
     const [isModalVisible, setModalVisible] = useState(false);
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
-    const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {};
 
-    const fromDate = bookingInformation?.fromDate;
-    const toDate = bookingInformation?.untilDate
-    const formTime = bookingInformation?.fromTime;
-    const toTime = bookingInformation?.untilTime;
-    const division = bookingInformation?.division;
-    const district = bookingInformation?.district;
-    const upazila = bookingInformation?.upazilla;
-    const area = bookingInformation?.area;
-    const carId = bookingInformation?.data?._id;
+    const {
+        area,
+        district,
+        division,
+        initailDate, 
+        initalTime, 
+        toDate, 
+        toTime, 
+        upazilla,
+        carData,
+        agencyInfo
+    } = location.state || {};
+
+    const {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        userEmail: agencyEmail,
+        agency_id
+    } = agencyInfo || {};
+
+    const carID = carData._id
+    const rentalPrice = carData?.rentalPrice
 
     const handleChange = (e) => {
         setLoading(true);
@@ -52,13 +69,14 @@ const BookingInfo = () => {
         if (drivingMethod === 'driver') {
             setModalVisible(true);
         }
+
         setMethod(drivingMethod);
 
         setTimeout(() => {
-            const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime);
+            const totalHours = calculateHoursDifference(initailDate, initalTime, toDate, toTime);
             setTotalRentHours(totalHours)
 
-            const Cost = totalHours * rental_price / 24;
+            const Cost = totalHours * carData?.rentalPrice / 24;
             const calculatedCost = Math.ceil(Cost);
             setTotalPayCost(calculatedCost)
 
@@ -73,6 +91,29 @@ const BookingInfo = () => {
             setLoading(false);
         }, 1000)
     }
+
+    const paymentInfo = {
+        initailDate, 
+        initalTime, 
+        toDate, 
+        toTime, 
+        totalRentHours,
+        totalPayCost,
+        totalPayment,
+        method,
+        discount,
+        drivingCost,
+        userEmail,
+        agencyEmail,
+        agency_id,
+        carID,
+        rentalPrice,
+        division,
+        district,
+        upazilla,
+        area
+    }
+
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
             <Helmet>
@@ -85,9 +126,9 @@ const BookingInfo = () => {
                         <div>
                             <h1 className="text-2xl font-semibold font-merriweather">Your selected car</h1>
                             <div className="flex gap-5 border-b-2 border-primary border-dashed pb-3">
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"><FaCarSide className="text-primary text-lg" /> {brand} {model}</p>
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <MdAirlineSeatReclineNormal className="text-primary text-lg" /> Seats: {seats}</p>
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <SlCalender className="text-primary text-lg" /> Year: {build_year}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"><FaCarSide className="text-primary text-lg" /> {carData?.brand} {carData?.model}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <MdAirlineSeatReclineNormal className="text-primary text-lg" /> Seats: {carData?.seat}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <SlCalender className="text-primary text-lg" /> Year: {carData?.buildYear}</p>
                             </div>
                         </div>
 
@@ -104,7 +145,7 @@ const BookingInfo = () => {
                     </div>
 
                     <div className="flex flex-col lg:flex-row items-center justify-between relative">
-                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={photo} alt={brand} />
+                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={carData?.image} alt={carData?.brand} />
 
                         <div>
                             <form
@@ -168,7 +209,6 @@ const BookingInfo = () => {
                 </header>
                 {/* upper section ends */}
 
-
                 {/* lower section starts */}
                 <main className=" mt-3">
                     <div>
@@ -182,13 +222,13 @@ const BookingInfo = () => {
 
                             <div className="mt-5">
                                 <TabPanel>
-                                    <CarData brand={brand} model={model} build_year={build_year} fuel={fuel} gear={gear} mileage={mileage} photo={photo} seats={seats} rental_price={rental_price} license_number={license_number} expire_date={expire_date} ></CarData>
+                                    <CarData brand={carData?.brand} model={carData?.model} buildYear={carData?.buildYear} fuel={carData?.fuel} gear={carData?.gear} mileage={carData?.mileage} image={carData?.image} seats={carData?.seat} rentalPrice={carData?.rentalPrice} licenseNumber={carData?.licenseNumber} expireDate={carData?.expireDate} ></CarData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-36`}>
-                                    <AgencyData></AgencyData>
+                                    <AgencyData agencyName={agencyName} agencyAddress={agencyAddress} businessRegNumber={businessRegNumber} insuranceLicenseNumber={insuranceLicenseNumber} numberOfVehicles={numberOfVehicles} taxIdentificationNumber={taxIdentificationNumber} transportLicenseNumber={transportLicenseNumber} agencyEmail={agencyEmail} agency_id={agency_id}></AgencyData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[330px] lg:w-64`}>
-                                    <BookingData fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} division={division} district={district} upazila={upazila} area={area}></BookingData>
+                                    <BookingData area={area} district={district } division={division} fromDate={initailDate} fromTime={initalTime} untilDate={toDate} untilTime={toTime} upazilla={upazilla}></BookingData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[510px]`}>
                                     <UserData firstName={firstName} lastName={lastName} userEmail={userEmail} phone={phone} gender={gender} nid={nid} drivingLicense={drivingLicense} ></UserData>
@@ -202,11 +242,11 @@ const BookingInfo = () => {
 
             {/* right part */}
             <section className=" lg:w-[33%] px-7 py-8 shadow-xl rounded-xl " >
-
-            <PaymentData  userEmail ={userEmail} division ={division} district ={district} upazila ={upazila} area ={area} fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} method={method} rental_price={rental_price} totalRentHours={totalRentHours} totalPayCost={totalPayCost} drivingCost={drivingCost} discount={discount} totalPayment={totalPayment} carId={carId}></PaymentData>
+                <PaymentData paymentInfo={paymentInfo}></PaymentData>
             </section >
 
         </div >
+
     );
 };
 
