@@ -3,6 +3,8 @@ import MenuItem from "./MenuItem";
 import { FaCar, FaCarSide, FaHistory } from "react-icons/fa";
 import {  MdOutlineRateReview } from "react-icons/md";
 import { GiRadioactive } from "react-icons/gi";
+import { FaBell } from "react-icons/fa6";
+
 
 const AgencyMenuItems = () => {
     return (
@@ -14,6 +16,9 @@ const AgencyMenuItems = () => {
             {/* <MenuItem label={"Booking Request "} address={'/dashboard/agency/booking-request'} icon={MdOutlineBook}></MenuItem> */}
             <MenuItem label={"Active Booking "} address={'/dashboard/agency/active-booking'} icon={GiRadioactive}></MenuItem>
             <MenuItem label={"Review & Feedback "} address={'/dashboard/agency/review-from-customers'} icon={MdOutlineRateReview}></MenuItem>
+
+            <MenuItem label={""} address={'/dashboard/ag'} icon={FaBell}></MenuItem>
+            
         </div>
     );
 };
