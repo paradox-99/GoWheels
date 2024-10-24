@@ -3,7 +3,7 @@ import useDesignation from "../../hooks/useDesignation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { FaStar } from "react-icons/fa"; 
+import { FaStar } from "react-icons/fa";
 
 const ReviewFromCustomer = () => {
     const [reviews, setReviews] = useState([]);
@@ -29,13 +29,12 @@ const ReviewFromCustomer = () => {
     }, [agency_id, reload]);
 
     const handleResponseSubmit = async (reviewId, response) => {
-        console.log("submit review");
         try {
             const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/feedbackRoute/feedback/${reviewId}?agency=true`, { agencyResponse: response });
 
             if (data.modifiedCount === 1) {
-                toast.success('Response send successfully');
-                setReload(!reload); 
+                toast.success('Response sent successfully');
+                setReload(!reload);
             }
         } catch (error) {
             console.error('Error submitting response:', error);
@@ -48,28 +47,28 @@ const ReviewFromCustomer = () => {
                 <title>Review from Customers</title>
             </Helmet>
 
-            {isLoading ? (
-                <h1>Loading...</h1>
-            ) : (
-                    <div className="mt-12 lg:px-12">
-                        <h1 className="text-4xl mb-8">My Customer Reviews</h1>
-                        <div className="">
-                            {reviews.map(review => (
-                                <div key={review._id} className="p-6 border my-12 rounded-lg  w-full">
-                                    <div className="w-full relative">
+            <div className="mt-12 lg:px-12">
+                <h1 className="text-4xl mb-8">My Customer Reviews</h1>
 
-                                    </div>
+                {isLoading ? (
+                    <img className="w-48" src={"/loading2.gif"} alt="Loading" />
+                ) : (
+                    <div className="">
+                        {reviews
+                            .sort((a, b) => (a.agencyResponse ? 1 : -1))
+                            .map(review => (
+                                <div key={review._id} style={{ boxShadow: "0px 0px 20px #D9DADA" }} className="p-6 my-12 rounded-lg w-full">
 
                                     <div className="flex justify-between mt-4">
                                         <div className="flex w-[600px] space-x-4">
-                                            <img src={review.userImage} alt={review.userName} className="w-16 h-16 rounded-full" />
+                                            <img src={review.userImage} alt={review.userName} className="size-10 rounded-full" />
                                             <div>
                                                 <div className="flex justify-between">
                                                     <div>
-                                                        <h2 className="text-xl font-semibold">{review.userName}</h2>
-                                                        <p>{new Date(review.date).toLocaleDateString()}</p>
+                                                        <h2 className="font-semibold">{review.userName}</h2>
+                                                        <p className="text-sm">{new Date(review.date).toLocaleDateString()}</p>
                                                     </div>
-                                                    <div className="flex gap-4 items-center ">
+                                                    <div className="flex gap-4 items-center">
                                                         <p className="">Overall Rating :</p>
                                                         <div className="flex">
                                                             {[...Array(5)].map((_, index) => (
@@ -82,14 +81,13 @@ const ReviewFromCustomer = () => {
                                                     </div>
                                                 </div>
 
-                                                <div className="mt-12 -ml-16">
-                                                    <p className="font-semibold text-lg mt-2">Review : </p>
+                                                <div className="mt-8  -ml-16">
+                                                    <p className="mt-2">Review :</p>
                                                     <div className="mt-2 border rounded-xl w-full p-6 ml-6 text-lg font-light">
                                                         <p>{review.review}</p>
 
-
                                                         {review.agencyResponse ? (
-                                                            <div className="mt-4 p-4 bg-green-100 text-green-700 rounded">
+                                                            <div className="mt-4 w-[500px] p-4 bg-green-100 text-green-700 rounded">
                                                                 <strong>Your Response:</strong> {review.agencyResponse}
                                                             </div>
                                                         ) : (
@@ -98,23 +96,19 @@ const ReviewFromCustomer = () => {
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                         <div className="w-[300px]">
-                                            <h3 className=" left-4 bottom-4 text-2xl font-semibold px-2 py-1 rounded">
+                                            <h3 className="left-4 bottom-4 text-2xl font-semibold px-2 py-1 rounded">
                                                 {review.carName}
                                             </h3>
                                             <img src={review.reviewImage} alt={review.carName} className="w-full h-[200px] mt-4 object-cover rounded-lg" />
                                         </div>
                                     </div>
-
                                 </div>
                             ))}
-                        </div>
                     </div>
-            )}
-            
+                )}
+            </div>
         </div>
     );
 };
@@ -122,21 +116,29 @@ const ReviewFromCustomer = () => {
 const ResponseForm = ({ reviewId, onSubmit }) => {
     const [response, setResponse] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [showRedShadow, setShowRedShadow] = useState(true); 
+    const [showRedShadow, setShowRedShadow] = useState(false);
 
     useEffect(() => {
-       
-        const timer = setTimeout(() => {
-            setShowRedShadow(false);
-        }, 1000);
 
-        return () => clearTimeout(timer);
+        const startTimer = setTimeout(() => {
+            setShowRedShadow(true);
+
+            const stopTimer = setTimeout(() => {
+                setShowRedShadow(false);
+            }, 1000);
+
+            return () => clearTimeout(stopTimer);
+
+        }, 800);
+
+        return () => clearTimeout(startTimer);
     }, []);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit(reviewId, response);
-        setIsSubmitted(true); 
+        setIsSubmitted(true);
     };
 
     if (isSubmitted) {
@@ -146,13 +148,17 @@ const ResponseForm = ({ reviewId, onSubmit }) => {
     return (
         <form onSubmit={handleSubmit} className="mt-4">
             <textarea
-                className={`w-[400px] p-2 border rounded-lg ${showRedShadow ? 'shadow-red' : ''}`}
+                className={`p-2 border rounded-lg ${showRedShadow ? 'shadow-red' : ''}`}
                 placeholder="Write your response..."
                 value={response}
                 onChange={(e) => setResponse(e.target.value)}
                 required
             ></textarea>
-            <div></div>
+            <div>
+                <button type="submit" className="mt-2 text-sm px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                    Submit Response
+                </button>
+            </div>
 
             <style>{`
                 .shadow-red {
