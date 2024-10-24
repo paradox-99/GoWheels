@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const MenuItem = ({ label, address, icon: Icon, children }) => {
+const MenuItem = ({ label, address, icon: Icon }) => {
   return (
     <NavLink
       to={address}
@@ -16,7 +16,7 @@ const MenuItem = ({ label, address, icon: Icon, children }) => {
     >
       {Icon && <Icon className="w-5 h-5" />}
       <span className="mx-4 font-medium">{label}</span>
-      {children}
+      {/* {children} */}
     </NavLink>
   );
 };
