@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Title from "../../../components/Title/Title";
 import FeaturedCarts from "../../../components/cart/FeaturedCarts";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";

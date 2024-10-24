@@ -154,7 +154,7 @@ const ViewDetails = () => {
                     {/* Image Section */}
                     <div className="mx-auto lg:w-[580px] px-6 md:px-6 lg:px-0 flex-grow">
                         <div className="image-container">
-                            <img className="lg:w-[580px]" src={data?.vehicle_info.photo} alt={data?.vehicle_info.name} />
+                            <img className="lg:w-[580px]" src={data?.vehicle_info?.photo} alt={data?.vehicle_info?.name} />
                         </div>
                         <div className="flex flex-row-reverse mt-12 relative">
                             <button
@@ -172,16 +172,16 @@ const ViewDetails = () => {
 
                     {/* Details Section */}
                     <div className="p-6 lg:mt-0 lg:w-1/2">
-                        <h2 className="text-4xl mb-4 font-bold text-secondary font-nunito text-heading">{data?.vehicle_info.brand}<span className="ml-3">{data?.vehicle_info.model}</span></h2>
+                        <h2 className="text-4xl mb-4 font-bold text-secondary font-nunito text-heading">{data?.vehicle_info.brand}<span className="ml-3">{data?.vehicle_info?.model}</span></h2>
                         <div className="flex gap-6">
-                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{data?.vehicle_info.brand}</h3>
+                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{data?.vehicle_info?.brand}</h3>
                             <p className="dark:text-heading2">Model: <span className="bg-[#FFEEE9] px-1 rounded-md text-black">{data?.vehicle_info.model}</span></p>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-heading">
                             <div className="flex flex-col py-2 px-10 items-center border border-gray-300 rounded-md">
                                 <FcDepartment className="text-4xl" />
                                 <span className="font-light mt-2">Build:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.build_year}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info?.build_year}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcPieChart className="text-4xl" />
@@ -196,7 +196,7 @@ const ViewDetails = () => {
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcHeatMap className="text-4xl" />
                                 <span className="font-light mt-2">Transmission:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info.transmission_type}</span>
+                                <span className="text-lg font-semibold font-secondary">{data?.vehicle_info?.transmission_type}</span>
                             </div>
                         </div>
 
@@ -221,11 +221,11 @@ const ViewDetails = () => {
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>License Number: {data?.vehicle_info.license_number}</span>
+                                <span>License Number: {data?.vehicle_info?.license_number}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Expire Date: {data?.vehicle_info.expire_date}</span>
+                                <span>Expire Date: {data?.vehicle_info?.expire_date}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
@@ -233,7 +233,7 @@ const ViewDetails = () => {
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Issuing Authority: {data?.vehicle_info.issuing_authority}</span>
+                                <span>Issuing Authority: {data?.vehicle_info?.issuing_authority}</span>
                             </li>
                         </ul>
                     </div>
@@ -247,23 +247,23 @@ const ViewDetails = () => {
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Insurance Number: {data?.vehicle_info.insurance_number}</span>
+                                <span>Insurance Number: {data?.vehicle_info?.insurance_number}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Period: {data?.vehicle_info.insurance_coverage_period}</span>
+                                <span>Coverage Period: {data?.vehicle_info?.insurance_coverage_period}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Provider: {data?.vehicle_info.insurance_details.provider}</span>
+                                <span>Provider: {data?.vehicle_info?.insurance_details?.provider}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Type: {data?.vehicle_info.insurance_details.coverage_type}</span>
+                                <span>Coverage Type: {data?.vehicle_info?.insurance_details?.coverage_type}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Deductible: ৳ {data?.vehicle_info.insurance_details.deductible * 120}</span>
+                                <span>Deductible: ৳ {data?.vehicle_info?.insurance_details?.deductible * 120}</span>
                             </li>
                         </ul>
                     </div>

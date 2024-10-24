@@ -1,4 +1,4 @@
-import { element } from "prop-types";
+
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 import AdminHome from "../Dashboard/Admin/AdminHome";

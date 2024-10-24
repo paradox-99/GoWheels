@@ -34,7 +34,8 @@ const UserHome = () => {
             const fetchBookedCars = async () => {
                 try {
                     const response = await axios.get(`http://localhost:3000/api/bookings/user/${userID}/booked-cars`);
-                    setBookedCars(response.data.bookedCars);
+                    console.log(response.data)
+                    setBookedCars(response.data?.bookedCars);
                     setLoading(false);
                 } catch (error) {
                     console.error('Error fetching booked cars:', error);
@@ -51,6 +52,8 @@ const UserHome = () => {
     const totalBookings = 12;
     const pendingBookings = 3;
     const confirmedBookings = 8;
+
+    console.log(bookedCars)
 
 
     const data = {

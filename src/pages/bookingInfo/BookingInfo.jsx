@@ -45,7 +45,8 @@ const BookingInfo = () => {
     const area = bookingInformation?.area;
     const carId = bookingInformation?.data?._id;
 
-    console.log(bookingInformation?.carId)
+    // console.log(bookingInformation?.carId)
+    console.log(fromDate, formTime, toDate, toTime)
 
     const handleChange = (e) => {
         setLoading(true);
@@ -60,6 +61,8 @@ const BookingInfo = () => {
         setTimeout(() => {
             const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime);
             setTotalRentHours(totalHours)
+
+            console.log(totalHours)
 
             const Cost = totalHours * rental_price / 24;
             const calculatedCost = Math.ceil(Cost);

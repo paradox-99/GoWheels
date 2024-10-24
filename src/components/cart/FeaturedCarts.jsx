@@ -18,7 +18,7 @@ const FeaturedCarts = ({ car, carBookingInfo }) => {
     <div>
       <div className="w-full p-5 rounded-lg shadow-2xl">
         <figure className="h-60">
-          <img src={car?.vehicle_info?.photo} alt="" className="rounded-lg h-full w-full" />
+          <img src={car?.vehicle_info?.photo} alt="" className="rounded-lg h-full w-full object-cover" />
         </figure>
         <div className="pt-5 flex justify-between items-center pb-3">
           <h2 className="text-3xl font-bold">{car?.vehicle_info?.brand}</h2>

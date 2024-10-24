@@ -12,31 +12,31 @@ const PaymentPage = () => {
 
     const {
         brand,
-        model,
-        build_year,
-        fuel,
-        gear,
-        mileage,
-        photo,
-        seats,
-        rental_price,
-        license_number,
-        expire_date,
-        firstName,
-        lastName,
-        userEmail,
-        phone,
-        gender,
-        image,
-        drivingMethod,
+        // model,
+        // build_year,
+        // fuel,
+        // gear,
+        // mileage,
+        // photo,
+        // seats,
+        // rental_price,
+        // license_number,
+        // expire_date,
+        // firstName,
+        // lastName,
+        // userEmail,
+        // phone,
+        // gender,
+        // image,
+        // drivingMethod,
         fromDate,
         toDate,
         formTime,
         toTime,
-        division,
-        district,
-        upazila,
-        area
+        // division,
+        // district,
+        // upazila,
+        // area
     } = paymentInfo || {}
 
     const startDate = fromDate;
@@ -63,15 +63,15 @@ const PaymentPage = () => {
 
     console.log(location)
 
-    // const handlePaymentSystem = async () => {
-    //     const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
-    //     await axiosPublic.post('/payment/order', data)
-    //         .then(res => {
-    //             window.location.replace(res.data?.url)
-    //             console.log(res.data)
-    //         })
+    const handlePaymentSystem = async () => {
+        const data = { productId: "66f68ed93ba27ae469fcf581", cus_name: "Masum", address: "GoWheel" }
+        await axiosPublic.post('/payment/order', data)
+            .then(res => {
+                window.location.replace(res.data?.url)
+                console.log(res.data)
+            })
 
-    // }
+    }
 
 
     return (

@@ -98,7 +98,7 @@ const Dashboard = () => {
               </div>
 
               <div className="px-2 space-y-2 pt-8 pb-4">
-                {menuItems[userInfo.userRole]?.map((item, index) => (
+                {menuItems["driver"]?.map((item, index) => (
                   <NavLink
                     key={index}
                     to={item.to}
