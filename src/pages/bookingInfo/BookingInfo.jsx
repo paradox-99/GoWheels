@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import useDesignation from "../../hooks/useDesignation";
@@ -23,6 +24,7 @@ const BookingInfo = () => {
 
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
+    
     const [discount, setDiscount] = useState(0);
     const [drivingCost, setDrivingCost] = useState(0);
     const [totalPayment, setTotalPayment] = useState(0);
@@ -31,6 +33,8 @@ const BookingInfo = () => {
     const [totalRentHours, setTotalRentHours] = useState(0);
     const [loading, setLoading] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
+    const [showDriverMessage, setShowDriverMessage] = useState(false);
+    const {driverInfo, age} = location.state || {}; 
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
 
@@ -89,17 +93,31 @@ const BookingInfo = () => {
         agency_id
     } = agencyInfo || {};
 
-    const carID = carData._id
+    useEffect(() => {
+        const savedMethod = localStorage.getItem('method');
+
+        if (savedMethod === 'driver') {
+            setMethod('driver');
+            setShowDriverMessage(true);
+        } else if (savedMethod === 'self') {
+            setMethod('self');
+        }
+    }, []);
 
     const handleChange = (e) => {
         setLoading(true);
         const drivingMethod = e.target.value
-
         if (drivingMethod === 'driver') {
-            setModalVisible(true);
+            setShowDriverMessage(true);
+        } else {
+            setShowDriverMessage(false);
         }
 
         setMethod(drivingMethod);
+        localStorage.setItem('method', drivingMethod);
+        setMethod(drivingMethod);
+          localStorage.setItem('method', drivingMethod);
+
 
         setTimeout(() => {
             const totalHours = calculateHoursDifference(initailDate, initalTime, toDate, toTime);
@@ -121,6 +139,7 @@ const BookingInfo = () => {
         }, 1000)
     }
 
+
     const paymentInfo = {
         initailDate,
         initalTime,
@@ -135,7 +154,7 @@ const BookingInfo = () => {
         userEmail,
         agencyEmail,
         agency_id,
-        carID,
+        _id,
         rentalPrice,
         division,
         district,
@@ -192,16 +211,27 @@ const BookingInfo = () => {
                                         />
                                         <label>Self Driving</label><br />
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                            onChange={handleChange}
-                                            type="radio"
-                                            name="driving-method"
-                                            id="driver"
-                                            value="driver"
-                                            checked={method === 'driver'}
-                                        />
-                                        <label>Need Driver</label><br />
+                                    <div className="flex flex-col items-start gap-2">
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                onChange={handleChange}
+                                                type="radio"
+                                                name="driving-method"
+                                                id="driver"
+                                                value="driver"
+                                                checked={method === 'driver'}
+                                            />
+                                            <label htmlFor="driver">Need Driver</label>
+                                        </div>
+
+                                        {/* Conditionally render the Get Your Driver message */}
+                                        {showDriverMessage && (
+                                            <div className="mt-2">
+                                                <Link to={'/driverList'}>
+                                                    <button className="border-primary border p-1 text-xs rounded-md">Get your driver</button>
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </form>
@@ -247,6 +277,7 @@ const BookingInfo = () => {
                                 <Tab>Agency Information</Tab>
                                 <Tab>Booking Information</Tab>
                                 <Tab>User Information</Tab>
+                                <Tab>Driver Info</Tab>
                             </TabList>
 
                             <div className="mt-5">
@@ -261,6 +292,15 @@ const BookingInfo = () => {
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[510px]`}>
                                     <UserData firstName={firstName} lastName={lastName} userEmail={userEmail} phone={phone} gender={gender} nid={nid} drivingLicense={drivingLicense} ></UserData>
+                                </TabPanel>
+                                <TabPanel className={`lg:ml-[510px]`}>
+                                    <p><span className="font-bold">Driver Name</span>: {driverInfo?.firstName} {driverInfo?.lastName} </p>
+                                    <p><span className="font-bold">Gender</span>: {driverInfo?.gender}</p>
+                                    <p><span className="font-bold">Age</span>: {age}</p>
+                                    <p><span className="font-bold">Email</span>: {driverInfo?.userEmail}</p>
+                                    <span className="font-bold"><h1>phone: {driverInfo?.phone}</h1></span>
+
+                                    <p className=" font-bold"><span className="font-bold">Address</span>:  {driverInfo?.userAddress.division} <span className="text-black">,</span> {driverInfo?.userAddress.district} <span className="text-black"></span>,{driverInfo?.userAddress.upazilla}</p>
                                 </TabPanel>
                             </div>
                         </Tabs>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit, FcList, FcViewDetails, FcSalesPerformance } from "react-icons/fc";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaCheckCircle } from "react-icons/fa"; // For green check icon
+// import { FaCheckCircle } from "react-icons/fa"; // For green check icon
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

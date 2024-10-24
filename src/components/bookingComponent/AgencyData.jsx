@@ -27,7 +27,7 @@ const AgencyData = ({ agencyName, agencyAddress, businessRegNumber, insuranceLic
 
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><TbLicense className="text-xl text-primary" /> License Upazila: {agencyAddress?.upazilla}</h1>
                     {
-                        agencyAddress.area && <>
+                        agencyAddress?.area && <>
                             <h1 className="flex items-center gap-2 font-nunito font-medium "><TbLicense className="text-xl text-primary" /> area: {agencyAddress?.area}</h1>
                         </>
                     }

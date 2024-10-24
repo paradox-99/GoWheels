@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
 const useOtpTimer = () => {
-    const [timer, setTimer] = useState(60);
+    const [timer, setTimer] = useState(120);
     const [isDisabled, setIsDisabled] = useState(true);
     const [message, setMessage] = useState("");
     const [otpSent, setOtpSent] = useState(false);
 
-    const OTP_EXPIRATION_TIME = 60;
+    const OTP_EXPIRATION_TIME = 120;
 
     useEffect(() => {
         // Check if there's already a saved expiration time
