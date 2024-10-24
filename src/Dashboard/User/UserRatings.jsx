@@ -22,7 +22,7 @@ const UserRatings = () => {
         const fetchReviews = async () => {
             setIsLoading(true);  
             try {
-                const response = await axios.get(`https://go-wheels-server.vercel.app/api/feedbackRoute/feedbacks/${userId}?user=true`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/feedbackRoute/feedbacks/${userId}?user=true`);
                 setReviews(response.data);
                 setIsLoading(false);  
             } catch (error) {
@@ -57,10 +57,10 @@ const UserRatings = () => {
                 rating: editRating,
             };
 
-            const { data } = await axios.put(`https://go-wheels-server.vercel.app/api/feedbackRoute/feedback/${selectedReview._id}`, updatedReview);
+            const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/feedbackRoute/feedback/${selectedReview._id}`, updatedReview);
 
             if (data.modifiedCount === 1) {
-                setReload(true);
+                setReload(!reload);
                 toast.success('Feedback updated successfully');
             }
             setIsModalOpen(false);
