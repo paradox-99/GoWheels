@@ -13,7 +13,7 @@ import { MdError } from "react-icons/md";
 
 
 const Filter = () => {
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState('');
   const [errorMessage, setErrorMessage] = useState("");
   const [address, setAddress] = useState();
@@ -37,6 +37,8 @@ const Filter = () => {
 
   const handleFilter = async (e) => {
     e.preventDefault();
+
+    setErrorMessage("")
 
     const division = address.selectedDivision;
     const district = address.selectedDistrict;
@@ -67,7 +69,9 @@ const Filter = () => {
     try {
       const { data } = await axiosPublic.get('/carsRoute/getSearchData', { params: filterData });
 
-      if (data.message === "No car found with the provided details" || data.message === "No cars available for the selected dates/times") {
+      console.log
+
+      if (data.message === "No car found with the provided details") {
         setErrorMessage(data.message);
         setSearchResult([]);
         return;
@@ -153,7 +157,7 @@ const Filter = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {
-          searchResult.length > 0 && <>
+          searchResult && <>
             <FeaturedCarts
               searchResult={searchResult}
               carBookingInfo={carBookingInfo}

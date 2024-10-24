@@ -5,7 +5,18 @@ import { FaMapLocation } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa6";
 import { IoLocation } from "react-icons/io5";
 
-const BookingData = ({ fromDate, fromTime, untilDate, untilTime, division, district, upazilla, area }) => {
+const BookingData = ({ bookingInfo}) => {
+
+    const {
+        division,
+        district,
+        upazilla,
+        area,
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
+    } = bookingInfo
 
     return (
         <div>
@@ -16,13 +27,13 @@ const BookingData = ({ fromDate, fromTime, untilDate, untilTime, division, distr
 
             <div>
                 <div className="mt-2 space-y-1">
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><SlCalender className="text-xl text-primary" /> From Date: {fromDate}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><SlCalender className="text-xl text-primary" /> From Date: {initailDate}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />From Time: {fromTime}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />From Time: {initalTime}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><SlCalender className="text-xl text-primary" />To Date: {untilDate}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><SlCalender className="text-xl text-primary" />To Date: {toDate}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />To Time: {untilTime}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />To Time: {toTime}</h1>
 
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlineMyLocation className="text-xl text-primary" /> Division: {division}</h1>
 
