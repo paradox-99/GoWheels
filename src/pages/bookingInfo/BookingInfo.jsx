@@ -24,7 +24,7 @@ const BookingInfo = () => {
 
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
-    
+
     const [discount, setDiscount] = useState(0);
     const [drivingCost, setDrivingCost] = useState(0);
     const [totalPayment, setTotalPayment] = useState(0);
@@ -34,7 +34,7 @@ const BookingInfo = () => {
     const [loading, setLoading] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const [showDriverMessage, setShowDriverMessage] = useState(false);
-    const {driverInfo, age} = location.state || {}; 
+    const { driverInfo, age } = location.state || {};
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
 
@@ -66,6 +66,41 @@ const BookingInfo = () => {
         expireDate
     } = carData || {}
 
+    const {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        userEmail: agencyEmail,
+        agency_id
+    } = agencyInfo || {};
+
+    const bookingInfo = {
+        division,
+        district,
+        upazilla,
+        area,
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
+    }
+
+    const AgencyInformation = {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        agencyEmail,
+        agency_id
+    }
+
     const carInformation = {
         _id,
         brand,
@@ -81,17 +116,17 @@ const BookingInfo = () => {
         expireDate
     }
 
-    const {
-        agencyName,
-        agencyAddress,
-        businessRegNumber,
-        insuranceLicenseNumber,
-        numberOfVehicles,
-        taxIdentificationNumber,
-        transportLicenseNumber,
-        userEmail: agencyEmail,
-        agency_id
-    } = agencyInfo || {};
+    const userInformation = {
+        firstName,
+        lastName,
+        userEmail,
+        phone,
+        gender,
+        image,
+        circleImage,
+        nid,
+        drivingLicense
+    }
 
     useEffect(() => {
         const savedMethod = localStorage.getItem('method');
@@ -116,7 +151,7 @@ const BookingInfo = () => {
         setMethod(drivingMethod);
         localStorage.setItem('method', drivingMethod);
         setMethod(drivingMethod);
-          localStorage.setItem('method', drivingMethod);
+        localStorage.setItem('method', drivingMethod);
 
 
         setTimeout(() => {
@@ -285,13 +320,13 @@ const BookingInfo = () => {
                                     <CarData carInformation={carInformation} ></CarData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-36`}>
-                                    <AgencyData agencyName={agencyName} agencyAddress={agencyAddress} businessRegNumber={businessRegNumber} insuranceLicenseNumber={insuranceLicenseNumber} numberOfVehicles={numberOfVehicles} taxIdentificationNumber={taxIdentificationNumber} transportLicenseNumber={transportLicenseNumber} agencyEmail={agencyEmail} agency_id={agency_id}></AgencyData>
+                                    <AgencyData AgencyInformation={AgencyInformation}></AgencyData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[330px] lg:w-64`}>
-                                    <BookingData area={area} district={district} division={division} fromDate={initailDate} fromTime={initalTime} untilDate={toDate} untilTime={toTime} upazilla={upazilla}></BookingData>
+                                    <BookingData bookingInfo={bookingInfo}></BookingData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[510px]`}>
-                                    <UserData firstName={firstName} lastName={lastName} userEmail={userEmail} phone={phone} gender={gender} nid={nid} drivingLicense={drivingLicense} ></UserData>
+                                    <UserData userInformation={userInformation} ></UserData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[510px]`}>
                                     <p><span className="font-bold">Driver Name</span>: {driverInfo?.firstName} {driverInfo?.lastName} </p>
