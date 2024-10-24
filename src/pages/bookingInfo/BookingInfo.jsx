@@ -38,14 +38,44 @@ const BookingInfo = () => {
         area,
         district,
         division,
-        initailDate, 
-        initalTime, 
-        toDate, 
-        toTime, 
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
         upazilla,
         carData,
         agencyInfo
     } = location.state || {};
+
+    const {
+        _id,
+        brand,
+        model,
+        buildYear,
+        fuel,
+        gear,
+        mileage,
+        image: carImage,
+        seat,
+        rentalPrice,
+        licenseNumber,
+        expireDate
+    } = carData || {}
+
+    const carInformation = {
+        _id,
+        brand,
+        model,
+        buildYear,
+        fuel,
+        gear,
+        mileage,
+        carImage,
+        seat,
+        rentalPrice,
+        licenseNumber,
+        expireDate
+    }
 
     const {
         agencyName,
@@ -60,7 +90,6 @@ const BookingInfo = () => {
     } = agencyInfo || {};
 
     const carID = carData._id
-    const rentalPrice = carData?.rentalPrice
 
     const handleChange = (e) => {
         setLoading(true);
@@ -93,10 +122,10 @@ const BookingInfo = () => {
     }
 
     const paymentInfo = {
-        initailDate, 
-        initalTime, 
-        toDate, 
-        toTime, 
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
         totalRentHours,
         totalPayCost,
         totalPayment,
@@ -145,7 +174,7 @@ const BookingInfo = () => {
                     </div>
 
                     <div className="flex flex-col lg:flex-row items-center justify-between relative">
-                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={carData?.image} alt={carData?.brand} />
+                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={carImage} alt={carData?.brand} />
 
                         <div>
                             <form
@@ -222,13 +251,13 @@ const BookingInfo = () => {
 
                             <div className="mt-5">
                                 <TabPanel>
-                                    <CarData brand={carData?.brand} model={carData?.model} buildYear={carData?.buildYear} fuel={carData?.fuel} gear={carData?.gear} mileage={carData?.mileage} image={carData?.image} seats={carData?.seat} rentalPrice={carData?.rentalPrice} licenseNumber={carData?.licenseNumber} expireDate={carData?.expireDate} ></CarData>
+                                    <CarData carInformation={carInformation} ></CarData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-36`}>
                                     <AgencyData agencyName={agencyName} agencyAddress={agencyAddress} businessRegNumber={businessRegNumber} insuranceLicenseNumber={insuranceLicenseNumber} numberOfVehicles={numberOfVehicles} taxIdentificationNumber={taxIdentificationNumber} transportLicenseNumber={transportLicenseNumber} agencyEmail={agencyEmail} agency_id={agency_id}></AgencyData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[330px] lg:w-64`}>
-                                    <BookingData area={area} district={district } division={division} fromDate={initailDate} fromTime={initalTime} untilDate={toDate} untilTime={toTime} upazilla={upazilla}></BookingData>
+                                    <BookingData area={area} district={district} division={division} fromDate={initailDate} fromTime={initalTime} untilDate={toDate} untilTime={toTime} upazilla={upazilla}></BookingData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[510px]`}>
                                     <UserData firstName={firstName} lastName={lastName} userEmail={userEmail} phone={phone} gender={gender} nid={nid} drivingLicense={drivingLicense} ></UserData>
