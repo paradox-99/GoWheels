@@ -1,4 +1,3 @@
-import useDesignation from "./useDesignation";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userDataSlice";
 import { setAgencyData } from "../redux/agencyDataSlice";
