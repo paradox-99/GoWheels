@@ -24,6 +24,9 @@ import DriverBooking from "../Dashboard/Driver/DriverBooking";
 import Notifications from "../Dashboard/User/Notifications";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AgencyVehicleDetails from "../components/AgencyVehicleDetails/AgencyVehicleDetails";
+import Ag from "../Dashboard/Agency/Ag";
+
+
 
 
 export const DashboardRoutes = [
@@ -94,9 +97,18 @@ export const DashboardRoutes = [
                 element: <AgencyStaffManagement></AgencyStaffManagement>,
             },
             {
+                path: "/dashboard/agency/stuff-managment",
+                element: <AgencyStaffManagement></AgencyStaffManagement>,
+            },
+            {
                 path: "/dashboard/agency/customer-management",
                 element: <CustomerManagement></CustomerManagement>
             },
+            {
+                path: "/dashboard/ag",
+                element: <Ag></Ag>,
+            },
+           
             // admin routes
             {
                 path: "admin-home",

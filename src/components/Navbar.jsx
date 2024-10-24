@@ -8,7 +8,6 @@ import { TbMapPinSearch } from "react-icons/tb";
 import { IoMdSearch } from "react-icons/io";
 
 import Swal from "sweetalert2";
-import loaderEliment from '../../public/logo.gif';
 import toast from "react-hot-toast"
 const Navbar = () => {
     const { user, logout, loader } = useAuth();

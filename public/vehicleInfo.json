@@ -24,7 +24,7 @@
       }
     },
     "additional_features": {
-      "air_conditioning": true,
+      "air_conditioning": +,
       "gps": true,
       "bluetooth": true
     }
@@ -54,7 +54,9 @@
       }
     },
     "additional_features": {
-      "air_conditioning": true,
+      "air_conditioning": t
+      
+      rue,
       "gps": true,
       "bluetooth": true
     }

@@ -13,7 +13,6 @@ const Address = ({ getAddress }) => {
     const [keyAreas, setKeyAreas] = useState([]);
     const [visible, setVisible] = useState(false);
 
-
     const handleDivisionChange = (e) => {
         const division = e.target.value;
         setSelectedDivision(division);
@@ -21,7 +20,7 @@ const Address = ({ getAddress }) => {
         setSelectedUpazilla("");
         setDistricts(Object.keys(locationData[division] || {}));
         setVisible(false);
-        setKeyAreas([""]);
+        setKeyAreas([]);
     };
 
     const handleDistrictChange = (e) => {
@@ -41,8 +40,7 @@ const Address = ({ getAddress }) => {
                 setKeyAreas(keyArea["Dhaka South"]);
             }
         } else {
-            setKeyAreas('');
-
+            setKeyAreas([""]);
             const address = { selectedDivision, selectedDistrict, selectedUpazilla: upazilla }
             getAddress(address);
         }
@@ -150,7 +148,7 @@ const Address = ({ getAddress }) => {
                             // disabled={!selectedDistrict || upazillas.length === 0}
                             >
                                 {keyAreas.map((keyArea) => (
-                                    <MenuItem key={keyArea} value={keyArea}>{keyArea}</MenuItem>
+                                    <MenuItem key={keyArea} value={keyArea || ''}>{keyArea}</MenuItem>
                                 ))}
 
                             </Select>
