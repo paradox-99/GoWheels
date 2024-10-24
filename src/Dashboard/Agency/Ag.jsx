@@ -43,6 +43,7 @@ const Ag = () => {
                   <p className="max-w-xs text-sm text-gray-500 truncate">
                     {notif.message}
                   </p>
+                  <p>notification</p>
                 </li>
               ))
             ) : (
