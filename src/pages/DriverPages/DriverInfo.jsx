@@ -8,6 +8,7 @@ import { IoEye, IoEyeOff } from "react-icons/io5";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import backgroundImage from '../../../public/asset/drive.avif'
 import { imageUpload } from "../../api/utilities";
+import { Helmet } from "react-helmet-async";
 
 const DriverInfo = () => {
     // const {loader,} = UseAuth();
@@ -49,9 +50,6 @@ const DriverInfo = () => {
             localAddress,
             
         }
-
-
-
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         setErrorMessage('');
 
@@ -141,6 +139,9 @@ const DriverInfo = () => {
 
     return (
         <div style={{ backgroundImage: `url(${backgroundImage})` }} className='h-screen min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
+            <Helmet>
+                <title>Register || Driver Information</title>
+            </Helmet>
             <div>
                 <h1 className='text-3xl lg:text-3xl text-center mt-10 font-bold  font-merriweather mb-10'>Driver Information</h1>
                 <div className="h-[89vh] flex flex-col-reverse lg:flex-row gap-44 justify-center bg-center bg-cover bg-no-repeat pt-10">

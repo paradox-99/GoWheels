@@ -15,6 +15,7 @@ import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
 import loader from '../../../public/logo.gif'
 import DriverList from "../../components/driverList/DriverList";
 import PaymentData from "../../components/paymentData/PaymentData";
+import { Helmet } from "react-helmet-async";
 
 
 const BookingInfo = () => {
@@ -89,7 +90,9 @@ const BookingInfo = () => {
 
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
-
+            <Helmet>
+                <title>Booking</title>
+            </Helmet>
             <section className="lg:w-[65%] shadow-xl rounded-xl px-5 py-3">
                 {/* upper section starts */}
                 <header>

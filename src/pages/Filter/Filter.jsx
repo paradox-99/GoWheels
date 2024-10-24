@@ -2,11 +2,12 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Address from "../../components/address/Address";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import FeaturedCarts from "../../components/cart/FeaturedCarts";
 import { top_brands } from "../../../public/locationData";
-import toast from "react-hot-toast";
-import { calculateHoursDifference, calculateMaxUntilDate, calculateMinUntilTime, calculateTimeDifference, getMaxDate, getNowTime, getTodayDate } from "../../api/dateTime/dateTimeUtilities";
+import { Helmet } from "react-helmet-async";
+import TimePicker from "../../components/address/TimePicker";
+
 
 const Filter = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -14,98 +15,7 @@ const Filter = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const [carBookingInfo, setCarBookingInfo] = useState(null);
-
-  const ref1 = useRef();
-  const ref2 = useRef();
-  const ref3 = useRef();
-  const ref4 = useRef();
-
-  // from date and time states
-  const [todayDate, setTodayDate] = useState("");
-  const [maxDate, setMaxDate] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
-  const [nowTime, setNowTime] = useState("");
-
-  // to date and time states
-  const [selectUntilDate, setSelectUntildate] = useState("");
-  const [maxUntilDate, setMaxUntilDate] = useState("");
-  const [minUntilTime, setMinUntilTime] = useState("");
-
-  // from date and time functions starts
-  useEffect(() => {
-    setTodayDate(getTodayDate());
-    setMaxDate(getMaxDate());
-  }, []);
-
-  const handleDateChange = (e) => {
-    const dateValue = e.target.value;
-    setSelectedDate(dateValue);
-    setMaxUntilDate(calculateMaxUntilDate(dateValue));
-  };
-
-  useEffect(() => {
-    setNowTime(getNowTime());
-  }, []);
-
-
-  const handleBlur = () => {
-    const selectedTime = ref2.current.value;
-    if (selectedDate === todayDate && selectedTime <= nowTime) {
-      toast.error("Don`t select previous or current time ");
-      ref2.current.value = "";
-      return
-    }
-    ref2.current.type = "text";
-  };
-
-  const handleTimeChange = (e) => {
-    const selectedTimeValue = e.target.value;
-    setSelectedTime(selectedTimeValue);
-
-    if (selectedDate === selectUntilDate) {
-      setMinUntilTime(calculateMinUntilTime(selectedTimeValue));
-    } else {
-      setMinUntilTime('');
-    }
-  };
-  // from date and time functions ends
-
-  const isUntilFieldsEnabled = selectedDate && selectedTime;
-
-  // to time and date functionality starts
-  const handleUntilDateChange = (e) => {
-    const untilDateValue = e.target.value;
-    setSelectUntildate(untilDateValue);
-
-    if (selectedDate === untilDateValue && selectedTime) {
-      setMinUntilTime(calculateMinUntilTime(selectedTime));
-    } else {
-      setMinUntilTime('');
-    }
-  };
-
-  const handTimeleBlur = () => {
-    const selectedUntilTime = ref4.current.value;
-
-    const minDiffTime = calculateHoursDifference(selectedDate, selectedTime, selectUntilDate, selectedUntilTime)
-    const timeDiff = calculateTimeDifference(selectedTime, selectedUntilTime)
-
-    if (selectedDate === selectUntilDate && timeDiff < 10) {
-      toast.error("you have to select time at least ten hours ahed of from time");
-      ref4.current.value = "";
-      return
-    }
-    else if (minDiffTime < 10) {
-      toast.error("The minimum time difference should be 10 hours");
-      ref4.current.value = "";
-      return;
-    }
-    ref4.current.type = "text";
-  }
-  // to time and date functionality ends
-
-
+  
   const handleFilter = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -133,7 +43,7 @@ const Filter = () => {
       area
     };
 
-   
+     
 
     const { data } = await axiosPublic.get('/bookings/getSearchData', { params: filterData })
     console.log(data)
@@ -151,20 +61,23 @@ const Filter = () => {
 
   return (
     <div className="my-20 w-full px-4">
+      <Helmet>
+        <title>Search</title>
+      </Helmet>
       <div className="flex justify-center items-center">
         <form
           onSubmit={handleFilter}
           className="flex justify-center items-center flex-col w-fit lg:flex-row px-5 rounded-lg py-5"
         >
-          <div className="flex justify-between items-center flex-col min-[1180px]:flex-row rounded-full gap-10">
+          <div className="flex justify-between items-center flex-col min-[1180px]:flex-row rounded-full gap-6">
             <div className="">
-              <p className="text-lg font-semibold mb-3">Pickup Location</p>
+              <p className="text-lg font-semibold mb-3">Location</p>
               <div className="flex justify-between gap-4 items-center w-full">
                 <Address getAddress={getAddress}></Address>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row gap-5">
-              <div>
+            <div>
+              {/* <div>
                 <p className="text-lg font-semibold mb-3">From</p>
                 <div className="flex justify-center items-center gap-4">
                   <input
@@ -251,7 +164,9 @@ const Filter = () => {
                     min={minUntilTime}
                   />
                 </div>
-              </div>
+              </div> */}
+              <h3 className="font-nunito mb-2">Booking Range</h3>
+              <TimePicker></TimePicker>
             </div>
           </div>
           <div className="lg:ml-4 mt-8 lg:mt-0">

@@ -41,7 +41,7 @@ const AgencyDeatils = () => {
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
-          title: `Rejected successfull`,
+          title: `Rejection successful`,
           text: "Your file has been update.",
           icon: "success",
         });
