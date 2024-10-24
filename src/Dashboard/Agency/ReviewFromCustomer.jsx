@@ -52,6 +52,10 @@ const ReviewFromCustomer = () => {
 
                 {isLoading ? (
                     <img className="w-48" src={"/loading2.gif"} alt="Loading" />
+                ) : reviews?.length === 0 ? (
+                        <div>
+                            <p className="text-gray-600">You do not have any reviews from your customer</p>
+                        </div>
                 ) : (
                     <div className="">
                         {reviews
