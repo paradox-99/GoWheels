@@ -7,6 +7,7 @@ import loaderEliment from '../../../public/logo.gif';
 import GoogleButton from '../../components/GoogleButton';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import useStoreUser from '../../hooks/useStoreUser';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +15,7 @@ const SignIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [loading, setLoading] = useState(false);
+    const {setData} = useStoreUser();
 
     useEffect(() => {
         if (user && loading) {
@@ -32,6 +34,7 @@ const SignIn = () => {
             const result = await userLogin(email, password);
             setUser(result.user)
             toast.success("successfully logged in")
+            setData(email);
             navigate(location?.state ? location.state : '/')
         }
         catch (error) {
