@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaPen, FaStar } from 'react-icons/fa'; 
+import { FaPen, FaStar } from 'react-icons/fa';
 import useDesignation from '../../hooks/useDesignation';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -7,11 +7,10 @@ import toast from 'react-hot-toast';
 
 const ReviewModal = ({ isOpen, onClose, booking }) => {
     const { userInfo } = useDesignation();
-    console.log(userInfo);
-    const [rating, setRating] = useState(0);  
-    const [reviewText, setReviewText] = useState('');  
-    const [imageUrl, setImageUrl] = useState('');  
-
+    const [rating, setRating] = useState(0);
+    const [reviewText, setReviewText] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    // console.log("agency_id", booking);
     if (!isOpen) return null;
 
     const handleRatingChange = (rating) => {
@@ -31,19 +30,20 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
 
         const reviewData = {
             userId: userInfo?._id,
-            carId: booking._id,
+            carId: booking.carId,
             carName: booking?.name,
             userName: userInfo?.firstName + " " + userInfo?.lastName,
             userImage: userInfo?.image,
             carImage: imageUrl,
             review: reviewText,
             rating: rating,
+            agency_id: booking?.agency_id,
             agencyResponse: "",
         };
-
+        console.log("reviewData",reviewData);
         try {
             console.log(reviewData);
-            const response = await axios.post("https://go-wheels-server.vercel.app/api/feedbackRoute/feedback", reviewData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/feedbackRoute/feedback`, reviewData);
 
             if (response.status === 200) {
                 toast.success("Feedback Placed successfully")
@@ -113,7 +113,7 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
 const CommonTable = ({ bookings, loading, error }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedBooking, setSelectedBooking] = useState(null);
-
+    console.log(selectedBooking);
     const handleAddReviewClick = (booking) => {
         setSelectedBooking(booking);
         setIsModalOpen(true);
