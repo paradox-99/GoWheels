@@ -124,7 +124,7 @@ const Navbar = () => {
                                             src={userInfo?.image}
                                             alt="Profile Picture"
                                             referrerPolicy="no-referrer"
-                                            className="w-10 rounded-full border-[3px] border-primary"
+                                           className="w-12 h-12 rounded-full border-[3px] border-primary"
                                         />
                                     ) : (
                                         <CgProfile className="size-8 text-primary" />
