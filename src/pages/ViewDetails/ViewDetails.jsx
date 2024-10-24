@@ -9,7 +9,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import axios from "axios";
 import { Helmet } from "react-helmet-async";
 
 
@@ -40,6 +39,7 @@ const ViewDetails = () => {
 
         fetchReviews();
     }, [id]);
+
     const { data } = useQuery({
         queryKey: ['carData'],
         queryFn: async () => {

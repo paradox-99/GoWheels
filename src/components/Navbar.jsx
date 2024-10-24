@@ -5,10 +5,11 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
 import { IoMdSearch } from "react-icons/io";
-
+import { TbMessageCircle } from "react-icons/tb";
 import Swal from "sweetalert2";
 import loaderEliment from '../../public/logo.gif';
 import toast from "react-hot-toast"
+
 const Navbar = () => {
     const { user, logout, loader } = useAuth();
     const [previousScrollY, setPreviousScrollY] = useState(0);
@@ -103,7 +104,12 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="flex items-start">
-                    <div className="hidden md:flex md:gap-5">
+                    <div className="hidden md:flex md:gap-5 items-center">
+                        { user && 
+                            <Link to={'/send-message'}>
+                                <TbMessageCircle className="w-6 h-6" />
+                            </Link>
+                        }
                         <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><IoMdSearch />Search</Link>
                         {!user && (
                             <li className="bg-primary px-2 text-sm lg:px-5 py-1 lg:py-2 text-white  rounded  text-center lg:ml-7 font-merriweather w-full ">
