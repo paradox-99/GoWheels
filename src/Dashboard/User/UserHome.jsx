@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import useDesignation from '../../hooks/useDesignation';
-import { TbManualGearboxFilled } from 'react-icons/tb';
-import { PiSeatFill } from 'react-icons/pi';
-import { BsFuelPumpFill } from 'react-icons/bs';
-import { FaCarSide } from 'react-icons/fa';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { BsCheckCircleFill } from 'react-icons/bs';
-import { AiOutlineDollarCircle } from 'react-icons/ai';
-import { FaCarAlt } from 'react-icons/fa';
+// import { TbManualGearboxFilled } from 'react-icons/tb';
+// import { PiSeatFill } from 'react-icons/pi';
+// import { BsFuelPumpFill } from 'react-icons/bs';
+// import { FaCarSide } from 'react-icons/fa';
+// import { MdKeyboardArrowRight } from 'react-icons/md';
+// import { BsCheckCircleFill } from 'react-icons/bs';
+// import { AiOutlineDollarCircle } from 'react-icons/ai';
+// import { FaCarAlt } from 'react-icons/fa';
 import CommonCarCard from './CommonCarCard';
 import { Helmet } from 'react-helmet-async';
 
@@ -31,11 +31,6 @@ const UserHome = () => {
         if (userId) {
             const fetchBookedCars = async () => {
                 try {
-<<<<<<< HEAD
-                    const response = await axios.get(`http://localhost:3000/api/bookings/user/${userID}/booked-cars`);
-                    console.log(response.data)
-                    setBookedCars(response.data?.bookedCars);
-=======
                     const response = await axios.get(`${import.meta.env.VITE_API_URL}/bookings/user/${userId}/booked-cars`);
                     const cars = response.data.bookedCars;
                     setBookedCars(cars);
@@ -62,7 +57,6 @@ const UserHome = () => {
                     setCompleted(completed)
                     const cancelled = completedResponse?.data.userBookings.filter(car => car.status === 'Cancelled').length;
                     setCancelled(cancelled)
->>>>>>> ec011bd69ddec75dc5029ffd7534b56026ea726d
                     setLoading(false);
                 } catch (error) {
                     console.error('Error fetching booked cars:', error);
@@ -72,101 +66,8 @@ const UserHome = () => {
 
             fetchBookedCars();
         }
-<<<<<<< HEAD
-
-    }, [userID]);
-
-    // Mock data for the graph
-    const totalBookings = 12;
-    const pendingBookings = 3;
-    const confirmedBookings = 8;
-
-    console.log(bookedCars)
-
-
-    const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'Total Bookings',
-                data: [5, 9, 12, 10, 14, 15, totalBookings],
-                borderColor: '#4ADE80',
-                backgroundColor: 'rgba(74, 222, 128, 0.2)',
-                borderWidth: 2,
-                tension: 0.4,
-                fill: true,
-            },
-            {
-                label: 'Pending Bookings',
-                data: [2, 3, 4, 2, 3, 4, pendingBookings],
-                borderColor: '#FCD34D',
-                backgroundColor: 'rgba(252, 211, 77, 0.2)',
-                borderWidth: 2,
-                tension: 0.4,
-                fill: true,
-            },
-            {
-                label: 'Confirmed Bookings',
-                data: [3, 5, 6, 8, 10, 11, confirmedBookings],
-                borderColor: '#60A5FA',
-                backgroundColor: 'rgba(96, 165, 250, 0.2)',
-                borderWidth: 2,
-                tension: 0.4,
-                fill: true,
-            },
-        ],
-    };
-
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-                labels: {
-                    color: '#ffffff',
-                    font: {
-                        size: 14,
-                    },
-                },
-            },
-            tooltip: {
-                backgroundColor: 'rgba(0,0,0,0.8)',
-                titleFont: { size: 16, weight: 'bold' },
-                bodyFont: { size: 14 },
-                cornerRadius: 8,
-                padding: 10,
-            },
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: '#ffffff',
-                    font: {
-                        size: 12,
-                    },
-                },
-                grid: {
-                    color: '#ffffff',
-                },
-            },
-            y: {
-                ticks: {
-                    color: '#ffffff',
-                    font: {
-                        size: 12,
-                    },
-                },
-                grid: {
-                    color: '#ffffff',
-                },
-            },
-        },
-    };
-
-=======
     }, [userId]);
     console.log(bookedCars);
->>>>>>> ec011bd69ddec75dc5029ffd7534b56026ea726d
     return (
         <div className="min-h-screen !font-sans bg-gradient-to-r p-12">
             <Helmet>

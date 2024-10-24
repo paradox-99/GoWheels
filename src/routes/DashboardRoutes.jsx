@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> ec011bd69ddec75dc5029ffd7534b56026ea726d
 import AgencyApprove from "../components/AgencyApprove/AgencyApprove";
 import AgencyDeatils from "../components/AgencyApprove/AgencyDeatils";
 import AdminHome from "../Dashboard/Admin/AdminHome";
