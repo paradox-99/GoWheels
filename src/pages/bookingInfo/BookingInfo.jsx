@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import useDesignation from "../../hooks/useDesignation";
@@ -20,9 +21,10 @@ import { Helmet } from "react-helmet-async";
 
 const BookingInfo = () => {
     const location = useLocation();
-    const bookingInformation = location.state;
+
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
+
     const [discount, setDiscount] = useState(0);
     const [drivingCost, setDrivingCost] = useState(0);
     const [totalPayment, setTotalPayment] = useState(0);
@@ -31,34 +33,132 @@ const BookingInfo = () => {
     const [totalRentHours, setTotalRentHours] = useState(0);
     const [loading, setLoading] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
+    const [showDriverMessage, setShowDriverMessage] = useState(false);
+    const { driverInfo, age } = location.state || {};
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
-    const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {};
 
-    const fromDate = bookingInformation?.fromDate;
-    const toDate = bookingInformation?.untilDate
-    const formTime = bookingInformation?.fromTime;
-    const toTime = bookingInformation?.untilTime;
-    const division = bookingInformation?.division;
-    const district = bookingInformation?.district;
-    const upazila = bookingInformation?.upazilla;
-    const area = bookingInformation?.area;
-    const carId = bookingInformation?.data?._id;
+    const {
+        area,
+        district,
+        division,
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
+        upazilla,
+        carData,
+        agencyInfo
+    } = location.state || {};
+
+    const {
+        _id,
+        brand,
+        model,
+        buildYear,
+        fuel,
+        gear,
+        mileage,
+        image: carImage,
+        seat,
+        rentalPrice,
+        licenseNumber,
+        expireDate
+    } = carData || {}
+
+    const {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        userEmail: agencyEmail,
+        agency_id
+    } = agencyInfo || {};
+
+    const bookingInfo = {
+        division,
+        district,
+        upazilla,
+        area,
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
+    }
+
+    const AgencyInformation = {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        agencyEmail,
+        agency_id
+    }
+
+    const carInformation = {
+        _id,
+        brand,
+        model,
+        buildYear,
+        fuel,
+        gear,
+        mileage,
+        carImage,
+        seat,
+        rentalPrice,
+        licenseNumber,
+        expireDate
+    }
+
+    const userInformation = {
+        firstName,
+        lastName,
+        userEmail,
+        phone,
+        gender,
+        image,
+        circleImage,
+        nid,
+        drivingLicense
+    }
+
+    useEffect(() => {
+        const savedMethod = localStorage.getItem('method');
+
+        if (savedMethod === 'driver') {
+            setMethod('driver');
+            setShowDriverMessage(true);
+        } else if (savedMethod === 'self') {
+            setMethod('self');
+        }
+    }, []);
 
     const handleChange = (e) => {
         setLoading(true);
         const drivingMethod = e.target.value
-
         if (drivingMethod === 'driver') {
-            setModalVisible(true);
+            setShowDriverMessage(true);
+        } else {
+            setShowDriverMessage(false);
         }
+
         setMethod(drivingMethod);
+        localStorage.setItem('method', drivingMethod);
+        setMethod(drivingMethod);
+        localStorage.setItem('method', drivingMethod);
+
 
         setTimeout(() => {
-            const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime);
+            const totalHours = calculateHoursDifference(initailDate, initalTime, toDate, toTime);
             setTotalRentHours(totalHours)
 
-            const Cost = totalHours * rental_price / 24;
+            const Cost = totalHours * carData?.rentalPrice / 24;
             const calculatedCost = Math.ceil(Cost);
             setTotalPayCost(calculatedCost)
 
@@ -73,6 +173,30 @@ const BookingInfo = () => {
             setLoading(false);
         }, 1000)
     }
+
+
+    const paymentInfo = {
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
+        totalRentHours,
+        totalPayCost,
+        totalPayment,
+        method,
+        discount,
+        drivingCost,
+        userEmail,
+        agencyEmail,
+        agency_id,
+        _id,
+        rentalPrice,
+        division,
+        district,
+        upazilla,
+        area
+    }
+
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
             <Helmet>
@@ -85,9 +209,9 @@ const BookingInfo = () => {
                         <div>
                             <h1 className="text-2xl font-semibold font-merriweather">Your selected car</h1>
                             <div className="flex gap-5 border-b-2 border-primary border-dashed pb-3">
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"><FaCarSide className="text-primary text-lg" /> {brand} {model}</p>
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <MdAirlineSeatReclineNormal className="text-primary text-lg" /> Seats: {seats}</p>
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <SlCalender className="text-primary text-lg" /> Year: {build_year}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"><FaCarSide className="text-primary text-lg" /> {carData?.brand} {carData?.model}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <MdAirlineSeatReclineNormal className="text-primary text-lg" /> Seats: {carData?.seat}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <SlCalender className="text-primary text-lg" /> Year: {carData?.buildYear}</p>
                             </div>
                         </div>
 
@@ -104,7 +228,7 @@ const BookingInfo = () => {
                     </div>
 
                     <div className="flex flex-col lg:flex-row items-center justify-between relative">
-                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={photo} alt={brand} />
+                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={carImage} alt={carData?.brand} />
 
                         <div>
                             <form
@@ -122,16 +246,27 @@ const BookingInfo = () => {
                                         />
                                         <label>Self Driving</label><br />
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                            onChange={handleChange}
-                                            type="radio"
-                                            name="driving-method"
-                                            id="driver"
-                                            value="driver"
-                                            checked={method === 'driver'}
-                                        />
-                                        <label>Need Driver</label><br />
+                                    <div className="flex flex-col items-start gap-2">
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                onChange={handleChange}
+                                                type="radio"
+                                                name="driving-method"
+                                                id="driver"
+                                                value="driver"
+                                                checked={method === 'driver'}
+                                            />
+                                            <label htmlFor="driver">Need Driver</label>
+                                        </div>
+
+                                        {/* Conditionally render the Get Your Driver message */}
+                                        {showDriverMessage && (
+                                            <div className="mt-2">
+                                                <Link to={'/driverList'}>
+                                                    <button className="border-primary border p-1 text-xs rounded-md">Get your driver</button>
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </form>
@@ -168,7 +303,6 @@ const BookingInfo = () => {
                 </header>
                 {/* upper section ends */}
 
-
                 {/* lower section starts */}
                 <main className=" mt-3">
                     <div>
@@ -178,20 +312,30 @@ const BookingInfo = () => {
                                 <Tab>Agency Information</Tab>
                                 <Tab>Booking Information</Tab>
                                 <Tab>User Information</Tab>
+                                <Tab>Driver Info</Tab>
                             </TabList>
 
                             <div className="mt-5">
                                 <TabPanel>
-                                    <CarData brand={brand} model={model} build_year={build_year} fuel={fuel} gear={gear} mileage={mileage} photo={photo} seats={seats} rental_price={rental_price} license_number={license_number} expire_date={expire_date} ></CarData>
+                                    <CarData carInformation={carInformation} ></CarData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-36`}>
-                                    <AgencyData></AgencyData>
+                                    <AgencyData AgencyInformation={AgencyInformation}></AgencyData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[330px] lg:w-64`}>
-                                    <BookingData fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} division={division} district={district} upazila={upazila} area={area}></BookingData>
+                                    <BookingData bookingInfo={bookingInfo}></BookingData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[510px]`}>
-                                    <UserData firstName={firstName} lastName={lastName} userEmail={userEmail} phone={phone} gender={gender} nid={nid} drivingLicense={drivingLicense} ></UserData>
+                                    <UserData userInformation={userInformation} ></UserData>
+                                </TabPanel>
+                                <TabPanel className={`lg:ml-[510px]`}>
+                                    <p><span className="font-bold">Driver Name</span>: {driverInfo?.firstName} {driverInfo?.lastName} </p>
+                                    <p><span className="font-bold">Gender</span>: {driverInfo?.gender}</p>
+                                    <p><span className="font-bold">Age</span>: {age}</p>
+                                    <p><span className="font-bold">Email</span>: {driverInfo?.userEmail}</p>
+                                    <span className="font-bold"><h1>phone: {driverInfo?.phone}</h1></span>
+
+                                    <p className=" font-bold"><span className="font-bold">Address</span>:  {driverInfo?.userAddress.division} <span className="text-black">,</span> {driverInfo?.userAddress.district} <span className="text-black"></span>,{driverInfo?.userAddress.upazilla}</p>
                                 </TabPanel>
                             </div>
                         </Tabs>
@@ -202,11 +346,11 @@ const BookingInfo = () => {
 
             {/* right part */}
             <section className=" lg:w-[33%] px-7 py-8 shadow-xl rounded-xl " >
-
-            <PaymentData  userEmail ={userEmail} division ={division} district ={district} upazila ={upazila} area ={area} fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} method={method} rental_price={rental_price} totalRentHours={totalRentHours} totalPayCost={totalPayCost} drivingCost={drivingCost} discount={discount} totalPayment={totalPayment} carId={carId}></PaymentData>
+                <PaymentData paymentInfo={paymentInfo}></PaymentData>
             </section >
 
         </div >
+
     );
 };
 
