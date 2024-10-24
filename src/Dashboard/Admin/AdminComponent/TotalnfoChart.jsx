@@ -14,18 +14,19 @@ const TotalInfoChart = () => {
             try {
                 const response = await axiosPublic.get('/totalInfo/totalRoles'); 
                 const formattedData = response.data.map(role => ({
-                    name: role._id.charAt(0).toUpperCase() + role._id.slice(1), 
-                    count: role.count
+                    name: role._id ? role._id.charAt(0).toUpperCase() + role._id.slice(1) : 'Unknown', 
+                    count: role.count || 0  
                 }));
-
+    
                 setData(formattedData);
             } catch (error) {
                 console.error('Error fetching role counts:', error);
             }
         };
-
+    
         fetchData();
     }, [axiosPublic]);
+    
 
 
 

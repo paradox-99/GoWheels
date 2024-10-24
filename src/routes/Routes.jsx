@@ -19,6 +19,8 @@ import DriverSignUp from "../pages/DriverPages/DriverSignUp";
 import DriverInfo from "../pages/DriverPages/DriverInfo";
 import DriverOTP from "../pages/DriverPages/DriverOTP";
 import AgencyOTP from "../pages/Agency/AgencyOTP";
+import DriverList from "../components/driverList/DriverList";
+import SearchResult from "../pages/search/SearchResult";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path: "/filter",
                 element: <Filter />,
+            },
+            {
+                path: "/search",
+                element: <SearchResult></SearchResult>
             },
             {
                 path: "/view-details/:id",
@@ -90,6 +96,10 @@ const router = createBrowserRouter([
             {
                 path:'/join/agencyOtp',
                 element:<AgencyOTP></AgencyOTP>
+            },
+            {
+                path:'/driverList',
+                element:<DriverList></DriverList>
             }
         ]
     },
