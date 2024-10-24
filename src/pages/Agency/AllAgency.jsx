@@ -14,7 +14,7 @@ const AllAgency = () => {
         }
     })
 
-    if(isPending){
+    if (isPending) {
         return <div>
             loading...
         </div>

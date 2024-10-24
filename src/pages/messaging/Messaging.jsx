@@ -1,29 +1,33 @@
 import { App as SendbirdApp } from '@sendbird/uikit-react';
 import '@sendbird/uikit-react/dist/index.css';
-import useDesignation from '../../hooks/useDesignation';
+import { useSelector } from 'react-redux';
 
 const Messaging = () => {
 
-    const { userInfo } = useDesignation();
+    const user = useSelector((state) => state.user.userData)
+    const agency = useSelector((state) => state.agency.agencyData)
+    console.log(user);
+    console.log(agency);
     const appID = import.meta.env.VITE_Send_Bird_appID;
-    // const name = userInfo.firstName + " " + userInfo.lastName;
+
     let userID;
     let name;
 
-    if(userInfo?.userRole === 'agency'){
-        userID = userInfo?.agency_id;
-        name = 
+    if (user?.userRole === 'agency') {
+        userID = user?.agency_id;
+        name = agency.agencyName;
     }
-    else{
-        userID = userInfo?._id;
+    else {
+        userID = user?._id;
+        name = user?.firstName + " " + user?.lastName;
     }
 
     return (
         <div className='w-full h-[80vh]'>
-            <SendbirdApp 
+            <SendbirdApp
                 appId={appID}
                 userId={userID}
-                profileUrl={userInfo.image}
+                profileUrl={user?.image}
                 nickname={name}
             />
         </div>
