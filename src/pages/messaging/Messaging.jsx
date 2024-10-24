@@ -29,6 +29,7 @@ const Messaging = () => {
                 userId={userID}
                 profileUrl={user?.image}
                 nickname={name}
+                breakpoint={'760px'}
             />
         </div>
 
