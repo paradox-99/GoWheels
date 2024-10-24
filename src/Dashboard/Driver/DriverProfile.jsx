@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaEdit } from "react-icons/fa";
 
 
@@ -32,6 +33,9 @@ const DriverProfile = () => {
 
     return (
         <div style={{ boxShadow: '0 10px 50px 50px #FEF2F2' }} className="p-12 max-w-4xl mx-auto">
+            <Helmet>
+                <title>{driverData.name} || Profile</title>
+            </Helmet>
             <div>
                 <h1 className='text-4xl font-semibold'>Profile </h1>
             </div>

@@ -6,10 +6,12 @@ import loaderEliment from '../../../public/logo.gif';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../hooks/useAxiosPublic.jsx';
 import { calculateAge } from '../../api/utilities/index.js';
+import { Helmet } from 'react-helmet-async';
 
 const SignupPartTwo = () => {
 
     const [selectedDivision, setSelectedDivision] = useState('');
+      // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
@@ -117,7 +119,6 @@ const SignupPartTwo = () => {
 
         } catch (error) {
             console.error('Error checking user existence', error);
-            toast.error('Error checking user existence, please try again later.');
         }
     }
 
@@ -129,6 +130,9 @@ const SignupPartTwo = () => {
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
+            <Helmet>
+                <title>Sign Up || Personal Information</title>
+            </Helmet>
             <div className='text-center mx-auto pt-5'>
                 <h1 className='text-2xl lg:text-4xl font-bold text-primary font-merriweather mb-5'>GoWheels</h1>
             </div>

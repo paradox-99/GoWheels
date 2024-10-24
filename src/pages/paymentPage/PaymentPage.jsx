@@ -19,7 +19,7 @@ const PaymentPage = () => {
         // mileage,
         // photo,
         // seats,
-        // rental_price,
+        rental_price,
         // license_number,
         // expire_date,
         // firstName,

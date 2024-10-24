@@ -1,0 +1,342 @@
+[
+    {
+        "licenseNumber": "8274",
+        "image": "https://i.ibb.co.com/PNQsgmc/Toyota-corrola.jpg",
+        "seat": "5",
+        "mileage": "20 miles",
+        "gear": "Manual",
+        "fuel": "Petrol",
+        "rentalPrice": "1500",
+        "transmission": "Manual",
+        "brand": "Toyota",
+        "model": "Corolla",
+        "buildYear": "2018",
+        "expireDate": "15-Jan-2025",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Road Transport Authority",
+        "insuranceNumber": "12345",
+        "insurancePeriod": "1 year",
+        "insuranceDetails": "Full coverage, expires on 15-Jan-2025",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka North",
+            "area": "Uttara"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "Yes",
+            "bluetooth": "Yes"
+        },
+        "agnecyInfo": {
+            "agency_id": "A50",
+            "email": "farzana.hossain147@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "4512",
+        "image": "https://i.ibb.co.com/hVv2TSv/Honda-crv.png",
+        "seat": "7",
+        "mileage": "15 miles",
+        "gear": "Automatic",
+        "fuel": "Diesel",
+        "rentalPrice": "1000",
+        "transmission": "Automatic",
+        "brand": "Honda",
+        "model": "CR-V",
+        "buildYear": "2020",
+        "expireDate": "20-Aug-2026",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "National Transport Agency",
+        "insuranceNumber": "56789",
+        "insurancePeriod": "2 years",
+        "insuranceDetails": "Third-party insurance, expires on 20-Aug-2026",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka South",
+            "area": "Badda"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "No",
+            "bluetooth": "No"
+        },
+        "agnecyInfo": {
+            "agency_id": "A50",
+            "email": "farzana.hossain147@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "2938",
+        "image": "https://i.ibb.co.com/bBHPmjz/Tesla-model-3.jpg",
+        "seat": "4",
+        "mileage": "10 miles",
+        "gear": "Automatic",
+        "fuel": "Electric",
+        "rentalPrice": "1300",
+        "transmission": "Automatic",
+        "brand": "Tesla",
+        "model": "Model 3",
+        "buildYear": "2022",
+        "expireDate": "12-May-2027",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Electric Vehicle Authority",
+        "insuranceNumber": "88912",
+        "insurancePeriod": "3 years",
+        "insuranceDetails": "Full coverage, expires on 12-May-2027",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka North",
+            "area": "Mirpur"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "Yes",
+            "bluetooth": "Yes"
+        },
+        "agnecyInfo": {
+            "agency_id": "A50",
+            "email": "farzana.hossain147@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "6219",
+        "image": "https://i.ibb.co.com/Jt26dgW/Fort-focus.jpg",
+        "seat": "5",
+        "mileage": "12 miles",
+        "gear": "Manual",
+        "fuel": "Petrol",
+        "rentalPrice": "1200",
+        "transmission": "Manual",
+        "brand": "Ford",
+        "model": "Focus",
+        "buildYear": "2016",
+        "expireDate": "30-Oct-2024",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Local Traffic Authority",
+        "insuranceNumber": "45456",
+        "insurancePeriod": "1 year",
+        "insuranceDetails": "Basic coverage, expires on 30-Oct-2024",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka North",
+            "area": "Banani"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "Yes",
+            "bluetooth": "No"
+        },
+        "agnecyInfo": {
+            "agency_id": "A50",
+            "email": "farzana.hossain147@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "4891",
+        "image": "https://i.ibb.co.com/mvkWDcX/Totota-prius.png",
+        "seat": "5",
+        "mileage": "17 miles",
+        "gear": "Automatic",
+        "fuel": "Hybrid",
+        "rentalPrice": "1100",
+        "transmission": "Automatic",
+        "brand": "Toyota",
+        "model": "Prius",
+        "buildYear": "2021",
+        "expireDate": "15-Mar-2026",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Environmental Transport Board",
+        "insuranceNumber": "87654",
+        "insurancePeriod": "2 years",
+        "insuranceDetails": "Comprehensive coverage, expires on 15-Mar-2026",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka South",
+            "area": "Jatrabari"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "Yes",
+            "bluetooth": "Yes"
+        },
+        "agnecyInfo": {
+            "agency_id": "A50",
+            "email": "farzana.hossain147@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "3742",
+        "image": "https://i.ibb.co.com/mTLtZYP/bmw-i8.jpg",
+        "seat": "2",
+        "mileage": "14 miles",
+        "gear": "Automatic",
+        "fuel": "Electric",
+        "rentalPrice": "100",
+        "transmission": "Automatic",
+        "brand": "BMW",
+        "model": "i8",
+        "buildYear": "2023",
+        "expireDate": "01-Apr-2027",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Luxury Vehicle Authority",
+        "insuranceNumber": "98123",
+        "insurancePeriod": "3 years",
+        "insuranceDetails": "Full coverage, expires on 01-Apr-2027",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka North",
+            "area": "Gulshan"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "No",
+            "bluetooth": "Yes"
+        },
+        "agnecyInfo": {
+            "agency_id": "A50",
+            "email": "farzana.hossain147@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "7621",
+        "image": "https://i.ibb.co.com/b3PMWck/volkswagon-polo.png",
+        "seat": "4",
+        "mileage": "14 miles",
+        "gear": "Manual",
+        "fuel": "Petrol",
+        "rentalPrice": "1700",
+        "transmission": "Manual",
+        "brand": "Volkswagen",
+        "model": "Polo",
+        "buildYear": "2017",
+        "expireDate": "05-Dec-2024",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Regional Transport Authority",
+        "insuranceNumber": "98321",
+        "insurancePeriod": "1 year",
+        "insuranceDetails": "Basic coverage, expires on 05-Dec-2024",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka North",
+            "area": "Baridhara"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "No",
+            "bluetooth": "No"
+        },
+        "agnecyInfo": {
+            "agency_id": "AG2",
+            "email": "deanjoseph@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "1590",
+        "image": "https://i.ibb.co.com/fFxf767/ford-explorer.jpg",
+        "seat": "7",
+        "mileage": "18 miles",
+        "gear": "Automatic",
+        "fuel": "Diesel",
+        "rentalPrice": "2000",
+        "transmission": "Automatic",
+        "brand": "Ford",
+        "model": "Explorer",
+        "buildYear": "2019",
+        "expireDate": "25-Jul-2025",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "National Road Safety Board",
+        "insuranceNumber": "99432",
+        "insurancePeriod": "2 years",
+        "insuranceDetails": "Full coverage, expires on 25-Jul-2025",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka South",
+            "area": "Motijheel"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "Yes",
+            "bluetooth": "Yes"
+        },
+        "agnecyInfo": {
+            "agency_id": "AG2",
+            "email": "deanjoseph@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "3812",
+        "image": "https://i.ibb.co.com/nfscyPK/Hundai-Tucson.png",
+        "seat": "5",
+        "mileage": "14 miles",
+        "gear": "Manual",
+        "fuel": "Diesel",
+        "rentalPrice": "1400",
+        "transmission": "Manual",
+        "brand": "Hyundai",
+        "model": "Tucson",
+        "buildYear": "2018",
+        "expireDate": "10-Jun-2024",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Urban Transport Authority",
+        "insuranceNumber": "67532",
+        "insurancePeriod": "1 year",
+        "insuranceDetails": "Third-party insurance, expires on 10-Jun-2024",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka South",
+            "area": "Jatrabari"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "Yes",
+            "bluetooth": "Yes"
+        },
+        "agnecyInfo": {
+            "agency_id": "AG2",
+            "email": "deanjoseph@gmail.com"
+        }
+    },
+    {
+        "licenseNumber": "9174",
+        "image": "https://i.ibb.co.com/GMffRcg/nissan-car.jpg",
+        "seat": "4",
+        "mileage": "18 miles",
+        "gear": "Automatic",
+        "fuel": "Petrol",
+        "rentalPrice": "1700",
+        "transmission": "Automatic",
+        "brand": "Nissan",
+        "model": "Altima",
+        "buildYear": "2021",
+        "expireDate": "22-Feb-2026",
+        "fitnessCertificate": "Certified",
+        "issuingAuthority": "Motor Vehicle Department",
+        "insuranceNumber": "42109",
+        "insurancePeriod": "2 years",
+        "insuranceDetails": "Full coverage, expires on 22-Feb-2026",
+        "vehicleAvailableBookingArea": {
+            "division": "Dhaka",
+            "district": "Dhaka",
+            "upazilla": "Dhaka North",
+            "area": "Uttara"
+        },
+        "additionalInfo": {
+            "airConditioning": "Yes",
+            "gps": "Yes",
+            "bluetooth": "Yes"
+        },
+        "agnecyInfo": {
+            "agency_id": "AG2",
+            "email": "deanjoseph@gmail.com"
+        }
+    }
+]

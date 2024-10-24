@@ -6,18 +6,13 @@ import { BsFillFuelPumpFill } from "react-icons/bs";
 import { GiGearStick } from "react-icons/gi";
 import { FaTachometerAlt } from "react-icons/fa";
 
-const CarData = ({ brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date }) => {
+const CarData = ({ brand, model, build_year, fuel, gear, mileage, seats, rentalPrice, license_number, expire_date }) => {
 
     return (
         <div>
             <div className="flex items-center gap-2">
-                <div>
-                    <img className="w-12 h-12 rounded-full" src={photo} alt={brand} />
-                </div>
-                <div>
-                    <h1 className="text-lg font-bold font-merriweather">{brand}</h1>
-                    <p className="font-nunito font-medium">{model}</p>
-                </div>
+                <h1 className="text-lg font-bold font-merriweather">{brand}</h1>
+                <p className="font-nunito font-medium">{model}</p>
             </div>
 
             <div className="mt-2">
@@ -37,18 +32,8 @@ const CarData = ({ brand, model, build_year, fuel, gear, mileage, photo, seats, 
 
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><FaTachometerAlt className="text-xl text-primary" /> Mileage: {mileage}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day ৳ {rental_price * 120}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day ৳ {rentalPrice}</h1>
                 </div>
-
-                {/* <div className="space-y-1">
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><BsFillFuelPumpFill className="text-xl text-primary" /> Fuel: {fuel}</h1>
-
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><GiGearStick className="text-xl text-primary" /> Gear: {gear}</h1>
-
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><FaTachometerAlt className="text-xl text-primary" /> Mileage: {mileage}</h1>
-
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day ৳ {rental_price * 120}</h1>
-                </div> */}
 
             </div>
         </div>

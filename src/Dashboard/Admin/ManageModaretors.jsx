@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import BasicHeading from "../../components/BasicHeading";
 import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -42,6 +43,9 @@ const ManageModaretors = () => {
 
     return (
         <div className="mt-10 px-10">
+            <Helmet>
+                <title>Moderators Information</title>
+            </Helmet>
             <BasicHeading
                 title="Users Information"
                 heading={"All Agencies are here"}

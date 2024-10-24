@@ -5,7 +5,7 @@ import { FaMapLocation } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa6";
 import { IoLocation } from "react-icons/io5";
 
-const BookingData = ({ fromDate, formTime, toDate, toTime, division, district, upazila, area }) => {
+const BookingData = ({ fromDate, fromTime, untilDate, untilTime, division, district, upazilla, area }) => {
 
     return (
         <div>
@@ -18,35 +18,22 @@ const BookingData = ({ fromDate, formTime, toDate, toTime, division, district, u
                 <div className="mt-2 space-y-1">
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><SlCalender className="text-xl text-primary" /> From Date: {fromDate}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />From Time: {formTime}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />From Time: {fromTime}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><SlCalender className="text-xl text-primary" />To Date: {toDate}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><SlCalender className="text-xl text-primary" />To Date: {untilDate}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />To Time: {toTime}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><IoMdTime className="text-xl text-primary" />To Time: {untilTime}</h1>
 
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlineMyLocation className="text-xl text-primary" /> Division: {division}</h1>
 
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><FaMapLocation className="text-xl text-primary" />District: {district}</h1>
 
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><FaLocationArrow className="text-xl text-primary" />Upazila: {upazila}</h1>
+                    <h1 className="flex items-center gap-2 font-nunito font-medium "><FaLocationArrow className="text-xl text-primary" />Upazila: {upazilla}</h1>
 
                     {
                         area && <h1 className="flex items-center gap-2 font-nunito font-medium "><IoLocation className="text-xl text-primary" />Area: {area}</h1>
                     }
                 </div>
-
-                {/* <div className="mt-5 space-y-1">
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlineMyLocation className="text-xl text-primary" /> Division: {division}</h1>
-
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><FaMapLocation className="text-xl text-primary" />District: {district}</h1>
-
-                    <h1 className="flex items-center gap-2 font-nunito font-medium "><FaLocationArrow className="text-xl text-primary" />Upazila: {upazila}</h1>
-
-                    {
-                        area && <h1 className="flex items-center gap-2 font-nunito font-medium "><IoLocation className="text-xl text-primary" />Area: {area}</h1>
-                    }
-
-                </div> */}
             </div>
 
         </div>

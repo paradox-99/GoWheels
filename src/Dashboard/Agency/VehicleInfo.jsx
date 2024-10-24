@@ -1,224 +1,71 @@
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState, useContext } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure"; // Assuming you have this hook
+import { AuthContext } from "../../provider/AuthProvider";
+import Table from "./Table.jsx";
+
 const VehicleInfo = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+
+  // ---- QUERY TO FETCH DATA ----
+  const { data: vehicles = [], isLoading, error } = useQuery({
+    queryKey: ["vehicles", user?.userEmail],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/agencyRoute/agency/vehicleInfo/${user?.userEmail}`);
+      console.log(data);
+      return data; // Return the data to be used for pagination
+    },
+  });
+
+  // ---- PAGINATION ----
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [dataToDisplay, setDataToDisplay] = useState([]);
+  const TOTAL_VALUES_PER_PAGE = 3;
+
+  useEffect(() => {
+    const start = (currentPageNumber - 1) * TOTAL_VALUES_PER_PAGE;
+    const end = start + TOTAL_VALUES_PER_PAGE; // Fix the slicing logic
+    setDataToDisplay(vehicles.slice(start, end));
+  }, [currentPageNumber, vehicles]);
+
+  const goOnPrevPage = () => {
+    if (currentPageNumber > 1) {
+      setCurrentPageNumber((prev) => prev - 1);
+    }
+  };
+
+  const goOnNextPage = () => {
+    if (currentPageNumber < Math.ceil(vehicles.length / TOTAL_VALUES_PER_PAGE)) { // Use total pages for comparison
+      setCurrentPageNumber((prev) => prev + 1);
+    }
+  };
+
+  const handleSelectChange = (e) => {
+    setCurrentPageNumber(Number(e.target.value)); // Convert to number for accurate comparison
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Something went wrong: {error.message}</div>;
+
   return (
-    <div className=" mx-auto">
-      <div className="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px]">
-        <a
-          target="_blank"
-          href=""
-          className="block w-full px-4 py-2 text-center text-slate-700 transition-all "
+    <div id="container" className="">
+    <div id="page-no-dropdown" className="m-8">
+        <label className="font-bold">Page </label> 
+         <select
+          name="page-number"
+          onChange={handleSelectChange}
+          value={currentPageNumber}
         >
-          Manage Your All <b>Rental Cars</b>.
-        </a>
+          {Array.from({ length: Math.ceil(vehicles.length / TOTAL_VALUES_PER_PAGE) }, (_, i) => i + 1).map((val) => (
+            <option key={val} value={val}>{val}</option>
+          ))}
+        </select>
       </div>
-
-      <div className="w-full flex justify-between items-center mb-3 mt-1 pl-3">
-        <div>
-          <h3 className="text-lg font-semibold text-slate-800">
-            Overview of the Booking Cars
-          </h3>
-        </div>
-        <div className="ml-3">
-          <div className="w-full relative">
-            <div className="relative">
-              <input
-                className="bg-white w-full pr-11 h-10 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded transition duration-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
-                placeholder="Search"
-              />
-              <button
-                className="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center bg-white rounded "
-                type="button"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-8 h-8 text-slate-600"
-                >
-                  <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-        <table className="w-full text-left table-auto min-w-max">
-          <thead>
-            <tr>
-              <th className="p-4 border-b border-slate-200 bg-slate-50">
-                <p className="text-sm font-normal leading-none text-slate-500">
-                  License Number
-                </p>
-              </th>
-              <th className="p-4 border-b border-slate-200 bg-slate-50">
-                <p className="text-sm font-normal leading-none text-slate-500">
-                  Customer Name
-                </p>
-              </th>
-              <th className="p-4 border-b border-slate-200 bg-slate-50">
-                <p className="text-sm font-normal leading-none text-slate-500">
-                  Booking Date & Time
-                </p>
-              </th>
-              <th className="p-4 border-b border-slate-200 bg-slate-50">
-                <p className="text-sm font-normal leading-none text-slate-500">
-                  Return Date & Time
-                </p>
-              </th>
-              <th className="p-4 border-b border-slate-200 bg-slate-50">
-                <p className="text-sm font-normal leading-none text-slate-500">
-                  Rental Amount
-                </p>
-              </th>
-              <th className="p-4 border-b border-slate-200 bg-slate-50">
-                <p className="text-sm font-normal leading-none text-slate-500">
-                  Details
-                </p>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="hover:bg-slate-50 border-b border-slate-200">
-              <td className="p-4 py-5">
-                <p className="block font-semibold text-sm text-slate-800">
-                  L123456789
-                </p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">John Doe</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">10th March, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">5th October, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">2000</p>
-              </td>
-              <td className="p-4 py-5">
-                <button className="text-sm text-slate-500">View Details</button>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-slate-50 border-b border-slate-200">
-              <td className="p-4 py-5">
-                <p className="block font-semibold text-sm text-slate-800">
-                  L987654321
-                </p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">Jane Smith</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">1st April, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">30th September, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">1500</p>
-              </td>
-              <td className="p-4 py-5">
-                <button className="text-sm text-slate-500">View Details</button>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-slate-50 border-b border-slate-200">
-              <td className="p-4 py-5">
-                <p className="block font-semibold text-sm text-slate-800">
-                  L123789456
-                </p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">Alice Johnson</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">15th May, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">25th November, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">2500</p>
-              </td>
-              <td className="p-4 py-5">
-                <button className="text-sm text-slate-500">View Details</button>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-slate-50 border-b border-slate-200">
-              <td className="p-4 py-5">
-                <p className="block font-semibold text-sm text-slate-800">
-                  L456123789
-                </p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">Michael Brown</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">20th June, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">15th December, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">3000</p>
-              </td>
-              <td className="p-4 py-5">
-                <button className="text-sm text-slate-500">View Details</button>
-              </td>
-            </tr>
-
-            <tr className="hover:bg-slate-50 border-b border-slate-200">
-              <td className="p-4 py-5">
-                <p className="block font-semibold text-sm text-slate-800">
-                  L321654987
-                </p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">Emily Davis</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">5th July, 2024</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">10th January, 2025</p>
-              </td>
-              <td className="p-4 py-5">
-                <p className="text-sm text-slate-500">1800</p>
-              </td>
-              <td className="p-4 py-5">
-                <button className="text-sm text-slate-500">View Details</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div className="flex justify-between items-center px-4 py-3">
-          <div className="text-sm text-slate-500">
-            Showing <b>1-5</b> of 45
-          </div>
-          <div className="flex space-x-1">
-            <button className="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-              Prev
-            </button>
-            <button className="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
-              1
-            </button>
-            <button className="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-              2
-            </button>
-            <button className="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-              3
-            </button>
-            <button className="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-              Next
-            </button>
-          </div>
-        </div>
+      <Table dataToDisplay={dataToDisplay} />
+      <div id="btn-container" className="font-bold text-lg flex justify-end gap-8 items-center  mr-10" >
+        <button className="" onClick={goOnPrevPage} disabled={currentPageNumber === 1}>Prev</button>
+        <button onClick={goOnNextPage} disabled={currentPageNumber >= Math.ceil(vehicles.length / TOTAL_VALUES_PER_PAGE)}>Next</button>
       </div>
     </div>
   );

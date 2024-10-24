@@ -1,29 +1,27 @@
 
 import backgroundImage from '../../../public/asset/drive.avif'
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { locationData } from "../../../public/locationData";
+import { imageUpload } from '../../api/utilities';
+import { Helmet } from 'react-helmet-async';
 // import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const DriverSignUp = () => {
+    const [imageText, setImageText] = useState('image name.png');
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
+   
+    // console.log(imageText)
 
     // const [showPassword, setShowPassword] = useState(false);
     const [selectedDivision, setSelectedDivision] = useState('');
-    const [email, setUserEmail] = useState('')
-    const [image, setUserImage] = useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-
     // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
-    const axiosPublic = useAxiosPublic()
-    // console.log(' use email :' ,email)
+
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -40,46 +38,21 @@ const DriverSignUp = () => {
     };
 
 
-    const { mutateAsync } = useMutation({
-        mutationFn: async (ownerData) => {
-            const { data } = await axiosPublic.post(`/usersRoute/driverInfo`, ownerData)
-            return data;
-        },
-        onSuccess: () => {
-            console.log('data saved successfully')
-            // toast.success(' data added successfully')
-            navigate('/join/driverInfo', { state: { email, image, firstName, lastName } });
+    const handleImageUpload = async (image) => {
+        setImagePreview(URL.createObjectURL(image));
+        setImageText(image.name);
+        setImageFile(image);
+      
 
-
-        }
-
-    })
-
-    const handleImageUpload = async (e) => {
-        const imageFile = e.target.files[0];
-        if (!imageFile) {
-            console.error("No file selected");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("image", imageFile);
-
-        try {
-            const response = await axios.post("https://api.imgbb.com/1/upload?key=0873ad3ca7a49d847f0ce5628d0e79ee",
-                formData
-            );
-
-            const imageUrl = response.data.data.display_url;
-            console.log("Image uploaded:", imageUrl);
-            return imageUrl;
-        } catch (error) {
-            console.error("Image upload failed:", error);
-        }
+        // try {
+        //     const photo = await imageUpload(imageFile);
+        //     setPhotoURL(photo)
+        //     console.log(photo)
+        // }
+        // catch (error) {
+        //     console.log(error)
+        // }
     };
-
-
-
 
     const handleJoin = async (e) => {
         e.preventDefault()
@@ -98,27 +71,13 @@ const DriverSignUp = () => {
         const userRole = "driver"
         const accountStatus = "not verified"
         const createdAt = new Date()
-        setUserEmail(userEmail)
-        setFirstName(firstName)
-        setLastName(lastName)
+        const photo = imageFile
+        console.log(photo)
 
-        const imageFile = form.photo.files[0];
-        // console.log(imageFile.name)
-        const image = await handleImageUpload({ target: { files: [imageFile] } });
-        setUserImage(image)
-
-        const userAddress = {
-            division,
-            district,
-            upazilla,
-            localAddress
-        }
-
-        const ownerInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, userRole, accountStatus, createdAt };
+        const info = { firstName, lastName, userEmail, phone, gender, photo, dateOfBirth, nid, userRole, accountStatus, createdAt, district, division, upazilla, localAddress };
 
         try {
-
-            await mutateAsync(ownerInfo)
+            navigate('/join/driverInfo', { state: { info } });
 
         } catch (error) {
             console.log(error)
@@ -127,10 +86,12 @@ const DriverSignUp = () => {
 
     }
 
-    // style={{ backgroundImage: `url(${background})` }}
     return (
         <div >
-            <div style={{ backgroundImage: `url(${backgroundImage})` }} className='h-screen min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
+            <Helmet>
+                <title>Register || Driver</title>
+            </Helmet>
+            <div style={{ backgroundImage: `url(${backgroundImage})` }} className=' min-h-screen overflow-hidden bg-center bg-cover bg-no-repeat pt-10'>
                 <div className='text-center mx-auto '>
                     <h1 className="text-3xl lg:text-3xl font-bold  font-merriweather mb-10">Please Register as a driver</h1>
                 </div>
@@ -191,11 +152,12 @@ const DriverSignUp = () => {
                                         </div>
                                         <div className='space-y-4'>
                                             <input
-                                                type="number"
+                                                type="text"
                                                 name="phone"
                                                 id="phone"
                                                 className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                                 placeholder='Phone number'
+                                                defaultValue="+880"
                                                 required />
                                             <input
                                                 type="text"
@@ -279,14 +241,19 @@ const DriverSignUp = () => {
                                                 name="photo"
                                                 accept="image/*"
                                                 id="photo-upload"
-                                                onChange={(e) => handleImageUpload(e)}
+                                                
+                                                onChange={(e) => handleImageUpload(e.target.files[0])}
                                                 className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                                             />
                                             <label
                                                 htmlFor="photo-upload"
                                                 className="border-2 border-dashed border-white p-2 w-full  outline-none rounded py-1 lg:py-2 px-2 text-white flex items-center justify-center cursor-pointer"
                                             >
-                                                Upload your photo
+                                                {
+                                                    imagePreview ? (<div className="mt-2">
+                                                        <h1>{imageText.length > 15 ? imageText.split('.')[0].slice(0, 15) + '...' + imageText.split('.')[1] : imageText}</h1>
+                                                    </div>) : 'Upload your photo'
+                                                }
                                             </label>
                                         </div>
                                     </div>
