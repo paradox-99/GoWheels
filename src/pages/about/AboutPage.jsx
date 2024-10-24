@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import AllAgency from "../Agency/AllAgency";
 
 const AboutPage = () => {
     return (
@@ -6,7 +7,7 @@ const AboutPage = () => {
             <Helmet>
                 <title>About Us</title>
             </Helmet>
-            <p>about page</p>
+            <AllAgency/>
         </div>
     );
 };

@@ -58,7 +58,7 @@ const ViewDetails = () => {
         };
 
         fetchReviews();
-    }, [axiosPublic, id]);
+    }, [id]);
 
     const { data: carData = {} } = useQuery({
         queryKey: [id, 'carData'],
