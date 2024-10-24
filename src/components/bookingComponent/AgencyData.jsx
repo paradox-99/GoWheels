@@ -7,8 +7,19 @@ import { GiGearStick } from "react-icons/gi";
 
 
 
-const AgencyData = ({ agencyName, agencyAddress, businessRegNumber, insuranceLicenseNumber, numberOfVehicles, taxIdentificationNumber, transportLicenseNumber, agencyEmail, agency_id }) => {
+const AgencyData = ({ AgencyInformation }) => {
 
+    const {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        agencyEmail,
+        agency_id
+    } = AgencyInformation
 
     return (
         <div>
@@ -43,16 +54,6 @@ const AgencyData = ({ agencyName, agencyAddress, businessRegNumber, insuranceLic
                     <h1 className="flex items-center gap-2 font-nunito font-medium "><GiGearStick className="text-xl text-primary" /> Transport lisence : {transportLicenseNumber}</h1>
 
                 </div>
-
-                {/* <div className="space-y-1">
-    <h1 className="flex items-center gap-2 font-nunito font-medium "><BsFillFuelPumpFill className="text-xl text-primary" /> Fuel: {fuel}</h1>
-
-    <h1 className="flex items-center gap-2 font-nunito font-medium "><GiGearStick className="text-xl text-primary" /> Gear: {gear}</h1>
-
-    <h1 className="flex items-center gap-2 font-nunito font-medium "><FaTachometerAlt className="text-xl text-primary" /> Mileage: {mileage}</h1>
-
-    <h1 className="flex items-center gap-2 font-nunito font-medium "><MdOutlinePriceCheck className="text-xl text-primary" /> Rental price: Per day ৳ {rental_price * 120}</h1>
-</div> */}
 
             </div>
         </div>

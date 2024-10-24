@@ -9,11 +9,13 @@ import { Helmet } from "react-helmet-async";
 import TimePicker from "../../components/address/TimePicker";
 import useVehicleData from "../../hooks/useVehicleData";
 import { InputLabel, MenuItem, Select } from "@mui/material";
+import { MdError } from "react-icons/md";
 
 
 const Filter = () => {
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [address, setAddress] = useState();
   const [time, setTime] = useState();
   const axiosPublic = useAxiosPublic();
@@ -35,6 +37,8 @@ const Filter = () => {
 
   const handleFilter = async (e) => {
     e.preventDefault();
+
+    setErrorMessage("")
 
     const division = address.selectedDivision;
     const district = address.selectedDistrict;
@@ -63,14 +67,24 @@ const Filter = () => {
     };
 
     try {
-      const { data } = await axiosPublic.get('/carsRoute/getSearchData', { params: filterData })
+      const { data } = await axiosPublic.get('/carsRoute/getSearchData', { params: filterData });
+
+      console.log
+
+      if (data.message === "No car found with the provided details") {
+        setErrorMessage(data.message);
+        setSearchResult([]);
+        return;
+      }
 
       setSearchResult(data)
       setCarBookingInfo(filterData)
     }
+
     catch (error) {
       console.log(error)
     }
+
   };
 
   const handleBrand = brand_name => {
@@ -131,6 +145,14 @@ const Filter = () => {
             </button>
           </div>
         </form>
+      </div>
+
+      <div className="mt-10 flex justify-center">
+        {
+          errorMessage && <>
+            <h1 className="text-4xl font-nunito font-semibold text-primary flex items-center gap-1" >{errorMessage}! <MdError /></h1>
+          </>
+        }
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
