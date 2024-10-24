@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> ec011bd69ddec75dc5029ffd7534b56026ea726d
 import Title from "../../../components/Title/Title";
 import FeaturedCarts from "../../../components/cart/FeaturedCarts";
 import useVehicleData from "../../../hooks/useVehicleData";
