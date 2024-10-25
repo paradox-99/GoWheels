@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAgencyData from "../../hooks/UseAgencyData";
+import useAgencyData from "../../hooks/useAgencyData";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";

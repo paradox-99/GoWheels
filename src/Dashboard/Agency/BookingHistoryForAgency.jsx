@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAgencyData from "../../hooks/UseAgencyData";
+import useAgencyData from "../../hooks/useAgencyData";
 import { useEffect, useState } from "react";
 import TableForBookingHistory from "./TableForBookingHistory";
 
