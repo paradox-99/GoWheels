@@ -103,7 +103,6 @@ const BookingInfo = () => {
         agencyEmail,
         agency_id
     }
-
     const carInformation = {
         _id,
         brand,

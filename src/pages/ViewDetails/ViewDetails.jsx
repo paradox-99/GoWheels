@@ -29,7 +29,7 @@ const ViewDetails = () => {
         searchResult
     } = location?.state || {};
 
-    const email = searchResult?.agnecyInfo?.email;
+    const email = searchResult.agnecyInfo.email;
     const { agencyInfo } = useAgencyInfo(email)
 
     const navigate = useNavigate();
