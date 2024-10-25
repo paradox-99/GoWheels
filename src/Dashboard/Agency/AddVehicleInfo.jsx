@@ -3,6 +3,8 @@ import useDesignation from "../../hooks/useDesignation";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 
+import { locationData } from "../../../public/locationData.js";
+
 // image
 import { imageUpload } from "../../api/utilities/index.js";
 import { useRef, useState } from "react";
@@ -10,7 +12,14 @@ import toast from "react-hot-toast";
 
 const AddVehicleInfo = () => {
   const { userInfo } = useDesignation();
+  console.log(userInfo);
   const axiosSecure = useAxiosSecure();
+
+  // State variables for division, district, and dropdown data
+  const [selectedDivision, setSelectedDivision] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [districts, setDistricts] = useState([]);
+  const [upazillas, setUpazillas] = useState([]);
 
   //  -------------------------image upload
   const [imageText, setImageText] = useState("image name.png");
@@ -21,6 +30,36 @@ const AddVehicleInfo = () => {
 
   console.log(imagePreview);
   // --------------------
+
+  // Function to handle division change
+  const handleDivisionChange = (e) => {
+    const division = e.target.value;
+    setSelectedDivision(division);
+    setSelectedDistrict("");
+    setUpazillas([]);
+
+    if (locationData[division]) {
+      setDistricts(Object.keys(locationData[division]));
+    } else {
+      setDistricts([]);
+    }
+  };
+
+  // Function to handle district change
+  const handleDistrictChange = (e) => {
+    const district = e.target.value;
+    setSelectedDistrict(district);
+
+    // Populate upazillas for the selected district
+    if (
+      locationData[selectedDivision] &&
+      locationData[selectedDivision][district]
+    ) {
+      setUpazillas(locationData[selectedDivision][district]);
+    } else {
+      setUpazillas([]);
+    }
+  };
 
   // TANSTACK QUERY FOR SAVING THE DATA TO DB
   const { mutateAsync } = useMutation({
@@ -90,6 +129,9 @@ const AddVehicleInfo = () => {
     const issuingAuthority = form.issuingAuthority.value;
     const insuranceNumber = form.insuranceNumber.value;
     const insurancePeriod = form.insurancePeriod.value;
+    const division = form.division.value;
+    const district = form.district.value;
+    const upazilla = form.upazilla.value;
     const insuranceDetails = form.insuranceDetails.value;
     const airConditioning = form.airConditioning.value;
     const gps = form.gps.value;
@@ -116,15 +158,18 @@ const AddVehicleInfo = () => {
         insuranceNumber,
         insurancePeriod,
         insuranceDetails,
+        vehicleAvailableBookingArea: {
+          division,
+          district,
+          upazilla,
+        },
         additionalInfo: {
           airConditioning,
           gps,
           bluetooth,
         },
-        agencyInfo: {
-          email: userInfo?.userEmail,
-          agencyId: userInfo?.agency_id,
-        },
+        email: userInfo?.userEmail,
+        agency_id: userInfo?.agency_id,
       };
 
       await mutateAsync(addVehicleData);
@@ -215,6 +260,9 @@ const AddVehicleInfo = () => {
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              seat
+            </label>
             <input
               type="text"
               id="seat"
@@ -226,6 +274,9 @@ const AddVehicleInfo = () => {
           </div>
 
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              mileage
+            </label>
             <input
               type="text"
               id="mileage"
@@ -239,6 +290,9 @@ const AddVehicleInfo = () => {
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              gear
+            </label>
             <input
               type="text"
               id="gear"
@@ -250,6 +304,9 @@ const AddVehicleInfo = () => {
           </div>
 
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              fuel
+            </label>
             <input
               type="text"
               id="fuel"
@@ -263,8 +320,11 @@ const AddVehicleInfo = () => {
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              rentalPrice
+            </label>
             <input
-              type="text"
+              type="number"
               id="rentalPrice"
               name="rentalPrice"
               placeholder="Rental Price"
@@ -274,6 +334,9 @@ const AddVehicleInfo = () => {
           </div>
 
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              transmission
+            </label>
             <input
               type="text"
               id="transmission"
@@ -286,6 +349,9 @@ const AddVehicleInfo = () => {
         </div>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              brand
+            </label>
             <input
               type="text"
               id="brand"
@@ -297,6 +363,9 @@ const AddVehicleInfo = () => {
           </div>
 
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              model
+            </label>
             <input
               type="text"
               id="model"
@@ -309,8 +378,11 @@ const AddVehicleInfo = () => {
         </div>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              buildYear
+            </label>
             <input
-              type="text"
+              type="number"
               id="buildYear"
               name="buildYear"
               placeholder="Build Year"
@@ -320,8 +392,11 @@ const AddVehicleInfo = () => {
           </div>
 
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              expireDate
+            </label>
             <input
-              type="text"
+              type="date"
               id="expireDate"
               name="expireDate"
               placeholder="Expire Date"
@@ -332,6 +407,9 @@ const AddVehicleInfo = () => {
         </div>
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              fitnessCertificate
+            </label>
             <input
               type="text"
               id="fitnessCertificate"
@@ -343,6 +421,9 @@ const AddVehicleInfo = () => {
           </div>
 
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              issuingAuthority
+            </label>
             <input
               type="text"
               id="issuingAuthority"
@@ -356,8 +437,11 @@ const AddVehicleInfo = () => {
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              insuranceNumber
+            </label>
             <input
-              type="text"
+              type="number"
               id="insuranceNumber"
               name="insuranceNumber"
               placeholder="Insurance Number"
@@ -367,8 +451,11 @@ const AddVehicleInfo = () => {
           </div>
 
           <div>
+            <label className="mb-3 block text-xl font-bold text-[#07074D]">
+              insurancePeriod
+            </label>
             <input
-              type="text"
+              type="date"
               id="insurancePeriod"
               name="insurancePeriod"
               placeholder="Insurance Period"
@@ -377,6 +464,75 @@ const AddVehicleInfo = () => {
             />
           </div>
         </div>
+        {/* --------------------------- */}
+        {/* Address fields */}
+        <div className="p-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="font-bold" htmlFor="division">
+              Division
+            </label>
+            <select
+              name="division"
+              onChange={handleDivisionChange}
+              id="division"
+              className="outline-none w-[30%] rounded py-1 lg:py-2 px-2 text-secondary"
+              value={selectedDivision}
+              required
+            >
+              <option className="text-gray-400">Division</option>
+              {Object.keys(locationData).map((division) => (
+                <option key={division} value={division}>
+                  {division}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="font-bold" htmlFor="district">
+              District
+            </label>
+            {districts && (
+              <select
+                name="district"
+                onChange={handleDistrictChange}
+                id="district"
+                className="outline-none w-[33%] rounded py-1 lg:py-2 px-2 text-secondary"
+                required
+              >
+                <option className="text-gray-400">District</option>
+                {districts.map((district) => (
+                  <option key={district}>{district}</option>
+                ))}
+              </select>
+            )}
+          </div>
+
+          <div>
+            <label className="font-bold" htmlFor="upazilla">
+              Upazilla
+            </label>
+            {upazillas && (
+              <select
+                name="upazilla"
+                id="upazilla"
+                className="outline-none w-[33%] rounded py-1 lg:py-2 px-2 text-secondary"
+                required
+              >
+                <option value="" disabled>
+                  Upazilla
+                </option>
+                {upazillas.map((upazilla) => (
+                  <option key={upazilla} value={upazilla}>
+                    {upazilla}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+        </div>
+
+        {/* ---------------------------------------------------- */}
 
         <div>
           {/* ---------------------------additional info------------ */}
@@ -389,6 +545,9 @@ const AddVehicleInfo = () => {
             </div>
             <div className="p-2 mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
+                <label className="mb-3 block text-xl font-bold text-[#07074D]">
+                  airConditioning
+                </label>
                 <input
                   type="text"
                   id="airConditioning"
@@ -399,6 +558,9 @@ const AddVehicleInfo = () => {
                 />
               </div>
               <div>
+                <label className="mb-3 block text-xl font-bold text-[#07074D]">
+                  gps
+                </label>
                 <input
                   type="text"
                   id="gps"
@@ -409,6 +571,9 @@ const AddVehicleInfo = () => {
                 />
               </div>
               <div>
+                <label className="mb-3 block text-xl font-bold text-[#07074D]">
+                  bluetooth
+                </label>
                 <input
                   type="text"
                   id="bluetooth"
@@ -421,6 +586,9 @@ const AddVehicleInfo = () => {
             </div>
           </div>
           {/* ------------------------------------ */}
+          <label className="mb-3 block text-xl font-bold text-[#07074D]">
+            insuranceDetails
+          </label>
           <textarea
             id="insuranceDetails"
             name="insuranceDetails"

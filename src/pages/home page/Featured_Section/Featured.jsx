@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec011bd69ddec75dc5029ffd7534b56026ea726d
 import Title from "../../../components/Title/Title";
 import FeaturedCarts from "../../../components/cart/FeaturedCarts";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+import useVehicleData from "../../../hooks/useVehicleData";
 
 const Featured = () => {
-  const axiosPublic = useAxiosPublic()
-  
-  const { data: cars = [] } = useQuery({
-    queryKey: ["carsRoute/cars"],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/carsRoute/cars`);
-      return res.data;
-    },
-  });
-
+  const {cars} = useVehicleData();
+  console.log(cars);
   return (
     <div className="pt-20 lg:pt-32 ">
       <Title title={"Featured Cars"}></Title>

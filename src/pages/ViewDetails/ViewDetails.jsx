@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { FcDepartment, FcPieChart, FcHeatMap, FcOrgUnit, FcList, FcViewDetails, FcSalesPerformance } from "react-icons/fc";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaCheckCircle } from "react-icons/fa"; // For green check icon
+// import { FaCheckCircle } from "react-icons/fa"; // For green check icon
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import useAgencyInfo from "../../hooks/useAgencyInfo";
 
 
 const ViewDetails = () => {
@@ -23,7 +23,15 @@ const ViewDetails = () => {
 
     const axiosPublic = useAxiosPublic();
     const location = useLocation();
-    const { area, district, division, fromDate, fromTime, untilDate, untilTime, upazilla } = location.state?.carBookingInfo || {};
+
+    const {
+        carBookingInfo,
+        searchResult
+    } = location?.state || {};
+
+    const email = searchResult.agnecyInfo.email;
+    const { agencyInfo } = useAgencyInfo(email)
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,33 +47,28 @@ const ViewDetails = () => {
         };
 
         fetchReviews();
-    }, [id]);
+    }, [axiosPublic, id]);
 
-    const { data, refetch } = useQuery({
-        queryKey: ['carData', id], 
+    const { data: carData = {} } = useQuery({
+        queryKey: [id, 'carData'],
         queryFn: async () => {
-            const response = await axiosPublic.get(`/carsRoute/vehicle/${id}`);
-            return response.data;
-        },
-        enabled: !!id, 
-    });
+            const { data } = await axiosPublic.get(`/carsRoute/vehicle/${id}`)
+            return data;
+        }
+    })
+
     const handleRent = (e) => {
         e.preventDefault();
-        const bookingInformation = {
-            area,
-            district,
-            division,
-            fromDate,
-            fromTime,
-            untilDate,
-            untilTime,
-            upazilla,
-            data,
-            carId: id
+        
+        const bookingData = {
+            carBookingInfo,
+            carData,
+            agencyInfo
         }
-
-        navigate('/bookingInfo', { state: bookingInformation })
+        localStorage.setItem('bookingData', JSON.stringify({ bookingData }));
+        navigate('/bookingInfo')
     }
+
     useEffect(() => {
         fetch("../../../public/featuredAndAvailable.json")
             .then((res) => {
@@ -77,13 +80,14 @@ const ViewDetails = () => {
     }, []);
 
 
-    const add_features = data?.additional_features;
+    // const add_features = data?.additional_features;
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 50);
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         return () => clearTimeout(timer);
     }, [id]);
+
     const handleAddToFavorites = (carId) => {
         const existingFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
@@ -155,7 +159,7 @@ const ViewDetails = () => {
     return (
         <div className="md:mt-[80px] mt-6 max-w-6xl mx-auto lg:px-6">
             <Helmet>
-                <title>{data?.brand + " " + data?.model + " " + (data?.buildYear) || "Details"}</title>
+                <title>{carData?.brand || "Details"}</title>
             </Helmet>
             {/* Skeleton Loader */}
             {isLoading ? (
@@ -168,7 +172,7 @@ const ViewDetails = () => {
                     {/* Image Section */}
                     <div className="mx-auto lg:w-[580px] px-6 md:px-6 lg:px-0 flex-grow">
                         <div className="image-container">
-                            <img className="lg:w-[580px]" src={data?.image} alt={data?.brand} />
+                            <img className="lg:w-[580px]" src={carData?.image} alt={carData?.brand} />
                         </div>
                         <div className="flex flex-row-reverse mt-12 relative">
                             <button
@@ -176,49 +180,49 @@ const ViewDetails = () => {
                                 className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button bg-primary text-white hover:text-black px-4 duration-700 md:py-3">
                                 Rent Now
                             </button>
-                                <button
-                                    onClick={() => handleAddToFavorites(id)}
-                                    className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
-                                    Add to Favorites
-                                </button>
+                            <button
+                                onClick={() => handleAddToFavorites(id)}
+                                className="h-[40px] md:h-[70px] w-full !text-[14px] md:!text-[20px] dynamic-button text-white bg-secondary  hover:text-primary px-4 duration-700 py-3">
+                                Add to Favorites
+                            </button>
                         </div>
                     </div>
 
                     {/* Details Section */}
                     <div className="p-6 lg:mt-0 lg:w-1/2">
-                        <h2 className="text-4xl mb-4 font-bold text-secondary font-nunito text-heading">{data?.brand}<span className="ml-3">{data?.model}</span></h2>
+                        <h2 className="text-4xl mb-4 font-bold text-secondary font-nunito text-heading">{carData?.brand}<span className="ml-3">{carData?.model}</span></h2>
                         <div className="flex gap-6">
-                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{data?.brand}</h3>
-                            <p className="dark:text-heading2">Model: <span className="bg-[#FFEEE9] px-1 rounded-md text-black">{data?.model}</span></p>
+                            <h3 className="font-semibold px-6 text-primary bg-[#FFEEE9] rounded-sm">{carData?.brand}</h3>
+                            <p className="dark:text-heading2">Model: <span className="bg-[#FFEEE9] px-1 rounded-md text-black">{carData?.model}</span></p>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-heading">
                             <div className="flex flex-col py-2 px-10 items-center border border-gray-300 rounded-md">
                                 <FcDepartment className="text-4xl" />
                                 <span className="font-light mt-2">Build:</span>
-                                    <span className="text-lg font-semibold font-secondary">{data?.buildYear}</span>
+                                <span className="text-lg font-semibold font-secondary">{carData?.buildYear}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcPieChart className="text-4xl" />
                                 <span className="font-light mt-2">Fuel:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.fuel}</span>
+                                <span className="text-lg font-semibold font-secondary">{carData?.fuel}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcOrgUnit className="text-4xl" />
                                 <span className="font-light mt-2">Seats:</span>
-                                <span className="text-lg font-semibold font-secondary">{data?.seat}</span>
+                                <span className="text-lg font-semibold font-secondary">{carData?.seat}</span>
                             </div>
                             <div className="flex flex-col items-center py-2 px-10 border border-gray-300 rounded-md">
                                 <FcHeatMap className="text-4xl" />
                                 <span className="font-light mt-2">Transmission:</span>
-                                    <span className="text-lg font-semibold font-secondary">{data?.transmission}</span>
+                                <span className="text-lg font-semibold font-secondary">{carData?.transmission}</span>
                             </div>
                         </div>
 
                         {/* About Section */}
-                        <div>
+                        {/* <div>
                             <p className="text-xl mt-6">About</p>
-                            <p className="mt-4 text-[16px] font-secondary !leading-[26px] text-Description dark:text-Description2">{data?.about}</p>
-                        </div>
+                            <p className="mt-4 text-[16px] font-secondary !leading-[26px] text-Description dark:text-Description2">{carData?.vehicle_info.about}</p>
+                        </div> */}
                     </div>
                 </div>
             )}
@@ -235,19 +239,19 @@ const ViewDetails = () => {
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>License Number: {data?.licenseNumber}</span>
+                                <span>License Number: {carData?.licenseNumber}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Expire Date: {data?.expireDate}</span>
+                                <span>Expire Date: {carData?.expireDate}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Fitness Certificate: {data?.fitnessCertificate}</span>
+                                <span>Fitness Certificate: {carData?.fitnessCertificate}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Issuing Authority: {data?.issuingAuthority}</span>
+                                <span>Issuing Authority: {carData?.issuingAuthority}</span>
                             </li>
                         </ul>
                     </div>
@@ -261,24 +265,24 @@ const ViewDetails = () => {
                         <ul className="list-none ml-4 mt-4">
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Insurance Number: {data?.insuranceNumber}</span>
+                                <span>Insurance Number: {carData?.insuranceNumber}</span>
                             </li>
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Period: {data?.insurancePeriod}</span>
+                                <span>Coverage Period: {carData?.insurancePeriod}</span>
                             </li>
+                            {/* <li className="mb-2 flex items-center gap-2">
+                                <IoIosArrowForward className="text-primary" />
+                                <span>Provider: {carData?.vehicle_info.insurance_details.provider}</span>
+                            </li> */}
                             <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Provider: {data?.issuingAuthority}</span>
+                                <span>Coverage Type: {carData?.insuranceDetails}</span>
                             </li>
-                            <li className="mb-2 flex items-center gap-2">
+                            {/* <li className="mb-2 flex items-center gap-2">
                                 <IoIosArrowForward className="text-primary" />
-                                <span>Coverage Type: {""}</span>
-                            </li>
-                            <li className="mb-2 flex items-center gap-2">
-                                <IoIosArrowForward className="text-primary" />
-                                <span>Deductible: ৳ {data?.rentalPrice * 120}</span>
-                            </li>
+                                <span>Deductible: ৳ {data?.vehicle_info.insurance_details.deductible * 120}</span>
+                            </li> */}
                         </ul>
                     </div>
 
@@ -288,22 +292,19 @@ const ViewDetails = () => {
                             <FcList className="text-3xl" />
                             Additional Features
                         </h2>
-                        <ul className="list-none ml-4 mt-4">
-                            {data && data.additionalInfo && (
-                                <>
-                                    {Object.entries(data.additionalInfo).map(([feature, value]) => (
+                        {/* <ul className="list-none ml-4 mt-4">
+                            {
+                                carData && <>
+                                    {Object.entries(add_features).map(([feature, value]) => (
                                         <li key={feature} className="mb-2 flex items-center gap-2">
                                             <FaCheckCircle className={`${value ? 'text-green-500' : 'text-gray-500'}`} />
-                                            <span>
-                                                {feature.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}: <span className="text-gray-800">{value ? ' Available' : ' Not Available'}</span>
-                                                
-                                            </span>
+                                            <span>{feature.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}: {value ? 'Available' : 'Not Available'}</span>
                                         </li>
                                     ))}
                                 </>
-                            )}
-                        </ul>
+                            }
 
+                        </ul> */}
                     </div>
                 </div>
 
@@ -350,8 +351,8 @@ const ViewDetails = () => {
                                         <div className='mt-4 w-3/4 h-8 bg-gray-100 rounded-md'></div>
                                     </div>
                                 ))
-                            ) : (reviews.length===0? ( <p>No Reviews</p>) :
-                                
+                            ) : (reviews.length === 0 ? (<p>No Reviews</p>) :
+
                                 reviews?.map((review, index) => (
                                     <div key={index} className='p-6 bg-white'>
                                         <div className="flex justify-between">
@@ -395,13 +396,13 @@ const ViewDetails = () => {
                                             </div>
                                         )}
 
-                                        
-                                            <div className='mt-4 bg-gray-100 p-3 rounded-md shadow-inner'>
-                                                <p className='text-xs text-gray-600 italic'>
-                                                    <span className='font-semibold text-primary'>Agency Response:</span> {review.agencyResponse? review.agencyResponse : "No Response"}
-                                                </p>
-                                            </div>
-                                    
+
+                                        <div className='mt-4 bg-gray-100 p-3 rounded-md shadow-inner'>
+                                            <p className='text-xs text-gray-600 italic'>
+                                                <span className='font-semibold text-primary'>Agency Response:</span> {review.agencyResponse ? review.agencyResponse : "No Response"}
+                                            </p>
+                                        </div>
+
                                     </div>
                                 ))
                             )}
@@ -420,7 +421,7 @@ const ViewDetails = () => {
                                 relatedData?.map((car, index) => {
                                     return (
                                         <div key={index} className='relative '>
-                                            <Link to={`/view-details/${car.id}`}>
+                                            <Link to={`/view-details`}>
                                                 <div className='h-[290px]'>
                                                     <span className='absolute text-white text-[12px] left-[15px] top-3'><span>{car.vehicle_info.brand}</span> Car </span>
                                                     <img className='h-[250px] w-[150px] md:w-[180px] object-cover' src={car.vehicle_info.photo} alt={`Profile Photo of ${car.vehicle_info.name}`} />
@@ -439,6 +440,7 @@ const ViewDetails = () => {
                 </div>
             </div>
         </div>
+
     );
 };
 

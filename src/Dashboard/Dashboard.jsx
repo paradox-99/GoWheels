@@ -17,6 +17,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { logout } = UseAuth();
   const { userInfo } = useDesignation();
+  // eslint-disable-next-line no-unused-vars
   const [value, setValue] = useState(false);
   const { userRole } = useRole();
 

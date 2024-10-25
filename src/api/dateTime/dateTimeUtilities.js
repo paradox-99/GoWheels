@@ -46,10 +46,8 @@ export const calculateMinUntilTime = (selectedTimeValue) => {
 export const calculateHoursDifference = (fromDate, fromTime, untilDate, untilTime) => {
     const fromDateTime = new Date(`${fromDate}T${fromTime}`);
     const untilDateTime = new Date(`${untilDate}T${untilTime}`);
-
     const timeDiff = (untilDateTime - fromDateTime) / (1000 * 60 * 60);
     const absoluteTimeDiff = Math.ceil(timeDiff);
-
     return absoluteTimeDiff
 }
 

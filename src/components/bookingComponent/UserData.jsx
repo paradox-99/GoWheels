@@ -4,7 +4,17 @@ import { PiGenderIntersexFill } from "react-icons/pi";
 import { HiMiniDocumentChartBar } from "react-icons/hi2";
 import { GrLicense } from "react-icons/gr";
 
-const UserData = ({ firstName, lastName, userEmail, phone, gender, nid, drivingLicense }) => {
+const UserData = ({ userInformation }) => {
+
+    const {
+        firstName,
+        lastName,
+        userEmail,
+        phone,
+        gender,
+        nid,
+        drivingLicense
+    } = userInformation
     return (
         <div>
             <div className="border-b-[1px] border-dashed border-primary pb-2">
