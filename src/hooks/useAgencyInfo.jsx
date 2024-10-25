@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
+const useAgencyInfo = (email) => {
 
-const useAgencyData = (email) => {
     const axiosSecure = useAxiosSecure();
 
     const { data: agencyInfo= '' } = useQuery({
@@ -12,8 +12,7 @@ const useAgencyData = (email) => {
             return data;
         }
     })
-
     return {agencyInfo};
 };
 
-export default useAgencyData;
+export default useAgencyInfo;
