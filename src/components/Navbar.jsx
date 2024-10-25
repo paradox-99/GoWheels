@@ -4,10 +4,10 @@ import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
+import { TbMapPinSearch } from "react-icons/tb";
 import { IoMdSearch } from "react-icons/io";
 
 import Swal from "sweetalert2";
-import loaderEliment from '../../public/logo.gif';
 import toast from "react-hot-toast"
 const Navbar = () => {
     const { user, logout, loader } = useAuth();
@@ -23,6 +23,7 @@ const Navbar = () => {
 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
+        console.log(currentScrollY);
         if (currentScrollY > 50) {
             setShadow(true)
         } else {
@@ -62,13 +63,13 @@ const Navbar = () => {
 
     if (hideNavbar || (hideNavbar && loader)) return null;
 
-    if (!user && loader) {
-        return (
-            <div className='absolute right-[40%] top-[16px] lg:top-[-24px]'>
-                <img className='mx-auto w-16 lg:w-32' src={loaderEliment} alt="" />
-            </div>
-        );
-    }
+    // if (!user && loader) {
+    //     return (
+    //         <div className='absolute right-[40%] top-[16px] lg:top-[-24px]'>
+    //             <img className='mx-auto w-16 lg:w-32' src={loaderEliment} alt="" />
+    //         </div>
+    //     );
+    // }
 
     const routes = (
         <>
@@ -107,7 +108,8 @@ const Navbar = () => {
                         <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><IoMdSearch />Search</Link>
                         {!user && (
                             <li className="bg-primary px-2 text-sm lg:px-5 py-1 lg:py-2 text-white  rounded  text-center lg:ml-7 font-merriweather w-full ">
-                                <NavLink to={'join'}>JOIN</NavLink>
+                                <NavLink
+                                    to={'join'}>JOIN</NavLink>
                             </li>
                         )}
                         {user && (
@@ -124,7 +126,7 @@ const Navbar = () => {
                                             src={userInfo?.image}
                                             alt="Profile Picture"
                                             referrerPolicy="no-referrer"
-                                           className="w-12 h-12 rounded-full border-[3px] border-primary"
+                                            className="w-10 rounded-full border-[3px] border-primary"
                                         />
                                     ) : (
                                         <CgProfile className="size-8 text-primary" />
@@ -145,17 +147,16 @@ const Navbar = () => {
                                 </div>
                             </div>
                         )}
-                        <div className="flex md:hidden">
-                            <div onClick={() => setValue2(!value2)}>
-                                {
-                                    value2 ? <RxCross2></RxCross2> : <CgMenu></CgMenu>
-                                }
-                            </div>
-                            <div className="relative">
-                                <ul className={`bg-primary text-white rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value2 ? "-right-60" : "right-0"} duration-500`}>
-                                    {routes}
-                                </ul>
-                            </div>
+                    </div>
+
+                    <div className="flex md:hidden">
+                        <div onClick={() => setValue2(!value2)}>
+                            {value2 ? <RxCross2 /> : <CgMenu />}
+                        </div>
+                        <div className="relative">
+                            <ul className={`bg-primary text-white rounded w-40 absolute flex flex-col font-nunito mt-2 ${!value2 ? "-right-60" : "right-0"} duration-500`}>
+                                {routes}
+                            </ul>
                         </div>
                     </div>
                 </div>

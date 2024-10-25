@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
 
 const Table = ({ dataToDisplay }) => {
-  // Check if dataToDisplay is empty to prevent accessing undefined properties
   if (!dataToDisplay || dataToDisplay.length === 0) {
     return <div>No data available</div>;
   }
 
   return (
     <div className="flex flex-col w-full h-full overflow-scroll shadow-md rounded-lg">
+      
       <table className="w-full text-left table-auto min-w-max">
         <thead>
           <tr>

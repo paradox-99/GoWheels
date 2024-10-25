@@ -1,5 +1,5 @@
 import { BsFuelPumpFill } from "react-icons/bs";
-import { FaCarSide, FaStar } from "react-icons/fa";
+import { FaCarSide } from "react-icons/fa";
 import { PiSeatFill } from "react-icons/pi";
 import { TbManualGearboxFilled } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";

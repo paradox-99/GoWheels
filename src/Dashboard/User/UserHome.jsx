@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import useDesignation from '../../hooks/useDesignation';
-import { TbManualGearboxFilled } from 'react-icons/tb';
-import { PiSeatFill } from 'react-icons/pi';
-import { BsFuelPumpFill } from 'react-icons/bs';
-import { FaCarSide } from 'react-icons/fa';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { BsCheckCircleFill } from 'react-icons/bs';
-import { AiOutlineDollarCircle } from 'react-icons/ai';
-import { FaCarAlt } from 'react-icons/fa';
+// import { TbManualGearboxFilled } from 'react-icons/tb';
+// import { PiSeatFill } from 'react-icons/pi';
+// import { BsFuelPumpFill } from 'react-icons/bs';
+// import { FaCarSide } from 'react-icons/fa';
+// import { MdKeyboardArrowRight } from 'react-icons/md';
+// import { BsCheckCircleFill } from 'react-icons/bs';
+// import { AiOutlineDollarCircle } from 'react-icons/ai';
+// import { FaCarAlt } from 'react-icons/fa';
 import CommonCarCard from './CommonCarCard';
+import SkeletonLoader from './SkeletonLoader ';
 import { Helmet } from 'react-helmet-async';
 
 const UserHome = () => {
@@ -123,7 +124,7 @@ const UserHome = () => {
                                 <p>Succeeded ({completed})</p>
                             </div>
                             <div className='flex items-center gap-2'>
-                                <div className="bg-green-400 size-2 rounded-full" />
+                                <div className="bg-red-400 size-2 rounded-full" />
                                 <p>Cancelled ({cancelled})</p>
                             </div>
                         </div>
@@ -140,15 +141,18 @@ const UserHome = () => {
                 <div className='h-[2px] w-12 bg-primary -mt-2'></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 pt-12 lg:grid-cols-3 gap-8">
                     {loading ? (
-                        <p>Loading...</p>
+                        Array.from({ length: 3 }).map((_, index) => (
+                            <SkeletonLoader key={index} />
+                        ))
                     ) : bookedCars?.length < 1 ? (
                         <p>You have not booked any cars yet.</p>
                     ) : (
                         bookedCars.map((car) => (
-                            <CommonCarCard key={car._id} car={car}></CommonCarCard>
+                            <CommonCarCard key={car._id} car={car} />
                         ))
                     )}
                 </div>
+
             </div>
         </div>
     );

@@ -21,6 +21,10 @@ import DriverOTP from "../pages/DriverPages/DriverOTP";
 import AgencyOTP from "../pages/Agency/AgencyOTP";
 import DriverList from "../components/driverList/DriverList";
 import SearchResult from "../pages/search/SearchResult";
+import Messaging from "../pages/messaging/Messaging";
+import AllAgency from "../pages/Agency/AllAgency";
+import ViewAgencyDetails from "../pages/ViewDetails/ViewAgencyDetails";
+import Message from "../pages/messaging/Message";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +58,23 @@ const router = createBrowserRouter([
             {
                 path: "/bookingInfo",
                 element: <BookingInfo />
+            },
+            {
+                path: "/send-message",
+                element: <Messaging/>
+            },
+            {
+                path: "/send-message/:url",
+                element: <Message></Message>
+            },
+            {
+                path: "/view-all-agencies",
+                element: <AllAgency/>
+
+            },
+            {
+                path: "/agencyDetails/:id",
+                element: <ViewAgencyDetails/>
             },
             ...SignUpRoutes,
             {
