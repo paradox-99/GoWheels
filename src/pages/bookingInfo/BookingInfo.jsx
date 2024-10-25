@@ -17,9 +17,11 @@ import loader from '../../../public/logo.gif'
 import DriverList from "../../components/driverList/DriverList";
 import PaymentData from "../../components/paymentData/PaymentData";
 import { Helmet } from "react-helmet-async";
+import { getDataFromLocalStorage } from "../../api/utilities";
 
 
 const BookingInfo = () => {
+
     const location = useLocation();
 
     const { user } = UseAuth();
@@ -32,24 +34,14 @@ const BookingInfo = () => {
     const [totalPayCost, setTotalPayCost] = useState(0);
     const [totalRentHours, setTotalRentHours] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [isModalVisible, setModalVisible] = useState(false);
     const [showDriverMessage, setShowDriverMessage] = useState(false);
-    const { driverInfo, age } = location.state || {};
+    const { driverInfo, age, cost } = location.state || {};
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
 
-    const {
-        area,
-        district,
-        division,
-        initailDate,
-        initalTime,
-        toDate,
-        toTime,
-        upazilla,
-        carData,
-        agencyInfo
-    } = location.state || {};
+    const parseData = getDataFromLocalStorage()
+    const { agencyInfo, carBookingInfo, carData } = parseData.bookingData || {}
+
 
     const {
         _id,
@@ -77,6 +69,17 @@ const BookingInfo = () => {
         userEmail: agencyEmail,
         agency_id
     } = agencyInfo || {};
+
+    const {
+        division,
+        district,
+        upazilla,
+        area,
+        initailDate,
+        initalTime,
+        toDate,
+        toTime
+    } = carBookingInfo || {}
 
     const bookingInfo = {
         division,
@@ -131,13 +134,27 @@ const BookingInfo = () => {
     useEffect(() => {
         const savedMethod = localStorage.getItem('method');
 
+        const totalHours = calculateHoursDifference(initailDate, initalTime, toDate, toTime);
+        setTotalRentHours(totalHours)
+        const Cost = totalHours * rentalPrice / 24;
+        const calculatedCost = Math.ceil(Cost);
+
         if (savedMethod === 'driver') {
             setMethod('driver');
             setShowDriverMessage(true);
-        } else if (savedMethod === 'self') {
-            setMethod('self');
+            setDrivingCost(cost)
+
+            setTotalPayCost(calculatedCost)
+            if (drivingCost > 0) {
+                const absoluteTotalCost = (calculatedCost + drivingCost) - discount;
+                setTotalPayment(absoluteTotalCost)
+            }
+        } else if (savedMethod === 'Self-driving') {
+            setMethod('Self-driving');
+            const absoluteTotalCost = calculatedCost - discount;
+            setTotalPayment(absoluteTotalCost)
         }
-    }, []);
+    }, [cost, discount, drivingCost, initailDate, initalTime, rentalPrice, toDate, toTime]);
 
     const handleChange = (e) => {
         setLoading(true);
@@ -158,7 +175,7 @@ const BookingInfo = () => {
             const totalHours = calculateHoursDifference(initailDate, initalTime, toDate, toTime);
             setTotalRentHours(totalHours)
 
-            const Cost = totalHours * carData?.rentalPrice / 24;
+            const Cost = totalHours * rentalPrice / 24;
             const calculatedCost = Math.ceil(Cost);
             setTotalPayCost(calculatedCost)
 
@@ -202,6 +219,7 @@ const BookingInfo = () => {
             <Helmet>
                 <title>Booking</title>
             </Helmet>
+
             <section className="lg:w-[65%] shadow-xl rounded-xl px-5 py-3">
                 {/* upper section starts */}
                 <header>
@@ -272,22 +290,6 @@ const BookingInfo = () => {
                             </form>
                         </div>
 
-                        {isModalVisible && (
-                            <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-10">
-                                <div className="bg-white p-6 rounded-lg shadow-lg">
-                                    <h2 className="text-2xl font-bold">Driver Selection</h2>
-                                    <p>You have selected the <span className="text-lg font-semibold">Need Driver</span> option. Please proceed.</p>
-
-                                    <DriverList role={'driver'}></DriverList>
-                                    <button
-                                        className="mt-4 bg-primary text-white p-2 rounded"
-                                        onClick={() => setModalVisible(false)}>
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
                         {
                             loading && <>
                                 <div className="overlay absolute right-28 lg:right-12 top-64 lg:top-0">
@@ -344,7 +346,6 @@ const BookingInfo = () => {
                 {/* lower section ends */}
             </section>
 
-            {/* right part */}
             <section className=" lg:w-[33%] px-7 py-8 shadow-xl rounded-xl " >
                 <PaymentData paymentInfo={paymentInfo}></PaymentData>
             </section >

@@ -33,14 +33,14 @@ const ViewDetails = () => {
     const { agencyInfo } = useAgencyData(email)
 
     const {
-        area,
-        district,
         division,
+        district,
+        upazilla,
+        area,
         initailDate,
         initalTime,
         toDate,
         toTime,
-        upazilla,
     } = carBookingInfo || {};
 
     const navigate = useNavigate();
@@ -82,6 +82,13 @@ const ViewDetails = () => {
             carData,
             agencyInfo
         }
+
+        const bookingData = {
+            carBookingInfo,
+            carData,
+            agencyInfo
+        }
+        localStorage.setItem('bookingData', JSON.stringify({ bookingData }));
 
         navigate('/bookingInfo', { state: bookingInformation })
     }

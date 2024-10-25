@@ -3,8 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const PaymentData = ({ paymentInfo }) => {
-
-    console.log(paymentInfo)
+    
     const {
         agencyEmail,
         agency_id,
