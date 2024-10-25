@@ -10,11 +10,7 @@ const AgencyCard = ({ agency }) => {
     const {
         agencyName,
         agency_id,
-        businessRegNumber,
-        insuranceLicenseNumber,
         numberOfVehicles,
-        taxIdentificationNumber,
-        transportLicenseNumber,
         userEmail,
     } = agency
 
