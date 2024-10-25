@@ -7,7 +7,7 @@ const useDriverList = ({role}) => {
     const { data: driverData = [], isLoading, refetch } = useQuery({
         queryKey: ['driverData', role],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/usersRoute/driver?role=${role}`);
+            const { data } = await axiosSecure.get(`/driverRoute/drivers`);
             return data
         }
     })
