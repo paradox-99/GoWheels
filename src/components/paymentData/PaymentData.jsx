@@ -3,12 +3,11 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const PaymentData = ({ paymentInfo }) => {
-
-    console.log(paymentInfo)
+    
     const {
         agencyEmail,
         agency_id,
-        carID,
+        _id,
         discount,
         drivingCost,
         initailDate,
@@ -40,7 +39,7 @@ const PaymentData = ({ paymentInfo }) => {
         const paymentData = {
             agencyEmail,
             agency_id,
-            carID,
+            _id,
             userEmail,
             discount,
             drivingCost,
@@ -49,12 +48,18 @@ const PaymentData = ({ paymentInfo }) => {
             division,
             district,
             upazilla,
-            area
+            area,
+            initailDate,
+            initalTime,
+            toDate,
+            toTime,
         }
 
-        await axiosPublic.post('/payment/order', paymentData)
+        const {data} = await axiosPublic.post('/payment/order', paymentData)
+        console.log(data)
+
             .then(res => {
-                window.location.replace(res.data?.url)
+                window.location.replace(data.url)
                 console.log(res.data)
             })
     }

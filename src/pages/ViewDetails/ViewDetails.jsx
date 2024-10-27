@@ -10,7 +10,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
-import useAgencyData from "../../hooks/useAgencyData";
+import useAgencyInfo from "../../hooks/useAgencyInfo";
 
 
 const ViewDetails = () => {
@@ -29,19 +29,8 @@ const ViewDetails = () => {
         searchResult
     } = location?.state || {};
 
-    const email = searchResult?.agnecyInfo?.email;
-    const { agencyInfo } = useAgencyData(email)
-
-    const {
-        area,
-        district,
-        division,
-        initailDate,
-        initalTime,
-        toDate,
-        toTime,
-        upazilla,
-    } = carBookingInfo || {};
+    const email = searchResult.agnecyInfo.email;
+    const { agencyInfo } = useAgencyInfo(email)
 
     const navigate = useNavigate();
 
@@ -70,20 +59,14 @@ const ViewDetails = () => {
 
     const handleRent = (e) => {
         e.preventDefault();
-        const bookingInformation = {
-            area,
-            district,
-            division,
-            initailDate,
-            initalTime,
-            toDate,
-            toTime,
-            upazilla,
+        
+        const bookingData = {
+            carBookingInfo,
             carData,
             agencyInfo
         }
-
-        navigate('/bookingInfo', { state: bookingInformation })
+        localStorage.setItem('bookingData', JSON.stringify({ bookingData }));
+        navigate('/bookingInfo')
     }
 
     useEffect(() => {

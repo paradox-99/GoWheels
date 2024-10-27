@@ -34,8 +34,8 @@ const CommonCarCard = ({ car }) => {
     return (
         <div className="border border-[#FFE2DE] group rounded-xl p-6">
             <img
-                src={car.vehicle_info.photo}
-                alt={`${car.vehicle_info.brand} ${car.vehicle_info.model}`}
+                src={car.image}
+                alt={`${car.car} ${car.model}`}
                 className="w-[280px] group-hover:scale-105 duration-500 h-[180px] object-cover rounded-md mb-4"
             />
             <div className="flex items-center gap-2 relative"
@@ -164,24 +164,24 @@ const CommonCarCard = ({ car }) => {
             </div>
 
             <h2 className="text-xl font-semibold">
-                {car.vehicle_info.brand} {car.vehicle_info.model} ({car.vehicle_info.build_year})
+                {car.brand} {car.model} ({car.buildYear})
             </h2>
             <div className="grid grid-cols-2 gap-3 font-medium py-4">
                 <p className="flex gap-1 lg:gap-4 items-center">
                     <FaCarSide className="text-primary" />{" "}
-                    <span className="pl-1">{car.vehicle_info.brand}</span>
+                    <span className="pl-1">{car.brand}</span>
                 </p>
                 <p className="flex gap-1 lg:gap-4 items-center">
                     <BsFuelPumpFill className="text-primary" />{" "}
-                    <span className="pl-1">{car.vehicle_info.fuel}</span>
+                    <span className="pl-1">{car.fuel}</span>
                 </p>
                 <p className="flex gap-1 lg:gap-4 items-center">
                     <PiSeatFill className="text-primary" />
-                    <span className="pl-1">{car.vehicle_info.seats}</span>
+                    <span className="pl-1">{car.seat}</span>
                 </p>
                 <p className="flex gap-1 lg:gap-4 items-center">
                     <TbManualGearboxFilled className="text-primary" />
-                    <span className="pl-1">{car.vehicle_info.gear}</span>
+                    <span className="pl-1">{car.gear}</span>
                 </p>
             </div>
             <div className="flex justify-end hover:translate-x-1 duration-300">

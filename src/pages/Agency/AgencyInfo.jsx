@@ -52,7 +52,7 @@ const AgencyInfo = () => {
         const businessRegNumber = form.regNumber.value;
         const taxIdentificationNumber = form.identificationNumber.value;
         const agency_id = generateAgencyId();
-        setAgencyId(agencyId + 1);
+        // setAgencyId(agencyId + 1);
 
         const agencyAddress = {
             division,
