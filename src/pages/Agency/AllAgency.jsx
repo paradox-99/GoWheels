@@ -21,7 +21,7 @@ const AllAgency = () => {
     }
 
     return (
-        <div>
+        <div className='space-y-4 mt-10'>
             {
                 data?.map(agency => <AgencyCard
                     key={agency?._id}

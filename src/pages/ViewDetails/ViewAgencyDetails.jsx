@@ -10,7 +10,7 @@ const ViewAgencyDetails = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
-    const {userInfo} = useDesignation()
+    const { userInfo } = useDesignation()
     const sendbirdInstance = new SendBird({ appId: import.meta.env.VITE_Send_Bird_appID })
 
     const { data } = useQuery({
@@ -21,7 +21,18 @@ const ViewAgencyDetails = () => {
         }
     })
 
-    const createOrOpenChannel = async (userId,agencyId) => {
+    console.log(data)
+    const {
+        agencyName,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        userEmail,
+    } = data
+
+    const createOrOpenChannel = async (userId, agencyId) => {
         try {
             await sendbirdInstance.connect(userId);
             // Check if a channel already exists with the agency
@@ -48,10 +59,25 @@ const ViewAgencyDetails = () => {
     };
 
     return (
-        <div className="my-32 flex justify-center">
-            <button onClick={() => createOrOpenChannel(userInfo._id, id)} className="border-2 rounded px-5 py-2 border-primary flex justify-center items-center gap-3">
-                <TbMessageCircle className="w-5 h-5" /> Send Message
-            </button>
+        <div className="my-32 flex flex-col items-start gap-3">
+
+            <div className="mx-auto space-y-4">
+                <div className="font-nunito font-semibold text-lg space-y-3">
+                    <h1> <span className="font-medium">Name:</span> {agencyName}</h1>
+                    <h1> <span className="font-medium">Email:</span> {userEmail}</h1>
+                    <h1> <span className="font-medium">No of Cars:</span> {numberOfVehicles}</h1>
+                </div>
+
+                <button onClick={() => createOrOpenChannel(userInfo._id, id)} className="border-2 rounded px-5 py-2 border-primary flex justify-center items-center gap-3">
+                    <TbMessageCircle className="w-5 h-5" /> Send Message
+                </button>
+                <div className="font-nunito font-semibold text-lg space-y-3">
+                    <h1> <span className="font-medium">registration No:</span>  {businessRegNumber}</h1>
+                    <h1> <span className="font-medium">Insurance No:</span>  {insuranceLicenseNumber}</h1>
+                    <h1> <span className="font-medium">Tax Identification No:</span>  {taxIdentificationNumber}</h1>
+                    <h1> <span className="font-medium">Transport lisence No:</span>  {transportLicenseNumber}</h1>
+                </div>
+            </div>
         </div>
     );
 };

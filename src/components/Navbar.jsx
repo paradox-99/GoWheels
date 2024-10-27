@@ -80,7 +80,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                     isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
                 }
-                to={'about'}>About</NavLink></li>
+                to={'about'}>Agencies</NavLink></li>
             <li><NavLink
                 className={({ isActive }) =>
                     isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'

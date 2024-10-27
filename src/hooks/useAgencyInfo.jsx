@@ -8,7 +8,8 @@ const useAgencyInfo = (email) => {
     const { data: agencyInfo= '' } = useQuery({
         queryKey: [email, 'agencyInfo'],
         queryFn: async () => {
-            const {data} = await axiosSecure.get(`/agencyRoute/agencyData/${email}`);
+            const {data} = await axiosSecure.get(`/agencyRoute/agencyInformation/${email}`);
+            console.log(data)
             return data;
         }
     })

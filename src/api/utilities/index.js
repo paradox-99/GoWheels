@@ -22,6 +22,17 @@ export const googleLogin = async (loginWithGoogle) => {
     }
 };
 
+export const getDataFromLocalStorage = () => {
+    const storedData = localStorage.getItem('bookingData');
+    
+    if (storedData) {
+        const parsedData = JSON.parse(storedData);
+        return parsedData;
+    }
+    
+    return null;
+};
+
 
 export const calculateAge = (date) => {
 
