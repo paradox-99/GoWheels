@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDU1CYMmDPa2S3GSWe_Bl0OJXlRoUuPzM4",
-    authDomain: "gowheels-6692a.firebaseapp.com",
-    projectId: "gowheels-6692a",
-    storageBucket: "gowheels-6692a.appspot.com",
-    messagingSenderId: "654497080741",
-    appId: "1:654497080741:web:34432e9b666e8c9b86344c"
+    apiKey:"AIzaSyCJNcZIvssBlfXVoE2sY41z6mrN79yuakM",
+    authDomain:"gowheels-99.firebaseapp.com",
+    projectId:"gowheels-99",
+    storageBucket:"gowheels-99.appspot.com",
+    messagingSenderId:"882993135704",
+    appId:"1:882993135704:web:79eb95486dcd5628c6ca2d",
 };
 
 const app = initializeApp(firebaseConfig);
