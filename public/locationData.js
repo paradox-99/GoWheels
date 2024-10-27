@@ -7,9 +7,6 @@ import nissan_logo from "/src/assets/topBrands/nissan_logo.png"
 import suzuki_car from "/src/assets/topBrands/suzuki_car.png"
 import suzuki_logo from "/src/assets/topBrands/suzuki_logo.png"
 
-
-
-
 export const locationData =
 {
     "Dhaka": {

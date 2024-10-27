@@ -27,13 +27,13 @@ const HandleSearch = () => {
     return (
         <div className="flex gap-5 flex-col min-[1220px]:flex-row">
             <div className="">
-                <p className="text-lg font-semibold mb-3">Location</p>
+                <p className="font-nunito mb-4 font-semibold text-lg">Location</p>
                 <div className="flex justify-between gap-4 items-center w-full">
                     <Address getAddress={getAddress}></Address>
                 </div>
             </div>
             <div>
-                <h3 className="font-nunito mb-2 ">Booking Range</h3>
+                <h3 className="font-nunito mb-2 font-semibold text-lg">Booking Date</h3>
                 <TimePicker getTime={getTime}></TimePicker>
             </div>
             <div className="flex justify-end items-end">

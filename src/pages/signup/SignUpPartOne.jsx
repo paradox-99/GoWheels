@@ -57,7 +57,7 @@ const SignUpPartOne = () => {
                                 <GoogleButton></GoogleButton>
                             </div>
                             <div className='mt-2'>
-                                <Link to={'/join/agencyRegister'} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
+                                <Link to={'/join/agency-terms-and-conditions'} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
                                     <FaRegHandshake className='text-3xl text-white' /> Register as a agency
                                 </Link>
                             </div>

@@ -4,7 +4,6 @@ import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
-import { TbMapPinSearch } from "react-icons/tb";
 import { IoMdSearch } from "react-icons/io";
 
 import Swal from "sweetalert2";
@@ -23,7 +22,6 @@ const Navbar = () => {
 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
-        console.log(currentScrollY);
         if (currentScrollY > 50) {
             setShadow(true)
         } else {
