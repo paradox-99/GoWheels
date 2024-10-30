@@ -25,9 +25,6 @@ const Filter = () => {
   const { cars } = useVehicleData();
   const brands = [...new Set(cars.map((brand) => brand.brand))];
 
-  // const models = cars.map((car) => car.model)
-
-
   const handleBrandChange = (e) => {
     e.preventDefault();
     const brand = e.target.value;
@@ -44,8 +41,8 @@ const Filter = () => {
     const district = address.selectedDistrict;
     const upazilla = address.selectedUpazilla;
 
-    const initailDate = time.fromDate;
-    const initalTime = time.fromTime;
+    const initialDate = time.fromDate;
+    const initialTime = time.fromTime;
     const toDate = time.untilDate;
     const toTime = time.untilTime;
 
@@ -55,8 +52,8 @@ const Filter = () => {
     }
 
     const filterData = {
-      initailDate,
-      initalTime,
+      initialDate,
+      initialTime,
       toDate,
       toTime,
       division,

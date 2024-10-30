@@ -32,7 +32,6 @@ const Messaging = () => {
                 breakpoint={'760px'}
             />
         </div>
-
     );
 };
 

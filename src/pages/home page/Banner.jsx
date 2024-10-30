@@ -20,46 +20,28 @@ const Banner = () => {
   }, [images.length]);
 
   return (
-    <main style={{ backgroundSize: "600px" }} className="bg-[#F8F8F8] bg-[url('/banner_image.png')]  bg-no-repeat md:bg-[right_top]  -mt-10 lg:px-20 lg:py-8">
-      {/* <div className="absolute top-0 z-[1] right-0">
-        <img src="/banner_image.png" className="w-[600px]" alt="" />
-      </div> */}
-      <div className="flex z-[2] flex-col h-[600px]  sm:flex-row  items-center ">
-        <div className="  z-[2]  mx-auto px-4 flex flex-col sm:flex-row  py-10 lg:py-16">
-          <div className="w-full sm:w-2/3 lg:w-2/5 flex flex-col ">
+    <main style={{ backgroundSize: "600px" }} className="bg-[#F8F8F8] bg-[url('/banner_image.png')]  bg-no-repeat bg-[right_top]  -mt-10 lg:px-20 lg:py-8">
+      <div className="flex items-center">
+        <div className="mx-auto px-4 pt-10 md:pt-16 flex flex-col md:flex-row gap-10 lg:gap-20">
+          <div className="w-full md:w-1/2 flex flex-col justify-center">
             <span className="font-sans w-[60px] font-medium bg-primary h-1 mb-5 text-2xl"></span>
-            <h1 className="font-extrabold text-6xl sm:text-7xl leading-none text-gray-800">
+            <h1 className="font-extrabold text-5xl lg:text-6xl xl:text-7xl leading-none text-gray-800 text-center md:text-left">
               Book Your <span className="text-primary">Ride</span> Today
             </h1>
-            <p className="text-sm sm:text-base mt-4">
+            <p className="mt-4 text-center md:text-left">
               Explore the latest models with cutting-edge technology, safety features, and luxurious designs.
             </p>
-            <div className="flex mt-8">
-              <a
-                href="#"
-                className="uppercase py-2 px-4 bg-[#ff4c30] border-2 border-transparent text-white text-md mr-4 hover:bg-[#161616]"
-              >
-                Get started
-              </a>
-              <a
-                href="#"
-                className="uppercase py-2 px-4 border border-secondary text-secondary hover:text-white hover:bg-secondary text-md"
-              >
-                Read more
-              </a>
+            <div className="flex mt-8 justify-center md:justify-start">
+              <a href="#" className="uppercase rounded py-1 md:py-2 px-2 md:px-4 bg-[#ff4c30] border-2 border-transparent text-white mr-4 hover:bg-[#161616] text-sm md:text-base"> Get started </a>
+              <a href="#" className="uppercase py-1 md:py-2 px-2 md:px-4 border rounded border-secondary text-secondary hover:text-white hover:bg-secondary text-sm md:text-base" > Read more </a>
             </div>
           </div>
-          <div className="w-full sm:w-1/3 lg:w-3/5 mt-8 sm:mt-0 ">
-            <img
-              src={images[currentImage]}
-              className="m-auto w-[700px] transition-opacity duration-1000 ease-in-out"
-              alt="Car"
-            />
+          <div className="w-full md:w-1/2 flex items-center justify-center">
+            <img src={images[currentImage]} className="w-2/3 md:w-full transition-opacity duration-1000 ease-in-out" alt="Car"/>
           </div>
         </div>
       </div>
-
-      <div className="-mt-12 mx-auto z-[2] lg:w-[1200px] border border-gray-300 p-10">
+      <div className="px-5 mt-10">
         <HandleSearch />
       </div>
     </main>
