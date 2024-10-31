@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Address from "../../components/address/Address";
 import TimePicker from "../../components/address/TimePicker";
 import { IconButton } from "@mui/material";
@@ -7,13 +7,13 @@ import { FaSearch } from "react-icons/fa";
 import { keyArea } from "../../../public/locationData";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Card from "./Card";
 
 const SearchResult = () => {
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const axiosPublic = useAxiosPublic();
-
 
     const [division, setDivision] = useState(params.get("division"));
     const [district, setDistrict] = useState(params.get("district"));
@@ -30,7 +30,7 @@ const SearchResult = () => {
     const timeValues = { fromDate, fromTime, untilDate, untilTime };
 
     const { data: cars, isPending } = useQuery({
-        queryKey: ["cars"],
+        queryKey: ['cars'],
         queryFn: async () => {
             const filterData = {
                 fromDate,
@@ -62,8 +62,6 @@ const SearchResult = () => {
     //     keyPoint = keyArea["Dhaka North"]
     // }
 
-    // console.log(keyPoint);
-
     const searchPage = () => {
 
     }
@@ -88,7 +86,12 @@ const SearchResult = () => {
                 </div>
             </div>
             <div className="w-full">
-
+                {
+                    cars?.map(car => <Card
+                    key={car._id}
+                    car={car}
+                    ></Card>)
+                }
             </div>
         </div>
     );
