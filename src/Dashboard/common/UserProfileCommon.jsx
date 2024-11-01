@@ -70,7 +70,7 @@ const UserProfileCommon = () => {
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/agencyRoute/user/${user?.email}`
+        `/agencyRoute/agency/owner/${user?.email}`
       );
       return data;
     },
@@ -88,7 +88,7 @@ const UserProfileCommon = () => {
       setSelectedDistrict(users.userAddress.district);
       setUpazillas(
         locationData[users.userAddress.division]?.[
-          users.userAddress.district
+        users.userAddress.district
         ] || []
       );
     }
@@ -244,8 +244,8 @@ const UserProfileCommon = () => {
                   <h1>
                     {imageText.length > 15
                       ? imageText.split(".")[0].slice(0, 15) +
-                        "..." +
-                        imageText.split(".")[1]
+                      "..." +
+                      imageText.split(".")[1]
                       : imageText}
                   </h1>
                 </div>
@@ -264,7 +264,7 @@ const UserProfileCommon = () => {
           </div>
           {/* -------------------- */}
 
-       
+
         </div>
 
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
