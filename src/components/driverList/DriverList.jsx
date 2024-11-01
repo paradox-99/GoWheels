@@ -42,11 +42,12 @@ const DriverList = () => {
         return age;
     };
     const age = dateOfBirth ? calculateAge(dateOfBirth) : 'N/A';
+    const cost = 500;
 
     // Function to navigate to booking page with selected driver data
     const handleConfirm = () => {
         if (selectedDriver) {
-            navigate('/bookingInfo', { state: { driverInfo: selectedDriver, age} });  // Navigate to booking page
+            navigate('/bookingInfo', { state: { driverInfo: selectedDriver, age, cost} });  // Navigate to booking page
         }
     };
 
