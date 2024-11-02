@@ -35,19 +35,25 @@ const Filter = () => {
 
   }
 
+  
+  
   const handleFilter = async (e) => {
     e.preventDefault();
-
     setErrorMessage("")
 
     const division = address.selectedDivision;
     const district = address.selectedDistrict;
     const upazilla = address.selectedUpazilla;
 
-    const initailDate = time.fromDate;
-    const initalTime = time.fromTime;
-    const toDate = time.untilDate;
-    const toTime = time.untilTime;
+  console.log("time :", time);
+    
+
+    const initailDate = time?.fromDate;
+    const initalTime = time?.fromTime;
+    const toDate = time?.untilDate;
+    const toTime = time?.untilTime;
+
+
 
     let area = "";
     if (address.keyArea) {

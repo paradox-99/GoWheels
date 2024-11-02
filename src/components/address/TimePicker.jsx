@@ -8,7 +8,7 @@ import { fromJSON } from 'postcss';
 import { ThemeProvider } from '@mui/material';
 import { customTheme2 } from '../theme/Theme';
 
-const TimePicker = ({getTime}) => {
+const TimePicker = ({ getTime }) => {
 
   const [fromDate, setFromDate] = useState();
   const [fromTime, setFromTime] = useState();
@@ -16,8 +16,21 @@ const TimePicker = ({getTime}) => {
   const [untilTime, setUntilTime] = useState();
   const currentTime = moment();
 
+  console.log(fromDate,
+    fromTime,
+    untilDate,
+    untilTime);
+
+
+  const submit = () => {
+    if (fromDate && fromJSON && untilDate && untilTime) {
+      const time = { fromDate, fromTime, untilDate, untilTime };
+      console.log("all date", time);
+      getTime(time);
+    }
+  }
+
   const getFromDateAndTime = (e) => {
-    ;
     const fromDate = e.format('YYYY-MM-DD');
     setFromDate(fromDate);
     const fromTime = e.format('HH:mm');
@@ -33,26 +46,21 @@ const TimePicker = ({getTime}) => {
     submit();
   }
 
-  const submit = () => {
-    if (fromDate && fromJSON && untilDate && untilTime){
-      const time = {fromDate, fromTime, untilDate, untilTime};
-      getTime(time);
-    }
-  }
+
 
   return (
     <div className="flex flex-col md:flex-row gap-3 justify-between items-center">
       <ThemeProvider theme={customTheme2}>
-      <LocalizationProvider dateAdapter={AdapterMoment}>
-        <DemoContainer components={['DateTimePicker']}>
-          <DateTimePicker label="From" name='fromDate&Time' onChange={getFromDateAndTime} minDate={currentTime} maxDate={moment(currentTime.clone().add(6, "months"))} />
-        </DemoContainer>
-      </LocalizationProvider>
-      <LocalizationProvider dateAdapter={AdapterMoment}>
-        <DemoContainer components={['DateTimePicker']}>
-          <DateTimePicker label="Until" name='untilDate&Time' onChange={getUntilDateAndTime} minDate={currentTime} maxDate={moment(currentTime.clone().add(6, "months"))} />
-        </DemoContainer>
-      </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DemoContainer components={['DateTimePicker']}>
+            <DateTimePicker label="From" name='fromDate&Time' onChange={getFromDateAndTime} minDate={currentTime} maxDate={moment(currentTime.clone().add(6, "months"))} />
+          </DemoContainer>
+        </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DemoContainer components={['DateTimePicker']}>
+            <DateTimePicker label="Until" name='untilDate&Time' onChange={getUntilDateAndTime} minDate={currentTime} maxDate={moment(currentTime.clone().add(6, "months"))} />
+          </DemoContainer>
+        </LocalizationProvider>
       </ThemeProvider>
     </div>
   );
