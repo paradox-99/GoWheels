@@ -9,7 +9,6 @@ const useAgencyInfo = (email) => {
         queryKey: [email, 'agencyInfo'],
         queryFn: async () => {
             const {data} = await axiosSecure.get(`/agencyRoute/agencyInformation/${email}`);
-            console.log(data)
             return data;
         }
     })

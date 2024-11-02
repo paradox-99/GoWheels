@@ -9,10 +9,10 @@ import { customTheme2 } from '../theme/Theme';
 
 const TimePicker = ({getTime, time}) => {
 
-  const [fromDate, setFromDate] = useState();
-  const [fromTime, setFromTime] = useState();
-  const [untilDate, setUntilDate] = useState();
-  const [untilTime, setUntilTime] = useState();
+  const [fromDate, setFromDate] = useState(time?.fromDate);
+  const [fromTime, setFromTime] = useState(time?.fromTime);
+  const [untilDate, setUntilDate] = useState(time?.untilDate);
+  const [untilTime, setUntilTime] = useState(time?.untilTime);
   const currentTime = moment();
 
   const getFromDateAndTime = (e) => {
@@ -41,7 +41,6 @@ const TimePicker = ({getTime, time}) => {
   const FromDate = time?.fromDate + "T" + time?.fromTime
   const UntilDate = time?.untilDate + "T" + time?.untilTime
   
-
   return (
     <div className="flex flex-col md:flex-row gap-3 justify-between items-center">
       <ThemeProvider theme={customTheme2}>

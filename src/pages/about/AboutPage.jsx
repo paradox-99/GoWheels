@@ -5,7 +5,7 @@ const AboutPage = () => {
     return (
         <div>
             <Helmet>
-                <title>About Us</title>
+                <title>All Agencies</title>
             </Helmet>
             <AllAgency/>
         </div>

@@ -29,6 +29,7 @@ const Address = ({ getAddress, location }) => {
         const district = e.target.value;
         setSelectedDistrict(district);
         setUpazillas(locationData[selectedDivision][district] || []);
+        setVisible(false);
     };
 
     const handleUpazillaChange = (e) => {
@@ -43,6 +44,7 @@ const Address = ({ getAddress, location }) => {
             }
         } else {
             setKeyAreas([""]);
+            setVisible(false);
             const address = { selectedDivision, selectedDistrict, selectedUpazilla: upazilla,  keyArea: "" };
             getAddress(address);
         }

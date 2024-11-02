@@ -37,7 +37,7 @@ const router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
-                path: "/about",
+                path: "/view-agencies",
                 element: <AboutPage />,
             },
             {
@@ -71,7 +71,6 @@ const router = createBrowserRouter([
             {
                 path: "/view-all-agencies",
                 element: <AllAgency/>
-
             },
             {
                 path: "/agencyDetails/:id",

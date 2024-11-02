@@ -1,8 +1,8 @@
 
-const Card = ({car}) => {
+const Card = ({ car }) => {
     return (
-        <div>
-            {car.brand}
+        <div className="border border-[#FFE2DE] group rounded-xl p-6">
+            
         </div>
     );
 };
