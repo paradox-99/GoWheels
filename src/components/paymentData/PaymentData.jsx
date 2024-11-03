@@ -36,7 +36,7 @@ const PaymentData = ({ paymentInfo }) => {
             toast.error("please select a method self driving or need driver");
             return;
         }
-        else if (!driverInfo) {
+        else if ( paymentInfo?.method === 'driver' && !driverInfo) {
             toast.error('Please select your driver');
             return;
         }
@@ -48,6 +48,7 @@ const PaymentData = ({ paymentInfo }) => {
             userEmail,
             discount,
             drivingCost,
+            driverInfo,
             method,
             totalRentHours,
             division,
