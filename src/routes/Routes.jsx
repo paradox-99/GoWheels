@@ -25,6 +25,7 @@ import Messaging from "../pages/messaging/Messaging";
 import AllAgency from "../pages/Agency/AllAgency";
 import ViewAgencyDetails from "../pages/ViewDetails/ViewAgencyDetails";
 import Message from "../pages/messaging/Message";
+import TermsAndConditions from "../pages/Agency/TermsAndConditions";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
-                path: "/about",
+                path: "/view-agencies",
                 element: <AboutPage />,
             },
             {
@@ -45,11 +46,11 @@ const router = createBrowserRouter([
                 element: <Contactpage />,  
             },
             {
-                path: "/filter",
+                path: "/search",
                 element: <Filter />,
             },
             {
-                path: "/search",
+                path: "/search/queries",
                 element: <SearchResult></SearchResult>
             },
             {
@@ -73,14 +74,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "/view-all-agencies",
-                element: <AllAgency />
-
+                element: <AllAgency/>
             },
             {
                 path: "/agencyDetails/:id",
                 element: <ViewAgencyDetails />
             },
             ...SignUpRoutes,
+            {
+                path: '/join/agency-terms-and-conditions',
+                element: <TermsAndConditions/>
+            },
             {
                 path: '/join/agencyRegister',
                 element: <AgencyRegister></AgencyRegister>

@@ -5,6 +5,7 @@ import SpecialOffer from "../../components/HomeComponent/SpecialOffer";
 import CustomerTestimonial from "./CustomerTestimonial";
 
 import { Helmet } from "react-helmet-async";
+import TopCars from "./TopCars";
 
 const HomePage = () => {
     return (
@@ -15,6 +16,7 @@ const HomePage = () => {
             <Banner></Banner>
             
             <div className="max-w-7xl mx-auto">
+                <TopCars></TopCars>
                 <HowItWorks></HowItWorks>
                 <WhyChooseUs></WhyChooseUs>
                 <SpecialOffer></SpecialOffer>

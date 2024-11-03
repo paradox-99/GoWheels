@@ -38,9 +38,7 @@ const CommonCarCard = ({ car }) => {
                 alt={`${car.car} ${car.model}`}
                 className="w-[280px] group-hover:scale-105 duration-500 h-[180px] object-cover rounded-md mb-4"
             />
-            <div className="flex items-center gap-2 relative"
-
-            >
+            <div className="flex items-center gap-2 relative">
                 <div className='cursor-pointer py-1'
                     onClick={() => setShowModal(true)}>
                     <p>({reviews?.length})</p>

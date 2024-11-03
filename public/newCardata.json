@@ -1,0 +1,3840 @@
+[
+    {
+        "agency_id": "AG-1729905075061",
+        "car_id": "CAR-1729905156304",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Corolla",
+            "trim_level": "XLE",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "https://example.com/photo.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "7-speed CVT",
+            "fuel": "Petrol",
+            "rental_price": 3000,
+            "transmission_type": "Automatic",
+            "about": "This Toyota Corolla is in excellent condition and ideal for city commuting or long drives. It offers comfortable seating, great fuel efficiency, and is equipped with modern amenities for a smooth rental experience."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12345",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456789",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905075061",
+        "car_id": "CAR-1729906147886",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Yaris",
+            "trim_level": "GLi",
+            "car_type": "Hatchback",
+            "build_year": 2021,
+            "photo": "https://example.com/yaris.jpg",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 2500,
+            "transmission_type": "Automatic",
+            "about": "The Toyota Yaris is a compact hatchback known for its efficiency and maneuverability, making it perfect for city driving. It comes equipped with essential features for a comfortable ride."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12346",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456790",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905075061",
+        "car_id": "CAR-1729906147282",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Sunny",
+            "trim_level": "XL",
+            "car_type": "Sedan",
+            "build_year": 2020,
+            "photo": "https://example.com/sunny.jpg",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 2300,
+            "transmission_type": "Manual",
+            "about": "The Nissan Sunny offers a spacious interior and smooth handling. It's a reliable sedan that is economical to run, making it a great choice for daily rentals."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": false,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12347",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456791",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905075061",
+        "car_id": "CAR-1729906147642",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "i10",
+            "trim_level": "Sportz",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "https://example.com/i10.jpg",
+            "seats": 5,
+            "mileage": 20,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 2400,
+            "transmission_type": "Automatic",
+            "about": "The Hyundai i10 is a compact and stylish hatchback, perfect for urban environments. Its excellent fuel efficiency and comfortable interior make it a smart rental choice."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12348",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456792",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905214308",
+        "car_id": "CAR-1729906147096",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Outlander",
+            "trim_level": "GT",
+            "car_type": "SUV",
+            "build_year": 2020,
+            "photo": "https://example.com/outlander.jpg",
+            "seats": 7,
+            "mileage": 12,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4500,
+            "transmission_type": "Automatic",
+            "about": "The Mitsubishi Outlander is a spacious SUV with great handling and comfort, ideal for family trips or group outings. It features modern amenities and a reliable engine."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12349",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456793",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905214308",
+        "car_id": "CAR-1729906147031",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "City",
+            "trim_level": "VX",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/city.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "7-speed CVT",
+            "fuel": "Petrol",
+            "rental_price": 3000,
+            "transmission_type": "Automatic",
+            "about": "The Honda City is a stylish sedan with a comfortable interior and impressive fuel efficiency, making it perfect for city driving or business rentals."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12350",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456794",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905214308",
+        "car_id": "CAR-1729906162462",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Vitara",
+            "trim_level": "GL+",
+            "car_type": "Crossover",
+            "build_year": 2019,
+            "photo": "https://example.com/vitara.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4000,
+            "transmission_type": "Automatic",
+            "about": "The Suzuki Vitara is a versatile crossover with a robust design and spacious interior. It combines comfort with practicality, making it an excellent choice for both city and off-road driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12351",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456795",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905214308",
+        "car_id": "CAR-1729906162308",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "i20",
+            "trim_level": "Sportz",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "https://example.com/i20.jpg",
+            "seats": 5,
+            "mileage": 19,
+            "gear": "7-speed",
+            "fuel": "Petrol",
+            "rental_price": 2800,
+            "transmission_type": "Automatic",
+            "about": "The Hyundai i20 is a compact hatchback with a sporty design and advanced features, perfect for city driving. Its great fuel efficiency and comfortable interior make it an ideal rental choice."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12352",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456796",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905233880",
+        "car_id": "CAR-1729906162252",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Corolla",
+            "trim_level": "XLE",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "https://example.com/corolla.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "7-speed CVT",
+            "fuel": "Petrol",
+            "rental_price": 3500,
+            "transmission_type": "Automatic",
+            "about": "The 2022 Toyota Corolla XLE is a reliable sedan offering a comfortable ride, advanced safety features, and excellent fuel efficiency."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12353",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456797",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905233880",
+        "car_id": "CAR-1729906162719",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Sunny",
+            "trim_level": "XL",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/sunny.jpg",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 3000,
+            "transmission_type": "Automatic",
+            "about": "The Nissan Sunny XL is a compact sedan known for its spacious interior and excellent fuel efficiency, making it ideal for city driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12354",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456798",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905233880",
+        "car_id": "CAR-1729906162005",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "i10",
+            "trim_level": "Sportz",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "https://example.com/i10.jpg",
+            "seats": 5,
+            "mileage": 19,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 2800,
+            "transmission_type": "Automatic",
+            "about": "The Hyundai i10 Sportz offers a compact design with a spacious interior, making it a perfect choice for urban driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12355",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456799",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905233880",
+        "car_id": "CAR-1729906181529",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Civic",
+            "trim_level": "EX",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/civic.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 3600,
+            "transmission_type": "Automatic",
+            "about": "The Honda Civic EX is a compact sedan that combines sporty performance with excellent fuel efficiency, making it a popular choice."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12356",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456800",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905233880",
+        "car_id": "CAR-1729906181096",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Baleno",
+            "trim_level": "Zeta",
+            "car_type": "Hatchback",
+            "build_year": 2020,
+            "photo": "https://example.com/baleno.jpg",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 2900,
+            "transmission_type": "Automatic",
+            "about": "The Suzuki Baleno Zeta is a spacious hatchback that offers excellent fuel efficiency and a comfortable ride for everyday commuting."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12357",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456801",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905241933",
+        "car_id": "CAR-1729906180978",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Outlander",
+            "trim_level": "GT",
+            "car_type": "SUV",
+            "build_year": 2021,
+            "photo": "https://example.com/outlander.jpg",
+            "seats": 5,
+            "mileage": 14,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4500,
+            "transmission_type": "Automatic",
+            "about": "The Mitsubishi Outlander GT is a versatile SUV offering a spacious interior, advanced safety features, and a smooth driving experience."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12358",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456802",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905241933",
+        "car_id": "CAR-1729906181316",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "HR-V",
+            "trim_level": "Sport",
+            "car_type": "SUV",
+            "build_year": 2020,
+            "photo": "https://example.com/hr-v.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "7-speed CVT",
+            "fuel": "Petrol",
+            "rental_price": 4000,
+            "transmission_type": "Automatic",
+            "about": "The Honda HR-V Sport combines practicality and comfort, making it a great choice for both city and highway driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12359",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456803",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905241933",
+        "car_id": "CAR-1729906181259",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Vitara",
+            "trim_level": "GL",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "https://example.com/vitara.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 3700,
+            "transmission_type": "Automatic",
+            "about": "The Suzuki Vitara GL offers a blend of style and functionality, providing a comfortable ride for families and adventurers alike."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12360",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456804",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905248829",
+        "car_id": "CAR-1729906196876",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Creta",
+            "trim_level": "SX",
+            "car_type": "SUV",
+            "build_year": 2021,
+            "photo": "https://example.com/creta.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4800,
+            "transmission_type": "Automatic",
+            "about": "The Hyundai Creta SX is a modern SUV with cutting-edge features, spacious interiors, and excellent fuel efficiency."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12361",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456805",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905248829",
+        "car_id": "CAR-1729906197642",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Qashqai",
+            "trim_level": "Tekna",
+            "car_type": "Crossover",
+            "build_year": 2020,
+            "photo": "https://example.com/qashqai.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "7-speed CVT",
+            "fuel": "Petrol",
+            "rental_price": 4600,
+            "transmission_type": "Automatic",
+            "about": "The Nissan Qashqai Tekna is a stylish crossover that offers a smooth ride, advanced technology, and ample cargo space."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12362",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456806",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905248829",
+        "car_id": "CAR-1729906197316",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "CX-30",
+            "trim_level": "Select",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "https://example.com/cx30.jpg",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4900,
+            "transmission_type": "Automatic",
+            "about": "The Mazda CX-30 Select offers an exhilarating driving experience with a refined interior and exceptional safety features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12363",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456807",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905248829",
+        "car_id": "CAR-1729906197317",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Civic",
+            "trim_level": "Sport",
+            "car_type": "Sedan",
+            "build_year": 2023,
+            "photo": "https://example.com/civic.jpg",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4500,
+            "transmission_type": "Automatic",
+            "about": "The Honda Civic Sport is a dynamic sedan known for its sporty performance, modern design, and advanced technology."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12364",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456808",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905260538",
+        "car_id": "CAR-1729906196932",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "RAV4",
+            "trim_level": "LE",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "https://example.com/rav4.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "8-speed",
+            "fuel": "Petrol",
+            "rental_price": 5500,
+            "transmission_type": "Automatic",
+            "about": "The Toyota RAV4 LE is a versatile SUV that combines practicality with modern technology, providing a comfortable ride for all passengers."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12365",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456809",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905260538",
+        "car_id": "CAR-1729906224099",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Altima",
+            "trim_level": "SV",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/altima.jpg",
+            "seats": 5,
+            "mileage": 20,
+            "gear": "CVT",
+            "fuel": "Petrol",
+            "rental_price": 5000,
+            "transmission_type": "Automatic",
+            "about": "The Nissan Altima SV offers a smooth driving experience with excellent fuel efficiency and a stylish interior."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12366",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456810",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905260538",
+        "car_id": "CAR-1729906224343",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Outlander",
+            "trim_level": "GT",
+            "car_type": "SUV",
+            "build_year": 2020,
+            "photo": "https://example.com/outlander.jpg",
+            "seats": 7,
+            "mileage": 14,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 6000,
+            "transmission_type": "Automatic",
+            "about": "The Mitsubishi Outlander GT is a spacious SUV with a robust design, perfect for families and adventure seekers."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12367",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456811",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905260538",
+        "car_id": "CAR-1729906224096",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "CR-V",
+            "trim_level": "EX-L",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "https://example.com/crv.jpg",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 5800,
+            "transmission_type": "Automatic",
+            "about": "The Honda CR-V EX-L combines style and performance, offering ample space and comfort for all passengers."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12368",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456812",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905260538",
+        "car_id": "CAR-1729906224581",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Baleno",
+            "trim_level": "Alpha",
+            "car_type": "Hatchback",
+            "build_year": 2023,
+            "photo": "https://example.com/baleno.jpg",
+            "seats": 5,
+            "mileage": 21,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 4000,
+            "transmission_type": "Manual",
+            "about": "The Suzuki Baleno Alpha is a compact hatchback that offers an excellent blend of performance and fuel efficiency."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12369",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456813",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905260538",
+        "car_id": "CAR-1729906224253",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "Mazda3",
+            "trim_level": "Sport",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/mazda3.jpg",
+            "seats": 5,
+            "mileage": 19,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4700,
+            "transmission_type": "Automatic",
+            "about": "The Mazda3 Sport is a sleek sedan that provides an engaging driving experience and a well-designed interior."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12370",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456814",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905268164",
+        "car_id": "CAR-1729906239908",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Elantra",
+            "trim_level": "SE",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/elantra.jpg",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4800,
+            "transmission_type": "Automatic",
+            "about": "The Hyundai Elantra SE is a stylish sedan offering reliable performance and fuel efficiency, perfect for city commutes."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12400",
+            "expire_date": "2025-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456815",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905268164",
+        "car_id": "CAR-1729906239554",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Avanza",
+            "trim_level": "E",
+            "car_type": "Minivan",
+            "build_year": 2022,
+            "photo": "https://example.com/avanza.jpg",
+            "seats": 7,
+            "mileage": 12,
+            "gear": "4-speed",
+            "fuel": "Petrol",
+            "rental_price": 5200,
+            "transmission_type": "Automatic",
+            "about": "The Toyota Avanza E is a practical minivan, ideal for family trips and group travels with spacious seating for up to seven."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12401",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456816",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905268164",
+        "car_id": "CAR-1729906239114",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Swift",
+            "trim_level": "GL",
+            "car_type": "Hatchback",
+            "build_year": 2023,
+            "photo": "https://example.com/swift.jpg",
+            "seats": 5,
+            "mileage": 22,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 4200,
+            "transmission_type": "Manual",
+            "about": "The Suzuki Swift GL is a compact hatchback with a sporty feel, providing excellent fuel economy and easy maneuverability."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12402",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456817",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905268164",
+        "car_id": "CAR-1729906239748",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "HR-V",
+            "trim_level": "LX",
+            "car_type": "Crossover",
+            "build_year": 2022,
+            "photo": "https://example.com/hrv.jpg",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4900,
+            "transmission_type": "Automatic",
+            "about": "The Honda HR-V LX is a crossover with a sleek design, offering a smooth ride and spacious interior for city and highway travel."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12403",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456818",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905268164",
+        "car_id": "CAR-1729906239287",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "CX-3",
+            "trim_level": "Sport",
+            "car_type": "SUV",
+            "build_year": 2021,
+            "photo": "https://example.com/cx3.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 5300,
+            "transmission_type": "Automatic",
+            "about": "The Mazda CX-3 Sport is a compact SUV that blends style and efficiency, suitable for both urban and long-distance driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12404",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456819",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905275579",
+        "car_id": "CAR-1729906253526",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Corolla",
+            "trim_level": "LE",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/corolla_le.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4800,
+            "transmission_type": "Automatic",
+            "about": "The Toyota Corolla LE is a reliable sedan offering comfortable rides, excellent fuel efficiency, and a smooth driving experience."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12501",
+            "expire_date": "2025-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456820",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905275579",
+        "car_id": "CAR-1729906253316",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Kicks",
+            "trim_level": "SV",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "https://example.com/kicks_sv.jpg",
+            "seats": 5,
+            "mileage": 14,
+            "gear": "7-speed CVT",
+            "fuel": "Petrol",
+            "rental_price": 5000,
+            "transmission_type": "Automatic",
+            "about": "The Nissan Kicks SV is a compact SUV known for its stylish design, spacious interior, and enhanced safety features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12502",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456821",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905275579",
+        "car_id": "CAR-1729906253457",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Ertiga",
+            "trim_level": "ZXI",
+            "car_type": "MUV",
+            "build_year": 2023,
+            "photo": "https://example.com/ertiga_zxi.jpg",
+            "seats": 7,
+            "mileage": 17,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 4600,
+            "transmission_type": "Manual",
+            "about": "The Suzuki Ertiga ZXI is a multi-utility vehicle with ample space for seven passengers, suitable for families or group outings."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12503",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456822",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905275579",
+        "car_id": "CAR-1729906252952",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "Mazda3",
+            "trim_level": "Touring",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "https://example.com/mazda3_touring.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4700,
+            "transmission_type": "Automatic",
+            "about": "The Mazda3 Touring offers a refined driving experience with impressive fuel efficiency, suited for both city and highway trips."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12504",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456823",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905288877",
+        "car_id": "CAR-1729906252953",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Vios",
+            "trim_level": "G",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/toyota_vios_g.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 4200,
+            "transmission_type": "Manual",
+            "about": "The Toyota Vios G is a reliable and economical sedan, ideal for city driving with great fuel efficiency and comfort."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12505",
+            "expire_date": "2025-12-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456824",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905288877",
+        "car_id": "CAR-1729906262940",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Almera",
+            "trim_level": "EL",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "https://example.com/nissan_almera_el.jpg",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4300,
+            "transmission_type": "Automatic",
+            "about": "The Nissan Almera EL is a practical and spacious sedan, offering a comfortable ride and advanced safety features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12506",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456825",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905288877",
+        "car_id": "CAR-1729906262783",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Accent",
+            "trim_level": "GLS",
+            "car_type": "Sedan",
+            "build_year": 2023,
+            "photo": "https://example.com/hyundai_accent_gls.jpg",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4500,
+            "transmission_type": "Automatic",
+            "about": "The Hyundai Accent GLS offers smooth handling, good fuel economy, and a spacious interior, perfect for daily commutes."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12507",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456826",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905288877",
+        "car_id": "CAR-1729906262561",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "City",
+            "trim_level": "V",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "https://example.com/honda_city_v.jpg",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 4400,
+            "transmission_type": "Manual",
+            "about": "The Honda City V is a popular sedan known for its reliability, spacious cabin, and comfortable ride quality."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12508",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456827",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905288877",
+        "car_id": "CAR-1729906262892",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Swift",
+            "trim_level": "GL",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "https://example.com/suzuki_swift_gl.jpg",
+            "seats": 5,
+            "mileage": 20,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 4000,
+            "transmission_type": "Manual",
+            "about": "The Suzuki Swift GL is a compact hatchback that delivers agile handling, excellent mileage, and ease of parking in city areas."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12509",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456828",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905288877",
+        "car_id": "CAR-1729906262252",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "CX-3",
+            "trim_level": "Sport",
+            "car_type": "Crossover",
+            "build_year": 2023,
+            "photo": "https://example.com/mazda_cx3_sport.jpg",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 4600,
+            "transmission_type": "Automatic",
+            "about": "The Mazda CX-3 Sport is a stylish crossover that offers sporty handling, advanced safety features, and a comfortable interior."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12510",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456829",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905303131",
+        "car_id": "CAR-1729906276694",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Yaris",
+            "trim_level": "LE",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_yaris_image",
+            "seats": 5,
+            "mileage": 14,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 250,
+            "transmission_type": "Automatic",
+            "about": "A compact and efficient sedan, ideal for city driving with smooth handling and great fuel efficiency."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-15832",
+            "expire_date": "2026-06-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-675829",
+            "insurance_start_date": "2024-07-01",
+            "insurance_ending_date": "2025-07-01",
+            "insurance_provider": "Bangladesh Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905303131",
+        "car_id": "CAR-1729906276166",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Almera",
+            "trim_level": "Base",
+            "car_type": "Sedan",
+            "build_year": 2020,
+            "photo": "url_to_almera_image",
+            "seats": 5,
+            "mileage": 13,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 230,
+            "transmission_type": "Manual",
+            "about": "Reliable and economical sedan, offering ample space and a comfortable ride for daily use."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-16742",
+            "expire_date": "2025-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-324568",
+            "insurance_start_date": "2024-02-01",
+            "insurance_ending_date": "2025-02-01",
+            "insurance_provider": "United Insurance Ltd.",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905303131",
+        "car_id": "CAR-1729906275900",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Creta",
+            "trim_level": "EX",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "url_to_creta_image",
+            "seats": 5,
+            "mileage": 12,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Automatic",
+            "about": "Stylish and modern SUV, perfect for city roads and occasional off-road adventures with spacious interiors."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-18542",
+            "expire_date": "2026-02-28",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-873429",
+            "insurance_start_date": "2024-03-01",
+            "insurance_ending_date": "2025-03-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905303131",
+        "car_id": "CAR-1729906276231",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Civic",
+            "trim_level": "LX",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_civic_image",
+            "seats": 5,
+            "mileage": 14,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 320,
+            "transmission_type": "Automatic",
+            "about": "Sleek and comfortable sedan with reliable performance and high fuel efficiency, suitable for city drives."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-19958",
+            "expire_date": "2025-10-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-972836",
+            "insurance_start_date": "2024-05-01",
+            "insurance_ending_date": "2025-05-01",
+            "insurance_provider": "Asia Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905303131",
+        "car_id": "CAR-1729906276429",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Wagon R",
+            "trim_level": "VXi",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "url_to_wagonr_image",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 180,
+            "transmission_type": "Manual",
+            "about": "Compact hatchback with efficient fuel usage, ideal for city commuting and convenient parking."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-19872",
+            "expire_date": "2025-09-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-789563",
+            "insurance_start_date": "2024-04-01",
+            "insurance_ending_date": "2025-04-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906287558",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Corolla",
+            "trim_level": "LE",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_corolla_image",
+            "seats": 5,
+            "mileage": 14,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 320,
+            "transmission_type": "Automatic",
+            "about": "Reliable and fuel-efficient sedan, perfect for urban and highway drives, ensuring comfort and economy."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12345",
+            "expire_date": "2026-04-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-183674",
+            "insurance_start_date": "2024-06-01",
+            "insurance_ending_date": "2025-06-01",
+            "insurance_provider": "Prime Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906288192",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Note",
+            "trim_level": "Base",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "url_to_note_image",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 290,
+            "transmission_type": "Manual",
+            "about": "Compact hatchback with excellent fuel economy, ideal for daily commuting and city driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-22356",
+            "expire_date": "2025-09-15",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-384756",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906287458",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Venue",
+            "trim_level": "S",
+            "car_type": "SUV",
+            "build_year": 2021,
+            "photo": "url_to_venue_image",
+            "seats": 5,
+            "mileage": 13,
+            "gear": "6-speed",
+            "fuel": "Diesel",
+            "rental_price": 340,
+            "transmission_type": "Automatic",
+            "about": "Stylish and compact SUV with comfortable interiors and capable performance for city and off-road travels."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-13457",
+            "expire_date": "2026-01-01",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-956837",
+            "insurance_start_date": "2024-05-01",
+            "insurance_ending_date": "2025-05-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906288289",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Fit",
+            "trim_level": "LX",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "url_to_fit_image",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 300,
+            "transmission_type": "Automatic",
+            "about": "Efficient and spacious hatchback with high fuel efficiency and easy handling, suited for city commutes."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-23458",
+            "expire_date": "2025-08-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-654729",
+            "insurance_start_date": "2024-10-01",
+            "insurance_ending_date": "2025-10-01",
+            "insurance_provider": "Prime Insurance Co.",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906287696",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "CX-3",
+            "trim_level": "Sport",
+            "car_type": "Crossover",
+            "build_year": 2023,
+            "photo": "url_to_cx3_image",
+            "seats": 5,
+            "mileage": 12,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 360,
+            "transmission_type": "Automatic",
+            "about": "Compact crossover with sporty design and comfortable interiors, ideal for both city and highway drives."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-34569",
+            "expire_date": "2027-01-01",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-748563",
+            "insurance_start_date": "2024-06-01",
+            "insurance_ending_date": "2025-06-01",
+            "insurance_provider": "Asia Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906299781",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Ertiga",
+            "trim_level": "VXI",
+            "car_type": "MUV",
+            "build_year": 2020,
+            "photo": "url_to_ertiga_image",
+            "seats": 7,
+            "mileage": 15,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "Spacious MUV with versatile seating and good fuel efficiency, suitable for larger groups or families."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-45670",
+            "expire_date": "2025-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-837462",
+            "insurance_start_date": "2024-03-01",
+            "insurance_ending_date": "2025-03-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906299782",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Sienta",
+            "trim_level": "G",
+            "car_type": "Minivan",
+            "build_year": 2019,
+            "photo": "url_to_sienta_image",
+            "seats": 7,
+            "mileage": 14,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 330,
+            "transmission_type": "Automatic",
+            "about": "Family-friendly minivan with ample space and comfort, designed for longer road trips or group travel."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-56781",
+            "expire_date": "2025-02-28",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-192837",
+            "insurance_start_date": "2024-07-01",
+            "insurance_ending_date": "2025-07-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905316011",
+        "car_id": "CAR-1729906299761",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Xpander",
+            "trim_level": "GLS",
+            "car_type": "MPV",
+            "build_year": 2021,
+            "photo": "url_to_xpander_image",
+            "seats": 7,
+            "mileage": 14,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 340,
+            "transmission_type": "Manual",
+            "about": "Modern MPV with spacious seating and efficient fuel usage, excellent for family trips or group travel."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-67892",
+            "expire_date": "2026-03-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-293847",
+            "insurance_start_date": "2024-09-01",
+            "insurance_ending_date": "2025-09-01",
+            "insurance_provider": "Asia Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905329118",
+        "car_id": "CAR-1729906300099",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "City",
+            "trim_level": "SV",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_city_image",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 320,
+            "transmission_type": "Automatic",
+            "about": "A compact sedan offering a smooth and efficient ride with comfortable interiors."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-81234",
+            "expire_date": "2025-08-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-908271",
+            "insurance_start_date": "2024-11-01",
+            "insurance_ending_date": "2025-11-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905329118",
+        "car_id": "CAR-1729906299744",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Avanza",
+            "trim_level": "E",
+            "car_type": "MPV",
+            "build_year": 2020,
+            "photo": "url_to_avanza_image",
+            "seats": 7,
+            "mileage": 13,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "Spacious MPV with flexible seating options, ideal for family or group travels."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-12385",
+            "expire_date": "2026-02-28",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-572819",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Prime Insurance Co.",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905329118",
+        "car_id": "CAR-1729906327160",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Outlander",
+            "trim_level": "ES",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "url_to_outlander_image",
+            "seats": 5,
+            "mileage": 12,
+            "gear": "6-speed",
+            "fuel": "Diesel",
+            "rental_price": 380,
+            "transmission_type": "Automatic",
+            "about": "Durable and spacious SUV with modern features, suited for both city and off-road drives."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-14523",
+            "expire_date": "2027-03-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-478213",
+            "insurance_start_date": "2024-09-01",
+            "insurance_ending_date": "2025-09-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905459227",
+        "car_id": "CAR-1729906327999",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Swift",
+            "trim_level": "VXi",
+            "car_type": "Hatchback",
+            "build_year": 2020,
+            "photo": "url_to_swift_image",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 280,
+            "transmission_type": "Manual",
+            "about": "Compact and fuel-efficient hatchback, perfect for city drives with easy handling and comfort."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-21345",
+            "expire_date": "2025-06-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-648372",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Prime Insurance Co.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905459227",
+        "car_id": "CAR-1729906327454",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Venue",
+            "trim_level": "S",
+            "car_type": "Crossover",
+            "build_year": 2021,
+            "photo": "url_to_venue_image",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 310,
+            "transmission_type": "Manual",
+            "about": "Stylish crossover with comfortable interiors, ideal for both city and highway journeys."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-76894",
+            "expire_date": "2026-09-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-387592",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905459227",
+        "car_id": "CAR-1729906327203",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "CX-3",
+            "trim_level": "Sport",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "url_to_cx3_image",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 340,
+            "transmission_type": "Automatic",
+            "about": "A compact SUV with sporty handling, well-suited for both urban commutes and weekend adventures."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-98451",
+            "expire_date": "2026-04-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-128376",
+            "insurance_start_date": "2024-07-01",
+            "insurance_ending_date": "2025-07-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905459227",
+        "car_id": "CAR-1729906327446",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Probox",
+            "trim_level": "DX",
+            "car_type": "Wagon",
+            "build_year": 2019,
+            "photo": "url_to_probox_image",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 290,
+            "transmission_type": "Manual",
+            "about": "Reliable wagon with spacious interior, perfect for utility and transport needs."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": false,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-XY-23489",
+            "expire_date": "2025-01-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-652389",
+            "insurance_start_date": "2024-02-01",
+            "insurance_ending_date": "2025-02-01",
+            "insurance_provider": "Asia Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905475004",
+        "car_id": "CAR-1729906455920",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Aqua",
+            "trim_level": "G",
+            "car_type": "Hatchback",
+            "build_year": 2019,
+            "photo": "url_to_aqua_image",
+            "seats": 5,
+            "mileage": 22,
+            "gear": "4-speed",
+            "fuel": "Petrol",
+            "rental_price": 260,
+            "transmission_type": "Automatic",
+            "about": "Compact and efficient hatchback, perfect for city drives and fuel savings."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-AQ-87561",
+            "expire_date": "2025-08-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-328746",
+            "insurance_start_date": "2024-04-01",
+            "insurance_ending_date": "2025-04-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905475004",
+        "car_id": "CAR-1729906456727",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Note",
+            "trim_level": "X",
+            "car_type": "Hatchback",
+            "build_year": 2020,
+            "photo": "url_to_note_image",
+            "seats": 5,
+            "mileage": 20,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 270,
+            "transmission_type": "Manual",
+            "about": "Versatile hatchback with spacious interior, ideal for daily commutes and long drives."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-NT-98456",
+            "expire_date": "2025-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-758921",
+            "insurance_start_date": "2024-06-01",
+            "insurance_ending_date": "2025-06-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905475004",
+        "car_id": "CAR-1729906456707",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Mirage",
+            "trim_level": "GLX",
+            "car_type": "Hatchback",
+            "build_year": 2021,
+            "photo": "url_to_mirage_image",
+            "seats": 5,
+            "mileage": 19,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 250,
+            "transmission_type": "Manual",
+            "about": "Lightweight hatchback with excellent fuel efficiency, perfect for urban commutes."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-MI-34829",
+            "expire_date": "2025-10-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-483276",
+            "insurance_start_date": "2024-07-01",
+            "insurance_ending_date": "2025-07-01",
+            "insurance_provider": "Asia Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905475004",
+        "car_id": "CAR-1729906456540",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Accent",
+            "trim_level": "SE",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_accent_image",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 300,
+            "transmission_type": "Automatic",
+            "about": "Reliable sedan with spacious interior and a smooth ride, perfect for long journeys."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-AC-48957",
+            "expire_date": "2026-01-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-659328",
+            "insurance_start_date": "2024-05-01",
+            "insurance_ending_date": "2025-05-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905475004",
+        "car_id": "CAR-1729906455979",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Civic",
+            "trim_level": "EX",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_civic_image",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 320,
+            "transmission_type": "Automatic",
+            "about": "Stylish sedan with premium features, ideal for comfort on long rides."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CV-13567",
+            "expire_date": "2025-09-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-729361",
+            "insurance_start_date": "2024-03-01",
+            "insurance_ending_date": "2025-03-01",
+            "insurance_provider": "Prime Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905475004",
+        "car_id": "CAR-1729906465195",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Ertiga",
+            "trim_level": "LXi",
+            "car_type": "MUV",
+            "build_year": 2021,
+            "photo": "url_to_ertiga_image",
+            "seats": 7,
+            "mileage": 15,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 340,
+            "transmission_type": "Manual",
+            "about": "Spacious MUV with ample seating, perfect for group travel or family outings."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-ER-34782",
+            "expire_date": "2026-04-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-834672",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905475004",
+        "car_id": "CAR-1729906465878",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "CX-5",
+            "trim_level": "Touring",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "url_to_cx5_image",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 360,
+            "transmission_type": "Automatic",
+            "about": "Luxurious SUV with top-notch comfort and technology, ideal for both city and off-road driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CX-29541",
+            "expire_date": "2026-05-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-394782",
+            "insurance_start_date": "2024-10-01",
+            "insurance_ending_date": "2025-10-01",
+            "insurance_provider": "Guardian Insurance Ltd.",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905606130",
+        "car_id": "CAR-1729906465832",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Camry",
+            "trim_level": "LE",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_camry_image",
+            "seats": 5,
+            "mileage": 30,
+            "gear": "8-speed",
+            "fuel": "Petrol",
+            "rental_price": 400,
+            "transmission_type": "Automatic",
+            "about": "A spacious and comfortable sedan with excellent fuel efficiency."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CA-98765",
+            "expire_date": "2026-03-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-123456",
+            "insurance_start_date": "2024-04-01",
+            "insurance_ending_date": "2025-04-01",
+            "insurance_provider": "Prime Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905606130",
+        "car_id": "CAR-1729906465297",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Versa",
+            "trim_level": "S",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_versa_image",
+            "seats": 5,
+            "mileage": 32,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "Compact sedan that offers great value with low running costs."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": false
+        },
+        "documentation_info": {
+            "license_number": "BD-VE-54321",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-654321",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Guardian Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905606130",
+        "car_id": "CAR-1729906465199",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Elantra",
+            "trim_level": "SE",
+            "car_type": "Sedan",
+            "build_year": 2023,
+            "photo": "url_to_elantra_image",
+            "seats": 5,
+            "mileage": 28,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 420,
+            "transmission_type": "Automatic",
+            "about": "Sleek and modern sedan that combines style with comfort."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-EL-11223",
+            "expire_date": "2026-05-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-987654",
+            "insurance_start_date": "2024-07-01",
+            "insurance_ending_date": "2025-07-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905606130",
+        "car_id": "CAR-1729906488881",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "City",
+            "trim_level": "ZX",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_city_image",
+            "seats": 5,
+            "mileage": 26,
+            "gear": "7-speed",
+            "fuel": "Petrol",
+            "rental_price": 450,
+            "transmission_type": "Automatic",
+            "about": "Stylish and reliable sedan offering a premium driving experience."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CI-33445",
+            "expire_date": "2026-02-28",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-852369",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Prime Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905606130",
+        "car_id": "CAR-1729906489312",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Swift",
+            "trim_level": "VXI",
+            "car_type": "Hatchback",
+            "build_year": 2023,
+            "photo": "url_to_swift_image",
+            "seats": 5,
+            "mileage": 25,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 300,
+            "transmission_type": "Manual",
+            "about": "Compact hatchback perfect for city driving with great maneuverability."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-SW-22134",
+            "expire_date": "2025-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-963852",
+            "insurance_start_date": "2024-05-01",
+            "insurance_ending_date": "2025-05-01",
+            "insurance_provider": "Eastern Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905618059",
+        "car_id": "CAR-1729906488788",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "Mazda 3",
+            "trim_level": "Sport",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "url_to_mazda3_image",
+            "seats": 5,
+            "mileage": 30,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 400,
+            "transmission_type": "Automatic",
+            "about": "A sporty hatchback with an exhilarating driving experience and sleek design."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-MZ-12345",
+            "expire_date": "2026-04-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-159753",
+            "insurance_start_date": "2024-06-01",
+            "insurance_ending_date": "2025-06-01",
+            "insurance_provider": "Global Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905618059",
+        "car_id": "CAR-1729906489375",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Yaris",
+            "trim_level": "LE",
+            "car_type": "Sedan",
+            "build_year": 2023,
+            "photo": "url_to_yaris_image",
+            "seats": 5,
+            "mileage": 35,
+            "gear": "7-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "CVT",
+            "about": "A compact sedan with impressive fuel economy and a comfortable ride."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-YA-54321",
+            "expire_date": "2025-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456789",
+            "insurance_start_date": "2024-03-01",
+            "insurance_ending_date": "2025-03-01",
+            "insurance_provider": "United Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729905618059",
+        "car_id": "CAR-1729906488872",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Civic",
+            "trim_level": "EX",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_civic_image",
+            "seats": 5,
+            "mileage": 28,
+            "gear": "10-speed",
+            "fuel": "Petrol",
+            "rental_price": 450,
+            "transmission_type": "Automatic",
+            "about": "A well-rounded sedan that offers performance, comfort, and advanced technology."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CI-67890",
+            "expire_date": "2026-06-15",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-789012",
+            "insurance_start_date": "2024-09-01",
+            "insurance_ending_date": "2025-09-01",
+            "insurance_provider": "Safe Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917631808",
+        "car_id": "CAR-1729906511547",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Micra",
+            "trim_level": "Active",
+            "car_type": "Hatchback",
+            "build_year": 2021,
+            "photo": "url_to_micra_image",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 300,
+            "transmission_type": "Manual",
+            "about": "A compact hatchback that's perfect for city driving and easy parking."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-MI-11223",
+            "expire_date": "2025-12-31",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-123456",
+            "insurance_start_date": "2024-05-01",
+            "insurance_ending_date": "2025-05-01",
+            "insurance_provider": "Prime Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917631808",
+        "car_id": "CAR-1729906512041",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Corolla",
+            "trim_level": "GL",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_corolla_image",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 450,
+            "transmission_type": "Automatic",
+            "about": "A reliable sedan with spacious interiors and excellent fuel efficiency."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CO-22334",
+            "expire_date": "2026-02-28",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-654321",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Secure Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917631808",
+        "car_id": "CAR-1729906511846",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "i20",
+            "trim_level": "Sportz",
+            "car_type": "Hatchback",
+            "build_year": 2021,
+            "photo": "url_to_i20_image",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "A stylish hatchback with modern features and a peppy engine."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-I20-33445",
+            "expire_date": "2025-07-15",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-789123",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Risk Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917631808",
+        "car_id": "CAR-1729906512137",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Swift",
+            "trim_level": "ZXI",
+            "car_type": "Hatchback",
+            "build_year": 2023,
+            "photo": "url_to_swift_image",
+            "seats": 5,
+            "mileage": 22,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 300,
+            "transmission_type": "Manual",
+            "about": "A fun and agile hatchback that’s great for city commutes and weekend drives."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-SW-44556",
+            "expire_date": "2026-10-10",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-321456",
+            "insurance_start_date": "2024-02-01",
+            "insurance_ending_date": "2025-02-01",
+            "insurance_provider": "Allied Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917644673",
+        "car_id": "CAR-1729906511250",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Outlander",
+            "trim_level": "ES",
+            "car_type": "SUV",
+            "build_year": 2022,
+            "photo": "url_to_outlander_image",
+            "seats": 5,
+            "mileage": 12,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 600,
+            "transmission_type": "Automatic",
+            "about": "A spacious SUV with advanced safety features and excellent off-road capability."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-OU-11225",
+            "expire_date": "2026-03-15",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-987654",
+            "insurance_start_date": "2024-06-01",
+            "insurance_ending_date": "2025-06-01",
+            "insurance_provider": "Sure Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917644673",
+        "car_id": "CAR-1729906523228",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "City",
+            "trim_level": "VX",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_city_image",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "7-speed",
+            "fuel": "Petrol",
+            "rental_price": 500,
+            "transmission_type": "CVT",
+            "about": "A stylish sedan that combines comfort and performance with advanced technology."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CI-22336",
+            "expire_date": "2025-05-20",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-321654",
+            "insurance_start_date": "2024-04-01",
+            "insurance_ending_date": "2025-04-01",
+            "insurance_provider": "Trust Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917644673",
+        "car_id": "CAR-1729906523307",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Baleno",
+            "trim_level": "Alpha",
+            "car_type": "Hatchback",
+            "build_year": 2023,
+            "photo": "url_to_baleno_image",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "A compact hatchback with efficient fuel consumption and a spacious interior."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-BA-33447",
+            "expire_date": "2026-11-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-456789",
+            "insurance_start_date": "2024-09-01",
+            "insurance_ending_date": "2025-09-01",
+            "insurance_provider": "Global Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917654528",
+        "car_id": "CAR-1729906523477",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "i20",
+            "trim_level": "Asta",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "url_to_i20_image",
+            "seats": 5,
+            "mileage": 17,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 400,
+            "transmission_type": "Manual",
+            "about": "A compact hatchback offering a blend of style, space, and efficiency for city driving."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-I20-44536",
+            "expire_date": "2025-04-25",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-789456",
+            "insurance_start_date": "2024-06-15",
+            "insurance_ending_date": "2025-06-15",
+            "insurance_provider": "Sure Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917654528",
+        "car_id": "CAR-1729906523206",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mazda",
+            "model": "Mazda3",
+            "trim_level": "Sport",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_mazda3_image",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 450,
+            "transmission_type": "Automatic",
+            "about": "A sleek sedan that combines sporty performance with comfort and advanced features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-MZ-22356",
+            "expire_date": "2025-12-20",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-123456",
+            "insurance_start_date": "2024-03-01",
+            "insurance_ending_date": "2025-03-01",
+            "insurance_provider": "Trust Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917654528",
+        "car_id": "CAR-1729906523984",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Micra",
+            "trim_level": "XV",
+            "car_type": "Hatchback",
+            "build_year": 2022,
+            "photo": "url_to_micra_image",
+            "seats": 5,
+            "mileage": 20,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "A compact hatchback perfect for urban commuting, known for its fuel efficiency."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-MI-33512",
+            "expire_date": "2026-08-15",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-654321",
+            "insurance_start_date": "2024-10-01",
+            "insurance_ending_date": "2025-10-01",
+            "insurance_provider": "Global Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917654528",
+        "car_id": "CAR-1729906531778",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Jazz",
+            "trim_level": "VX",
+            "car_type": "Hatchback",
+            "build_year": 2021,
+            "photo": "url_to_jazz_image",
+            "seats": 5,
+            "mileage": 19,
+            "gear": "CVT",
+            "fuel": "Petrol",
+            "rental_price": 450,
+            "transmission_type": "CVT",
+            "about": "A versatile hatchback with ample cargo space and great fuel economy for city drives."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-JA-12344",
+            "expire_date": "2025-07-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-789123",
+            "insurance_start_date": "2024-05-01",
+            "insurance_ending_date": "2025-05-01",
+            "insurance_provider": "Sure Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917654528",
+        "car_id": "CAR-1729906531372",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Yaris",
+            "trim_level": "G",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_yaris_image",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "7-speed",
+            "fuel": "Petrol",
+            "rental_price": 500,
+            "transmission_type": "Automatic",
+            "about": "A reliable sedan that offers a comfortable ride with advanced safety features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-YA-88765",
+            "expire_date": "2026-03-10",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-147258",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Trust Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917664313",
+        "car_id": "CAR-1729906531894",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Suzuki",
+            "model": "Swift",
+            "trim_level": "VXI",
+            "car_type": "Hatchback",
+            "build_year": 2021,
+            "photo": "url_to_swift_image",
+            "seats": 5,
+            "mileage": 22,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "A compact hatchback known for its fuel efficiency and sporty design."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-SW-11223",
+            "expire_date": "2025-05-20",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-258963",
+            "insurance_start_date": "2024-09-01",
+            "insurance_ending_date": "2025-09-01",
+            "insurance_provider": "Secure Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917664313",
+        "car_id": "CAR-1729906531247",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Mitsubishi",
+            "model": "Mirage",
+            "trim_level": "G4",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_mirage_image",
+            "seats": 5,
+            "mileage": 20,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 400,
+            "transmission_type": "Manual",
+            "about": "A compact sedan that offers excellent fuel efficiency and a comfortable ride."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-MI-33444",
+            "expire_date": "2025-12-10",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-789456",
+            "insurance_start_date": "2024-06-15",
+            "insurance_ending_date": "2025-06-15",
+            "insurance_provider": "Sure Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917664313",
+        "car_id": "CAR-1729906532098",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "City",
+            "trim_level": "V",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_city_image",
+            "seats": 5,
+            "mileage": 18,
+            "gear": "CVT",
+            "fuel": "Petrol",
+            "rental_price": 500,
+            "transmission_type": "CVT",
+            "about": "A stylish sedan that combines comfort, performance, and advanced safety features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CI-55667",
+            "expire_date": "2026-03-20",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-963852",
+            "insurance_start_date": "2024-11-01",
+            "insurance_ending_date": "2025-11-01",
+            "insurance_provider": "Trust Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917664313",
+        "car_id": "CAR-1729906557027",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Camry",
+            "trim_level": "LE",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_camry_image",
+            "seats": 5,
+            "mileage": 15,
+            "gear": "8-speed",
+            "fuel": "Petrol",
+            "rental_price": 600,
+            "transmission_type": "Automatic",
+            "about": "A midsize sedan that offers a smooth ride, spacious interior, and advanced technology."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CA-99887",
+            "expire_date": "2026-01-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-147258",
+            "insurance_start_date": "2024-01-01",
+            "insurance_ending_date": "2025-01-01",
+            "insurance_provider": "Secure Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917664313",
+        "car_id": "CAR-1729906557237",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Versa",
+            "trim_level": "S",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_versa_image",
+            "seats": 5,
+            "mileage": 30,
+            "gear": "5-speed",
+            "fuel": "Petrol",
+            "rental_price": 350,
+            "transmission_type": "Manual",
+            "about": "An affordable sedan that provides great mileage and comfort for city drives."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": false,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-VE-33445",
+            "expire_date": "2025-08-10",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-321654",
+            "insurance_start_date": "2024-07-15",
+            "insurance_ending_date": "2025-07-15",
+            "insurance_provider": "Sure Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917664313",
+        "car_id": "CAR-1729906557716",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Elantra",
+            "trim_level": "SE",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_elantra_image",
+            "seats": 5,
+            "mileage": 20,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 450,
+            "transmission_type": "Automatic",
+            "about": "A sleek sedan with modern features and impressive performance."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-EL-12333",
+            "expire_date": "2026-09-15",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-654321",
+            "insurance_start_date": "2024-12-01",
+            "insurance_ending_date": "2025-12-01",
+            "insurance_provider": "Global Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917673158",
+        "car_id": "CAR-1729906557231",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Corolla",
+            "trim_level": "LE",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_corolla_image",
+            "seats": 5,
+            "mileage": 16,
+            "gear": "CVT",
+            "fuel": "Petrol",
+            "rental_price": 450,
+            "transmission_type": "CVT",
+            "about": "A reliable sedan with excellent fuel efficiency and comfort."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CO-11222",
+            "expire_date": "2025-11-10",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-258951",
+            "insurance_start_date": "2024-08-01",
+            "insurance_ending_date": "2025-08-01",
+            "insurance_provider": "Secure Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917673158",
+        "car_id": "CAR-1729906557055",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Altima",
+            "trim_level": "SR",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_altima_image",
+            "seats": 5,
+            "mileage": 28,
+            "gear": "8-speed",
+            "fuel": "Petrol",
+            "rental_price": 500,
+            "transmission_type": "Automatic",
+            "about": "A sporty sedan with a powerful engine and modern technology."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-AL-22334",
+            "expire_date": "2025-12-20",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-147258",
+            "insurance_start_date": "2024-06-01",
+            "insurance_ending_date": "2025-06-01",
+            "insurance_provider": "Sure Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917673158",
+        "car_id": "CAR-1729906571171",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Sonata",
+            "trim_level": "Limited",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_sonata_image",
+            "seats": 5,
+            "mileage": 29,
+            "gear": "8-speed",
+            "fuel": "Petrol",
+            "rental_price": 550,
+            "transmission_type": "Automatic",
+            "about": "A midsize sedan that combines luxury features with exceptional performance."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-SO-33445",
+            "expire_date": "2026-03-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-963258",
+            "insurance_start_date": "2024-07-15",
+            "insurance_ending_date": "2025-07-15",
+            "insurance_provider": "Global Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917693752",
+        "car_id": "CAR-1729906571126",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Toyota",
+            "model": "Camry",
+            "trim_level": "XSE",
+            "car_type": "Sedan",
+            "build_year": 2023,
+            "photo": "url_to_camry_image",
+            "seats": 5,
+            "mileage": 25,
+            "gear": "8-speed",
+            "fuel": "Petrol",
+            "rental_price": 600,
+            "transmission_type": "Automatic",
+            "about": "The Toyota Camry offers a smooth ride with advanced safety features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CA-45678",
+            "expire_date": "2026-01-15",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-258963",
+            "insurance_start_date": "2024-04-01",
+            "insurance_ending_date": "2025-04-01",
+            "insurance_provider": "Elite Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917693752",
+        "car_id": "CAR-1729906571203",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Nissan",
+            "model": "Altima",
+            "trim_level": "SV",
+            "car_type": "Sedan",
+            "build_year": 2022,
+            "photo": "url_to_altima_image",
+            "seats": 5,
+            "mileage": 30,
+            "gear": "CVT",
+            "fuel": "Petrol",
+            "rental_price": 550,
+            "transmission_type": "CVT",
+            "about": "A stylish sedan with impressive fuel efficiency and modern features."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-AL-22345",
+            "expire_date": "2025-11-20",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-147258",
+            "insurance_start_date": "2024-06-15",
+            "insurance_ending_date": "2025-06-15",
+            "insurance_provider": "Sure Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917693752",
+        "car_id": "CAR-1729906571170",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Hyundai",
+            "model": "Elantra",
+            "trim_level": "Limited",
+            "car_type": "Sedan",
+            "build_year": 2023,
+            "photo": "url_to_elantra_image",
+            "seats": 5,
+            "mileage": 32,
+            "gear": "6-speed",
+            "fuel": "Petrol",
+            "rental_price": 520,
+            "transmission_type": "Manual",
+            "about": "The Hyundai Elantra combines style, comfort, and excellent fuel economy."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-EL-33445",
+            "expire_date": "2026-05-30",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-963258",
+            "insurance_start_date": "2024-05-01",
+            "insurance_ending_date": "2025-05-01",
+            "insurance_provider": "Global Insurance",
+            "insurance_coverage_type": "Full Coverage"
+        }
+    },
+    {
+        "agency_id": "AG-1729917693752",
+        "car_id": "CAR-1729906571471",
+        "booking_status": false,
+        "vehicle_info": {
+            "brand": "Honda",
+            "model": "Civic",
+            "trim_level": "EX",
+            "car_type": "Sedan",
+            "build_year": 2021,
+            "photo": "url_to_civic_image",
+            "seats": 5,
+            "mileage": 34,
+            "gear": "CVT",
+            "fuel": "Petrol",
+            "rental_price": 580,
+            "transmission_type": "CVT",
+            "about": "The Honda Civic is known for its sporty handling and spacious interior."
+        },
+        "additional_features": {
+            "air_conditioning": true,
+            "gps": true,
+            "bluetooth": true,
+            "central_locking": true,
+            "heater": true
+        },
+        "documentation_info": {
+            "license_number": "BD-CI-55678",
+            "expire_date": "2026-09-12",
+            "fitness_certificate": "Certified",
+            "issuing_authority": "BRTA",
+            "insurance_number": "INS-852147",
+            "insurance_start_date": "2024-07-15",
+            "insurance_ending_date": "2025-07-15",
+            "insurance_provider": "Safe Insurance",
+            "insurance_coverage_type": "Partial Coverage"
+        }
+    }
+]

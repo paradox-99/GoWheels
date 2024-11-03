@@ -1,177 +1,132 @@
-import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import Address from "../../components/address/Address";
-import { useState } from "react";
-import FeaturedCarts from "../../components/cart/FeaturedCarts";
-import { top_brands } from "../../../public/locationData";
+import { Autocomplete, FormControl, IconButton, InputLabel, Select, TextField, ThemeProvider } from "@mui/material";
 import { Helmet } from "react-helmet-async";
-import TimePicker from "../../components/address/TimePicker";
-import { MdError } from "react-icons/md";
-import Brand from "../../components/address/Brand";
-
+import { customTheme2 } from "../../components/theme/Theme";
+import { useState } from "react";
+import { FiSearch } from "react-icons/fi";
+import toast from "react-hot-toast";
+import { carBrands, district, upazillas } from "../../../public/locationData";
+import useAxiosPublic from "../../hooks/useAxiosPublic"
+import FeaturedCarts from "../../components/cart/FeaturedCarts";
 
 const Filter = () => {
-  const [searchResult, setSearchResult] = useState([]);
-  const [selectedBrand, setSelectedBrand] = useState('');
-  const [errorMessage, setErrorMessage] = useState("");
-  const [address, setAddress] = useState();
-  const [time, setTime] = useState();
+
+  const [searchValue, setSearchValue] = useState(null);
+  const [value, setValue] = useState([""])
+  const [search, setSearch] = useState(null)
   const axiosPublic = useAxiosPublic();
-  const navigate = useNavigate();
-  const [carBookingInfo, setCarBookingInfo] = useState(null);
+  const [result, getResult] = useState();
 
-  console.log(selectedBrand)
-
-  
-  
-  const handleFilter = async (e) => {
-    e.preventDefault();
-    setErrorMessage("")
-
-    const division = address.selectedDivision;
-    const district = address.selectedDistrict;
-    const upazilla = address.selectedUpazilla;
-
-  console.log("time :", time);
-    
-
-    const initailDate = time?.fromDate;
-    const initalTime = time?.fromTime;
-    const toDate = time?.untilDate;
-    const toTime = time?.untilTime;
-
-
-
-    let area = "";
-    if (address.keyArea) {
-      area = address.keyArea
+  const searchBy = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    if (value === "District") {
+      setValue(district);
+      setSearch(null);
     }
+    else if (value === "Brand") {
+      setValue(carBrands);
+      setSearch(null);
+    }
+    else if (value === "Upazilla") {
+      setValue(upazillas);
+      setSearch(null);
+    }
+  }
 
-    const filterData = {
-      initailDate,
-      initalTime,
-      toDate,
-      toTime,
-      division,
-      district,
-      upazilla,
-      area,
-      selectedBrand
-    };
-    console.log(filterData)
+  const checkValue = () => {
+    if (searchValue === null) {
+      toast.error("Select a search criteria.")
+    }
+  }
 
-    try {
-      const { data } = await axiosPublic.get('/carsRoute/getSearchData', { params: filterData });
-
-      if (data.message === "No car found with the provided details") {
-        setErrorMessage(data.message);
-        setSearchResult([])
-        return;
+  const getSearchResult = async () => {
+    if (search !== null) {
+      if (searchValue === "Brand") {
+        const result = await axiosPublic.get(`/carsRoute/brand/${search}`);
+        getResult(result.data);
       }
-
-      setSearchResult(data)
-      setCarBookingInfo(filterData)
+      else if (searchValue === "District") {
+        const filterData = {
+          district: search,
+          upazilla: "",
+        }
+        const result = await axiosPublic.get(`/carsRoute/getCarByLocation`, {params: filterData});
+        getResult(result.data);
+      }
+      else if (searchValue === "Upazilla") {
+        const filterData = {
+          district: "",
+          upazilla: search,
+        }
+        const result = await axiosPublic.get(`/carsRoute/getCarByLocation`, {params: filterData});
+        getResult(result.data);
+      }
     }
-
-    catch (error) {
-      console.log(error)
+    else {
+      toast.error(`Please enter ${searchValue}`)
     }
-
-  };
-
-  const handleBrand = brand_name => {
-    navigate(`/brand/${brand_name}`)
   }
 
-  const getAddress = (address) => {
-    setAddress(address);
-  }
-
-  const getTime = (getTime) => {
-    setTime(getTime)
-  }
-
-  const getBrand = (carBrand) => {
-    setSelectedBrand(carBrand)
-  }
+  console.log(result);
+  
 
   return (
     <div className="my-20 w-full px-4">
       <Helmet>
         <title>Search</title>
       </Helmet>
-      <div className="flex justify-center items-center">
-        <form
-          onSubmit={handleFilter}
-          className="flex justify-center items-end flex-col w-fit lg:flex-row px-5 rounded-lg py-5"
-        >
-          <div className="flex justify-center items-end flex-col lg:flex-row gap-6">
-            {/* addres */}
-            <div>
-                <p className="text-lg font-semibold mb-3">Location</p>
-                <div className="flex justify-between gap-4 items-center w-full">
-                  <Address getAddress={getAddress}></Address>
-                </div>
-              </div>
-              {/* time and date */}
-              <div>
-                <h3 className="font-nunito mb-2">Booking Range</h3>
-                <TimePicker getTime={getTime}></TimePicker>
-              </div>
-            {/* car brand */}
-
-            <div >
-              <Brand getBrand={getBrand}></Brand>
-            </div>
-
+      <div>
+        <div className="bg-secondary w-10 h-1 mb-4"></div>
+        <h1 className="text-4xl font-merriweather font-bold">Search</h1>
+        <div className="flex items-center justify-center gap-5">
+          <div className="w-1/2 flex justify-end">
+            <ThemeProvider theme={customTheme2}>
+              <FormControl sx={{ m: 1, width: 250 }}>
+                <InputLabel htmlFor="grouped-native-select">Search by</InputLabel>
+                <Select native defaultValue="" id="grouped-native-select" label="Grouping" onChange={searchBy}>
+                  <option aria-label="None" value="" />
+                  <optgroup label="Location">
+                    <option value={"District"}>District </option>
+                    <option value={"Upazilla"}>Upazilla/City</option>
+                  </optgroup>
+                  <option value={"Brand"}>Brand</option>
+                </Select>
+              </FormControl>
+            </ThemeProvider>
           </div>
-          <div className="lg:ml-4 mt-8 lg:mt-0">
-            <button className="bg-primary hover:bg-transparent hover:border-2 font-nunito border-primary hover:text-primary duration-500 active:scale-75 shadow-inner shadow-secondary border-2 p-2 text-background rounded-full font-semibold">
-              <FaSearch className="text-xl" />
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div className="mt-10 flex justify-center">
-        {
-          errorMessage && <>
-            <h1 className="text-4xl font-nunito font-semibold text-primary flex items-center gap-1" >{errorMessage}! <MdError /></h1>
-          </>
-        }
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-        {
-          searchResult.length > 0 && (
-            searchResult.map((car) => (
-              <FeaturedCarts
-                key={car._id}
-                car={car}
-                carBookingInfo={carBookingInfo}
+          <div className="w-1/2 flex items-center justify-start">
+            <ThemeProvider theme={customTheme2}>
+              <Autocomplete
+                disablePortal
+                options={value}
+                onChange={(event, newValue) => {
+                  setSearch(newValue?.label);
+                }}
+                value={search}
+                sx={{ width: 250, marginRight: 1 }}
+                renderInput={(params) => <TextField {...params} onClick={checkValue} label={`${searchValue ? "Enter " + searchValue : "Search"}`} />}
               />
-            ))
-          )
-        }
-      </div>
-
-      <div className="mt-28">
-        <div className="bg-secondary w-20 h-2 mb-8"></div>
-        <h1 className="text-5xl font-merriweather font-bold">Top Brands</h1>
-        <div className="mt-10 flex flex-wrap lg:flex-nowrap lg:flex-row justify-center gap-5">
-          {
-            top_brands.map(brand =>
-              <div key={brand.name}>
-                <div className="bg-slate-200 rounded-md relative" onClick={() => handleBrand(brand.name)}>
-                  <img src={brand.image} alt="" className="w-[300px] h-[200px] -z-10" />
-                  <img src={brand.logo} alt="" className="w-[300px] h-[200px] hover:bg-secondary absolute top-0 left-0 rounded-md opacity-0 hover:opacity-100 transition ease-in-out duration-700 z-10" />
-                </div>
-                <h3 className="text-center font-nunito text-2xl font-semibold mt-4">{brand.name}</h3>
-              </div>)
-          }
+              <IconButton disabled={searchValue ? false : true} onClick={getSearchResult}><FiSearch /></IconButton>
+            </ThemeProvider>
+          </div>
         </div>
       </div>
+      {
+        result &&
+        <div className="mt-5">
+          <h1 className="text-5xl font-merriweather font-bold mb-5">{search} Cars</h1>
+          {
+            result.length === 0 ? <div className="w-full h-[30vh] text-2xl font-nunito flex items-center justify-center">Sorry. No car found in {search}</div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 justify-items-center">
+              {
+                result?.map((car) => (<FeaturedCarts
+                  key={car._id}
+                  car={car}
+                ></FeaturedCarts>))
+              }
+            </div>
+          }
+        </div>
+      }
     </div>
   );
 };

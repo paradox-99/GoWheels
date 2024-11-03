@@ -19,24 +19,35 @@ const HandleSearch = () => {
     }
 
     const searchPage = () => {
-        navigate('/search')
+        const division = address.selectedDivision;
+        const district = address.selectedDistrict;
+        const upazilla = address.selectedUpazilla;
+        const keyArea = address.keyArea;
+        const fromDate = time.fromDate;
+        const fromTime = time.fromTime;
+        const untilDate = time.untilDate;
+        const untilTime = time.untilTime;
+        
+        const location = new URLSearchParams({division: division, district: district, upazilla: upazilla, keyArea: keyArea});
+        const date = new URLSearchParams({fromDate: fromDate, fromTime: fromTime, untilDate: untilDate, untilTime: untilTime});
+        navigate(`/search/queries?${location}&${date}`)
     }
 
     return (
-        <div className="flex gap-5 flex-col min-[1220px]:flex-row">
+        <div className="flex gap-5 flex-col min-[1220px]:flex-row justify-center items-center">
             <div className="">
-                <p className="text-lg font-semibold mb-3">Location</p>
-                <div className="flex justify-between gap-4 items-center w-full">
+                <p className="font-nunito lg:mb-4 font-semibold text-lg text-center md:text-left">Location</p>
+                <div className="flex gap-4 lg:items-center w-full">
                     <Address getAddress={getAddress}></Address>
                 </div>
             </div>
             <div>
-                <h3 className="font-nunito mb-2 ">Booking Range</h3>
+                <h3 className="font-nunito lg:mb-2 font-semibold text-lg text-center md:text-left">Booking Date</h3>
                 <TimePicker getTime={getTime}></TimePicker>
             </div>
-            <div className="flex justify-end items-end">
-                <IconButton aria-label="delete" onClick={searchPage}>
-                    <FaSearch />
+            <div className=" min-[1222px]:mt-10">
+                <IconButton onClick={searchPage}>
+                    <FaSearch className="w-5 md:w-7"/>
                 </IconButton>
             </div>
         </div>

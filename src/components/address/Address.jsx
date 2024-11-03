@@ -3,15 +3,17 @@ import { locationData, keyArea } from "../../../public/locationData";
 import { FormControl, InputLabel, MenuItem, Select, ThemeProvider } from "@mui/material";
 import { customTheme2 } from "../theme/Theme";
 
-const Address = ({ getAddress }) => {
+const Address = ({ getAddress, location }) => {
 
-    const [selectedDivision, setSelectedDivision] = useState("");
-    const [selectedDistrict, setSelectedDistrict] = useState("");
-    const [selectedUpazilla, setSelectedUpazilla] = useState("");
-    const [districts, setDistricts] = useState([]);
-    const [upazillas, setUpazillas] = useState([]);
-    const [keyAreas, setKeyAreas] = useState([]);
-    const [visible, setVisible] = useState(false);
+    const [selectedDivision, setSelectedDivision] = useState(location?.division || "");
+    const [selectedDistrict, setSelectedDistrict] = useState(location?.district || "");
+    const [selectedUpazilla, setSelectedUpazilla] = useState(location?.upazilla || "");
+    const [selectedKeyArea, setSelectedKeyArea] = useState(location?.keyArea || "");
+    const [districts, setDistricts] = useState(Object.keys(locationData[location?.division] || {}));
+    const [upazillas, setUpazillas] = useState((location && locationData[selectedDivision][location?.district]) || []);
+    const [keyAreas, setKeyAreas] = useState((location?.keyArea === 'Dhaka North' ? keyArea["Dhaka South"] : keyArea["Dhaka North"]) || []);
+    
+    const [visible, setVisible] = useState(location?.keyArea && true);
 
     const handleDivisionChange = (e) => {
         const division = e.target.value;
@@ -27,6 +29,7 @@ const Address = ({ getAddress }) => {
         const district = e.target.value;
         setSelectedDistrict(district);
         setUpazillas(locationData[selectedDivision][district] || []);
+        setVisible(false);
     };
 
     const handleUpazillaChange = (e) => {
@@ -41,7 +44,8 @@ const Address = ({ getAddress }) => {
             }
         } else {
             setKeyAreas([""]);
-            const address = { selectedDivision, selectedDistrict, selectedUpazilla: upazilla }
+            setVisible(false);
+            const address = { selectedDivision, selectedDistrict, selectedUpazilla: upazilla,  keyArea: "" };
             getAddress(address);
         }
         setSelectedUpazilla(upazilla);
@@ -49,14 +53,13 @@ const Address = ({ getAddress }) => {
 
     const handleSubmit = (e) => {
         const keyArea = e.target.value;
+        setSelectedKeyArea(keyArea)
         const address = { selectedDivision, selectedDistrict, selectedUpazilla, keyArea }
         getAddress(address);
     }
 
-    
-
     return (
-        <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap justify-center gap-4 items-center">
+        <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap w-full gap-4 items-center">
             <ThemeProvider theme={customTheme2}>
                 {/* Division Selector */}
                 <FormControl variant="outlined" sx={{
@@ -94,7 +97,7 @@ const Address = ({ getAddress }) => {
                         name="district"
                         value={selectedDistrict}
                         onChange={handleDistrictChange}
-                        label="Division"
+                        label="District"
                         variant="outlined"
                         disabled={!selectedDivision}
                     >
@@ -118,7 +121,7 @@ const Address = ({ getAddress }) => {
                             name="upazilla"
                             value={selectedUpazilla}
                             onChange={handleUpazillaChange}
-                            label="Division"
+                            label="Upazilla"
                             variant="outlined"
                             disabled={!selectedDistrict || upazillas.length === 0}
                         >
@@ -145,14 +148,14 @@ const Address = ({ getAddress }) => {
                             <Select
                                 name="keyArea"
                                 onChange={handleSubmit}
-                                label="Division"
+                                label="KeyArea"
                                 variant="outlined"
+                                value={selectedKeyArea}
                             // disabled={!selectedDistrict || upazillas.length === 0}
                             >
                                 {keyAreas.map((keyArea) => (
-                                    <MenuItem key={keyArea} value={keyArea || ''}>{keyArea}</MenuItem>
+                                    <MenuItem key={keyArea} value={keyArea} >{keyArea}</MenuItem>
                                 ))}
-
                             </Select>
                         </FormControl>
                     </>
