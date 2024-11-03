@@ -1,14 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { locationData } from "../../../public/locationData";
 import { useState } from "react";
-// import background from '../../../public/asset/background.jpg'
 import image from '../../../public/asset/agency-image2.jpg'
-import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { generateAgencyId } from "../../components/agencyIdGenerator";
+import { generateAgencyId } from "../../components/idGenerator";
+import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import loaderEliment from '../../../public/logo.gif';
 
 const AgencyInfo = () => {
-    const [agencyId, setAgencyId] = useState(1);
+    const [loading, setLoading] = useState(false)
 
     const [selectedDivision, setSelectedDivision] = useState('');
     // eslint-disable-next-line no-unused-vars
@@ -16,8 +17,9 @@ const AgencyInfo = () => {
     const [districts, setDistricts] = useState([]);
     const [upazillas, setUpazillas] = useState([]);
     const location = useLocation()
-    const agencyEmail = location.state?.email;
-    // console.log(agencyEmail)
+    const axiosPublic = useAxiosPublic()
+    const { userEmail } = location.state?.userInfo || {};
+    console.log(userEmail)
     const navigate = useNavigate();
 
     const handleDivisionChange = (e) => {
@@ -34,9 +36,9 @@ const AgencyInfo = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-    // let agencyId = 1;
     const handleAgency = async (e) => {
         e.preventDefault()
+        setLoading(true)
         const form = e.target;
         const agencyName = form.name.value;
         const transportLicenseNumber = form.transportNumber.value;
@@ -49,7 +51,7 @@ const AgencyInfo = () => {
         const businessRegNumber = form.regNumber.value;
         const taxIdentificationNumber = form.identificationNumber.value;
         const agency_id = generateAgencyId();
-        setAgencyId(agencyId + 1);
+        // setAgencyId(agencyId + 1);
 
         const agencyAddress = {
             division,
@@ -58,14 +60,14 @@ const AgencyInfo = () => {
             area
         }
         const info = {
-            agencyName, agencyEmail, agencyAddress, businessRegNumber,
+            agencyName, userEmail, agencyAddress, businessRegNumber,
             taxIdentificationNumber,
             transportLicenseNumber,
             insuranceLicenseNumber,
             numberOfVehicles, agency_id
         };
 
-        console.log(info)
+        // console.log(info)
         try {
             await mutateAsync(info)
 
@@ -81,12 +83,13 @@ const AgencyInfo = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async (agencyData) => {
-            const { data } = await axios.post(`https://go-wheels-server.vercel.app/api/agencyRoute/agencyInfo`, agencyData)
+            const { data } = await axiosPublic.post(`/agencyRoute/agencyInfo`, agencyData)
             return data
         },
         onSuccess: () => {
             console.log('data saved successfully')
-            navigate('/dashboard/agency/add-vehicle-info', { state: { agencyEmail } });
+            setLoading(false)
+            navigate('/dashboard/agency/add-vehicle-info', { state: { userEmail } });
             // toast.success(' data added successfully')
 
 
@@ -95,10 +98,11 @@ const AgencyInfo = () => {
     })
 
 
-    // style={{ backgroundImage: `url(${background})` }}
-
     return (
         <div>
+            <Helmet>
+                <title>Register || Agency</title>
+            </Helmet>
             <h1 className='text-3xl lg:text-3xl text-center mt-10 font-bold  font-merriweather mb-10'>Agency Information</h1>
             <div className="h-[89vh] flex flex-col-reverse lg:flex-row gap-44 justify-center bg-center bg-cover bg-no-repeat pt-10">
                 <div className='lg:w-[30vw]  bg-transparent   px-10 rounded-lg'>
@@ -125,7 +129,7 @@ const AgencyInfo = () => {
                                     id="email"
                                     readOnly
                                     className='outline-none border placeholder-gray-900  w-full rounded py-1 lg:py-2 px-2 text-primary'
-                                    placeholder={agencyEmail}
+                                    placeholder={userEmail}
                                     required />
                             </div>
 
@@ -174,7 +178,7 @@ const AgencyInfo = () => {
                                     id="numberOfVehicles"
                                     className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
                                     placeholder='Number of vehicles'
-                                    
+
                                     required />
                                 <h3 className='text-lg font-semibold text-white'>Address:</h3>
                                 <div className='flex justify-between'>
@@ -226,6 +230,12 @@ const AgencyInfo = () => {
                                         required />
                                 </div>
                             </div>
+                            {loading ? (
+                                <div className="text-center text-lg font-semibold text-blue-600">
+                                    <img className="w-20 mx-auto" src={loaderEliment} alt="" />
+                                </div>
+                            ) : ''}
+
                             <div className='pb-10 mt-5 flex justify-between'>
                                 <Link to={'/join/agencyRegister'}>
                                     <button className="relative inline-block px-4 py-2 font-medium group">
@@ -243,10 +253,10 @@ const AgencyInfo = () => {
                         </form>
                     </section>
                 </div>
-                <div className="lg:w-[30vw] h-[350px]  p-5">
+                <div className="lg:w-[30vw] h-[350px]  p-5"> 
                     <img className="lg:w-[30vw] h-[350px]" src={image} alt="" />
                     <div>
-                        <p className="mt-3 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem laboriosam beatae sit et repellat aliquam, labore officiis dolores architecto itaque fugiat est blanditiis hic! Quae quidem tenetur hic mollitia nemo....</p>
+                        <p className="mt-3 ">Welcome to GoWheel, your trusted partner in car rentals! We offer a wide range of vehicles to suit your travel needs, whether you're planning a weekend getaway or a business trip. Our commitment to quality and customer satisfaction ensures a smooth and enjoyable experience.....</p>
                         <p className="mt-5 font-bold">If you agree with these terms and condition then you can register and start traveling with us</p>
                     </div>
                 </div>

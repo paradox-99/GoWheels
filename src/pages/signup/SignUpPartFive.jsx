@@ -7,23 +7,24 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import loaderEliment from '../../../public/logo.gif';
 import useDesignation from "../../hooks/useDesignation";
+import { Helmet } from "react-helmet-async";
 
 const SignUpPartFive = () => {
 
     const { user, loader, setLoader } = UseAuth() || {};
-    const { userInfo } = useDesignation();
+    const { userInfo, refetch } = useDesignation();
     const { displayName } = user || {};
     const [preview, setPreview] = useState(null);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const location = useLocation();
     const { userImage, from } = location.state || {};
- 
+
     useEffect(() => {
         if ((!user && !loader) || !from) {
             navigate('/join');
         }
-        else if ((userInfo.image && userInfo.circleImage) ){
+        else if ((userInfo.image && userInfo.circleImage)) {
             navigate('/')
         }
     }, [from, loader, navigate, user, userInfo.circleImage, userInfo.image])
@@ -62,6 +63,7 @@ const SignUpPartFive = () => {
                 if (userCropImage) {
                     const { data } = await axiosPublic.patch(`/usersRoute/user/${email}`, { userCropImage })
                     if (data.modifiedCount) {
+                        await refetch();
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -87,6 +89,9 @@ const SignUpPartFive = () => {
     }
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg py-5'>
+            <Helmet>
+                <title>Crop Image || Sign Up</title>
+            </Helmet>
             <div className='text-center mx-auto'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>
                     {displayName}

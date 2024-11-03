@@ -4,6 +4,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const UserDetailsModal = ({ isOpen, closeModal, user, refetch }) => {
     const [open, setOpen] = useState(false);
@@ -103,20 +104,14 @@ const UserDetailsModal = ({ isOpen, closeModal, user, refetch }) => {
 
     return (
         <div>
+            <Helmet>
+                <title>Details || {user.firstName} {user.lastName}</title>
+            </Helmet>
             <div className="fixed inset-0 z-50 flex p-4 items-center justify-center bg-black bg-opacity-50">
                 <div className="bg-white rounded-lg max-w-lg w-full p-6 relative">
-                    <button
-                        className="absolute  w-10 h-10 rounded-full bg-black bg-opacity-20  lg:-top-6 lg:-right-9 -top-6  -right-6 text-white"
-                        onClick={closeModal}
-                    >
-                        X 
-                    </button>
+                    <button className="absolute  w-10 h-10 rounded-full bg-black bg-opacity-20  lg:-top-6 lg:-right-9 -top-6  -right-6 text-white" onClick={closeModal}>X</button>
                     <h2 className="text-xl font-semibold mb-4">User Details</h2>
-                    <img
-                        src={user.image}
-                        alt="User Profile"
-                        className="rounded-lg h-24 w-36 mx-auto mb-4"
-                    />
+                    <img src={user.image} alt="User Profile" className="rounded-lg h-24 w-36 mx-auto mb-4"/>
                     <p><strong>Name:</strong> {user.firstName} {user.lastName}</p>
                     <p><strong>Email:</strong> {user.userEmail}</p>
                     <p><strong>Phone:</strong> {user.phone}</p>

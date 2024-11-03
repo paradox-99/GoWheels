@@ -1,5 +1,6 @@
 [
   {
+      "id": "671910deecfad1e2b3e7a7d9",
     "vehicle_info": {
       "name": "Toyota Prius",
       "rating": 4.5,
@@ -12,6 +13,7 @@
     }
   },
   {
+      "id": "6718c27b29d122a6cd106eac",
     "vehicle_info": {
       "name": "Honda Civic",
       "rating": 4.7,
@@ -24,6 +26,7 @@
     }
   },
   {
+      "id": "671891ba29d122a6cd106eab",
     "vehicle_info": {
       "name": "Ford Mustang",
       "rating": 4.9,
@@ -36,6 +39,7 @@
     }
   },
   {
+      "id": "6718f2a107f97b69624c1b2d",
     "vehicle_info": {
       "name": "Tesla Model 3",
       "rating": 4.8,
@@ -48,6 +52,7 @@
     }
   },
   {
+      "id": "6718f2a107f97b69624c1b2d",
     "vehicle_info": {
       "name": "BMW X5",
       "rating": 4.6,
@@ -60,6 +65,7 @@
     }
   },
   {
+      "id": "671890b629d122a6cd106ea9",
     "vehicle_info": {
       "name": "Audi A4",
       "rating": 4.5,
