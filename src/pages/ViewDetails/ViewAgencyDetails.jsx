@@ -7,7 +7,8 @@ import useDesignation from "../../hooks/useDesignation";
 import { Skeleton } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
-const ViewAgencyDetails = () => {
+
+const ViewAgencyDetails = () => { 
 
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();

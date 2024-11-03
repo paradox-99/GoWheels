@@ -5,7 +5,6 @@ import { TbManualGearboxFilled } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 
 const FeaturedCarts = ({ car, carBookingInfo }) => {
-
   const navigate = useNavigate();
 
   const handleNext = (e) => {

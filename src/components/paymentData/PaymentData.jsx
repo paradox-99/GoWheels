@@ -3,13 +3,14 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const PaymentData = ({ paymentInfo }) => {
-    
+
     const {
         agencyEmail,
         agency_id,
         _id,
         discount,
         drivingCost,
+        driverInfo,
         initailDate,
         initalTime,
         method,
@@ -25,15 +26,19 @@ const PaymentData = ({ paymentInfo }) => {
         upazilla,
         area
 
-    } = paymentInfo
+    } = paymentInfo;
 
     const axiosPublic = useAxiosPublic();
 
     const handleConfirmBooking = async (e) => {
         e.preventDefault()
-        if (!paymentInfo?.method) {
-            toast.error("please select a method self driving or need driver")
-            return
+        if (!paymentInfo?.method ) {
+            toast.error("please select a method self driving or need driver");
+            return;
+        }
+        else if ( paymentInfo?.method === 'driver' && !driverInfo) {
+            toast.error('Please select your driver');
+            return;
         }
 
         const paymentData = {
@@ -43,6 +48,7 @@ const PaymentData = ({ paymentInfo }) => {
             userEmail,
             discount,
             drivingCost,
+            driverInfo,
             method,
             totalRentHours,
             division,
@@ -55,11 +61,11 @@ const PaymentData = ({ paymentInfo }) => {
             toTime,
         }
 
-        const {data} = await axiosPublic.post('/payment/order', paymentData)
-        console.log(data)
+        console.log(paymentData);
 
+        await axiosPublic.post('/payment/order', paymentData)
             .then(res => {
-                window.location.replace(data.url)
+                window.location.replace(res.data?.url)
                 console.log(res.data)
             })
     }

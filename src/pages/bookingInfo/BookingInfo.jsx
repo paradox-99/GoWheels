@@ -202,6 +202,7 @@ const BookingInfo = () => {
         method,
         discount,
         drivingCost,
+        driverInfo,
         userEmail,
         agencyEmail,
         agency_id,
@@ -313,7 +314,7 @@ const BookingInfo = () => {
                                 <Tab>Agency Information</Tab>
                                 <Tab>Booking Information</Tab>
                                 <Tab>User Information</Tab>
-                                <Tab>Driver Info</Tab>
+                               {driverInfo &&  <Tab>Driver Info</Tab>}
                             </TabList>
 
                             <div className="mt-5">

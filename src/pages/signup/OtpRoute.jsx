@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 const OtpRoute = () => {
     const { user, loader } = UseAuth() || {};
     const location = useLocation();
-    const { userInfo, from } = location.state || {};
+    const { userInfo, from } = location.state || {};   
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const { timer, isDisabled, message, handleResendClick } = useOtpTimer();
@@ -54,7 +54,6 @@ const OtpRoute = () => {
         localStorage.removeItem("otpSent");
 
         if (from === '/join/signUpThree') {
-            toast.success("otp matched successfully")
             navigate('/join/signUpFour', {
                 state: {
                     userInfo,

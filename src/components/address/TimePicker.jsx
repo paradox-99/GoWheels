@@ -15,6 +15,14 @@ const TimePicker = ({getTime, time}) => {
   const [untilTime, setUntilTime] = useState(time?.untilTime);
   const currentTime = moment();
 
+  const submit = () => {
+    if (fromDate && fromJSON && untilDate && untilTime) {
+      const time = { fromDate, fromTime, untilDate, untilTime };
+      console.log("all date", time);
+      getTime(time);
+    }
+  }
+
   const getFromDateAndTime = (e) => {
     const fromDate = e.format('YYYY-MM-DD');
     setFromDate(fromDate);

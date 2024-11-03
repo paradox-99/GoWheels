@@ -57,15 +57,15 @@ const Address = ({ getAddress, location }) => {
         const address = { selectedDivision, selectedDistrict, selectedUpazilla, keyArea }
         getAddress(address);
     }
-    
+
     return (
         <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap w-full gap-4 items-center">
             <ThemeProvider theme={customTheme2}>
                 {/* Division Selector */}
                 <FormControl variant="outlined" sx={{
                     width: {
-                        xs: 280,
-                        md: 180,
+                        xs: 250,
+                        md: 150,
                     },
                     fontWeight: 500,
                 }}>
@@ -88,7 +88,7 @@ const Address = ({ getAddress, location }) => {
                 <FormControl variant="outlined" sx={{
                     width: {
                         xs: 280,
-                        md: 180,
+                        md: 150,
                     },
                     fontWeight: 500
                 }}>
@@ -112,7 +112,7 @@ const Address = ({ getAddress, location }) => {
                     <FormControl variant="outlined" sx={{
                         width: {
                             xs: 280,
-                            md: 180,
+                            md: 160,
                         },
                         fontWeight: 500
                     }}>
@@ -138,7 +138,7 @@ const Address = ({ getAddress, location }) => {
                         <FormControl variant="outlined" sx={{
                             width: {
                                 xs: 280,
-                                md: 150,
+                                md: 130,
                             },
                             fontWeight: 500,
                             display: visible ? "flex" : "none"

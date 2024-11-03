@@ -68,7 +68,6 @@ const UserHome = () => {
             fetchBookedCars();
         }
     }, [userId]);
-    console.log(bookedCars);
     return (
         <div className="min-h-screen !font-sans bg-gradient-to-r p-12">
             <Helmet>
@@ -147,7 +146,7 @@ const UserHome = () => {
                     ) : bookedCars?.length < 1 ? (
                         <p>You have not booked any cars yet.</p>
                     ) : (
-                        bookedCars.map((car) => (
+                        bookedCars?.map((car) => (
                             <CommonCarCard key={car._id} car={car} />
                         ))
                     )}
