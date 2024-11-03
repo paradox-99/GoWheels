@@ -9,7 +9,6 @@ import { Badge } from "@mui/material";
 import { CiMail } from "react-icons/ci";
 import { AiOutlineTransaction } from "react-icons/ai";
 
-
 const AgencyMenuItems = ({ notificationCount }) => {
   return (
     <div>
