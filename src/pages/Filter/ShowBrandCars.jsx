@@ -34,7 +34,7 @@ const ShowBrandCars = () => {
             <div className="bg-secondary w-20 h-2 mb-5"></div>
             <h1 className="text-5xl font-merriweather font-bold mb-5">{brand_name} Cars</h1>
             {
-                cars.length === 0 ? <div className="w-full h-[30vh] text-2xl font-nunito flex items-center justify-center">Sorry. No car found.</div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 justify-items-center">
+                cars?.length === 0 ? <div className="w-full h-[30vh] text-2xl font-nunito flex items-center justify-center">Sorry. No car found.</div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 justify-items-center">
                         {
                             cars?.map((car) => (<FeaturedCarts
                                 key={car._id}
