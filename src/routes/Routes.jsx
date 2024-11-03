@@ -25,6 +25,7 @@ import Messaging from "../pages/messaging/Messaging";
 import AllAgency from "../pages/Agency/AllAgency";
 import ViewAgencyDetails from "../pages/ViewDetails/ViewAgencyDetails";
 import Message from "../pages/messaging/Message";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -57,11 +58,14 @@ const router = createBrowserRouter([
             },
             {
                 path: "/bookingInfo",
-                element: <BookingInfo />
+                element: (
+                    <PrivateRoute>
+                        <BookingInfo />
+                    </PrivateRoute>)
             },
             {
                 path: "/send-message",
-                element: <Messaging/>
+                element: <Messaging />
             },
             {
                 path: "/send-message/:url",
@@ -69,12 +73,12 @@ const router = createBrowserRouter([
             },
             {
                 path: "/view-all-agencies",
-                element: <AllAgency/>
+                element: <AllAgency />
 
             },
             {
                 path: "/agencyDetails/:id",
-                element: <ViewAgencyDetails/>
+                element: <ViewAgencyDetails />
             },
             ...SignUpRoutes,
             {
@@ -102,25 +106,25 @@ const router = createBrowserRouter([
                 element: <PaymentFail />
             },
             {
-                path:'/join/driverSignUp',
-                element:<DriverSignUp></DriverSignUp>
+                path: '/join/driverSignUp',
+                element: <DriverSignUp></DriverSignUp>
             },
             {
-                path:'/join/driverInfo',
-                element:<DriverInfo></DriverInfo>
+                path: '/join/driverInfo',
+                element: <DriverInfo></DriverInfo>
 
             },
             {
-                path:'/join/driverOtp',
-                element:<DriverOTP></DriverOTP>
+                path: '/join/driverOtp',
+                element: <DriverOTP></DriverOTP>
             },
             {
-                path:'/join/agencyOtp',
-                element:<AgencyOTP></AgencyOTP>
+                path: '/join/agencyOtp',
+                element: <AgencyOTP></AgencyOTP>
             },
             {
-                path:'/driverList',
-                element:<DriverList></DriverList>
+                path: '/driverList',
+                element: <DriverList></DriverList>
             }
         ]
     },

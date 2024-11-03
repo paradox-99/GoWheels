@@ -7,13 +7,12 @@ import FeaturedCarts from "../../components/cart/FeaturedCarts";
 import { top_brands } from "../../../public/locationData";
 import { Helmet } from "react-helmet-async";
 import TimePicker from "../../components/address/TimePicker";
-import useVehicleData from "../../hooks/useVehicleData";
-import { InputLabel, MenuItem, Select } from "@mui/material";
 import { MdError } from "react-icons/md";
+import Brand from "../../components/address/Brand";
 
 
 const Filter = () => {
-  const [searchResult, setSearchResult] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState('');
   const [errorMessage, setErrorMessage] = useState("");
   const [address, setAddress] = useState();
@@ -22,22 +21,10 @@ const Filter = () => {
   const navigate = useNavigate();
   const [carBookingInfo, setCarBookingInfo] = useState(null);
 
-  const { cars } = useVehicleData();
-  const brands = [...new Set(cars.map((brand) => brand.brand))];
-
-  // const models = cars.map((car) => car.model)
-
-
-  const handleBrandChange = (e) => {
-    e.preventDefault();
-    const brand = e.target.value;
-    setSelectedBrand(brand)
-
-  }
+  console.log(selectedBrand)
 
   const handleFilter = async (e) => {
     e.preventDefault();
-
     setErrorMessage("")
 
     const division = address.selectedDivision;
@@ -65,15 +52,14 @@ const Filter = () => {
       area,
       selectedBrand
     };
+    console.log(filterData)
 
     try {
       const { data } = await axiosPublic.get('/carsRoute/getSearchData', { params: filterData });
 
-      console.log
-
       if (data.message === "No car found with the provided details") {
         setErrorMessage(data.message);
-        setSearchResult([]);
+        setSearchResult([])
         return;
       }
 
@@ -99,6 +85,10 @@ const Filter = () => {
     setTime(getTime)
   }
 
+  const getBrand = (carBrand) => {
+    setSelectedBrand(carBrand)
+  }
+
   return (
     <div className="my-20 w-full px-4">
       <Helmet>
@@ -107,35 +97,25 @@ const Filter = () => {
       <div className="flex justify-center items-center">
         <form
           onSubmit={handleFilter}
-          className="flex justify-center items-center flex-col w-fit lg:flex-row px-5 rounded-lg py-5"
+          className="flex justify-center items-end flex-col w-fit lg:flex-row px-5 rounded-lg py-5"
         >
-          <div className="flex justify-center items-center flex-col lg:flex-row gap-6">
+          <div className="flex justify-center items-end flex-col lg:flex-row gap-6">
             {/* addres */}
             <div>
-              <p className="text-lg font-semibold mb-3">Location</p>
-              <div className="flex justify-between gap-4 items-center w-full">
-                <Address getAddress={getAddress}></Address>
+                <p className="text-lg font-semibold mb-3">Location</p>
+                <div className="flex justify-between gap-4 items-center w-full">
+                  <Address getAddress={getAddress}></Address>
+                </div>
               </div>
-            </div>
-            {/* time and date */}
-            <div>
-              <h3 className="font-nunito mb-2">Booking Range</h3>
-              <TimePicker getTime={getTime}></TimePicker>
-            </div>
+              {/* time and date */}
+              <div>
+                <h3 className="font-nunito mb-2">Booking Range</h3>
+                <TimePicker getTime={getTime}></TimePicker>
+              </div>
             {/* car brand */}
+
             <div >
-              <InputLabel className="font-nunito mb-2">Brand</InputLabel>
-              <Select
-                name="brand"
-                value={selectedBrand}
-                onChange={handleBrandChange}
-                label="Brand"
-                variant="outlined"
-              >
-                {brands.map((brand, index) => (
-                  <MenuItem key={index} value={brand}>{brand}</MenuItem>
-                ))}
-              </Select>
+              <Brand getBrand={getBrand}></Brand>
             </div>
 
           </div>
@@ -157,12 +137,15 @@ const Filter = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {
-          searchResult && <>
-            <FeaturedCarts
-              searchResult={searchResult}
-              carBookingInfo={carBookingInfo}
-            ></FeaturedCarts>
-          </>
+          searchResult.length > 0 && (
+            searchResult.map((car) => (
+              <FeaturedCarts
+                key={car._id}
+                car={car}
+                carBookingInfo={carBookingInfo}
+              />
+            ))
+          )
         }
       </div>
 
