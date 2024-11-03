@@ -3,7 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const PaymentData = ({ paymentInfo }) => {
-    
+
     const {
         agencyEmail,
         agency_id,
@@ -61,11 +61,11 @@ const PaymentData = ({ paymentInfo }) => {
             toTime,
         }
 
-        const {data} = await axiosPublic.post('/payment/order', paymentData)
-        console.log(data)
+        console.log(paymentData);
 
+        await axiosPublic.post('/payment/order', paymentData)
             .then(res => {
-                window.location.replace(data.url)
+                window.location.replace(res.data?.url)
                 console.log(res.data)
             })
     }

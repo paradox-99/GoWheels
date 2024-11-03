@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/contact",
-                element: <Contactpage />,
+                element: <Contactpage />,  
             },
             {
                 path: "/filter",

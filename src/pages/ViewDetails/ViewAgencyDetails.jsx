@@ -5,7 +5,8 @@ import { TbMessageCircle } from "react-icons/tb";
 import SendBird from "sendbird";
 import useDesignation from "../../hooks/useDesignation";
 
-const ViewAgencyDetails = () => {
+
+const ViewAgencyDetails = () => { 
 
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
