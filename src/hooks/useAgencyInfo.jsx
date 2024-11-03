@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
-
-const useAgencyData = (email) => {
+const useAgencyInfo = (email) => {
 
     const axiosSecure = useAxiosSecure();
 
     const { data: agencyInfo= '' } = useQuery({
         queryKey: [email, 'agencyInfo'],
         queryFn: async () => {
-            const {data} = await axiosSecure.get(`/agencyRoute/agencyData/${email}`);
+            const {data} = await axiosSecure.get(`/agencyRoute/agencyInformation/${email}`);
             return data;
         }
     })
     return {agencyInfo};
 };
 
-export default useAgencyData;
+export default useAgencyInfo;

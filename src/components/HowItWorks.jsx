@@ -19,7 +19,7 @@ const HowItWorks = () => {
                             iconStyle={{ background: '#FF4C30', color: '#fff' }}
                             icon={<FaHourglassStart />}
                         >
-                            <h3 className="text-3xl font-light text-heading">Register</h3>
+                            <h3 className="text-2xl">Register</h3>
                             <p className='font-secondary leading-[26px]  !font-normal'>
                                 Create an account on our platform with your basic details to get started.
                             </p>
@@ -34,7 +34,7 @@ const HowItWorks = () => {
                             iconStyle={{ background: '#FF4C30', color: '#fff' }}
                             icon={<FaSearch />}
                         >
-                            <h3 className="text-3xl font-light text-heading">Search for a Vehicle</h3>
+                            <h3 className="text-2xl">Search for a Vehicle</h3>
                             <p className='font-secondary leading-[26px] !font-normal'>
                                 Use our search tools to find a vehicle that fits your needs and preferences.
                             </p>
@@ -49,7 +49,7 @@ const HowItWorks = () => {
                             iconStyle={{ background: '#FF4C30', color: '#fff' }}
                             icon={<FaCar />}
                         >
-                            <h3 className="text-3xl font-light text-heading">Choose Your Vehicle</h3>
+                            <h3 className="text-2xl">Choose Your Vehicle</h3>
                             <p className='font-secondary leading-[26px] !font-normal'>
                                 Select the car that suits you from our wide range of vehicles available for rent.
                             </p>
@@ -64,7 +64,7 @@ const HowItWorks = () => {
                             iconStyle={{ background: '#FF4C30', color: '#fff' }}
                             icon={<FaCarAlt />}
                         >
-                            <h3 className="text-3xl font-light text-heading">Pick Up Your Vehicle</h3>
+                            <h3 className="text-2xl">Pick Up Your Vehicle</h3>
                             <p className='font-secondary leading-[26px] !font-normal'>
                                 Visit our location or arrange delivery to pick up your chosen car.
                             </p>
@@ -79,12 +79,11 @@ const HowItWorks = () => {
                             iconStyle={{ background: '#FF4C30', color: '#fff' }}
                             icon={<FaRoad />}
                         >
-                            <h3 className="text-3xl font-light text-heading">Enjoy Your Ride</h3>
+                            <h3 className="text-2xl">Enjoy Your Ride</h3>
                             <p className='font-secondary leading-[26px] !font-normal'>
                                 Drive your rental and enjoy the freedom to travel where you want.
                             </p>
                         </VerticalTimelineElement>
-
                         <VerticalTimelineElement
                             className="vertical-timeline-element--work border-r-primary"
                             contentStyle={{ background: "#EFEFEF", boxShadow: "20px 0px 150px 0px #EDEDED" }}
@@ -94,7 +93,7 @@ const HowItWorks = () => {
                             iconStyle={{ background: '#FF4C30', color: '#fff' }}
                             icon={<FaSmile />}
                         >
-                            <h3 className="text-3xl font-light text-heading">Return the Vehicle</h3>
+                            <h3 className="text-2xl">Return the Vehicle</h3>
                             <p className='font-secondary leading-[26px] !font-normal'>
                                 Return the vehicle to the designated location at the end of your rental period.
                             </p>

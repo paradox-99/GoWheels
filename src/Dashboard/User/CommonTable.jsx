@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaPen, FaStar } from 'react-icons/fa'; 
+import { FaPen, FaStar } from 'react-icons/fa';
 import useDesignation from '../../hooks/useDesignation';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -7,11 +7,10 @@ import toast from 'react-hot-toast';
 
 const ReviewModal = ({ isOpen, onClose, booking }) => {
     const { userInfo } = useDesignation();
-    console.log(userInfo);
-    const [rating, setRating] = useState(0);  
-    const [reviewText, setReviewText] = useState('');  
-    const [imageUrl, setImageUrl] = useState('');  
-
+    const [rating, setRating] = useState(0);
+    const [reviewText, setReviewText] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    // console.log("agency_id", booking);
     if (!isOpen) return null;
 
     const handleRatingChange = (rating) => {
@@ -31,19 +30,20 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
 
         const reviewData = {
             userId: userInfo?._id,
-            carId: booking._id,
+            carId: booking.carId,
             carName: booking?.name,
             userName: userInfo?.firstName + " " + userInfo?.lastName,
             userImage: userInfo?.image,
             carImage: imageUrl,
             review: reviewText,
             rating: rating,
+            agency_id: booking?.agency_id,
             agencyResponse: "",
         };
-
+        console.log("reviewData",reviewData);
         try {
             console.log(reviewData);
-            const response = await axios.post("https://go-wheels-server.vercel.app/api/feedbackRoute/feedback", reviewData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/feedbackRoute/feedback`, reviewData);
 
             if (response.status === 200) {
                 toast.success("Feedback Placed successfully")
@@ -113,7 +113,7 @@ const ReviewModal = ({ isOpen, onClose, booking }) => {
 const CommonTable = ({ bookings, loading, error }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedBooking, setSelectedBooking] = useState(null);
-
+    console.log(selectedBooking);
     const handleAddReviewClick = (booking) => {
         setSelectedBooking(booking);
         setIsModalOpen(true);
@@ -125,11 +125,11 @@ const CommonTable = ({ bookings, loading, error }) => {
     };
     if (loading) {
         return (
-            <div className="container mx-auto p-6">
+            <div className="container mx-auto">
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-primary text-white text-sm leading-normal">
+                            <tr className="bg-gray-100 text-gray-500 text-sm leading-normal">
                                 {/* Table headings */}
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
@@ -142,7 +142,7 @@ const CommonTable = ({ bookings, loading, error }) => {
                         </thead>
                         <tbody className="text-gray-600 text-sm">
                             {Array(5).fill("").map((_, index) => (
-                                <tr key={index} className="border-b  odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-red-50 animate-pulse">
+                                <tr key={index} className="border-b  odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-gray-100 animate-pulse">
                                     <td className="py-3 px-6">
                                         <div className="w-24 h-12 bg-gray-300 rounded-md"></div>
                                         <div className="h-4 bg-gray-300 rounded mt-2"></div>
@@ -188,12 +188,12 @@ const CommonTable = ({ bookings, loading, error }) => {
 
     }
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto">
             {bookings?.userBookings.length > 0 ? (
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead>
-                            <tr className="bg-primary text-white font-nunito text- leading-normal">
+                            <tr className="bg-gray-100 text-gray-700 font-nunito text- leading-normal">
                                 <th className="py-3 px-6 text-left">Car</th>
                                 <th className="py-3 px-6 text-left">Booking Date</th>
                                 <th className="py-3 px-6 text-left">Drop-off Date</th>
@@ -205,7 +205,7 @@ const CommonTable = ({ bookings, loading, error }) => {
                         </thead>
                         <tbody className=" text-sm">
                             {bookings.userBookings.map((booking) => (
-                                <tr key={booking._id} className="border-b odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-red-50">
+                                <tr key={booking._id} className="border-b odd:bg-white group even:text-black even:bg-white border-red-50 hover:bg-gray-100">
                                     <td className="py-3 font-semibold px-6">
                                         <img src={booking.image} className="rounded-md h-16 w-22 object-cover mb-2" alt="" />
                                         {booking.name}

@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAgencyData from "../../hooks/UseAgencyData";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAgencyInfo from "../../hooks/useAgencyInfo";
 
 const ActiveBooking = () => {
   const axiosSecure = useAxiosSecure();
-  const { agencyData } = useAgencyData();
+  const { agencyData } = useAgencyInfo();
   const agencyId = agencyData?.agency_id;
   const queryClient = useQueryClient();
 

@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAgencyData from "../../hooks/UseAgencyData";
 import { useEffect, useState } from "react";
 import TableForBookingHistory from "./TableForBookingHistory";
+import useAgencyInfo from "../../hooks/useAgencyInfo";
 
 const BookingHistoryForAgency = () => {
   const axiosSecure = useAxiosSecure();
-  const { agencyData } = useAgencyData();
+  const { agencyData } = useAgencyInfo();
   const agencyId = agencyData?.agency_id;
   console.log(agencyId);
 
