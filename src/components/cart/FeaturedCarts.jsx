@@ -19,12 +19,12 @@ const FeaturedCarts = ({ car, carBookingInfo }) => {
         <img src={car?.image} alt="photo" className="rounded-lg h-full w-full" />
       </figure>
       <div className="pt-5 flex justify-between items-center pb-3">
-        <h2 className="text-3xl font-bold">{car?.brand} {car?.model}</h2>
+        <h2 className="text-2xl font-bold">{car?.brand} {car?.model}</h2>
         {/* <p className="text-xl font-semibold flex items-center gap-2">
             <FaStar className="text-primary" /> <span>{car?.vehicle_info?.rating}</span>
           </p> */}
       </div>
-      <div className="grid grid-cols-2 gap-3 text-xl font-medium py-4 ">
+      <div className="grid grid-cols-2 gap-3 font-medium py-4 ">
         <p className="flex gap-1 lg:gap-2 items-center">
           <FaCarSide className="text-primary" />
           <span className="pl-2 border-l-2 border-l-primary border-secondary">
@@ -53,8 +53,8 @@ const FeaturedCarts = ({ car, carBookingInfo }) => {
       <hr className="h-[3px] bg-secondary" />
       <div className="flex justify-between items-center py-3">
         <div>
-          <p className="text-xl font-semibold">Daily rate from</p>
-          <h2 className="text-4xl font-semibold">
+          <p className="text-xl font-semibold">Daily rate - </p>
+          <h2 className="text-2xl font-semibold">
             <span className="text-primary">$</span>
             <span>{car?.rentalPrice}</span>
           </h2>

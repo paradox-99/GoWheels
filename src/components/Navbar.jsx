@@ -4,7 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
-import { IoMdSearch } from "react-icons/io";
+import { FiSearch } from "react-icons/fi";
 
 import Swal from "sweetalert2";
 import toast from "react-hot-toast"
@@ -104,7 +104,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-start">
                     <div className="hidden md:flex md:gap-5 items-center">
-                        <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><IoMdSearch />Search</Link>
+                        <Link to={'search'} className="flex items-center gap-2 md:text-2xl"><FiSearch /></Link>
                         {
                             user && <Link to={'/send-message'} className="text-2xl mx-4"><IoChatbubblesOutline/></Link>
                         }

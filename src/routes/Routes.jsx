@@ -45,7 +45,7 @@ const router = createBrowserRouter([
                 element: <Contactpage />,
             },
             {
-                path: "/filter",
+                path: "/search",
                 element: <Filter />,
             },
             {
