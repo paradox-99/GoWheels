@@ -17,8 +17,6 @@ const HandleSearch = () => {
     const getTime = (timeAndDate) => {
         setTime(timeAndDate)
     }
-    console.log(address);
-    console.log(time);
 
     const searchPage = () => {
         navigate('/search')

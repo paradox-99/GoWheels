@@ -4,14 +4,14 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useDesignation = () => {
 
-    const {user, loader} = useAuth();
+    const { user, loader } = useAuth();
     const axiosSecure = useAxiosSecure();
 
     const { data: userInfo= '', refetch  } = useQuery({
         queryKey: [user?.email, 'userInfo'],
         enabled: !loader && !!user?.email,
         queryFn: async () => {
-            const {data} = await axiosSecure.get(`/usersRoute/users/${user?.email}`);
+            const { data } = await axiosSecure.get(`/usersRoute/users/${user?.email}`);
             return data;
         }
     })
