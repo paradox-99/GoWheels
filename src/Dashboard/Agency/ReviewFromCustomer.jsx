@@ -47,11 +47,15 @@ const ReviewFromCustomer = () => {
                 <title>Review from Customers</title>
             </Helmet>
 
-            <div className="mt-12 lg:px-12">
+            <div className="mt-12 text-sm md:text-base lg:px-12">
                 <h1 className="text-4xl mb-8">My Customer Reviews</h1>
 
                 {isLoading ? (
                     <img className="w-48" src={"/loading2.gif"} alt="Loading" />
+                ) : reviews?.length === 0 ? (
+                    <div>
+                        <p className="text-gray-600">You do not have any reviews from your customer</p>
+                    </div>
                 ) : (
                     <div className="">
                         {reviews
@@ -59,11 +63,11 @@ const ReviewFromCustomer = () => {
                             .map(review => (
                                 <div key={review._id} style={{ boxShadow: "0px 0px 20px #D9DADA" }} className="p-6 my-12 rounded-lg w-full">
 
-                                    <div className="flex justify-between mt-4">
-                                        <div className="flex w-[600px] space-x-4">
+                                    <div className="flex lg:flex-row flex-col  justify-between mt-4">
+                                        <div className="flex  space-x-4">
                                             <img src={review.userImage} alt={review.userName} className="size-10 rounded-full" />
                                             <div>
-                                                <div className="flex justify-between">
+                                                <div className="flex flex-col justify-between">
                                                     <div>
                                                         <h2 className="font-semibold">{review.userName}</h2>
                                                         <p className="text-sm">{new Date(review.date).toLocaleDateString()}</p>
@@ -87,7 +91,7 @@ const ReviewFromCustomer = () => {
                                                         <p>{review.review}</p>
 
                                                         {review.agencyResponse ? (
-                                                            <div className="mt-4 w-[500px] p-4 bg-green-100 text-green-700 rounded">
+                                                            <div className="mt-4 md:w-[500px] p-4 bg-green-100 text-green-700 rounded">
                                                                 <strong>Your Response:</strong> {review.agencyResponse}
                                                             </div>
                                                         ) : (
@@ -97,7 +101,7 @@ const ReviewFromCustomer = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="w-[300px]">
+                                        <div className="md:w-[300px] mt-6 lg:mt-0">
                                             <h3 className="left-4 bottom-4 text-2xl font-semibold px-2 py-1 rounded">
                                                 {review.carName}
                                             </h3>
