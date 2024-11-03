@@ -25,6 +25,7 @@ import Notifications from "../Dashboard/User/Notifications";
 import OwnerInfo from "../Dashboard/Agency/OwnerInfo";
 import AgencyVehicleDetails from "../components/AgencyVehicleDetails/AgencyVehicleDetails";
 import Ag from "../Dashboard/Agency/Ag";
+import Transactions from "../Dashboard/Agency/Transactions";
 
 
 
@@ -103,6 +104,10 @@ export const DashboardRoutes = [
             {
                 path: "/dashboard/agency/customer-management",
                 element: <CustomerManagement></CustomerManagement>
+            },
+            {
+                path: "/dashboard/agency/transactions",
+                element: <Transactions></Transactions>
             },
             {
                 path: "/dashboard/ag",
