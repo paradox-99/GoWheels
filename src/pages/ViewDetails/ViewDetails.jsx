@@ -26,10 +26,10 @@ const ViewDetails = () => {
 
     const {
         carBookingInfo,
-        searchResult
+        car
     } = location?.state || {};
 
-    const email = searchResult.agnecyInfo.email;
+    const email = car.agnecyInfo.email;
     const { agencyInfo } = useAgencyInfo(email)
 
     const navigate = useNavigate();

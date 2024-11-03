@@ -12,19 +12,19 @@ import { Helmet } from "react-helmet-async";
 const SignUpPartFive = () => {
 
     const { user, loader, setLoader } = UseAuth() || {};
-    const { userInfo } = useDesignation();
+    const { userInfo, refetch } = useDesignation();
     const { displayName } = user || {};
     const [preview, setPreview] = useState(null);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const location = useLocation();
     const { userImage, from } = location.state || {};
- 
+
     useEffect(() => {
         if ((!user && !loader) || !from) {
             navigate('/join');
         }
-        else if ((userInfo.image && userInfo.circleImage) ){
+        else if ((userInfo.image && userInfo.circleImage)) {
             navigate('/')
         }
     }, [from, loader, navigate, user, userInfo.circleImage, userInfo.image])
@@ -63,6 +63,7 @@ const SignUpPartFive = () => {
                 if (userCropImage) {
                     const { data } = await axiosPublic.patch(`/usersRoute/user/${email}`, { userCropImage })
                     if (data.modifiedCount) {
+                        await refetch();
                         Swal.fire({
                             position: "top-end",
                             icon: "success",

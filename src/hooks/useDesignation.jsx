@@ -7,7 +7,7 @@ const useDesignation = () => {
     const {user, loader} = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const { data: userInfo= '' } = useQuery({
+    const { data: userInfo= '', refetch  } = useQuery({
         queryKey: [user?.email, 'userInfo'],
         enabled: !loader && !!user?.email,
         queryFn: async () => {
@@ -15,7 +15,7 @@ const useDesignation = () => {
             return data;
         }
     })
-    return {userInfo};
+    return {userInfo, refetch};
 };
 
 
