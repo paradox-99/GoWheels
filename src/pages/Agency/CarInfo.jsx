@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
@@ -135,6 +136,9 @@ const CarInfo = () => {
     };
     return (
         <div>
+            <Helmet>
+                <title>Register || Agency</title>
+            </Helmet>
             <div className='lg:w-[60vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
                 <form onSubmit={handleSubmit} className="p-5">
                     <div className='text-center mx-auto pt-5' >

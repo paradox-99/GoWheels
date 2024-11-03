@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 const AgencyHome = () => {
   return (
     <div>
+      <Helmet>
+        <title>Dashboard</title>
+      </Helmet>
       <section id="services" className="py-20">
         <div className="container mx-auto px-16 items-center flex flex-col lg:flex-row">
           <div className="lg:w-1/2">

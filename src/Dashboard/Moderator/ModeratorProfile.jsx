@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ModeratorProfile = () => {
   return (
     <div className="px-10 py-5">
+      <Helmet>
+        <title>Name || Profile</title>
+      </Helmet>
       <div className="flex justify-start items-center gap-10">
         <figure className="w-32 h-32">
           <img

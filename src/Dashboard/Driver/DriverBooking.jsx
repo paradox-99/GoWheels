@@ -1,9 +1,12 @@
+import { Helmet } from "react-helmet-async";
 
 const DriverBooking = () => {
     return (
         <div className="min-h-screen dark:bg-slate-800">
+            <Helmet>
+                <title>Active Bookings</title>
+            </Helmet>
             <div className=" grid grid-cols-1 gap-6 justify-center p-6">
-
                 <div className=" dark:bg-gray-700 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform flex justify-between items-center">
                     <div className="flex items-center  gap-4">
                         <img

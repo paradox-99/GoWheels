@@ -1,4 +1,3 @@
-
 import UserProfileCommon from "../common/UserProfileCommon";
 
 // const OwnerInfo = () => {

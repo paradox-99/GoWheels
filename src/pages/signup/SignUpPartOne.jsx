@@ -7,6 +7,7 @@ import { GiSteeringWheel } from "react-icons/gi";
 import UseAuth from '../../hooks/UseAuth';
 import useDesignation from '../../hooks/useDesignation';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 // import { GiSteeringWheel } from 'react-icons/gi';
 
 const SignUpPartOne = () => {
@@ -36,6 +37,9 @@ const SignUpPartOne = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Sign Up</title>
+            </Helmet>
             {
                 !user ? <>
                     <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto px-10 rounded-lg'>
@@ -53,7 +57,7 @@ const SignUpPartOne = () => {
                                 <GoogleButton></GoogleButton>
                             </div>
                             <div className='mt-2'>
-                                <Link to={'/join/agencyRegister'} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
+                                <Link to={'/join/agency-terms-and-conditions'} className='py-1 lg:py-2 border lg:border-secondary rounded-xl w-full flex items-center justify-center gap-2 text-xl font-nunito font-semibold'>
                                     <FaRegHandshake className='text-3xl text-white' /> Register as a agency
                                 </Link>
                             </div>

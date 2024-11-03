@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Link, useNavigate } from "react-router-dom";
 import { locationData } from "../../../public/locationData";
 import { useState } from "react";
@@ -6,13 +7,14 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import UseAuth from "../../hooks/UseAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
-
+import { IoEye, IoEyeOff } from "react-icons/io5";
+import loaderEliment from '../../../public/logo.gif';
+import { Helmet } from "react-helmet-async";
 
 const AgencyRegister = () => {
     const { createUser, updateUserProfile } = UseAuth() || {}
     const [selectedDivision, setSelectedDivision] = useState('');
-    const [email, setUserEmail] = useState('')
+    const [loading, setLoading] = useState(false)
     // const [errorMessage, setErrorMessage] = useState(null)
     // eslint-disable-next-line no-unused-vars
     const [selectedDistrict, setSelectedDistrict] = useState('');
@@ -20,6 +22,8 @@ const AgencyRegister = () => {
     const [upazillas, setUpazillas] = useState([]);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic()
+    const [imageLabel, setImageLabel] = useState("Upload your photo");
+    const [showPassword, setShowPassword] = useState(false);
     // console.log(' use email :' ,email)
 
     const handleDivisionChange = (e) => {
@@ -36,20 +40,15 @@ const AgencyRegister = () => {
         setUpazillas(locationData[selectedDivision][district] || []);
     };
 
-
     const { mutateAsync } = useMutation({
         mutationFn: async (ownerData) => {
-            const { data } = await axiosPublic.post(`https://go-wheels-server.vercel.app/api/usersRoute/ownerInfo`, ownerData)
+            const { data } = await axiosPublic.post(`/usersRoute/ownerInfo`, ownerData)
             return data
         },
         onSuccess: () => {
             console.log('data saved successfully')
             // toast.success(' data added successfully')
-            navigate('/join/agencyInfo', { state: { email } });
-
-
         }
-
     })
 
     const handleImageUpload = async (e) => {
@@ -58,17 +57,18 @@ const AgencyRegister = () => {
             console.error("No file selected");
             return;
         }
-
         const formData = new FormData();
         formData.append("image", imageFile);
-
         try {
-            const response = await axios.post("https://api.imgbb.com/1/upload?key=0873ad3ca7a49d847f0ce5628d0e79ee",
+            const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
                 formData
             );
 
             const imageUrl = response.data.data.display_url;
             console.log("Image uploaded:", imageUrl);
+
+            const urlSegment = imageUrl.split('/').slice(-2).join('/');
+            setImageLabel(urlSegment);
             return imageUrl;
         } catch (error) {
             console.error("Image upload failed:", error);
@@ -76,10 +76,9 @@ const AgencyRegister = () => {
     };
 
 
-
-
     const handleJoin = async (e) => {
         e.preventDefault()
+        setLoading(true)
         const form = e.target;
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
@@ -93,11 +92,6 @@ const AgencyRegister = () => {
         const upazilla = form.upazilla.value;
         const localAddress = form.localAddress.value;
         const dateOfBirth = e.target.birthDay.value;
-        const createdAt = new Date()
-        const userRole = "agency"
-        const accountStatus = "not verified"
-        setUserEmail(userEmail)
-
         const imageFile = form.photo.files[0];
         // console.log(imageFile.name)
         const image = await handleImageUpload({ target: { files: [imageFile] } });
@@ -109,8 +103,8 @@ const AgencyRegister = () => {
             localAddress
         }
 
-        const ownerInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, userRole, accountStatus, createdAt };
-        console.log(ownerInfo)
+        const userInfo = { firstName, lastName, userEmail, phone, gender, image, userAddress, dateOfBirth, nid, };
+        console.log(userInfo)
 
         // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         // setErrorMessage('');
@@ -134,10 +128,13 @@ const AgencyRegister = () => {
             const updateProfile = await updateUserProfile(fullName, image)
             console.log(updateProfile)
 
-            await mutateAsync(ownerInfo)
+            await mutateAsync(userInfo)
+            setLoading(false)
+            navigate('/join/agencyOtp', { state: { userInfo } });
 
         } catch (error) {
             console.log(error)
+            setLoading(false)
         }
 
 
@@ -145,6 +142,9 @@ const AgencyRegister = () => {
     // style={{ backgroundImage: `url(${background})` }}
     return (
         <div>
+            <Helmet>
+                <title>Register || Agency</title>
+            </Helmet>
             <div className='text-center mx-auto pt-5'>
                 <h1 className="text-3xl lg:text-3xl font-bold  font-merriweather mb-10">Owner Information</h1>
             </div>
@@ -188,19 +188,27 @@ const AgencyRegister = () => {
                                                 required />
                                         </div>
                                         <div className="w-full">
-                                            <input
-                                                type="password"
-                                                name="password"
-                                                id="password"
-                                                className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
-                                                placeholder='Password'
-                                                required />
+                                            <div className="w-full">
+                                                <input
+                                                    type={showPassword ? "text" : "password"}
+                                                    name="password"
+                                                    id="password"
+                                                    className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
+                                                    placeholder='Password'
+                                                    required />
+                                                <span
+                                                    className='absolute top-2 lg:top-3 right-3 text-xl'
+                                                    onClick={() => setShowPassword(!showPassword)}>
+                                                    {showPassword ? <IoEyeOff></IoEyeOff> : <IoEye></IoEye>}
+                                                </span>
+                                                {/* {errorMessage && <h1 className='text-red-500 text-xs  p-2 rounded-lg flex items-center'>{errorMessage}</h1>} */}
+                                            </div>
                                             {/* {errorMessage && <h1 className='text-red-500 text-xs  p-2 rounded-lg flex items-center'>{errorMessage}</h1>} */}
                                         </div>
                                     </div>
                                     <div className='space-y-4'>
                                         <input
-                                            type="number"
+                                            type="text"
                                             name="phone"
                                             id="phone"
                                             className='outline-none border w-full rounded py-1 lg:py-2 px-2 text-secondary'
@@ -294,14 +302,19 @@ const AgencyRegister = () => {
                                             htmlFor="photo-upload"
                                             className="border-2 border-dashed border-primary p-2 w-full  outline-none rounded py-1 lg:py-2 px-2  flex items-center justify-center cursor-pointer"
                                         >
-                                            Upload your photo
+                                            {imageLabel}
                                         </label>
                                     </div>
                                 </div>
                                 {/* to={'/join/signUpPartOne'} */}
-                                
+                                {loading ? (
+                                    <div className="text-center text-lg font-semibold text-blue-600">
+                                        <img className="w-20 mx-auto" src={loaderEliment} alt="" />
+                                    </div>
+                                ) : ''}
+
                                 <div className='pb-10 mt-5 flex justify-between'>
-                                    <Link to={'/join/signUpOne'}>
+                                    <Link to={'/join/agency-terms-and-conditions'}>
                                         <button className="relative inline-block px-4 py-2 font-medium group">
                                             <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-primary group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                                             <span className="absolute inset-0 w-full h-full bg-white border-2 border-primary group-hover:bg-black"></span>
@@ -322,7 +335,7 @@ const AgencyRegister = () => {
                     <div className="lg:w-[30vw] h-[350px]  p-5">
                         <img className="lg:w-[30vw] h-[350px]" src={image} alt="" />
                         <div>
-                            <p className="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem laboriosam beatae sit et repellat aliquam, labore officiis dolores architecto itaque fugiat est blanditiis hic! Quae quidem tenetur hic mollitia nemo....</p>
+                            <p className="mt-3">Welcome to GoWheel, your trusted partner in car rentals! We offer a wide range of vehicles to suit your travel needs, whether you're planning a weekend getaway or a business trip. Our commitment to quality and customer satisfaction ensures a smooth and enjoyable experience.....</p>
                             <p className="mt-5 font-bold">If you agree with these terms and condition then you can register and start traveling with us</p>
                         </div>
                     </div>

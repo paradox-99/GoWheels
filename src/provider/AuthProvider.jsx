@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import useStoreUser from "../hooks/useStoreUser";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -13,6 +14,7 @@ const AuthProvider = ({ children }) => {
     const [loader, setLoader] = useState(true);
     const [imagePreview, setImagePreview] = useState(null);
     const axiosPublic = useAxiosPublic();
+    const {setData} = useStoreUser();
 
 
     // user creation
@@ -59,6 +61,7 @@ const AuthProvider = ({ children }) => {
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem('accessToken', res.data.token.accessToken);
+                            setData(currentUser.email)
                             setLoader(false);
                         }
                     })
