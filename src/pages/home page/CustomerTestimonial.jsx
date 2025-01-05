@@ -16,7 +16,7 @@ const CustomerTestimonial = () => {
   // if (error) return <div>Error loading surveys</div>;
 
   return (
-    <div className="max-w-6xl mt-20 lg:mt-32 px-4">
+    <div className="max-w-6xl mt-20 mx-auto lg:mt-32 px-4">
       <BasicHeading
         title="TESTIMONIAL"
         heading={"What Our Client Say About Us"}

@@ -5,6 +5,9 @@ import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
 import GoogleButton from '../../components/GoogleButton';
+import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+import useStoreUser from '../../hooks/useStoreUser';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +15,7 @@ const SignIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [loading, setLoading] = useState(false);
+    const {setData} = useStoreUser();
 
     useEffect(() => {
         if (user && loading) {
@@ -29,13 +33,8 @@ const SignIn = () => {
             setLoading(true)
             const result = await userLogin(email, password);
             setUser(result.user)
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Login successfully!",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            toast.success("successfully logged in")
+            setData(email);
             navigate(location?.state ? location.state : '/')
         }
         catch (error) {
@@ -61,6 +60,9 @@ const SignIn = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Sign In</title>
+            </Helmet>
             {
                 !user ? <>
                     <div className='lg:w-[60vw] xl:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto md:px-10 rounded-lg'>

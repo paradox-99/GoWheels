@@ -1,22 +1,25 @@
-
-import Available from "./Available Section/Available";
-import Featured from "./Featured_Section/Featured";
 import Banner from "./Banner";
 import HowItWorks from "../../components/HowItWorks";
 import WhyChooseUs from "../../components/WhyChooseUs";
 import SpecialOffer from "../../components/HomeComponent/SpecialOffer";
 import CustomerTestimonial from "./CustomerTestimonial";
 
+import { Helmet } from "react-helmet-async";
+
 const HomePage = () => {
     return (
         <div>
+            <Helmet>
+                <title>GoWheels</title>
+            </Helmet>
             <Banner></Banner>
-            <Featured></Featured>
-            {/* <Available></Available> */}
-            <HowItWorks></HowItWorks>
-            <WhyChooseUs></WhyChooseUs>
-            <SpecialOffer></SpecialOffer>
-            <CustomerTestimonial></CustomerTestimonial>
+            
+            <div className="max-w-7xl mx-auto">
+                <HowItWorks></HowItWorks>
+                <WhyChooseUs></WhyChooseUs>
+                <SpecialOffer></SpecialOffer>
+                <CustomerTestimonial></CustomerTestimonial>
+            </div>
         </div>
     );
 };

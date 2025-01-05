@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import BasicHeading from "../../components/BasicHeading";
 import { useState } from "react";
 import ManageAgencyDetails from "./ManageAgencyDetails";
+import { Helmet } from "react-helmet-async";
 
 const ManageAgencies = () => {
     const axiosSecure = useAxiosSecure();
@@ -56,11 +57,13 @@ const ManageAgencies = () => {
 
     return (
         <div className="p-10">
+            <Helmet>
+                <title>Agencies Information</title>
+            </Helmet>
             <BasicHeading
                 title="Users Information"
                 heading={"All Agencies are here"}
             />
-
             <div className="mt-10 relative flex flex-col w-full mx-auto h-full overflow-hidden text-gray-700 bg-white shadow-md rounded-lg">
                 <div className="relative max-h-[600px] overflow-auto">
                     <div className="min-w-full">

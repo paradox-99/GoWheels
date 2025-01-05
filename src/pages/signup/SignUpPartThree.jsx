@@ -6,6 +6,7 @@ import UseAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
 import loaderEliment from '../../../public/logo.gif';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
 
 const SignUpPartThree = () => {
     const { user } = UseAuth();
@@ -126,6 +127,9 @@ const SignUpPartThree = () => {
 
     return (
         <div className='lg:w-[40vw] bg-transparent lg:bg-[#fdfefe33] mx-auto p-10 rounded-lg'>
+            <Helmet>
+                <title>Sign Up || Password</title>
+            </Helmet>
             <div className='text-center mx-auto'>
                 <h1 className='text-3xl lg:text-5xl font-bold text-primary font-merriweather'>GoWheels</h1>
             </div>

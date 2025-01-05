@@ -1,7 +1,13 @@
+import { Helmet } from "react-helmet-async";
+import AllAgency from "../Agency/AllAgency";
+
 const AboutPage = () => {
     return (
         <div>
-            <p>about page</p>
+            <Helmet>
+                <title>About Us</title>
+            </Helmet>
+            <AllAgency/>
         </div>
     );
 };

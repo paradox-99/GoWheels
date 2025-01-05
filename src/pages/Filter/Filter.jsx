@@ -2,140 +2,95 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Address from "../../components/address/Address";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import FeaturedCarts from "../../components/cart/FeaturedCarts";
 import { top_brands } from "../../../public/locationData";
-import toast from "react-hot-toast";
-import { calculateHoursDifference, calculateMaxUntilDate, calculateMinUntilTime, calculateTimeDifference, getMaxDate, getNowTime, getTodayDate } from "../../api/dateTime/dateTimeUtilities";
+import { Helmet } from "react-helmet-async";
+import TimePicker from "../../components/address/TimePicker";
+import useVehicleData from "../../hooks/useVehicleData";
+import { InputLabel, MenuItem, Select } from "@mui/material";
+import { MdError } from "react-icons/md";
+
 
 const Filter = () => {
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [address, setAddress] = useState();
+  const [time, setTime] = useState();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const [carBookingInfo, setCarBookingInfo] = useState(null);
 
-  const ref1 = useRef();
-  const ref2 = useRef();
-  const ref3 = useRef();
-  const ref4 = useRef();
+  const { cars } = useVehicleData();
+  const brands = [...new Set(cars.map((brand) => brand.brand))];
 
-  // from date and time states
-  const [todayDate, setTodayDate] = useState("");
-  const [maxDate, setMaxDate] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
-  const [nowTime, setNowTime] = useState("");
-
-  // to date and time states
-  const [selectUntilDate, setSelectUntildate] = useState("");
-  const [maxUntilDate, setMaxUntilDate] = useState("");
-  const [minUntilTime, setMinUntilTime] = useState("");
-
-  // from date and time functions starts
-  useEffect(() => {
-    setTodayDate(getTodayDate());
-    setMaxDate(getMaxDate());
-  }, []);
-
-  const handleDateChange = (e) => {
-    const dateValue = e.target.value;
-    setSelectedDate(dateValue);
-    setMaxUntilDate(calculateMaxUntilDate(dateValue));
-  };
-
-  useEffect(() => {
-    setNowTime(getNowTime());
-  }, []);
+  // const models = cars.map((car) => car.model)
 
 
-  const handleBlur = () => {
-    const selectedTime = ref2.current.value;
-    if (selectedDate === todayDate && selectedTime <= nowTime) {
-      toast.error("Don`t select previous or current time ");
-      ref2.current.value = "";
-      return
-    }
-    ref2.current.type = "text";
-  };
+  const handleBrandChange = (e) => {
+    e.preventDefault();
+    const brand = e.target.value;
+    setSelectedBrand(brand)
 
-  const handleTimeChange = (e) => {
-    const selectedTimeValue = e.target.value;
-    setSelectedTime(selectedTimeValue);
-
-    if (selectedDate === selectUntilDate) {
-      setMinUntilTime(calculateMinUntilTime(selectedTimeValue));
-    } else {
-      setMinUntilTime('');
-    }
-  };
-  // from date and time functions ends
-
-  const isUntilFieldsEnabled = selectedDate && selectedTime;
-
-  // to time and date functionality starts
-  const handleUntilDateChange = (e) => {
-    const untilDateValue = e.target.value;
-    setSelectUntildate(untilDateValue);
-
-    if (selectedDate === untilDateValue && selectedTime) {
-      setMinUntilTime(calculateMinUntilTime(selectedTime));
-    } else {
-      setMinUntilTime('');
-    }
-  };
-
-  const handTimeleBlur = () => {
-    const selectedUntilTime = ref4.current.value;
-
-    const minDiffTime = calculateHoursDifference(selectedDate, selectedTime, selectUntilDate, selectedUntilTime)
-    const timeDiff = calculateTimeDifference(selectedTime, selectedUntilTime)
-
-    if (selectedDate === selectUntilDate && timeDiff < 10) {
-      toast.error("you have to select time at least ten hours ahed of from time");
-      ref4.current.value = "";
-      return
-    }
-    else if (minDiffTime < 10) {
-      toast.error("The minimum time difference should be 10 hours");
-      ref4.current.value = "";
-      return;
-    }
-    ref4.current.type = "text";
   }
-  // to time and date functionality ends
 
-
+  
+  
   const handleFilter = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const fromDate = form.fromDate.value;
-    const fromTime = form.fromTime.value;
-    const untilDate = form.untilDate.value;
-    const untilTime = form.untilTime.value;
+    setErrorMessage("")
 
     const division = address.selectedDivision;
     const district = address.selectedDistrict;
     const upazilla = address.selectedUpazilla;
+
+  console.log("time :", time);
+    
+
+    const initailDate = time?.fromDate;
+    const initalTime = time?.fromTime;
+    const toDate = time?.untilDate;
+    const toTime = time?.untilTime;
+
+
+
     let area = "";
     if (address.keyArea) {
       area = address.keyArea
     }
 
     const filterData = {
-      fromDate,
-      fromTime,
-      untilDate,
-      untilTime,
+      initailDate,
+      initalTime,
+      toDate,
+      toTime,
       division,
       district,
       upazilla,
-      area
+      area,
+      selectedBrand
     };
 
-    const { data } = await axiosPublic.get('/bookings/getSearchData', { params: filterData })
-    setSearchResult(data)
-    setCarBookingInfo(filterData)
+    try {
+      const { data } = await axiosPublic.get('/carsRoute/getSearchData', { params: filterData });
+
+      console.log
+
+      if (data.message === "No car found with the provided details") {
+        setErrorMessage(data.message);
+        setSearchResult([]);
+        return;
+      }
+
+      setSearchResult(data)
+      setCarBookingInfo(filterData)
+    }
+
+    catch (error) {
+      console.log(error)
+    }
+
   };
 
   const handleBrand = brand_name => {
@@ -146,110 +101,49 @@ const Filter = () => {
     setAddress(address);
   }
 
+  const getTime = (getTime) => {
+    setTime(getTime)
+  }
+
   return (
     <div className="my-20 w-full px-4">
+      <Helmet>
+        <title>Search</title>
+      </Helmet>
       <div className="flex justify-center items-center">
         <form
           onSubmit={handleFilter}
           className="flex justify-center items-center flex-col w-fit lg:flex-row px-5 rounded-lg py-5"
         >
-          <div className="flex justify-between items-center flex-col min-[1180px]:flex-row rounded-full gap-10">
-            <div className="">
-              <p className="text-lg font-semibold mb-3">Pickup Location</p>
+          <div className="flex justify-center items-center flex-col lg:flex-row gap-6">
+            {/* addres */}
+            <div>
+              <p className="text-lg font-semibold mb-3">Location</p>
               <div className="flex justify-between gap-4 items-center w-full">
                 <Address getAddress={getAddress}></Address>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row gap-5">
-              <div>
-                <p className="text-lg font-semibold mb-3">From</p>
-                <div className="flex justify-center items-center gap-4">
-                  <input
-                    type="text" // Start as text to show placeholder
-                    name="fromDate"
-                    id="fromDate"
-                    className="outline-none w-[130px] bg-transparent font-nunito border-b-primary py-1 lg:py-2 border-b-2"
-                    placeholder="Select Date"
-                    required
-                    ref={ref1}
-                    readOnly={true}
-                    onFocus={() => {
-                      ref1.current.type = "date";
-                      ref1.current.readOnly = false;
-                    }}
-                    onBlur={() => {
-                      ref1.current.type = "text";
-                      ref1.current.readOnly = true;
-                    }}
-                    onKeyDown={(e) => {
-                      e.preventDefault();
-                    }}
-                    onChange={handleDateChange}
-                    min={todayDate}
-                    max={maxDate}
-                  />
-                  <input
-                    type="text"
-                    name="fromTime"
-                    id="fromTime"
-                    className="outline-none w-[130px] bg-transparent font-nunito border-b-primary py-1 lg:py-2 border-b-2 cursor-pointer"
-                    placeholder="Time"
-                    required
-                    ref={ref2}
-                    onFocus={() => {
-                      ref2.current.type = "time";
-                    }}
-                    onBlur={handleBlur}
-                    onChange={handleTimeChange}
-                    min={nowTime}
-                  />
-                </div>
-              </div>
-              <div>
-                <p className="text-lg font-semibold mb-3">Until</p>
-                <div className="flex justify-center gap-4 items-center">
-                  <input
-                    type="text"
-                    name="untilDate"
-                    id="untilDate"
-                    className="outline-none w-[130px] bg-transparent font-nunito border-b-primary py-1 lg:py-2 border-b-2 cursor-pointer"
-                    placeholder="Select Date"
-                    required
-                    ref={ref3}
-                    readOnly={true}
-                    onFocus={() => {
-                      ref3.current.type = "date";
-                      ref3.current.readOnly = false;
-                    }}
-                    onBlur={() => {
-                      ref3.current.type = "text";
-                      ref3.current.readOnly = true;
-                    }}
-                    onKeyDown={(e) => {
-                      e.preventDefault();
-                    }}
-                    onChange={handleUntilDateChange}
-                    disabled={!isUntilFieldsEnabled}
-                    min={selectedDate}
-                    max={maxUntilDate}
-                  />
-                  <input
-                    type="text"
-                    name="untilTime"
-                    id="untilTime"
-                    className="outline-none w-[130px] bg-transparent font-nunito border-b-primary py-1 lg:py-2 border-b-2 cursor-pointer"
-                    placeholder="Time"
-                    required
-                    ref={ref4}
-                    onFocus={() => {
-                      ref4.current.type = "time";
-                    }}
-                    onBlur={handTimeleBlur}
-                    min={minUntilTime}
-                  />
-                </div>
-              </div>
+            {/* time and date */}
+            <div>
+              <h3 className="font-nunito mb-2">Booking Range</h3>
+              <TimePicker getTime={getTime}></TimePicker>
             </div>
+            {/* car brand */}
+            <div >
+              <InputLabel className="font-nunito mb-2">Brand</InputLabel>
+              <Select
+                name="brand"
+                value={selectedBrand}
+                onChange={handleBrandChange}
+                label="Brand"
+                variant="outlined"
+              >
+                {brands.map((brand, index) => (
+                  <MenuItem key={index} value={brand}>{brand}</MenuItem>
+                ))}
+              </Select>
+            </div>
+
           </div>
           <div className="lg:ml-4 mt-8 lg:mt-0">
             <button className="bg-primary hover:bg-transparent hover:border-2 font-nunito border-primary hover:text-primary duration-500 active:scale-75 shadow-inner shadow-secondary border-2 p-2 text-background rounded-full font-semibold">
@@ -259,13 +153,22 @@ const Filter = () => {
         </form>
       </div>
 
+      <div className="mt-10 flex justify-center">
+        {
+          errorMessage && <>
+            <h1 className="text-4xl font-nunito font-semibold text-primary flex items-center gap-1" >{errorMessage}! <MdError /></h1>
+          </>
+        }
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {
-          searchResult?.map(car => <FeaturedCarts
-            key={car._id}
-            car={car}
-            carBookingInfo={carBookingInfo}
-          ></FeaturedCarts>)
+          searchResult && <>
+            <FeaturedCarts
+              searchResult={searchResult}
+              carBookingInfo={carBookingInfo}
+            ></FeaturedCarts>
+          </>
         }
       </div>
 

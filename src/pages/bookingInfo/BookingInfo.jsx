@@ -1,6 +1,6 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import useDesignation from "../../hooks/useDesignation";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -13,54 +13,168 @@ import AgencyData from "../../components/bookingComponent/AgencyData";
 import BookingData from "../../components/bookingComponent/BookingData";
 import UserData from "../../components/bookingComponent/UserData";
 import { calculateHoursDifference } from "../../api/dateTime/dateTimeUtilities";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import loader from '../../../public/logo.gif'
 import DriverList from "../../components/driverList/DriverList";
+import PaymentData from "../../components/paymentData/PaymentData";
+import { Helmet } from "react-helmet-async";
+import { getDataFromLocalStorage } from "../../api/utilities";
 
 
 const BookingInfo = () => {
+
     const location = useLocation();
-    const bookingInformation = location.state;
+
     const { user } = UseAuth();
     const { userInfo } = useDesignation() || {};
+
     const [discount, setDiscount] = useState(0);
     const [drivingCost, setDrivingCost] = useState(0);
     const [totalPayment, setTotalPayment] = useState(0);
     const [method, setMethod] = useState(null);
     const [totalPayCost, setTotalPayCost] = useState(0);
     const [totalRentHours, setTotalRentHours] = useState(0);
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [isModalVisible, setModalVisible] = useState(false);
+    const [showDriverMessage, setShowDriverMessage] = useState(false);
+    const { driverInfo, age, cost } = location.state || {};
 
     const { firstName, lastName, userEmail, phone, gender, image, circleImage, nid, drivingLicense } = userInfo;
-    const { brand, model, build_year, fuel, gear, mileage, photo, seats, rental_price, license_number, expire_date } = bookingInformation?.data?.vehicle_info || {}
-    const axiosPublic = useAxiosPublic()
 
-    const fromDate = bookingInformation?.fromDate;
-    const toDate = bookingInformation?.untilDate
-    const formTime = bookingInformation?.fromTime;
-    const toTime = bookingInformation?.untilTime;
-    const division = bookingInformation?.division;
-    const district = bookingInformation?.district;
-    const upazila = bookingInformation?.upazilla;
-    const area = bookingInformation?.area;
-    const carId = bookingInformation?.data?._id;
+    const parseData = getDataFromLocalStorage()
+    const { agencyInfo, carBookingInfo, carData } = parseData.bookingData || {}
+
+
+    const {
+        _id,
+        brand,
+        model,
+        buildYear,
+        fuel,
+        gear,
+        mileage,
+        image: carImage,
+        seat,
+        rentalPrice,
+        licenseNumber,
+        expireDate
+    } = carData || {}
+
+    const {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        userEmail: agencyEmail,
+        agency_id
+    } = agencyInfo || {};
+
+    const {
+        division,
+        district,
+        upazilla,
+        area,
+        initailDate,
+        initalTime,
+        toDate,
+        toTime
+    } = carBookingInfo || {}
+
+    const bookingInfo = {
+        division,
+        district,
+        upazilla,
+        area,
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
+    }
+
+    const AgencyInformation = {
+        agencyName,
+        agencyAddress,
+        businessRegNumber,
+        insuranceLicenseNumber,
+        numberOfVehicles,
+        taxIdentificationNumber,
+        transportLicenseNumber,
+        agencyEmail,
+        agency_id
+    }
+    const carInformation = {
+        _id,
+        brand,
+        model,
+        buildYear,
+        fuel,
+        gear,
+        mileage,
+        carImage,
+        seat,
+        rentalPrice,
+        licenseNumber,
+        expireDate
+    }
+
+    const userInformation = {
+        firstName,
+        lastName,
+        userEmail,
+        phone,
+        gender,
+        image,
+        circleImage,
+        nid,
+        drivingLicense
+    }
+
+    useEffect(() => {
+        const savedMethod = localStorage.getItem('method');
+
+        const totalHours = calculateHoursDifference(initailDate, initalTime, toDate, toTime);
+        setTotalRentHours(totalHours)
+        const Cost = totalHours * rentalPrice / 24;
+        const calculatedCost = Math.ceil(Cost);
+
+        if (savedMethod === 'driver') {
+            setMethod('driver');
+            setShowDriverMessage(true);
+            setDrivingCost(cost)
+
+            setTotalPayCost(calculatedCost)
+            if (drivingCost > 0) {
+                const absoluteTotalCost = (calculatedCost + drivingCost) - discount;
+                setTotalPayment(absoluteTotalCost)
+            }
+        } else if (savedMethod === 'Self-driving') {
+            setMethod('Self-driving');
+            const absoluteTotalCost = calculatedCost - discount;
+            setTotalPayment(absoluteTotalCost)
+        }
+    }, [cost, discount, drivingCost, initailDate, initalTime, rentalPrice, toDate, toTime]);
 
     const handleChange = (e) => {
         setLoading(true);
         const drivingMethod = e.target.value
-
         if (drivingMethod === 'driver') {
-            setModalVisible(true);
+            setShowDriverMessage(true);
+        } else {
+            setShowDriverMessage(false);
         }
+
         setMethod(drivingMethod);
+        localStorage.setItem('method', drivingMethod);
+        setMethod(drivingMethod);
+        localStorage.setItem('method', drivingMethod);
+
 
         setTimeout(() => {
-            const totalHours = calculateHoursDifference(fromDate, formTime, toDate, toTime);
+            const totalHours = calculateHoursDifference(initailDate, initalTime, toDate, toTime);
             setTotalRentHours(totalHours)
 
-            const Cost = totalHours * rental_price / 24;
+            const Cost = totalHours * rentalPrice / 24;
             const calculatedCost = Math.ceil(Cost);
             setTotalPayCost(calculatedCost)
 
@@ -76,24 +190,34 @@ const BookingInfo = () => {
         }, 1000)
     }
 
-    const handleConfirmBooking = async (e) => {
-        e.preventDefault()
-        if (!method) {
-            toast.error("please select a method self driving or need driver")
-            return
-        }
-        const paymentInfo = {
-            brand, model, build_year, fuel, gear, mileage, photo, seats, license_number, expire_date, firstName, lastName, userEmail, phone, nid, drivingLicense, fromDate, toDate, formTime, toTime, division, district, upazila, area, method, carId: bookingInformation?.carId, totalRentHours: 5
-        }
 
-        await axiosPublic.post('/payment/order', paymentInfo)
-            .then(res => {
-                window.location.replace(res.data?.url)
-                console.log(res.data)
-            })
+    const paymentInfo = {
+        initailDate,
+        initalTime,
+        toDate,
+        toTime,
+        totalRentHours,
+        totalPayCost,
+        totalPayment,
+        method,
+        discount,
+        drivingCost,
+        userEmail,
+        agencyEmail,
+        agency_id,
+        _id,
+        rentalPrice,
+        division,
+        district,
+        upazilla,
+        area
     }
+
     return (
         <div className="flex flex-col lg:flex-row justify-between min-h-[calc(100vh-69px)]" >
+            <Helmet>
+                <title>Booking</title>
+            </Helmet>
 
             <section className="lg:w-[65%] shadow-xl rounded-xl px-5 py-3">
                 {/* upper section starts */}
@@ -102,9 +226,9 @@ const BookingInfo = () => {
                         <div>
                             <h1 className="text-2xl font-semibold font-merriweather">Your selected car</h1>
                             <div className="flex gap-5 border-b-2 border-primary border-dashed pb-3">
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"><FaCarSide className="text-primary text-lg" /> {brand} {model}</p>
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <MdAirlineSeatReclineNormal className="text-primary text-lg" /> Seats: {seats}</p>
-                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <SlCalender className="text-primary text-lg" /> Year: {build_year}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"><FaCarSide className="text-primary text-lg" /> {carData?.brand} {carData?.model}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <MdAirlineSeatReclineNormal className="text-primary text-lg" /> Seats: {carData?.seat}</p>
+                                <p className=" font-nunito font-semibold flex gap-1 items-center"> <SlCalender className="text-primary text-lg" /> Year: {carData?.buildYear}</p>
                             </div>
                         </div>
 
@@ -121,7 +245,7 @@ const BookingInfo = () => {
                     </div>
 
                     <div className="flex flex-col lg:flex-row items-center justify-between relative">
-                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={photo} alt={brand} />
+                        <img className="lg:w-[35%] rounded-xl shadow-xl mt-3" src={carImage} alt={carData?.brand} />
 
                         <div>
                             <form
@@ -139,36 +263,31 @@ const BookingInfo = () => {
                                         />
                                         <label>Self Driving</label><br />
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                            onChange={handleChange}
-                                            type="radio"
-                                            name="driving-method"
-                                            id="driver"
-                                            value="driver"
-                                            checked={method === 'driver'}
-                                        />
-                                        <label>Need Driver</label><br />
+                                    <div className="flex flex-col items-start gap-2">
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                onChange={handleChange}
+                                                type="radio"
+                                                name="driving-method"
+                                                id="driver"
+                                                value="driver"
+                                                checked={method === 'driver'}
+                                            />
+                                            <label htmlFor="driver">Need Driver</label>
+                                        </div>
+
+                                        {/* Conditionally render the Get Your Driver message */}
+                                        {showDriverMessage && (
+                                            <div className="mt-2">
+                                                <Link to={'/driverList'}>
+                                                    <button className="border-primary border p-1 text-xs rounded-md">Get your driver</button>
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </form>
                         </div>
-
-                        {isModalVisible && (
-                            <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-10">
-                                <div className="bg-white p-6 rounded-lg shadow-lg">
-                                    <h2 className="text-2xl font-bold">Driver Selection</h2>
-                                    <p>You have selected the <span className="text-lg font-semibold">Need Driver</span> option. Please proceed.</p>
-
-                                    <DriverList role = {'driver'}></DriverList>
-                                    <button
-                                        className="mt-4 bg-primary text-white p-2 rounded"
-                                        onClick={() => setModalVisible(false)}>
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
-                        )}
 
                         {
                             loading && <>
@@ -185,7 +304,6 @@ const BookingInfo = () => {
                 </header>
                 {/* upper section ends */}
 
-
                 {/* lower section starts */}
                 <main className=" mt-3">
                     <div>
@@ -195,20 +313,30 @@ const BookingInfo = () => {
                                 <Tab>Agency Information</Tab>
                                 <Tab>Booking Information</Tab>
                                 <Tab>User Information</Tab>
+                                <Tab>Driver Info</Tab>
                             </TabList>
 
                             <div className="mt-5">
                                 <TabPanel>
-                                    <CarData brand={brand} model={model} build_year={build_year} fuel={fuel} gear={gear} mileage={mileage} photo={photo} seats={seats} rental_price={rental_price} license_number={license_number} expire_date={expire_date} ></CarData>
+                                    <CarData carInformation={carInformation} ></CarData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-36`}>
-                                    <AgencyData></AgencyData>
+                                    <AgencyData AgencyInformation={AgencyInformation}></AgencyData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[330px] lg:w-64`}>
-                                    <BookingData fromDate={fromDate} formTime={formTime} toDate={toDate} toTime={toTime} division={division} district={district} upazila={upazila} area={area}></BookingData>
+                                    <BookingData bookingInfo={bookingInfo}></BookingData>
                                 </TabPanel>
                                 <TabPanel className={`lg:ml-[510px]`}>
-                                    <UserData firstName={firstName} lastName={lastName} userEmail={userEmail} phone={phone} gender={gender} nid={nid} drivingLicense={drivingLicense} ></UserData>
+                                    <UserData userInformation={userInformation} ></UserData>
+                                </TabPanel>
+                                <TabPanel className={`lg:ml-[510px]`}>
+                                    <p><span className="font-bold">Driver Name</span>: {driverInfo?.firstName} {driverInfo?.lastName} </p>
+                                    <p><span className="font-bold">Gender</span>: {driverInfo?.gender}</p>
+                                    <p><span className="font-bold">Age</span>: {age}</p>
+                                    <p><span className="font-bold">Email</span>: {driverInfo?.userEmail}</p>
+                                    <span className="font-bold"><h1>phone: {driverInfo?.phone}</h1></span>
+
+                                    <p className=" font-bold"><span className="font-bold">Address</span>:  {driverInfo?.userAddress.division} <span className="text-black">,</span> {driverInfo?.userAddress.district} <span className="text-black"></span>,{driverInfo?.userAddress.upazilla}</p>
                                 </TabPanel>
                             </div>
                         </Tabs>
@@ -217,101 +345,12 @@ const BookingInfo = () => {
                 {/* lower section ends */}
             </section>
 
-            {/* right part */}
             <section className=" lg:w-[33%] px-7 py-8 shadow-xl rounded-xl " >
-                <div className="flex justify-between items-center border-b border-primary pb-5">
-                    <h1 className="font-nunito font-extrabold text-lg">Invoice</h1>
-                    <h1 className="font-nunito font-medium">৳ Taka</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">From Date</h1>
-                        <p className="font-nunito">Rent starting day</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{fromDate}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">From Time</h1>
-                        <p className="font-nunito">Rent starting time</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{formTime}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">To Date</h1>
-                        <p className="font-nunito">Rent finishing date</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{toDate}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">To Time</h1>
-                        <p className="font-nunito">Rent finishing time</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{toTime}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2 border-b border-primary pb-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Driving method</h1>
-                        <p className="font-nunito">Selected method of driving</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{method ? method : "not selected"}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Base Price:</h1>
-                        <p className="font-nunito">Per day</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">৳ {rental_price * 120}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Total hours</h1>
-                        <p className="font-nunito">Total hours</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">{totalRentHours}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Renting Cost</h1>
-                        <p className="font-nunito">Cost on total hours</p>
-                    </div>
-                    <h1 className="font-nunito font-medium">৳ {totalPayCost * 120}</h1>
-                </div>
-                {
-                    method === "driver" && <>
-                        <div className="flex justify-between items-center font-nunito mt-2">
-                            <div>
-                                <h1 className="font-bold font-nunito">Driver Cost</h1>
-                                <p className="font-nunito">If you select need driver method</p>
-                            </div>
-                            <h1 className="font-nunito font-medium">৳ {drivingCost * 120}</h1>
-                        </div>
-                    </>
-                }
-                <div className="flex justify-between items-center font-nunito mt-2 border-b border-primary pb-2">
-                    <div>
-                        <h1 className="font-bold font-nunito">Discount</h1>
-                    </div>
-                    <h1 className="font-nunito font-medium">৳ {discount * 120}</h1>
-                </div>
-                <div className="flex justify-between items-center font-nunito mt-2">
-                    <div>
-                        <h1 className="font-bold font-nunito text-lg">Total cost</h1>
-                        <p className="font-nunito font-medium">Total cost you need to pay</p>
-                    </div>
-                    <h1 className="font-nunito font-bold">৳ {totalPayment * 120}</h1>
-                </div>
-                <form
-                    className="mt-2"
-                    onSubmit={handleConfirmBooking}>
-                    <button type="submit" className="bg-primary rounded-xl py-1 w-full text-white font-medium font-nunito hover:bg-black duration-500">Confirm booking</button>
-                </form>
-
+                <PaymentData paymentInfo={paymentInfo}></PaymentData>
             </section >
 
         </div >
+
     );
 };
 
