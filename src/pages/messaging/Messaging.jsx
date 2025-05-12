@@ -15,7 +15,7 @@ const Messaging = () => {
 
     if (user?.userRole === 'agency') {
         userID = user?.agency_id;
-        name = agency.agencyName;
+        name = agency?.agencyName;
     }
     else {
         userID = user?._id;
@@ -32,7 +32,6 @@ const Messaging = () => {
                 breakpoint={'760px'}
             />
         </div>
-
     );
 };
 

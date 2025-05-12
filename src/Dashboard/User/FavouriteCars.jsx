@@ -15,7 +15,7 @@ const FavouriteCars = () => {
                 console.log(storedCarIds);
 
                 if (storedCarIds.length > 0) {
-                    const response = await axios.post('http://localhost:3000/api/bookings/favorites', { ids: storedCarIds });
+                    const response = await axios.post('https://go-wheels-server.vercel.app/api/bookings/favorites', { ids: storedCarIds });
                     setCars(response.data);
                 }
             } catch (error) {

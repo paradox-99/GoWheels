@@ -10,6 +10,7 @@ const PaymentData = ({ paymentInfo }) => {
         _id,
         discount,
         drivingCost,
+        driverInfo,
         initailDate,
         initalTime,
         method,
@@ -25,15 +26,19 @@ const PaymentData = ({ paymentInfo }) => {
         upazilla,
         area
 
-    } = paymentInfo
+    } = paymentInfo;
 
     const axiosPublic = useAxiosPublic();
 
     const handleConfirmBooking = async (e) => {
         e.preventDefault()
-        if (!paymentInfo?.method) {
-            toast.error("please select a method self driving or need driver")
-            return
+        if (!paymentInfo?.method ) {
+            toast.error("please select a method self driving or need driver");
+            return;
+        }
+        else if ( paymentInfo?.method === 'driver' && !driverInfo) {
+            toast.error('Please select your driver');
+            return;
         }
 
         const paymentData = {
@@ -43,6 +48,7 @@ const PaymentData = ({ paymentInfo }) => {
             userEmail,
             discount,
             drivingCost,
+            driverInfo,
             method,
             totalRentHours,
             division,

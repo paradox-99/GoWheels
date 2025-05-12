@@ -4,11 +4,11 @@ import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/UseAuth";
 import useDesignation from "../hooks/useDesignation";
-import { TbMapPinSearch } from "react-icons/tb";
-import { IoMdSearch } from "react-icons/io";
+import { FiSearch } from "react-icons/fi";
 
 import Swal from "sweetalert2";
 import toast from "react-hot-toast"
+import { IoChatbubblesOutline } from "react-icons/io5";
 const Navbar = () => {
     const { user, logout, loader } = useAuth();
     const [previousScrollY, setPreviousScrollY] = useState(0);
@@ -62,14 +62,6 @@ const Navbar = () => {
 
     if (hideNavbar || (hideNavbar && loader)) return null;
 
-    // if (!user && loader) {
-    //     return (
-    //         <div className='absolute right-[40%] top-[16px] lg:top-[-24px]'>
-    //             <img className='mx-auto w-16 lg:w-32' src={loaderEliment} alt="" />
-    //         </div>
-    //     );
-    // }
-
     const routes = (
         <>
             <li><NavLink
@@ -81,7 +73,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                     isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
                 }
-                to={'about'}>Agencies</NavLink></li>
+                to={'view-agencies'}>Agencies</NavLink></li>
             <li><NavLink
                 className={({ isActive }) =>
                     isActive ? 'text-primary px-2 py-1 rounded' : 'hover:text-primary duration-200 px-2 py-1 rounded'
@@ -103,8 +95,11 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="flex items-start">
-                    <div className="hidden md:flex md:gap-5">
-                        <Link to={'filter'} className="flex items-center gap-2 md:text-xl"><IoMdSearch />Search</Link>
+                    <div className="hidden md:flex md:gap-5 items-center">
+                        <Link to={'search'} className="flex items-center gap-2 md:text-2xl"><FiSearch /></Link>
+                        {
+                            user && <Link to={'/send-message'} className="text-2xl mx-4"><IoChatbubblesOutline/></Link>
+                        }
                         {!user && (
                             <li className="bg-primary px-2 text-sm lg:px-5 py-1 lg:py-2 text-white  rounded  text-center lg:ml-7 font-merriweather w-full ">
                                 <NavLink

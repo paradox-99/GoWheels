@@ -15,7 +15,6 @@ export default {
         merriweather: '"Merriweather", serif',
         nunito: '"Nunito Sans", sans-serif',
       },
-
     },
   },
   plugins: [],

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://go-wheels-server.vercel.app");
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);

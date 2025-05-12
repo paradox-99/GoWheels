@@ -1,4 +1,5 @@
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { io } from 'socket.io-client';
 
 const AgencyRegisterNotifications = () => {
     const [notifications, setNotifications] = useState([]);
@@ -6,8 +7,7 @@ const AgencyRegisterNotifications = () => {
     
     useEffect(() => {
       // Initialize Socket.IO connection
-      socketRef.current = io("http://localhost:3000"); // Ensure correct server URL
-  
+      socketRef.current = io("https://go-wheels-server.vercel.app"); // Ensure correct server URL
       // Listen for new vehicle added notifications
       socketRef.current.on("newVehicleAdded", (notification) => {
         console.log("Received notification:", notification); // Log the notification

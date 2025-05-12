@@ -8,7 +8,7 @@ const ParentComponent = () => {
   const socketRef = useRef(null); 
   
   useEffect(() => {
-    socketRef.current = io("http://localhost:3000"); // Ensure correct server URL
+    socketRef.current = io("https://go-wheels-server.vercel.app"); // Ensure correct server URL
 
     // Listen for new vehicle added notifications
     socketRef.current.on("newVehicleAdded", (notification) => {

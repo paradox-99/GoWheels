@@ -4,8 +4,10 @@ import { FaCar, FaCarSide, FaHistory } from "react-icons/fa";
 import { MdOutlineRateReview } from "react-icons/md";
 import { GiRadioactive } from "react-icons/gi";
 import { FaBell } from "react-icons/fa6";
+import { Badge } from "@mui/material";
 
-
+import { CiMail } from "react-icons/ci";
+import { AiOutlineTransaction } from "react-icons/ai";
 
 const AgencyMenuItems = ({ notificationCount }) => {
   return (
@@ -42,6 +44,12 @@ const AgencyMenuItems = ({ notificationCount }) => {
         icon={MdOutlineRateReview}
       ></MenuItem>
 
+      <MenuItem
+        label={"Transactions "}
+        address={"/dashboard/agency/transactions"}
+        icon={AiOutlineTransaction}
+      ></MenuItem>
+
       {/* <MenuItem label={""} address={'/dashboard/ag'} icon={FaBell}></MenuItem> */}
        {/* Bell icon with notification count */}
        <MenuItem address={"/dashboard/ag"} icon={FaBell}>
@@ -51,6 +59,11 @@ const AgencyMenuItems = ({ notificationCount }) => {
           </span>
         )}
       </MenuItem>
+
+      {/* Mail icon with badge */}
+      <Badge badgeContent={4} color="primary">
+        <CiMail color="action" />
+      </Badge>
     </div>
   );
 };

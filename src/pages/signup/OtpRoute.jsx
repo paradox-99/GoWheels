@@ -54,7 +54,6 @@ const OtpRoute = () => {
         localStorage.removeItem("otpSent");
 
         if (from === '/join/signUpThree') {
-            toast.success("otp matched successfully")
             navigate('/join/signUpFour', {
                 state: {
                     userInfo,

@@ -12,14 +12,10 @@ const useStoreUser = () => {
         if (userInfo.userRole === "user")
         {
             dispatch(setUserData(userInfo));
-            console.log(userInfo);
         }
-
-        console.log("called");
     
         if(userInfo.userRole === "agency"){
             const {data: agencyInfo} = await axiosPublic.get(`/agencyRoute/agency/${userInfo.agency_id}`);
-            console.log(agencyInfo);
             dispatch(setUserData(userInfo));
             dispatch(setAgencyData(agencyInfo));
         }
