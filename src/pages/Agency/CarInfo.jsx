@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
 const CarInfo = () => {
-    const [formCount, setFormCount] = useState(0);  
+    const [formCount, setFormCount] = useState(0);
     const [formData, setFormData] = useState([]);
     const navigate = useNavigate()
     const location = useLocation()
@@ -20,7 +20,7 @@ const CarInfo = () => {
     const handleDropdownChange = (e) => {
         const selectedValue = parseInt(e.target.value);
         setFormCount(selectedValue);
-        setFormData(Array.from({ length: selectedValue}, () => ({})));
+        setFormData(Array.from({ length: selectedValue }, () => ({})));
     };
 
     const handleInputChange = (index, event) => {
@@ -72,7 +72,7 @@ const CarInfo = () => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async (carData) => {
-            const { data } = await axios.post(`https://go-wheels-server.vercel.app/api/carsRoute/vehilesInfo`, carData)
+            const { data } = await axios.post(`http://localhost:3000/api/carsRoute/vehilesInfo`, carData)
             return data
         },
         onSuccess: () => {
